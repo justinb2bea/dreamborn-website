@@ -1,0 +1,138 @@
+/* ============================================================
+   tokens.css — Dreamborn self-hosted fonts + design tokens
+   All fonts served from /fonts/. Zero Google Fonts CDN calls.
+   ============================================================ */
+
+/* ─── Bebas Neue (Brand headings) ─────────────────────────────── */
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('/fonts/bebas-neue-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Lora (Brand body) ────────────────────────────────────────── */
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/lora-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/lora-400-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/lora-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/lora-700-italic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─── Fraunces (Editorial headings) ───────────────────────────── */
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── DM Sans (Editorial body + UI everywhere) ─────────────────── */
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/dm-sans-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/dm-sans-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/dm-sans-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── CSS Custom Properties ────────────────────────────────────── */
+:root {
+  /* Font stacks */
+  --font-brand-heading:     'Bebas Neue', Impact, sans-serif;
+  --font-brand-body:        'Lora', Georgia, serif;
+  --font-editorial-heading: 'Fraunces', Georgia, serif;
+  --font-body:              'DM Sans', system-ui, -apple-system, sans-serif; /* used everywhere for UI */
+  --font-mono:              'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ─── Register application ──────────────────────────────────────
+   Brand register: /, /work, /system, /connect
+   Headings → Bebas Neue | Body/prose → Lora | UI → DM Sans
+   ────────────────────────────────────────────────────────────── */
+[data-register="brand"] h1,
+[data-register="brand"] h2,
+[data-register="brand"] h3,
+[data-register="brand"] h4 {
+  font-family: var(--font-brand-heading);
+  letter-spacing: 0.03em; /* Bebas Neue reads better with slight tracking */
+}
+
+[data-register="brand"] p,
+[data-register="brand"] .prose {
+  font-family: var(--font-brand-body);
+}
+
+/* ─── Editorial register: /thinking, /thinking/[slug] ──────────
+   Headings → Fraunces | Body/prose + UI → DM Sans
+   ────────────────────────────────────────────────────────────── */
+[data-register="editorial"] h1,
+[data-register="editorial"] h2,
+[data-register="editorial"] h3,
+[data-register="editorial"] h4 {
+  font-family: var(--font-editorial-heading);
+}
+
+/* ─── Body base: DM Sans everywhere ────────────────────────────── */
+body {
+  font-family: var(--font-body);
+}
+
+/* ─── Nav, buttons, labels, captions, metadata ──────────────────
+   Always DM Sans regardless of register.
+   ────────────────────────────────────────────────────────────── */
+nav, button, .btn, label, .caption, .meta, .status-label, .agent-card, .post-card .author {
+  font-family: var(--font-body);
+}
