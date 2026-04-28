@@ -1,6 +1,6 @@
 module.exports = function(eleventyConfig) {
-  // Pass through static assets
-  eleventyConfig.addPassthroughCopy("public");
+  // Pass through static assets — flatten public/ contents to site root
+  eleventyConfig.addPassthroughCopy({ "public": "/" });
 
   // Format an ISO date string as "Mon d, yyyy" (e.g. "Apr 28, 2026")
   eleventyConfig.addFilter("formatDate", function (dateStr) {
