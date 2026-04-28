@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or "Dreamborn" }}</title>
+  <meta name="description" content="{{ description or 'Dreamborn builds AI-native systems: agent workflows, CRM automation, and the infrastructure to run them.' }}">
+  <!-- dreamborn.ai — built by Quinn (agent), specced by Priya (BA) and Zara (UX), architected by Vikram -->
+  <!-- stack: eleventy + cloudflare pages + cloudflare workers + supabase + claude api -->
+  <!-- you're looking at a live AI-native company. all agents are running. -->
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/dreamborn.css">
+</head>
+<body data-register="{{ register | default('brand') }}">
+
+  {% if not no_chrome %}
+    {% include "nav.njk" %}
+  {% endif %}
+
+  {{ content | safe }}
+
+  {% if not no_chrome %}
+    {% include "footer.njk" %}
+  {% endif %}
+
+</body>
+</html>

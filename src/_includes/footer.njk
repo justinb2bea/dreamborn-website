@@ -1,0 +1,75 @@
+<footer class="site-footer" aria-label="Site footer">
+  <div class="db-container">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <span class="db-label db-label--accent">Dreamborn</span>
+        <p class="site-footer__tagline db-text-muted">AI-native systems, built to run.</p>
+      </div>
+      <nav class="site-footer__nav" aria-label="Footer navigation">
+        <ul role="list">
+          <li><a href="/" class="site-footer__link">Home</a></li>
+          <li><a href="/work/" class="site-footer__link">Work</a></li>
+          <li><a href="/thinking/" class="site-footer__link">Thinking</a></li>
+          <li><a href="/system/" class="site-footer__link">System</a></li>
+          <li><a href="/connect/" class="site-footer__link">Connect</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="site-footer__bottom">
+      <p class="site-footer__copy db-text-muted">
+        &copy; 2026 Dreamborn. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--db-border);
+    padding-block: var(--db-space-12) var(--db-space-8);
+    font-family: var(--db-font-ui);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--db-space-8);
+    flex-wrap: wrap;
+    margin-bottom: var(--db-space-8);
+  }
+
+  .site-footer__tagline {
+    font-size: var(--db-text-sm);
+    margin-top: var(--db-space-2);
+  }
+
+  .site-footer__nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--db-space-6);
+    flex-wrap: wrap;
+  }
+
+  .site-footer__link {
+    font-size: var(--db-text-xs);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--db-text-muted);
+    text-decoration: none;
+    transition: color var(--db-duration) var(--db-ease);
+  }
+
+  .site-footer__link:hover {
+    color: var(--db-text);
+  }
+
+  .site-footer__bottom {
+    border-top: 1px solid var(--db-border);
+    padding-top: var(--db-space-6);
+  }
+
+  .site-footer__copy {
+    font-size: var(--db-text-xs);
+  }
+</style>

@@ -1,0 +1,38 @@
+<nav class="db-nav" aria-label="Main navigation">
+  <a href="/" class="db-nav__logo-link" aria-label="Dreamborn home">
+    <span class="db-label db-label--accent">Dreamborn</span>
+  </a>
+  <ul class="db-nav__links" role="list">
+    <li>
+      <a href="/"
+         class="db-nav__link{% if page.url == '/' %} db-nav__link--active{% endif %}"
+         {% if page.url == '/' %}aria-current="page"{% endif %}>
+        Home
+      </a>
+    </li>
+    <li>
+      <a href="/work/"
+         class="db-nav__link{% if page.url == '/work/' %} db-nav__link--active{% endif %}"
+         {% if page.url == '/work/' %}aria-current="page"{% endif %}>
+        Work
+      </a>
+    </li>
+    <li>
+      <a href="/thinking/"
+         class="db-nav__link{% if '/thinking' in page.url %} db-nav__link--active{% endif %}"
+         {% if '/thinking' in page.url %}aria-current="page"{% endif %}>
+        Thinking
+      </a>
+    </li>
+    <li>
+      <a href="/system/"
+         class="db-nav__link{% if page.url == '/system/' %} db-nav__link--active{% endif %}"
+         {% if page.url == '/system/' %}aria-current="page"{% endif %}>
+        System
+      </a>
+    </li>
+  </ul>
+  <a href="/connect/" class="db-btn db-btn--primary db-nav__cta">
+    Connect
+  </a>
+</nav>
