@@ -1,0 +1,404 @@
+---
+layout: base.njk
+register: brand
+title: The Team — Dreamborn
+description: Meet the Dreamborn AI agent team. Always on. Always building.
+---
+
+<main id="main-content">
+
+  {# ─────────────────────────────────────────────
+     1. HERO
+     H1: Bebas Neue "The Team" | Subhead: Lora
+     ───────────────────────────────────────────── #}
+  <section class="work-hero db-orb-field" aria-label="The Team hero">
+    <div class="db-orb-field__orb db-orb-field__orb--primary work-hero__orb-a" aria-hidden="true"></div>
+    <div class="db-orb-field__orb db-orb-field__orb--tertiary work-hero__orb-b" aria-hidden="true"></div>
+    <div class="db-container">
+      <h1 class="db-display db-display--xl work-hero__h1">The Team</h1>
+      <p class="work-hero__subhead">
+        Nine AI agents. Always on. Built for the work that doesn't stop.
+      </p>
+    </div>
+  </section>
+
+  {# ─────────────────────────────────────────────
+     2. AGENT ROSTER
+     9 hardcoded cards, horizontal scroll (.agent-roster).
+     Order: quinn, vikram, mindy, zara, finn, nora, courtney, atlas, claire.
+     Each card: data-agent="<slug>" for agent-status.js live updates.
+     Offline default — agent-status.js updates to live status on poll.
+     ───────────────────────────────────────────── #}
+  <section class="work-roster db-section" aria-label="Agent roster">
+    <div class="db-container db-container--wide">
+      <div class="work-roster__header">
+        <span class="db-label db-label--accent">Live Agent Activity</span>
+        <span class="db-live-badge" aria-label="Live polling active">
+          <span class="db-live-badge__dot" aria-hidden="true"></span>
+          Live
+        </span>
+      </div>
+      <div class="agent-roster" role="list">
+
+        <div class="agent-card" data-agent="quinn" data-status="offline" role="listitem">
+          <div class="agent-card__header">
+            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
+            <span class="agent-card__name">Quinn</span>
+            <span class="status-label status-label--offline">OFFLINE</span>
+          </div>
+          <p class="agent-action"></p>
+          <time class="agent-time" datetime=""></time>
+        </div>
+
+        <div class="agent-card" data-agent="vikram" data-status="offline" role="listitem">
+          <div class="agent-card__header">
+            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
+            <span class="agent-card__name">Vikram</span>
+            <span class="status-label status-label--offline">OFFLINE</span>
+          </div>
+          <p class="agent-action"></p>
+          <time class="agent-time" datetime=""></time>
+        </div>
+
+        <div class="agent-card" data-agent="mindy" data-status="offline" role="listitem">
+          <div class="agent-card__header">
+            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
+            <span class="agent-card__name">Mindy</span>
+            <span class="status-label status-label--offline">OFFLINE</span>
+          </div>
+          <p class="agent-action"></p>
+          <time class="agent-time" datetime=""></time>
+        </div>
+
+        <div class="agent-card" data-agent="zara" data-status="offline" role="listitem">
+          <div class="agent-card__header">
+            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
+            <span class="agent-card__name">Zara</span>
+            <span class="status-label status-label--offline">OFFLINE</span>
+          </div>
+          <p class="agent-action"></p>
+          <time class="agent-time" datetime=""></time>
+        </div>
+
+        <div class="agent-card" data-agent="finn" data-status="offline" role="listitem">
+          <div class="agent-card__header">
+            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
+            <span class="agent-card__name">Finn</span>
+            <span class="status-label status-label--offline">OFFLINE</span>
+          </div>
+          <p class="agent-action"></p>
+          <time class="agent-time" datetime=""></time>
+        </div>
+
+        <div class="agent-card" data-agent="nora" data-status="offline" role="listitem">
+          <div class="agent-card__header">
+            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
+            <span class="agent-card__name">Nora</span>
+            <span class="status-label status-label--offline">OFFLINE</span>
+          </div>
+          <p class="agent-action"></p>
+          <time class="agent-time" datetime=""></time>
+        </div>
+
+        <div class="agent-card" data-agent="courtney" data-status="offline" role="listitem">
+          <div class="agent-card__header">
+            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
+            <span class="agent-card__name">Courtney</span>
+            <span class="status-label status-label--offline">OFFLINE</span>
+          </div>
+          <p class="agent-action"></p>
+          <time class="agent-time" datetime=""></time>
+        </div>
+
+        <div class="agent-card" data-agent="atlas" data-status="offline" role="listitem">
+          <div class="agent-card__header">
+            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
+            <span class="agent-card__name">Atlas</span>
+            <span class="status-label status-label--offline">OFFLINE</span>
+          </div>
+          <p class="agent-action"></p>
+          <time class="agent-time" datetime=""></time>
+        </div>
+
+        <div class="agent-card" data-agent="claire" data-status="offline" role="listitem">
+          <div class="agent-card__header">
+            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
+            <span class="agent-card__name">Claire</span>
+            <span class="status-label status-label--offline">OFFLINE</span>
+          </div>
+          <p class="agent-action"></p>
+          <time class="agent-time" datetime=""></time>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {# ─────────────────────────────────────────────
+     3. THREE PILLARS
+     H2: Bebas Neue | Body: Lora (3 paragraphs)
+     ───────────────────────────────────────────── #}
+  <section class="work-pillars db-section" aria-labelledby="pillars-heading">
+    <div class="db-container">
+      <h2 class="db-display db-display--md work-pillars__heading" id="pillars-heading">How we work</h2>
+      <!-- CONTENT: Justin to supply Three Pillars copy (3 short paragraphs) -->
+      <div class="work-pillars__grid">
+        <div class="work-pillar">
+          <h3 class="db-display work-pillar__title">Pillar One</h3>
+          <p class="work-pillar__body">Placeholder — Justin to supply pillar copy.</p>
+        </div>
+        <div class="work-pillar">
+          <h3 class="db-display work-pillar__title">Pillar Two</h3>
+          <p class="work-pillar__body">Placeholder — Justin to supply pillar copy.</p>
+        </div>
+        <div class="work-pillar">
+          <h3 class="db-display work-pillar__title">Pillar Three</h3>
+          <p class="work-pillar__body">Placeholder — Justin to supply pillar copy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# ─────────────────────────────────────────────
+     4. CTA
+     Crimson background, Bebas Neue H2 "Ready to build?",
+     inverted (white-outlined) button → /connect.
+     ───────────────────────────────────────────── #}
+  <section class="work-cta" aria-label="Call to action">
+    <div class="db-container work-cta__inner">
+      <h2 class="db-display db-display--lg work-cta__heading">Ready to build?</h2>
+      <a href="/connect/" class="db-btn work-cta__btn">Connect →</a>
+    </div>
+  </section>
+
+</main>
+
+<script src="/js/agent-status.js"></script>
+
+<style>
+  /* ── HERO ──────────────────────────────────────────── */
+  .work-hero {
+    position: relative;
+    padding-block: var(--db-space-32) var(--db-space-20);
+    overflow: hidden;
+  }
+
+  .work-hero__orb-a {
+    top: -20%;
+    right: -10%;
+    filter: blur(140px);
+    width: 50%;
+  }
+
+  .work-hero__orb-b {
+    bottom: 0;
+    left: 0;
+    filter: blur(100px);
+    width: 28%;
+  }
+
+  .work-hero .db-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .work-hero__h1 {
+    margin-bottom: var(--db-space-6);
+    line-height: 0.92;
+  }
+
+  .work-hero__subhead {
+    font-family: var(--db-font-body);
+    font-size: clamp(var(--db-text-md), 2vw, var(--db-text-lg));
+    line-height: 1.7;
+    color: var(--db-text-muted);
+    max-width: 52ch;
+    font-style: italic;
+  }
+
+  /* ── AGENT ROSTER ──────────────────────────────────── */
+  .work-roster__header {
+    display: flex;
+    align-items: center;
+    gap: var(--db-space-4);
+    margin-bottom: var(--db-space-6);
+  }
+
+  .agent-roster {
+    display: flex;
+    gap: var(--db-space-4);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--db-border) transparent;
+    padding-bottom: var(--db-space-2);
+  }
+
+  /* ── AGENT CARD (mirrors agent-status-bar.njk styles) ── */
+  .agent-roster .agent-card {
+    flex: 0 0 220px;
+    width: 220px;
+    padding: var(--db-space-4);
+    background: var(--db-surface);
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius-sm);
+    font-family: var(--db-font-ui);
+    scroll-snap-align: start;
+    transition: border-color var(--db-duration) var(--db-ease);
+  }
+
+  .agent-roster .agent-card:hover {
+    border-color: var(--db-border-2);
+  }
+
+  .agent-roster .agent-card[data-status="active"] {
+    border-color: rgba(141, 198, 63, 0.3);
+  }
+
+  .agent-roster .agent-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--db-space-2);
+    margin-bottom: var(--db-space-2);
+  }
+
+  .agent-roster .agent-card__name {
+    font-size: var(--db-text-sm);
+    font-weight: 600;
+    color: var(--db-text);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Status dots (shared classes — defined here for pages that don't
+     include agent-status-bar.njk; on / they come from that partial) */
+  .agent-roster .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .agent-roster .status-dot--active  { background: var(--db-lime-500); animation: db-pulse 1.5s ease-in-out infinite; }
+  .agent-roster .status-dot--idle    { background: var(--db-neutral-400); }
+  .agent-roster .status-dot--offline { background: var(--db-neutral-700, #3D3530); }
+
+  /* Status labels */
+  .agent-roster .status-label {
+    font-size: var(--db-text-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+
+  .agent-roster .status-label--active  { color: var(--db-lime-500); }
+  .agent-roster .status-label--idle    { color: var(--db-text-muted); }
+  .agent-roster .status-label--offline { color: var(--db-text-faint); }
+
+  /* Action text */
+  .agent-roster .agent-action {
+    font-size: var(--db-text-xs);
+    color: var(--db-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 1.2em;
+    margin-bottom: var(--db-space-1);
+    line-height: 1.4;
+  }
+
+  /* Time ago */
+  .agent-roster .agent-time {
+    display: block;
+    font-size: var(--db-text-xs);
+    color: var(--db-text-faint);
+    font-family: var(--db-font-mono);
+    line-height: 1.4;
+  }
+
+  /* ── THREE PILLARS ────────────────────────────────── */
+  .work-pillars__heading {
+    margin-bottom: var(--db-space-12);
+  }
+
+  .work-pillars__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--db-space-10);
+  }
+
+  @media (min-width: 768px) {
+    .work-pillars__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--db-space-8);
+    }
+  }
+
+  .work-pillar {
+    border-top: 1px solid var(--db-border);
+    padding-top: var(--db-space-6);
+  }
+
+  .work-pillar__title {
+    font-family: var(--db-font-display);
+    font-weight: var(--db-display-weight);
+    letter-spacing: var(--db-display-tracking);
+    font-size: var(--db-text-2xl);
+    line-height: 1.0;
+    margin-bottom: var(--db-space-4);
+    color: var(--db-text);
+  }
+
+  .work-pillar__body {
+    font-family: var(--db-font-body);
+    font-size: var(--db-text-base);
+    line-height: 1.75;
+    color: var(--db-text-muted);
+    font-style: italic;
+  }
+
+  /* ── CTA ──────────────────────────────────────────── */
+  .work-cta {
+    background: var(--db-cta);
+    padding-block: var(--db-space-20);
+  }
+
+  .work-cta__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--db-space-8);
+  }
+
+  @media (min-width: 640px) {
+    .work-cta__inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .work-cta__heading {
+    color: white;
+    line-height: 0.92;
+  }
+
+  .work-cta__btn {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background var(--db-duration) var(--db-ease),
+                border-color var(--db-duration) var(--db-ease);
+  }
+
+  .work-cta__btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: white;
+    color: white;
+  }
+</style>

@@ -1,0 +1,265 @@
+---
+layout: base.njk
+register: brand
+title: Dreamborn — AI-Native Systems
+description: Dreamborn designs and deploys intelligent agent systems for forward-thinking businesses.
+---
+
+<main id="main-content">
+
+  {# ─────────────────────────────────────────────
+     1. HERO
+     H1: Bebas Neue (via data-register="brand" in base.njk)
+     Subhead: Lora, class="hero-subhead" — finn-visitor.js may swap
+     ───────────────────────────────────────────── #}
+  <section class="home-hero db-orb-field" aria-label="Hero">
+    <div class="db-orb-field__orb db-orb-field__orb--primary home-hero__orb-a" aria-hidden="true"></div>
+    <div class="db-orb-field__orb db-orb-field__orb--secondary home-hero__orb-b" aria-hidden="true"></div>
+    <div class="db-container">
+      <h1 class="db-display db-display--xl home-hero__h1">We build companies that run on AI</h1>
+      <p class="hero-subhead home-hero__subhead">Dreamborn designs and deploys intelligent agent systems for forward-thinking businesses.</p>
+    </div>
+  </section>
+
+  {# ─────────────────────────────────────────────
+     2. AGENT STATUS BAR
+     Section label: "Live Agent Activity"
+     Shared partial — polls /api/agent-states every 60s
+     ───────────────────────────────────────────── #}
+  {% include "agent-status-bar.njk" %}
+
+  {# ─────────────────────────────────────────────
+     3. WHAT WE DO
+     H2: Bebas Neue | Body: Lora
+     ───────────────────────────────────────────── #}
+  <section class="home-what-we-do db-section" aria-labelledby="what-we-do-heading">
+    <div class="db-container">
+      <h2 class="db-display db-display--md" id="what-we-do-heading">What we do</h2>
+      <!-- CONTENT: Justin to supply "What we do" body copy -->
+      <p class="home-what-we-do__body">
+        Placeholder — Justin to supply body copy for this section.
+      </p>
+      <a href="/work/" class="db-btn db-btn--ghost home-what-we-do__cta">See our work →</a>
+    </div>
+  </section>
+
+  {# ─────────────────────────────────────────────
+     4. FEATURED CONTENT STRIP
+     Conditional: only renders when featured_posts has ≥ 3 entries.
+     Three post cards (title, date, topic tag / author).
+     Mobile: horizontal scroll, 280px card width.
+     ───────────────────────────────────────────── #}
+  {% if featured_posts.length >= 3 %}
+  <section class="home-featured db-section" aria-label="Featured from Thinking">
+    <div class="db-container db-container--wide">
+      <div class="home-featured__header">
+        <span class="db-label db-label--accent">From the blog</span>
+      </div>
+      <div class="home-featured__row" role="list">
+        {% for post in featured_posts %}
+        <article class="home-post-card db-card" role="listitem">
+          <div class="home-post-card__meta">
+            <time class="home-post-card__date" datetime="{{ post.published_at }}">{{ post.published_at | truncate(10, true, '') }}</time>
+            <span class="home-post-card__author db-label">{{ post.author }}</span>
+          </div>
+          <h3 class="home-post-card__title">
+            <a href="/thinking/{{ post.slug }}/">{{ post.title }}</a>
+          </h3>
+          {% if post.excerpt %}
+          <p class="home-post-card__excerpt">{{ post.excerpt }}</p>
+          {% endif %}
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {# ─────────────────────────────────────────────
+     5. FINN INVITE BAND
+     Full-width crimson (--db-cta). DM Sans.
+     Links to /connect on click.
+     ───────────────────────────────────────────── #}
+  <a href="/connect/" class="finn-band" aria-label="Chat with Finn, Dreamborn's AI agent">
+    <span class="finn-band__text">Finn — AI agent · Ask me anything about Dreamborn →</span>
+  </a>
+
+</main>
+
+<script src="/js/agent-status.js"></script>
+<script src="/js/finn-visitor.js"></script>
+
+<style>
+  /* ── HERO ──────────────────────────────────────────── */
+  .home-hero {
+    position: relative;
+    padding-block: var(--db-space-32) var(--db-space-20);
+    overflow: hidden;
+  }
+
+  .home-hero__orb-a {
+    top: -15%;
+    right: -8%;
+    filter: blur(120px);
+    width: 45%;
+  }
+
+  .home-hero__orb-b {
+    bottom: 5%;
+    left: 3%;
+    filter: blur(80px);
+    width: 20%;
+  }
+
+  .home-hero .db-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .home-hero__h1 {
+    margin-bottom: var(--db-space-6);
+    max-width: 18ch;
+    line-height: 0.92;
+  }
+
+  .home-hero__subhead {
+    font-family: var(--db-font-body);
+    font-size: clamp(var(--db-text-md), 2vw, var(--db-text-lg));
+    line-height: 1.7;
+    color: var(--db-text-muted);
+    max-width: 52ch;
+    font-style: italic;
+  }
+
+  /* ── WHAT WE DO ─────────────────────────────────────── */
+  .home-what-we-do h2 {
+    margin-bottom: var(--db-space-6);
+  }
+
+  .home-what-we-do__body {
+    font-family: var(--db-font-body);
+    font-size: var(--db-text-md);
+    line-height: 1.75;
+    color: var(--db-text-muted);
+    max-width: 62ch;
+    font-style: italic;
+  }
+
+  .home-what-we-do__cta {
+    margin-top: var(--db-space-8);
+  }
+
+  /* ── FEATURED CONTENT STRIP ─────────────────────────── */
+  .home-featured .db-label {
+    display: block;
+    margin-bottom: var(--db-space-6);
+  }
+
+  .home-featured__row {
+    display: flex;
+    gap: var(--db-space-5);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--db-border) transparent;
+    padding-bottom: var(--db-space-2);
+  }
+
+  .home-post-card {
+    flex: 0 0 280px;
+    width: 280px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: var(--db-space-3);
+  }
+
+  .home-post-card__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--db-space-3);
+  }
+
+  .home-post-card__date {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    color: var(--db-text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .home-post-card__author {
+    font-size: var(--db-text-xs);
+  }
+
+  .home-post-card__title {
+    font-family: var(--db-font-display);
+    font-weight: var(--db-display-weight);
+    letter-spacing: var(--db-display-tracking);
+    font-size: var(--db-text-xl);
+    line-height: 1.05;
+    color: var(--db-text);
+  }
+
+  .home-post-card__title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--db-duration) var(--db-ease);
+  }
+
+  .home-post-card__title a:hover {
+    color: var(--db-cta);
+  }
+
+  .home-post-card__excerpt {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-base);
+    line-height: 1.55;
+    color: var(--db-text-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .home-featured__row {
+      overflow-x: visible;
+      flex-wrap: nowrap;
+    }
+
+    .home-post-card {
+      flex: 1 1 0;
+      min-width: 0;
+      width: auto;
+    }
+  }
+
+  /* ── FINN INVITE BAND ───────────────────────────────── */
+  .finn-band {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: var(--db-cta);
+    color: white;
+    padding: var(--db-space-8) var(--db-space-6);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background var(--db-duration) var(--db-ease);
+  }
+
+  .finn-band:hover {
+    background: var(--db-cta-hover);
+    color: white;
+  }
+
+  .finn-band__text {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-md);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+</style>
