@@ -1,0 +1,337 @@
+---
+layout: base.njk
+title: Thinking — Dreamborn
+description: Ideas and observations from the Dreamborn team.
+register: editorial
+---
+
+<main class="thinking-page" id="main-content">
+
+  {# ─── Page header ──────────────────────────────────────────────── #}
+  <header class="thinking-page__header">
+    <div class="db-container db-container--wide">
+      <h1 class="thinking-page__title">Thinking</h1>
+      <p class="thinking-page__subhead">
+        Ideas and observations from the Dreamborn team.
+      </p>
+    </div>
+  </header>
+
+  {# ─── Filter bar (sticky at top: 72px once header scrolls past) ── #}
+  {# NO sort dropdown — date-desc is the only order (OQ-4) #}
+  <div class="thinking-filter-bar" id="filterBar"
+       role="toolbar" aria-label="Filter posts by topic">
+    <div class="db-container db-container--wide">
+      <div class="thinking-filter-bar__pills">
+        <button
+          class="topic-pill topic-pill--active"
+          data-topic-id=""
+          aria-pressed="true"
+          type="button">
+          All
+        </button>
+        {% for topic in thinking.topics %}
+          <button
+            class="topic-pill"
+            data-topic-id="{{ topic.id }}"
+            data-topic-label="{{ topic.label }}"
+            aria-pressed="false"
+            type="button">
+            {{ topic.label }}
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {# ─── Post card grid ───────────────────────────────────────────── #}
+  <section class="thinking-grid-section" aria-label="Posts">
+    <div class="db-container db-container--wide">
+
+      <div class="thinking-grid" id="postCardGrid" role="list">
+        {% for post in thinking.initial_posts %}
+          <article class="post-card" role="listitem" data-post-id="{{ post.id }}">
+            <a class="post-card__link" href="/thinking/{{ post.slug }}/">
+              <div class="post-card__meta-top">
+                {% if post.topic_ids and post.topic_ids.length %}
+                  {% set firstTopicId = post.topic_ids[0] %}
+                  {% for t in thinking.topics %}
+                    {% if t.id == firstTopicId %}
+                      <span class="post-card__topic-tag">{{ t.label }}</span>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+                {% if post.published_at %}
+                  <time class="post-card__date" datetime="{{ post.published_at }}">
+                    {{ post.published_at | formatDate }}
+                  </time>
+                {% endif %}
+              </div>
+              <h2 class="post-card__title">{{ post.title }}</h2>
+              {% if post.excerpt %}
+                <p class="post-card__excerpt">{{ post.excerpt }}</p>
+              {% endif %}
+              <span class="post-card__author">{{ post.author }}</span>
+            </a>
+          </article>
+        {% else %}
+          <p class="thinking-empty">No posts yet. Check back soon.</p>
+        {% endfor %}
+      </div>
+
+      {# Load More: shown when initial batch is full (12), hidden when < 12 #}
+      <div class="load-more-wrapper" id="loadMoreWrapper"
+           {% if (thinking.initial_posts | length) < 12 %}hidden{% endif %}>
+        <button
+          class="db-btn db-btn--ghost load-more-btn"
+          id="loadMoreBtn"
+          type="button"
+          data-page="2"
+          data-topic="">
+          Load more
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+{# Topic taxonomy JSON for client-side label resolution when loading more posts #}
+<script id="thinkingTopicsData" type="application/json">{{ thinking.topics | dump | safe }}</script>
+
+<script src="/js/thinking.js" defer></script>
+
+<style>
+  /* ─── Chain colour token (used only on /thinking pages) ────────── */
+  .thinking-page,
+  .thinking-filter-bar,
+  .thinking-grid-section,
+  .more-from-thinking {
+    --db-chain:        #9F7B4C;
+    --db-chain-bg:     rgba(159, 123, 76, 0.08);
+    --db-chain-border: rgba(159, 123, 76, 0.25);
+  }
+
+  /* ─── Page header ──────────────────────────────────────────────── */
+  .thinking-page__header {
+    padding-block: var(--db-space-16) var(--db-space-10);
+    border-bottom: 1px solid var(--db-border);
+    margin-bottom: 0;
+  }
+
+  .thinking-page__title {
+    font-family: var(--db-font-display); /* Fraunces in editorial register */
+    font-size: clamp(var(--db-text-4xl), 6vw, var(--db-text-6xl));
+    font-weight: 600;
+    color: var(--db-text);
+    line-height: 1.05;
+    letter-spacing: var(--db-display-tracking, -0.02em);
+    margin-bottom: var(--db-space-4);
+  }
+
+  .thinking-page__subhead {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-md);
+    color: var(--db-text-muted);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  /* ─── Filter bar ────────────────────────────────────────────────── */
+  .thinking-filter-bar {
+    position: sticky;
+    top: 72px; /* sits flush below the sticky main nav */
+    z-index: 90;
+    background: var(--db-bg);
+    border-bottom: 1px solid var(--db-border);
+    padding-block: var(--db-space-3);
+    transition: box-shadow var(--db-duration) var(--db-ease);
+  }
+
+  .thinking-filter-bar.is-stuck {
+    box-shadow: var(--db-shadow-sm);
+  }
+
+  .thinking-filter-bar__pills {
+    display: flex;
+    gap: var(--db-space-2);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+
+  .thinking-filter-bar__pills::-webkit-scrollbar { display: none; }
+
+  /* ─── Topic pills ───────────────────────────────────────────────── */
+  .topic-pill {
+    flex-shrink: 0;
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: var(--db-space-1) var(--db-space-3);
+    border-radius: var(--db-radius-full);
+    border: 1px solid var(--db-border);
+    background: transparent;
+    color: var(--db-text-muted);
+    cursor: pointer;
+    transition: all var(--db-duration-fast) var(--db-ease);
+    white-space: nowrap;
+  }
+
+  .topic-pill:hover {
+    border-color: var(--db-chain-border);
+    color: var(--db-chain);
+    background: var(--db-chain-bg);
+  }
+
+  .topic-pill--active,
+  .topic-pill[aria-pressed="true"] {
+    border-color: var(--db-chain);
+    color: var(--db-chain);
+    background: var(--db-chain-bg);
+  }
+
+  /* ─── Grid section ──────────────────────────────────────────────── */
+  .thinking-grid-section {
+    padding-block: var(--db-space-12);
+  }
+
+  .thinking-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--db-space-6);
+    margin-bottom: var(--db-space-10);
+  }
+
+  @media (max-width: 900px) {
+    .thinking-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .thinking-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── Post card ─────────────────────────────────────────────────── */
+  .post-card {
+    background: var(--db-surface);
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius-md);
+    overflow: hidden;
+    transition: border-color var(--db-duration) var(--db-ease),
+                box-shadow   var(--db-duration) var(--db-ease);
+  }
+
+  .post-card:hover {
+    border-color: var(--db-border-2);
+    box-shadow: var(--db-shadow-sm);
+  }
+
+  .post-card__link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--db-space-3);
+    padding: var(--db-space-6);
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+  }
+
+  .post-card__meta-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--db-space-3);
+    flex-wrap: wrap;
+    min-height: 1.5em;
+  }
+
+  .post-card__topic-tag {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--db-chain);
+    background: var(--db-chain-bg);
+    border-radius: var(--db-radius-sm);
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+
+  .post-card__date {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    color: var(--db-text-muted);
+    white-space: nowrap;
+    margin-left: auto;
+  }
+
+  .post-card__title {
+    font-family: var(--db-font-display); /* Fraunces in editorial */
+    font-size: var(--db-text-xl);
+    font-weight: 600;
+    color: var(--db-text);
+    line-height: 1.3;
+    letter-spacing: var(--db-display-tracking, -0.02em);
+    /* max 3 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .post-card__excerpt {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-base);
+    color: var(--db-text-muted);
+    line-height: 1.6;
+    /* max 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .post-card__author {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    color: var(--db-text-faint);
+    margin-top: auto;
+    padding-top: var(--db-space-2);
+  }
+
+  /* Empty state */
+  .thinking-empty {
+    grid-column: 1 / -1;
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-base);
+    color: var(--db-text-muted);
+    padding: var(--db-space-12) 0;
+    text-align: center;
+  }
+
+  /* ─── Load more ─────────────────────────────────────────────────── */
+  .load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: var(--db-space-4);
+  }
+
+  .load-more-wrapper[hidden] {
+    display: none;
+  }
+
+  .load-more-btn {
+    min-width: 160px;
+  }
+
+  .load-more-btn[aria-busy="true"] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+</style>

@@ -1,0 +1,569 @@
+---
+layout: base.njk
+register: editorial
+pagination:
+  data: posts
+  size: 1
+  alias: post
+permalink: "/thinking/{{ post.slug }}/"
+eleventyComputed:
+  title: "{{ post.title }} — Dreamborn"
+  description: "{{ post.excerpt }}"
+  no_chrome: "{% if post.no_chrome %}true{% endif %}"
+---
+
+<main class="post-page" id="main-content">
+
+  {# ─── Article header (full width) ─────────────────────────────── #}
+  <header class="post-header">
+    <div class="db-container db-container--wide">
+
+      <div class="post-header__meta">
+        {# Topic tags #}
+        {% if post.topic_ids and post.topic_ids.length %}
+          <div class="post-header__topics">
+            {% for topicId in post.topic_ids %}
+              {% for t in thinking.topics %}
+                {% if t.id == topicId %}
+                  <span class="post-topic-tag post-topic-tag--header">{{ t.label }}</span>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {# Date + reading time #}
+        <div class="post-header__dateline">
+          {% if post.published_at %}
+            <time class="post-header__date" datetime="{{ post.published_at }}">
+              {{ post.published_at | formatDate }}
+            </time>
+          {% endif %}
+          {% if post.body_html %}
+            <span class="post-header__sep" aria-hidden="true">·</span>
+            <span class="post-header__read-time">
+              {{ post.body_html | readingTime }} min read
+            </span>
+          {% endif %}
+        </div>
+      </div>
+
+      <h1 class="post-header__title">{{ post.title }}</h1>
+
+      {# Author byline #}
+      <div class="post-header__byline" aria-label="Written by {{ post.author }}">
+        <div class="post-header__byline-avatar" aria-hidden="true">
+          {{ post.author | truncate(1, true, '') | upper }}
+        </div>
+        <div class="post-header__byline-info">
+          <span class="post-header__byline-name">{{ post.author }}</span>
+          <span class="post-header__byline-role db-text-muted">Dreamborn</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  {# ─── Article body + sidebar ───────────────────────────────────── #}
+  <div class="post-layout db-container db-container--wide">
+
+    <article class="post-article" aria-label="{{ post.title }}">
+      {% if post.body_html %}
+        <div class="post-article__body prose">
+          {{ post.body_html | safe }}
+        </div>
+      {% else %}
+        <p class="db-body db-text-muted">Content coming soon.</p>
+      {% endif %}
+    </article>
+
+    {# Sidebar — author card + Finn invite #}
+    <aside class="post-sidebar" aria-label="Article sidebar">
+
+      <div class="sidebar-author-card">
+        <div class="sidebar-author-card__avatar" aria-hidden="true">
+          {{ post.author | truncate(1, true, '') | upper }}
+        </div>
+        <h2 class="sidebar-author-card__name">{{ post.author }}</h2>
+        <p class="sidebar-author-card__bio">
+          An agent at Dreamborn. Building AI-native workflows and systems.
+        </p>
+      </div>
+
+      <div class="sidebar-finn-invite">
+        <p class="sidebar-finn-invite__heading">Questions?</p>
+        <p class="sidebar-finn-invite__text">
+          Talk to Finn — Dreamborn's AI agent — or book a call directly.
+        </p>
+        <a href="/connect/" class="db-btn db-btn--primary sidebar-finn-invite__cta">
+          Connect with Finn →
+        </a>
+      </div>
+
+    </aside>
+  </div>
+
+  {# ─── More from Thinking ───────────────────────────────────────── #}
+  {% set moreFromThinking = posts | relatedPosts(post, 3) %}
+  {% if moreFromThinking.length %}
+    <section class="more-from-thinking" aria-label="More from Thinking">
+      <div class="db-container db-container--wide">
+        <h2 class="more-from-thinking__heading">More from Thinking</h2>
+        <div class="more-from-thinking__grid">
+          {% for rp in moreFromThinking %}
+            <article class="post-card post-card--compact">
+              <a class="post-card__link" href="/thinking/{{ rp.slug }}/">
+                <div class="post-card__meta-top">
+                  {% if rp.topic_ids and rp.topic_ids.length %}
+                    {% set rpTopicId = rp.topic_ids[0] %}
+                    {% for t in thinking.topics %}
+                      {% if t.id == rpTopicId %}
+                        <span class="post-card__topic-tag">{{ t.label }}</span>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                  {% if rp.published_at %}
+                    <time class="post-card__date" datetime="{{ rp.published_at }}">
+                      {{ rp.published_at | formatDate }}
+                    </time>
+                  {% endif %}
+                </div>
+                <h3 class="post-card__title">{{ rp.title }}</h3>
+                {% if rp.excerpt %}
+                  <p class="post-card__excerpt">{{ rp.excerpt }}</p>
+                {% endif %}
+                <span class="post-card__author">{{ rp.author }}</span>
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+</main>
+
+<style>
+  /* ─── Chain colour token (used only on /thinking pages) ────────── */
+  .post-page,
+  .more-from-thinking {
+    --db-chain:        #9F7B4C;
+    --db-chain-bg:     rgba(159, 123, 76, 0.08);
+    --db-chain-border: rgba(159, 123, 76, 0.25);
+  }
+
+  /* ─── Article header ────────────────────────────────────────────── */
+  .post-header {
+    padding-block: var(--db-space-16) var(--db-space-10);
+    border-bottom: 1px solid var(--db-border);
+    margin-bottom: 0;
+  }
+
+  .post-header__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--db-space-4);
+    margin-bottom: var(--db-space-6);
+  }
+
+  .post-header__topics {
+    display: flex;
+    gap: var(--db-space-2);
+    flex-wrap: wrap;
+  }
+
+  .post-topic-tag--header {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--db-chain);
+    background: var(--db-chain-bg);
+    border-radius: var(--db-radius-sm);
+    padding: 3px 8px;
+  }
+
+  .post-header__dateline {
+    display: flex;
+    align-items: center;
+    gap: var(--db-space-2);
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    color: var(--db-text-muted);
+  }
+
+  .post-header__sep { color: var(--db-text-faint); }
+
+  .post-header__read-time { color: var(--db-text-faint); }
+
+  .post-header__title {
+    font-family: var(--db-font-display); /* Fraunces in editorial register */
+    font-size: clamp(var(--db-text-3xl), 5vw, var(--db-text-5xl));
+    font-weight: 600;
+    color: var(--db-text);
+    line-height: 1.1;
+    letter-spacing: var(--db-display-tracking, -0.02em);
+    margin-bottom: var(--db-space-8);
+    max-width: 780px;
+  }
+
+  .post-header__byline {
+    display: flex;
+    align-items: center;
+    gap: var(--db-space-3);
+  }
+
+  .post-header__byline-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--db-bg-2);
+    border: 1px solid var(--db-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--db-font-display);
+    font-size: var(--db-text-base);
+    font-weight: 600;
+    color: var(--db-text-muted);
+    flex-shrink: 0;
+  }
+
+  .post-header__byline-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .post-header__byline-name {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-sm);
+    font-weight: 500;
+    color: var(--db-text);
+  }
+
+  .post-header__byline-role {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    color: var(--db-text-muted);
+  }
+
+  /* ─── Article layout (8/4 col split) ────────────────────────────── */
+  .post-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 680px) minmax(0, 280px);
+    gap: var(--db-space-16);
+    padding-block: var(--db-space-12);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .post-layout {
+      grid-template-columns: 1fr;
+      gap: var(--db-space-12);
+    }
+    /* Sidebar moves below article on mobile */
+    .post-sidebar {
+      order: 2;
+    }
+  }
+
+  /* ─── Article body prose styles ──────────────────────────────────── */
+  .post-article {
+    min-width: 0; /* prevent grid blowout */
+  }
+
+  .prose {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-md);
+    line-height: 1.8;
+    color: var(--db-text-muted);
+  }
+
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    font-family: var(--db-font-display); /* Fraunces */
+    font-weight: 600;
+    color: var(--db-text);
+    margin-block: var(--db-space-8) var(--db-space-3);
+    line-height: 1.2;
+    letter-spacing: var(--db-display-tracking, -0.02em);
+  }
+
+  .prose h2 { font-size: var(--db-text-2xl); }
+  .prose h3 { font-size: var(--db-text-xl); }
+  .prose h4 { font-size: var(--db-text-lg); }
+
+  .prose p {
+    margin-bottom: var(--db-space-5);
+  }
+
+  .prose a {
+    color: var(--db-cta);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .prose a:hover {
+    color: var(--db-cta-hover);
+  }
+
+  .prose ul,
+  .prose ol {
+    padding-left: var(--db-space-6);
+    margin-bottom: var(--db-space-5);
+  }
+
+  .prose li {
+    margin-bottom: var(--db-space-2);
+  }
+
+  .prose blockquote {
+    border-left: 3px solid var(--db-chain);
+    padding-left: var(--db-space-6);
+    margin-block: var(--db-space-8);
+    font-family: var(--db-font-display);
+    font-size: var(--db-text-xl);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--db-text);
+  }
+
+  .prose pre {
+    background: var(--db-bg-2);
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius);
+    padding: var(--db-space-5);
+    overflow-x: auto;
+    margin-bottom: var(--db-space-5);
+  }
+
+  .prose code {
+    font-size: 0.875em;
+    background: var(--db-bg-2);
+    border-radius: var(--db-radius-sm);
+    padding: 2px 6px;
+  }
+
+  .prose pre code {
+    background: none;
+    padding: 0;
+  }
+
+  .prose img {
+    width: 100%;
+    border-radius: var(--db-radius);
+    margin-block: var(--db-space-8);
+  }
+
+  .prose hr {
+    border: none;
+    border-top: 1px solid var(--db-border);
+    margin-block: var(--db-space-10);
+  }
+
+  /* ─── Sidebar ────────────────────────────────────────────────────── */
+  .post-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--db-space-6);
+    position: sticky;
+    top: calc(72px + var(--db-space-8)); /* below sticky nav + breathing room */
+  }
+
+  .sidebar-author-card {
+    background: var(--db-surface);
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius-md);
+    padding: var(--db-space-6);
+  }
+
+  .sidebar-author-card__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--db-bg-2);
+    border: 1px solid var(--db-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--db-font-display);
+    font-size: var(--db-text-xl);
+    font-weight: 600;
+    color: var(--db-text-muted);
+    margin-bottom: var(--db-space-4);
+  }
+
+  .sidebar-author-card__name {
+    font-family: var(--db-font-display); /* Fraunces */
+    font-size: var(--db-text-lg);
+    font-weight: 600;
+    color: var(--db-text);
+    margin-bottom: var(--db-space-2);
+  }
+
+  .sidebar-author-card__bio {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-sm);
+    color: var(--db-text-muted);
+    line-height: 1.6;
+  }
+
+  .sidebar-finn-invite {
+    background: var(--db-bg-2);
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius-md);
+    padding: var(--db-space-6);
+  }
+
+  .sidebar-finn-invite__heading {
+    font-family: var(--db-font-display);
+    font-size: var(--db-text-lg);
+    font-weight: 600;
+    color: var(--db-text);
+    margin-bottom: var(--db-space-2);
+  }
+
+  .sidebar-finn-invite__text {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-sm);
+    color: var(--db-text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--db-space-4);
+  }
+
+  .sidebar-finn-invite__cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ─── More from Thinking ────────────────────────────────────────── */
+  .more-from-thinking {
+    padding-block: var(--db-space-12);
+    border-top: 1px solid var(--db-border);
+  }
+
+  .more-from-thinking__heading {
+    font-family: var(--db-font-display);
+    font-size: var(--db-text-2xl);
+    font-weight: 600;
+    color: var(--db-text);
+    letter-spacing: var(--db-display-tracking, -0.02em);
+    margin-bottom: var(--db-space-8);
+  }
+
+  .more-from-thinking__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--db-space-6);
+  }
+
+  @media (max-width: 900px) {
+    .more-from-thinking__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .more-from-thinking__grid { grid-template-columns: 1fr; }
+  }
+
+  /* post-card styles are defined in thinking/index.njk's <style> block,
+     but since this is a separate page, we redeclare them here. */
+  .post-page .post-card,
+  .more-from-thinking .post-card {
+    background: var(--db-surface);
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius-md);
+    overflow: hidden;
+    transition: border-color var(--db-duration) var(--db-ease),
+                box-shadow   var(--db-duration) var(--db-ease);
+  }
+
+  .post-page .post-card:hover,
+  .more-from-thinking .post-card:hover {
+    border-color: var(--db-border-2);
+    box-shadow: var(--db-shadow-sm);
+  }
+
+  .post-page .post-card__link,
+  .more-from-thinking .post-card__link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--db-space-3);
+    padding: var(--db-space-5);
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+  }
+
+  .post-page .post-card__meta-top,
+  .more-from-thinking .post-card__meta-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--db-space-3);
+    flex-wrap: wrap;
+    min-height: 1.5em;
+  }
+
+  .post-page .post-card__topic-tag,
+  .more-from-thinking .post-card__topic-tag {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--db-chain);
+    background: var(--db-chain-bg);
+    border-radius: var(--db-radius-sm);
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+
+  .post-page .post-card__date,
+  .more-from-thinking .post-card__date {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    color: var(--db-text-muted);
+    white-space: nowrap;
+    margin-left: auto;
+  }
+
+  .post-page .post-card__title,
+  .more-from-thinking .post-card__title {
+    font-family: var(--db-font-display);
+    font-size: var(--db-text-lg);
+    font-weight: 600;
+    color: var(--db-text);
+    line-height: 1.3;
+    letter-spacing: var(--db-display-tracking, -0.02em);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .post-page .post-card__excerpt,
+  .more-from-thinking .post-card__excerpt {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-sm);
+    color: var(--db-text-muted);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .post-page .post-card__author,
+  .more-from-thinking .post-card__author {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    color: var(--db-text-faint);
+    margin-top: auto;
+    padding-top: var(--db-space-2);
+  }
+</style>
