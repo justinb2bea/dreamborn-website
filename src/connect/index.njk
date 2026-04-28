@@ -1,0 +1,512 @@
+---
+layout: base.njk
+title: Connect — Dreamborn
+description: Talk to Finn or book a call with Dreamborn.
+register: brand
+---
+
+<main class="connect-page" id="main-content">
+
+  {# ─── Page header ────────────────────────────────────────────────── #}
+  <header class="connect-header">
+    <div class="db-container">
+      <h1 class="connect-header__heading">Connect</h1>
+      <p class="connect-header__subhead">
+        Talk to Finn, our AI agent, or book a call directly with the team.
+      </p>
+    </div>
+  </header>
+
+  {# ─── Two-column layout: Finn chat + Cal.com ─────────────────────── #}
+  <section class="connect-layout" aria-label="Connect with Dreamborn">
+    <div class="db-container">
+      <div class="connect-cols">
+
+        {# ── Left: Finn chat ────────────────────────────────────────── #}
+        <div class="connect-finn">
+          <h2 class="connect-finn__heading">Talk to Finn</h2>
+          <p class="connect-finn__subhead">Finn is Dreamborn's AI agent. Ask anything.</p>
+
+          <div class="finn-chat" id="finnChat" aria-label="Finn chat interface">
+
+            {# Message area #}
+            <div class="finn-messages" id="finnMessages" role="log" aria-live="polite" aria-label="Chat messages">
+              {# Pre-rendered Finn greeting — not fetched #}
+              <div class="message-bubble message-bubble--finn" role="article" aria-label="Finn: greeting">
+                I'm Finn — Dreamborn's AI agent. I help visitors understand what we do and connect them with the right people.<br><br>What brings you here today?
+              </div>
+            </div>
+
+            {# Suggested prompts — hidden after first user message #}
+            <div class="suggested-prompts" id="finnPrompts" aria-label="Suggested prompts">
+              <button class="prompt-pill" data-prompt="Tell me about Dreamborn" type="button">Tell me about Dreamborn</button>
+              <button class="prompt-pill" data-prompt="What does working with you look like?" type="button">What does working with you look like?</button>
+              <button class="prompt-pill" data-prompt="I want to book a call" type="button">I want to book a call</button>
+            </div>
+
+            {# Input area #}
+            <div class="finn-input-row" role="form" aria-label="Send a message to Finn">
+              <label for="finnInput" class="sr-only">Message Finn</label>
+              <input
+                id="finnInput"
+                class="finn-input"
+                type="text"
+                placeholder="Ask Finn anything..."
+                autocomplete="off"
+                maxlength="1000"
+                aria-label="Type a message"
+              >
+              <button
+                id="finnSend"
+                class="finn-send-btn db-btn db-btn--primary"
+                type="button"
+                aria-label="Send message"
+              >
+                Send
+              </button>
+            </div>
+
+            {# Error state (hidden by default) #}
+            <div class="finn-error" id="finnError" hidden aria-live="assertive">
+              Finn is temporarily unavailable.
+              <button class="finn-error__retry" id="finnRetry" type="button">Try again</button>
+              or
+              <a href="#calcom-embed" class="finn-error__book">book directly →</a>
+            </div>
+
+          </div>
+        </div>
+
+        {# ── Right: Cal.com embed ────────────────────────────────────── #}
+        <div class="connect-cal" id="calcom-embed">
+          <h2 class="connect-cal__heading">Book a Call</h2>
+          <p class="connect-cal__subhead">30-minute intro — no commitment required.</p>
+
+          {# Desktop: always visible. Mobile: behind accordion. #}
+          <div class="connect-cal__embed-wrapper">
+            <cal-inline
+              data-cal-link="justin-king/intro"
+              style="width:100%;height:600px;overflow:scroll;"
+            ></cal-inline>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{# Cal.com embed script #}
+<script>
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", { origin: "https://cal.com" });
+  Cal("inline", {
+    elementOrSelector: "cal-inline",
+    calLink: "justin-king/intro",
+  });
+</script>
+
+{# Finn chat script — inline to keep /connect self-contained #}
+<script>
+(function () {
+  'use strict';
+
+  var finnMessages   = [];
+  var finnEmail      = null;
+  var isSending      = false;
+
+  var messagesEl     = document.getElementById('finnMessages');
+  var inputEl        = document.getElementById('finnInput');
+  var sendBtn        = document.getElementById('finnSend');
+  var promptsEl      = document.getElementById('finnPrompts');
+  var errorEl        = document.getElementById('finnError');
+  var retryBtn       = document.getElementById('finnRetry');
+
+  var lastUserText   = '';  // for retry
+
+  function appendBubble(text, role) {
+    var div = document.createElement('div');
+    div.className = 'message-bubble message-bubble--' + role;
+    div.setAttribute('role', 'article');
+    div.setAttribute('aria-label', (role === 'finn' ? 'Finn' : 'You') + ': message');
+    div.textContent = text;
+    // animate in
+    div.style.opacity = '0';
+    messagesEl.appendChild(div);
+    requestAnimationFrame(function () {
+      div.style.transition = 'opacity 200ms ease';
+      div.style.opacity = '1';
+    });
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return div;
+  }
+
+  function showError() {
+    errorEl.hidden = false;
+  }
+
+  function hideError() {
+    errorEl.hidden = true;
+  }
+
+  function setSending(val) {
+    isSending = val;
+    sendBtn.disabled = val;
+    inputEl.disabled = val;
+    sendBtn.textContent = val ? 'Sending...' : 'Send';
+  }
+
+  async function sendMessage(text) {
+    if (!text.trim() || isSending) return;
+
+    hideError();
+    lastUserText = text;
+
+    // Hide prompts after first message
+    if (promptsEl) {
+      promptsEl.style.transition = 'opacity 200ms ease';
+      promptsEl.style.opacity = '0';
+      setTimeout(function () { promptsEl.style.display = 'none'; }, 200);
+    }
+
+    appendBubble(text, 'user');
+    finnMessages.push({ role: 'user', content: text });
+    inputEl.value = '';
+
+    // Typing indicator
+    var typingEl = appendBubble('...', 'finn');
+    typingEl.classList.add('message-bubble--typing');
+
+    setSending(true);
+
+    var controller = new AbortController();
+    var timeout = setTimeout(function () { controller.abort(); }, 15000);
+
+    try {
+      var res = await fetch('/api/finn/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: finnMessages, visitor_email: finnEmail }),
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
+
+      if (!res.ok) throw new Error('non-2xx: ' + res.status);
+
+      var data = await res.json();
+      var reply = data.reply || '';
+
+      typingEl.remove();
+      appendBubble(reply, 'finn');
+      finnMessages.push({ role: 'assistant', content: reply });
+
+    } catch (err) {
+      clearTimeout(timeout);
+      typingEl.remove();
+      showError();
+    }
+
+    setSending(false);
+  }
+
+  // Send on button click
+  sendBtn.addEventListener('click', function () {
+    sendMessage(inputEl.value);
+  });
+
+  // Send on Enter key (Shift+Enter = newline not applicable for input[type=text])
+  inputEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage(inputEl.value);
+    }
+  });
+
+  // Suggested prompts
+  if (promptsEl) {
+    promptsEl.addEventListener('click', function (e) {
+      var pill = e.target.closest('.prompt-pill');
+      if (!pill) return;
+      var prompt = pill.dataset.prompt;
+      if (prompt) sendMessage(prompt);
+    });
+  }
+
+  // Retry button
+  if (retryBtn) {
+    retryBtn.addEventListener('click', function () {
+      hideError();
+      if (lastUserText) sendMessage(lastUserText);
+    });
+  }
+
+})();
+</script>
+
+<style>
+  /* ─── Connect header ────────────────────────────────────────────── */
+  .connect-header {
+    padding-block: var(--db-space-20) var(--db-space-12);
+    border-bottom: 1px solid var(--db-border);
+  }
+
+  .connect-header__heading {
+    font-size: clamp(var(--db-text-4xl), 8vw, var(--db-text-7xl));
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--db-text);
+    line-height: 1;
+    margin-bottom: var(--db-space-4);
+  }
+
+  .connect-header__subhead {
+    font-family: var(--db-font-body);
+    font-size: var(--db-text-lg);
+    color: var(--db-text-muted);
+    line-height: 1.6;
+    max-width: 440px;
+  }
+
+  /* ─── Two-col layout ────────────────────────────────────────────── */
+  .connect-layout {
+    padding-block: var(--db-space-12);
+  }
+
+  .connect-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--db-space-12);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .connect-cols {
+      grid-template-columns: 1fr;
+    }
+    /* Mobile: Finn first, Cal.com behind details */
+    .connect-cal {
+      order: 2;
+    }
+  }
+
+  /* ─── Finn chat column ──────────────────────────────────────────── */
+  .connect-finn__heading {
+    font-size: clamp(var(--db-text-2xl), 4vw, var(--db-text-4xl));
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--db-text);
+    margin-bottom: var(--db-space-2);
+  }
+
+  .connect-finn__subhead {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-sm);
+    color: var(--db-text-muted);
+    margin-bottom: var(--db-space-6);
+  }
+
+  /* ─── Chat container ────────────────────────────────────────────── */
+  .finn-chat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--db-space-4);
+    background: var(--db-surface);
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius-lg);
+    padding: var(--db-space-5);
+  }
+
+  /* ─── Messages area ─────────────────────────────────────────────── */
+  .finn-messages {
+    display: flex;
+    flex-direction: column;
+    gap: var(--db-space-3);
+    min-height: 200px;
+    max-height: 380px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--db-border) transparent;
+    padding-right: var(--db-space-1);
+  }
+
+  /* ─── Message bubbles ───────────────────────────────────────────── */
+  .message-bubble {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-sm);
+    line-height: 1.6;
+    padding: var(--db-space-3) var(--db-space-4);
+    border-radius: var(--db-radius-md);
+    max-width: 90%;
+  }
+
+  .message-bubble--finn {
+    background: var(--db-bg-2);
+    border: 1px solid var(--db-border);
+    color: var(--db-text);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+
+  .message-bubble--user {
+    background: var(--db-crimson-600);
+    color: var(--db-warm-white);
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+
+  .message-bubble--typing {
+    opacity: 0.5;
+  }
+
+  /* ─── Suggested prompts ─────────────────────────────────────────── */
+  .suggested-prompts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--db-space-2);
+  }
+
+  .prompt-pill {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    font-weight: 500;
+    padding: var(--db-space-2) var(--db-space-3);
+    background: transparent;
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius-full);
+    color: var(--db-text-muted);
+    cursor: pointer;
+    transition: all var(--db-duration-fast) var(--db-ease);
+    white-space: nowrap;
+  }
+
+  .prompt-pill:hover {
+    border-color: var(--db-crimson-600);
+    color: var(--db-crimson-600);
+  }
+
+  /* ─── Input row ─────────────────────────────────────────────────── */
+  .finn-input-row {
+    display: flex;
+    gap: var(--db-space-2);
+  }
+
+  .finn-input {
+    flex: 1;
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-sm);
+    background: var(--db-bg);
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius-sm);
+    padding: var(--db-space-3) var(--db-space-4);
+    color: var(--db-text);
+    outline: none;
+    transition: border-color var(--db-duration) var(--db-ease);
+  }
+
+  .finn-input:focus {
+    border-color: var(--db-crimson-600);
+  }
+
+  .finn-input::placeholder {
+    color: var(--db-text-faint);
+  }
+
+  .finn-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .finn-send-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .finn-send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* ─── Error state ───────────────────────────────────────────────── */
+  .finn-error {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    color: var(--db-text-muted);
+    display: flex;
+    align-items: center;
+    gap: var(--db-space-2);
+    flex-wrap: wrap;
+    padding: var(--db-space-2) var(--db-space-3);
+    background: var(--db-bg-2);
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius-sm);
+  }
+
+  .finn-error__retry {
+    background: none;
+    border: none;
+    color: var(--db-crimson-600);
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    text-decoration: underline;
+  }
+
+  .finn-error__book {
+    color: var(--db-chain, #9F7B4C);
+    text-decoration: none;
+  }
+
+  .finn-error__book:hover {
+    text-decoration: underline;
+  }
+
+  /* ─── Screen reader only utility ────────────────────────────────── */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* ─── Cal.com column ────────────────────────────────────────────── */
+  .connect-cal__heading {
+    font-size: clamp(var(--db-text-2xl), 4vw, var(--db-text-4xl));
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--db-text);
+    margin-bottom: var(--db-space-2);
+  }
+
+  .connect-cal__subhead {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-sm);
+    color: var(--db-text-muted);
+    margin-bottom: var(--db-space-6);
+  }
+
+  .connect-cal__embed-wrapper {
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius-lg);
+    overflow: hidden;
+    background: var(--db-surface);
+  }
+
+  @media (max-width: 860px) {
+    /* On mobile, wrap Cal.com in an accordion */
+    .connect-cal__embed-wrapper {
+      /* The cal-inline embed is always rendered; mobile layout stacks naturally */
+    }
+  }
+</style>

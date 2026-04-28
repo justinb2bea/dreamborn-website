@@ -1,0 +1,227 @@
+---
+layout: base.njk
+title: System — Dreamborn
+description: The Dreamborn tech stack, live agent activity, and system transparency.
+register: brand
+---
+
+<main class="system-page" id="main-content">
+
+  {# ─── Hero ──────────────────────────────────────────────────────── #}
+  <header class="system-hero">
+    <div class="db-container">
+      <h1 class="system-hero__heading">The System</h1>
+      <p class="system-hero__subhead">
+        Full transparency on what runs Dreamborn. Every layer of the stack, every agent, every decision — on-chain and open.
+      </p>
+    </div>
+  </header>
+
+  {# ─── Tech Stack Grid ────────────────────────────────────────────── #}
+  <section class="system-stack" aria-label="Technology stack">
+    <div class="db-container">
+      <h2 class="system-stack__heading">The Stack</h2>
+      <div class="system-stack__grid">
+
+        <div class="stack-card">
+          <h3 class="stack-card__name">Eleventy</h3>
+          <span class="stack-card__role">Static site generator</span>
+          <p class="stack-card__desc">Markdown → HTML at build time</p>
+        </div>
+
+        <div class="stack-card">
+          <h3 class="stack-card__name">Cloudflare Pages</h3>
+          <span class="stack-card__role">Hosting + CDN</span>
+          <p class="stack-card__desc">Edge-deployed static assets and Functions</p>
+        </div>
+
+        <div class="stack-card">
+          <h3 class="stack-card__name">Pages Functions</h3>
+          <span class="stack-card__role">Edge compute</span>
+          <p class="stack-card__desc">Finn, agent status, webhooks</p>
+        </div>
+
+        <div class="stack-card">
+          <h3 class="stack-card__name">Supabase</h3>
+          <span class="stack-card__role">Database</span>
+          <p class="stack-card__desc">Contacts, content, agent state, taxonomy</p>
+        </div>
+
+        <div class="stack-card">
+          <h3 class="stack-card__name">Claude API</h3>
+          <span class="stack-card__role">AI intelligence</span>
+          <p class="stack-card__desc">Finn conversation (claude-sonnet-4-6)</p>
+        </div>
+
+        <div class="stack-card">
+          <h3 class="stack-card__name">Apollo.io</h3>
+          <span class="stack-card__role">Contact enrichment</span>
+          <p class="stack-card__desc">B2B company + person data</p>
+        </div>
+
+        <div class="stack-card">
+          <h3 class="stack-card__name">Cal.com</h3>
+          <span class="stack-card__role">Scheduling</span>
+          <p class="stack-card__desc">Inline booking embed + webhooks</p>
+        </div>
+
+        <div class="stack-card stack-card--onchain">
+          <h3 class="stack-card__name">Hedera HCS</h3>
+          <span class="stack-card__role stack-card__role--chain">On-chain audit log</span>
+          <p class="stack-card__desc">Immutable agent workflow records</p>
+        </div>
+
+        <div class="stack-card stack-card--onchain">
+          <h3 class="stack-card__name">Hedera HFS</h3>
+          <span class="stack-card__role stack-card__role--chain">On-chain file storage</span>
+          <p class="stack-card__desc">Agent spec and output storage</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {# ─── Agent Status Bar — label override ─────────────────────────── #}
+  {% set statusBarLabel = "Live System Activity" %}
+  {% include "agent-status-bar.njk" %}
+
+  {# ─── Developer Row ──────────────────────────────────────────────── #}
+  <section class="system-dev" aria-label="Developer links">
+    <div class="db-container">
+      <div class="developer-row" aria-label="Developer links">
+        <a href="view-source:https://dreamborn.ai/system" class="dev-link">↗ View page source</a>
+        <!-- TODO(OQ-2): Add CF Pages build log URL once Quinn has the shareable URL from CF Pages dashboard -->
+        <!-- <a href="[CF_PAGES_BUILD_LOG_URL]" class="dev-link">↗ Build log (Cloudflare)</a> -->
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="/js/agent-status.js" defer></script>
+
+<style>
+  /* ─── Chain accent for system page ─────────────────────────────── */
+  .system-page {
+    --db-chain:        #9F7B4C;
+    --db-chain-bg:     rgba(159, 123, 76, 0.08);
+    --db-chain-border: rgba(159, 123, 76, 0.25);
+  }
+
+  /* ─── Hero ──────────────────────────────────────────────────────── */
+  .system-hero {
+    padding-block: var(--db-space-20) var(--db-space-16);
+    border-bottom: 1px solid var(--db-border);
+  }
+
+  .system-hero__heading {
+    font-size: clamp(var(--db-text-4xl), 8vw, var(--db-text-7xl));
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--db-text);
+    line-height: 1;
+    margin-bottom: var(--db-space-6);
+  }
+
+  .system-hero__subhead {
+    font-family: var(--db-font-body);
+    font-size: clamp(var(--db-text-base), 2vw, var(--db-text-xl));
+    color: var(--db-text-muted);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  /* ─── Stack grid ────────────────────────────────────────────────── */
+  .system-stack {
+    padding-block: var(--db-space-16);
+    border-bottom: 1px solid var(--db-border);
+  }
+
+  .system-stack__heading {
+    font-size: clamp(var(--db-text-2xl), 4vw, var(--db-text-4xl));
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--db-text);
+    margin-bottom: var(--db-space-8);
+  }
+
+  .system-stack__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--db-space-4);
+  }
+
+  @media (max-width: 860px) {
+    .system-stack__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .system-stack__grid { grid-template-columns: 1fr; }
+  }
+
+  .stack-card {
+    background: var(--db-surface);
+    border: 1px solid var(--db-border);
+    border-radius: var(--db-radius-md);
+    padding: var(--db-space-5);
+  }
+
+  .stack-card--onchain {
+    border-color: var(--db-chain-border);
+  }
+
+  .stack-card__name {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-base);
+    font-weight: 600;
+    color: var(--db-text);
+    margin-bottom: var(--db-space-1);
+  }
+
+  .stack-card__role {
+    display: block;
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--db-text-muted);
+    margin-bottom: var(--db-space-2);
+  }
+
+  .stack-card__role--chain {
+    color: var(--db-chain);
+  }
+
+  .stack-card__desc {
+    font-family: var(--db-font-ui);
+    font-size: var(--db-text-xs);
+    color: var(--db-text-faint);
+    line-height: 1.5;
+  }
+
+  /* ─── Developer row ─────────────────────────────────────────────── */
+  .system-dev {
+    padding-block: var(--db-space-8);
+    border-bottom: 1px solid var(--db-border);
+  }
+
+  .developer-row {
+    display: flex;
+    gap: var(--db-space-6);
+    flex-wrap: wrap;
+  }
+
+  .dev-link {
+    font-family: var(--db-font-mono, monospace);
+    font-size: var(--db-text-xs);
+    color: var(--db-chain);
+    text-decoration: none;
+    transition: opacity var(--db-duration) var(--db-ease);
+  }
+
+  .dev-link:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+  }
+</style>
