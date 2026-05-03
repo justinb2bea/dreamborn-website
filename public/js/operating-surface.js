@@ -21,6 +21,8 @@
   let lastUpdatedAt = null;
   let explanationActive = false;
   let reassemblyTimer = null;
+  let swapTimer = null;
+  let settleTimer = null;
 
   async function refresh() {
     try {
@@ -157,11 +159,26 @@
 
   function setExplanationMode(active) {
     explanationActive = active;
-    root.classList.toggle('ops-home--explained', active);
-    root.setAttribute('data-explanation-mode', active ? 'explained' : 'default');
-    root.classList.remove('ops-home--reassembling');
+    root.classList.remove('ops-home--reassembling', 'ops-home--settling');
+    root.classList.add('ops-home--swapping');
     if (explainStatus) explainStatus.classList.remove('ops-explain-status--visible');
     if (reassemblyTimer) window.clearTimeout(reassemblyTimer);
+    if (swapTimer) window.clearTimeout(swapTimer);
+    if (settleTimer) window.clearTimeout(settleTimer);
+
+    swapTimer = window.setTimeout(() => {
+      applyExplanationMode(active);
+      root.classList.remove('ops-home--swapping');
+      root.classList.add('ops-home--settling');
+      settleTimer = window.setTimeout(() => {
+        root.classList.remove('ops-home--settling');
+      }, 240);
+    }, 170);
+  }
+
+  function applyExplanationMode(active) {
+    root.classList.toggle('ops-home--explained', active);
+    root.setAttribute('data-explanation-mode', active ? 'explained' : 'default');
 
     explainTextNodes.forEach((node) => {
       const html = active ? node.dataset.explainedHtml : node.dataset.defaultHtml;

@@ -5,6 +5,8 @@ import { test } from 'node:test';
 const homepage = readFileSync(new URL('../src/index.njk', import.meta.url), 'utf8');
 const base = readFileSync(new URL('../src/_layouts/base.njk', import.meta.url), 'utf8');
 const connect = readFileSync(new URL('../src/connect/index.njk', import.meta.url), 'utf8');
+const operatingSurface = readFileSync(new URL('../public/js/operating-surface.js', import.meta.url), 'utf8');
+const css = readFileSync(new URL('../public/css/main.css', import.meta.url), 'utf8');
 
 test('homepage exposes explanation mode copy hooks', () => {
   assert.match(homepage, /data-explain-toggle/);
@@ -26,4 +28,11 @@ test('base layout includes global Finn drawer and script', () => {
 test('connect page uses global Finn script without duplicate page-only script', () => {
   assert.match(connect, /connect-chat-shell/);
   assert.doesNotMatch(connect, /\/js\/finn-chat\.js/);
+});
+
+test('homepage explanation mode uses a crossfade swap transition', () => {
+  assert.match(operatingSurface, /ops-home--swapping/);
+  assert.match(operatingSurface, /ops-home--settling/);
+  assert.match(css, /\.ops-home--swapping/);
+  assert.match(css, /\.ops-home--settling/);
 });

@@ -435,7 +435,42 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .ops-home [data-explain-text],
 .ops-home [data-explain-toggle-label] {
-  transition: color var(--transition-base), opacity var(--transition-base);
+  transition: color var(--transition-base), opacity 170ms ease, transform 170ms ease, filter 170ms ease;
+}
+
+.ops-home--swapping [data-explain-text],
+.ops-home--swapping [data-explain-toggle-label],
+.ops-home--swapping .ops-proof,
+.ops-home--swapping .ops-feed-shell__header,
+.ops-home--swapping .ops-section__intro,
+.ops-home--swapping .ops-ledger-copy,
+.ops-home--swapping .ops-dispatch > .ops-panel-label {
+  opacity: 0;
+  transform: translateY(6px);
+  filter: blur(1px);
+}
+
+.ops-home--settling [data-explain-text],
+.ops-home--settling [data-explain-toggle-label],
+.ops-home--settling .ops-proof,
+.ops-home--settling .ops-feed-shell__header,
+.ops-home--settling .ops-section__intro,
+.ops-home--settling .ops-ledger-copy,
+.ops-home--settling .ops-dispatch > .ops-panel-label {
+  animation: ops-settle-in 240ms ease-out 1;
+}
+
+@keyframes ops-settle-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 .ops-hero {
