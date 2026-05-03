@@ -20,6 +20,19 @@ test('homepage exposes explanation mode copy hooks', () => {
   assert.match(homepage, /Explain what I&#39;m looking at on the Dreamborn homepage\./);
 });
 
+test('homepage repeats interpreter controls strategically', () => {
+  assert.match(homepage, /data-explain-sticky/);
+  assert.match(homepage, /data-default-text="Explain this page"/);
+  assert.match(homepage, /data-explained-text="Show operating surface"/);
+  assert.match(homepage, /Explain this feed/);
+  assert.match(homepage, /What work is happening here\?/);
+  assert.match(homepage, /Explain the proof/);
+  assert.match(homepage, /Who are these agents\?/);
+  assert.match(homepage, /Translate this/);
+  assert.match(homepage, /Explain the live Dreamborn feed in plain English\./);
+  assert.match(homepage, /Explain the Dreamborn proof ledger in plain English\./);
+});
+
 test('base layout includes global Finn drawer and script', () => {
   assert.match(base, /include "finn-drawer\.njk"/);
   assert.match(base, /\/js\/finn-global\.js/);
@@ -36,4 +49,6 @@ test('homepage explanation mode uses a deterioration swap transition', () => {
   assert.match(css, /ops-text-deteriorate/);
   assert.match(css, /ops-text-materialize/);
   assert.match(css, /steps\(4, end\)/);
+  assert.match(operatingSurface, /querySelectorAll\('\[data-explain-toggle\]'\)/);
+  assert.match(operatingSurface, /syncExplainToggles/);
 });
