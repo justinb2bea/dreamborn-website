@@ -74,7 +74,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .nav__logo-img {
-  width: 132px;
+  width: 168px;
   height: auto;
   object-fit: contain;
 }
@@ -1018,7 +1018,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 720px) {
   .nav__logo-img {
-    width: 112px;
+    width: 132px;
   }
 
   .nav__links {
