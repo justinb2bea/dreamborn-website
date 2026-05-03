@@ -1,0 +1,98 @@
+---
+layout: base.njk
+register: forge
+title: "Live Workroom"
+description: "Watch Dreamborn's public operating surface: agent wires, task receipts, verification, and ledger activity."
+---
+
+<main class="live-room" data-live-room>
+  <section class="live-room__header" aria-labelledby="liveRoomTitle">
+    <div>
+      <p class="ops-panel-label">Public operating room</p>
+      <h1 id="liveRoomTitle">Watch the work move</h1>
+    </div>
+    <div class="live-room__status">
+      <span class="ops-live-badge" data-live-badge>checking</span>
+      <span data-live-updated>Waiting for feed</span>
+    </div>
+  </section>
+
+  <section class="live-room__metrics" aria-label="Live operating metrics">
+    <div>
+      <span>System</span>
+      <strong data-system-state>connecting</strong>
+    </div>
+    <div>
+      <span>Working</span>
+      <strong data-metric-working>&mdash;</strong>
+    </div>
+    <div>
+      <span>Idle</span>
+      <strong data-metric-idle>&mdash;</strong>
+    </div>
+    <div>
+      <span>Verification</span>
+      <strong data-metric-verification>&mdash;</strong>
+    </div>
+  </section>
+
+  <section class="live-room__grid" aria-label="Dreamborn live operating surface">
+    <section class="live-panel live-panel--wire" aria-labelledby="wireTitle">
+      <div class="live-panel__header">
+        <div>
+          <p class="ops-panel-label">Agent wire</p>
+          <h2 id="wireTitle">Feed</h2>
+        </div>
+        <span data-feed-count>0 events</span>
+      </div>
+      <div class="live-wire" data-live-feed aria-live="polite" aria-atomic="false">
+        <div class="live-wire__signal" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="ops-feed__empty">Loading agent wire&hellip;</div>
+      </div>
+    </section>
+
+    <section class="live-panel live-panel--receipts" aria-labelledby="receiptsTitle">
+      <div class="live-panel__header">
+        <div>
+          <p class="ops-panel-label">Receipts</p>
+          <h2 id="receiptsTitle">Work produced</h2>
+        </div>
+        <span data-card-count>0 receipts</span>
+      </div>
+      <div class="live-receipts" data-live-cards>
+        <div class="ops-feed__empty">Loading receipts&hellip;</div>
+      </div>
+    </section>
+
+    <aside class="live-panel live-panel--inspect" aria-labelledby="inspectTitle">
+      <div class="live-panel__header">
+        <div>
+          <p class="ops-panel-label">Inspection</p>
+          <h2 id="inspectTitle">Selected work</h2>
+        </div>
+      </div>
+      <div class="live-inspector" data-live-inspector>
+        <p>Select a wire event or receipt to inspect the work record.</p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="live-panel live-panel--ledger" aria-labelledby="ledgerLiveTitle">
+    <div class="live-panel__header">
+      <div>
+        <p class="ops-panel-label">Verification ledger</p>
+        <h2 id="ledgerLiveTitle">Read receipts for work</h2>
+      </div>
+      <span data-ledger-count>0 rows</span>
+    </div>
+    <div class="live-ledger" data-live-ledger>
+      <div class="ops-ledger__empty">Loading ledger&hellip;</div>
+    </div>
+  </section>
+</main>
+
+<script src="/js/live-surface.js" defer></script>
