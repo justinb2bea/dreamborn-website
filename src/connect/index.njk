@@ -85,11 +85,9 @@ description: "Enter Dreamborn's AI strategy room. Ask Finn, pressure-test your o
                     placeholder="Tell Finn what you&rsquo;re trying to build..."
                     aria-label="Message Finn"
                     rows="1"
-                    maxlength="2000"
-                    onkeydown="handleFinnKeydown(event)"></textarea>
+                    maxlength="2000"></textarea>
           <button class="finn-chat__send"
                   id="finnSendBtn"
-                  onclick="sendFinnMessage()"
                   aria-label="Send message">
             Send
           </button>
@@ -193,5 +191,3 @@ description: "Enter Dreamborn's AI strategy room. Ask Finn, pressure-test your o
     }
   });
 </script>
-
-<script src="/js/finn-chat.js" defer></script>

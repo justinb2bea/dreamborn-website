@@ -1,0 +1,57 @@
+<aside class="finn-drawer" data-finn-drawer aria-hidden="true" aria-label="Ask Finn">
+  <button class="finn-drawer__launcher" type="button" data-finn-open aria-expanded="false">
+    <span aria-hidden="true">F</span>
+    <span>Ask Finn</span>
+  </button>
+
+  <section class="finn-drawer__panel" role="dialog" aria-modal="false" aria-labelledby="finnDrawerTitle">
+    <div class="finn-drawer__topline">
+      <div>
+        <p class="ops-panel-label">Site interpreter</p>
+        <h2 id="finnDrawerTitle">Ask Finn.</h2>
+      </div>
+      <button class="finn-drawer__close" type="button" data-finn-close aria-label="Close Finn">Close</button>
+    </div>
+
+    <div class="finn-chat finn-chat--drawer" data-finn-chat role="region" aria-label="Chat with Finn, Dreamborn's AI agent">
+      <div class="finn-chat__header">
+        <div class="finn-chat__avatar" aria-hidden="true">F</div>
+        <div>
+          <p class="finn-chat__name">Finn</p>
+          <p class="finn-chat__subtitle">Dreamborn AI Agent</p>
+        </div>
+      </div>
+
+      <div class="finn-chat__messages" data-finn-messages role="log" aria-live="polite" aria-label="Conversation">
+        <div class="message-bubble message-bubble--finn" role="article" aria-label="Finn: greeting">
+          I can translate what you&rsquo;re looking at, explain how Dreamborn works, or help you pressure-test an AI strategy.
+        </div>
+        <div class="finn-typing" data-finn-typing aria-hidden="true" aria-label="Finn is typing">
+          <span class="finn-typing-dot"></span>
+          <span class="finn-typing-dot"></span>
+          <span class="finn-typing-dot"></span>
+        </div>
+      </div>
+
+      <div class="suggested-prompts" data-finn-prompts role="group" aria-label="Suggested messages">
+        <button class="prompt-pill" data-finn-prompt="Explain this page in plain English.">Explain this page</button>
+        <button class="prompt-pill" data-finn-prompt="Show me how Dreamborn runs.">Show how Dreamborn runs</button>
+      </div>
+
+      <p class="finn-error" data-finn-error role="alert">
+        Finn is temporarily unavailable. <a href="/connect/">Open the strategy room &rarr;</a>
+      </p>
+
+      <div class="finn-chat__input-area">
+        <textarea class="finn-chat__input"
+                  data-finn-input
+                  placeholder="Ask Finn to explain what you&rsquo;re looking at..."
+                  aria-label="Message Finn"
+                  rows="1"
+                  maxlength="2000"></textarea>
+        <button class="finn-chat__send" type="button" data-finn-send aria-label="Send message">Send</button>
+      </div>
+      <p class="finn-chat__subtitle">Chats may be reviewed by Dreamborn to understand demand and route serious inquiries.</p>
+    </div>
+  </section>
+</aside>
