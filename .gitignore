@@ -1,6 +1,7 @@
 # Build output
 _site/
 tmp/
+.superpowers/
 
 # Dependencies
 node_modules/
