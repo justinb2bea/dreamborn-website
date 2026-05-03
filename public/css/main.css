@@ -2024,6 +2024,15 @@ p, h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr;
   }
 
+  .ops-actions {
+    order: 2;
+  }
+
+  .ops-proof {
+    order: 3;
+    margin: 24px 0 0;
+  }
+
   .ops-proof__item,
   .ops-proof__item:nth-child(2n),
   .ops-proof__item:nth-last-child(-n + 2) {
@@ -3597,11 +3606,17 @@ p, h1, h2, h3, h4, h5, h6 {
   .finn-drawer__panel {
     right: 0;
     width: 100%;
+    max-height: 38vh;
+    overflow: hidden;
   }
 
   .finn-drawer__launcher {
     width: 100%;
     justify-content: center;
+  }
+
+  .finn-chat--drawer {
+    max-height: calc(38vh - 82px);
   }
 }
 

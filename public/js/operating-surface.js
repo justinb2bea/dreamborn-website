@@ -172,6 +172,10 @@
       explainToggle.setAttribute('aria-pressed', active ? 'true' : 'false');
     }
 
+    if (active && window.matchMedia('(max-width: 640px)').matches) {
+      root.scrollIntoView({ block: 'start' });
+    }
+
     window.dispatchEvent(new CustomEvent('dreamborn:explanation-mode', {
       detail: { active, source: 'homepage' },
     }));

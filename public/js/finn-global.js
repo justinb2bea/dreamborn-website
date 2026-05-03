@@ -68,16 +68,15 @@
   function openDrawer(prompt) {
     if (!drawer || !drawerChat) return;
     drawer.classList.add('finn-drawer--open');
-    drawer.setAttribute('aria-hidden', 'false');
+    drawer.querySelector('[data-finn-panel]')?.setAttribute('aria-hidden', 'false');
     drawer.querySelectorAll('[data-finn-open]').forEach((button) => button.setAttribute('aria-expanded', 'true'));
     if (prompt && drawerChat.input) drawerChat.input.value = prompt;
-    setTimeout(() => drawerChat.input?.focus(), 80);
   }
 
   function closeDrawer() {
     if (!drawer) return;
     drawer.classList.remove('finn-drawer--open');
-    drawer.setAttribute('aria-hidden', 'true');
+    drawer.querySelector('[data-finn-panel]')?.setAttribute('aria-hidden', 'true');
     drawer.querySelectorAll('[data-finn-open]').forEach((button) => button.setAttribute('aria-expanded', 'false'));
   }
 
