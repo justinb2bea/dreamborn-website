@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 const foundingDispatch = {
   id: 'dreamborn-founding-dispatch',
   title: 'The company I built without a payroll',
@@ -49,8 +52,28 @@ const foundingDispatch = {
   `,
 };
 
+function loadGeneratedPosts() {
+  const dir = path.join(__dirname, 'generated_posts');
+  if (!fs.existsSync(dir)) return [];
+
+  return fs
+    .readdirSync(dir)
+    .filter((file) => file.endsWith('.json'))
+    .map((file) => {
+      const fullPath = path.join(dir, file);
+      return JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+    })
+    .filter((post) => post.status === 'published');
+}
+
+function sortPostsByPublishedAt(posts) {
+  return posts
+    .filter((post) => post && post.status === 'published')
+    .sort((a, b) => new Date(b.published_at || 0) - new Date(a.published_at || 0));
+}
+
 module.exports = {
-  posts: [foundingDispatch],
+  posts: sortPostsByPublishedAt([foundingDispatch, ...loadGeneratedPosts()]),
   topics: [
     {
       id: 'dispatches',

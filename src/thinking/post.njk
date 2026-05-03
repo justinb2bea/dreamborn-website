@@ -54,21 +54,34 @@ eleventyComputed:
         <div class="detail-proof-inline__top">
           <div>
             <span></span>
-            <strong>Live verification state</strong>
+            <strong>{% if post.hcs_receipt %}HCS verified article{% else %}Verification pending{% endif %}</strong>
           </div>
-          <code>agent_wire: active</code>
+          <code>{% if post.hcs_receipt %}{{ post.hcs_receipt.event_type }}{% else %}content.receipt: pending{% endif %}</code>
         </div>
         <div class="detail-proof-inline__metrics">
           <div>
-            <span>claim state</span>
-            <strong>recorded</strong>
+            <span>HCS topic</span>
+            <strong>{{ post.hcs_receipt.topic_id if post.hcs_receipt else 'pending' }}</strong>
           </div>
           <div>
-            <span>handoff</span>
-            <strong>verified</strong>
+            <span>sequence</span>
+            <strong>{{ post.hcs_receipt.sequence_number if post.hcs_receipt else 'pending' }}</strong>
+          </div>
+          <div>
+            <span>content hash</span>
+            <strong>{{ post.hcs_receipt.body_sha256 | truncate(18, true, '') if post.hcs_receipt else 'pending' }}</strong>
+          </div>
+          <div>
+            <span>consensus</span>
+            <strong>{{ post.hcs_receipt.consensus_timestamp | dateFormat if post.hcs_receipt else 'pending' }}</strong>
           </div>
         </div>
-        <pre><code>system.audit("article_context") =&gt; PASSED [proof-before-claims]</code></pre>
+        {% if post.hcs_receipt %}
+          <pre><code>hcs.verify("{{ post.slug }}") =&gt; PASSED [{{ post.hcs_receipt.transaction_id }}]</code></pre>
+          <a class="detail-proof-inline__link" href="{{ post.hcs_receipt.hashscan_url }}" target="_blank" rel="noopener">Open HashScan receipt</a>
+        {% else %}
+          <pre><code>hcs.verify("{{ post.slug }}") =&gt; PENDING [receipt not published]</code></pre>
+        {% endif %}
       </aside>
 
       <div class="detail-body">
@@ -94,24 +107,16 @@ eleventyComputed:
       <section>
         <h2>Latest thinking</h2>
         <ul>
+          {% for related in posts %}
+          {% if loop.index <= 3 %}
           <li>
-            <a href="/thinking/the-company-i-built-without-a-payroll/">
-              <span>Dispatches</span>
-              <strong>The company I built without a payroll</strong>
+            <a href="/thinking/{{ related.slug }}/">
+              <span>{{ related.topic_label or 'Article' }}</span>
+              <strong>{{ related.title }}</strong>
             </a>
           </li>
-          <li>
-            <a href="/system/">
-              <span>System</span>
-              <strong>The company runs on work moving</strong>
-            </a>
-          </li>
-          <li>
-            <a href="/explainer/">
-              <span>Vision</span>
-              <strong>How Dreamborn works</strong>
-            </a>
-          </li>
+          {% endif %}
+          {% endfor %}
         </ul>
       </section>
 

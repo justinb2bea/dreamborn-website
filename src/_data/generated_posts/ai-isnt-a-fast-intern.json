@@ -1,0 +1,31 @@
+{
+  "id": "ai-isnt-a-fast-intern",
+  "title": "AI is not a fast intern",
+  "title_html": "AI is not <em>a fast intern</em>",
+  "card_title_html": "AI is not <em>a fast intern</em>",
+  "slug": "ai-isnt-a-fast-intern",
+  "excerpt": "Working with agents does not reduce thinking. It forces better thinking, clearer direction, and sharper judgment.",
+  "author": "Justin King",
+  "status": "published",
+  "topic_ids": [
+    "dispatches"
+  ],
+  "topic_label": "Founder Notes",
+  "published_at": "2026-05-03T11:00:00.000Z",
+  "body_html": "\n    <p>Most people are still thinking about AI like it is a really fast intern. You give it a prompt, it gives you an answer, maybe you tweak the answer a little, and then you move on.</p>\n\n    <p>That is not what this is.</p>\n\n    <h2>The first thing you learn: it does not think for you</h2>\n\n    <p>If you have spent real time working with agents, you already know the first lesson. They do not just do what you mean. They do what you said, or worse, what they interpreted you said. Sometimes they go off on their own little adventure, and at first it is incredibly frustrating.</p>\n\n    <p>You catch yourself thinking, why would it do that? Then you realize it was not exactly wrong. It followed a different path than the one in your head. That gap is the work.</p>\n\n    <p>You are constantly watching, correcting, and tightening. Not because the system is broken, but because clarity matters now in a way it never did before. When you work with agents, loose thinking turns into messy output almost immediately.</p>\n\n    <h2>Your brain has to level up</h2>\n\n    <p>This is the part nobody talks about. Working with agents does not reduce thinking. It forces better thinking.</p>\n\n    <p>Over the last few weeks, I have felt it clearly. The mental load has gone up, not down, but it is a different kind of load. It is less about doing every piece of the work yourself and more about deciding what exactly we are trying to achieve, how to break it down cleanly, where it could go wrong, and what good actually looks like.</p>\n\n    <p>You cannot be vague anymore. Vague instructions create vague systems, vague products, vague decisions, and vague cleanup. So your brain adapts. You get sharper. You get faster at structuring ideas. You start seeing second- and third-order effects earlier. You become more aware of how everything connects.</p>\n\n    <p>It honestly feels like going from playing checkers to playing chess.</p>\n\n    <h2>The real unlock: your time shifts up the stack</h2>\n\n    <p>Here is where it gets interesting. As agents take on more of the repetitive, structured work, something opens up. You start spending more time in brainstorming, strategy, vision, and connecting ideas across projects.</p>\n\n    <p>Not because you made some disciplined decision to block off time for higher-level thinking. Because there is finally space.</p>\n\n    <p>Before, a lot of that thinking got squeezed out by execution. You had ideas, but you did not always have the time or energy to push them further. Now you do. If you are paying attention, that becomes the highest-leverage part of your day.</p>\n\n    <h2>AI is not replacing you. It is exposing you.</h2>\n\n    <p>There is a harder truth in this. AI does not remove the need for skill. It makes the gaps more obvious.</p>\n\n    <p>If you are unclear, it shows up immediately. If your thinking is shallow, the output is shallow. If you do not know what good looks like, you get a lot of noise that feels like progress but is not actually progress.</p>\n\n    <p>But the inverse is also true. If you are clear, if you can think well, structure well, and guide the system, the output compounds fast.</p>\n\n    <h2>So is AI a threat?</h2>\n\n    <p>It depends on how you show up.</p>\n\n    <p>If you are relying on doing the work manually, then yes, parts of that are going away. But if you can define problems clearly, set direction, guide systems, and evaluate output, AI is one of the biggest amplifiers you will ever touch.</p>\n\n    <h2>The honest version</h2>\n\n    <p>AI is not magic. It is not going to run your business for you. It will absolutely do things you did not expect, miss obvious details, and occasionally make you question your sanity.</p>\n\n    <p>But if you lean into it, something shifts. You stop being the person doing everything. You become the person directing everything.</p>\n\n    <p>And that is a different game.</p>\n  ",
+  "hcs_receipt": {
+    "status": "verified",
+    "network": "mainnet",
+    "topic_id": "0.0.10451790",
+    "sequence_number": "2",
+    "transaction_id": "0.0.10451788@1777792133.736220859",
+    "consensus_timestamp": "2026-05-03T07:08:58.604Z",
+    "body_sha256": "0fb7788cbe79f6810bb1dfab86f28729bc808af452fb2349ab918becec42a144",
+    "receipt_sha256": "b613bd313c221859ef2200514f6eb374f5b913abc497968e8a978335d5689a7e",
+    "stream_id": "content:thinking:ai-isnt-a-fast-intern",
+    "stream_seq": 1,
+    "event_type": "content.published",
+    "verified_at": "2026-05-03T07:09:02.538Z",
+    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777792133.736220859"
+  }
+}

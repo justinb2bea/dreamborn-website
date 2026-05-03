@@ -7,9 +7,12 @@
     "build": "eleventy",
     "start": "eleventy --serve",
     "dev": "eleventy --serve",
+    "hcs:receipt": "node scripts/publish-hcs-content-receipt.js",
+    "publish:thinking": "node scripts/publish-thinking-post.js",
     "postinstall": "node scripts/download-fonts.js"
   },
   "dependencies": {
+    "@hashgraph/sdk": "^2.81.0",
     "@fontsource/bebas-neue": "^5.2.7",
     "@fontsource/dm-sans": "^5.0.0",
     "@fontsource/fraunces": "^5.0.0",
