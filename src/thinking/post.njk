@@ -27,7 +27,13 @@ eleventyComputed:
       </div>
 
       <!-- Title -->
-      <h1>{{ post.title }}</h1>
+      <h1>
+        {% if post.title_html %}
+          {{ post.title_html | safe }}
+        {% else %}
+          {{ post.title }}
+        {% endif %}
+      </h1>
 
       <!-- Body HTML -->
       {% if post.body_html %}

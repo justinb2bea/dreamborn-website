@@ -40,7 +40,13 @@ description: "Articles and thinking from Dreamborn on AI-native systems, agent w
           {{ post.published_at | dateFormat }}
         </time>
       </div>
-      <a href="/thinking/{{ post.slug }}/" class="post-card__title">{{ post.title }}</a>
+      <a href="/thinking/{{ post.slug }}/" class="post-card__title">
+        {% if post.card_title_html %}
+          {{ post.card_title_html | safe }}
+        {% else %}
+          {{ post.title }}
+        {% endif %}
+      </a>
       {% if post.excerpt %}
       <p class="post-card__excerpt">{{ post.excerpt }}</p>
       {% endif %}
