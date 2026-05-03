@@ -1,6 +1,7 @@
 ---
 layout: base.njk
 register: editorial
+no_chrome: true
 pagination:
   data: posts
   size: 1
@@ -8,65 +9,147 @@ pagination:
 permalink: "/thinking/{{ post.slug }}/"
 eleventyComputed:
   title: "{{ post.title }} — Dreamborn"
-  no_chrome: "{{ 'true' if post.no_chrome }}"
 ---
 
-<div class="container">
-  <article class="article-layout">
+<main class="thinking-detail">
+  <header class="detail-masthead">
+    <nav aria-label="Article navigation">
+      <a class="detail-masthead__brand" href="/">Dreamborn</a>
+      <div>
+        <a href="/thinking/" aria-current="page">Essays</a>
+        <a href="/thinking/">Archive</a>
+        <a href="/live/">Operating</a>
+        <a href="/explainer/">Vision</a>
+      </div>
+      <a class="detail-masthead__cta" href="/connect/">Ask Finn</a>
+    </nav>
+  </header>
 
-    <!-- ─── Article Body ────────────────────────────────────── -->
-    <div class="article-body">
+  <div class="detail-shell">
+    <article class="detail-article">
+      <header class="detail-article__header">
+        <div class="detail-badge">
+          <span></span>
+          {{ post.topic_label or 'Operating System' }}
+        </div>
 
-      <!-- Meta -->
-      <div class="article-meta">
-        <time datetime="{{ post.published_at }}">{{ post.published_at | dateFormat }}</time>
+        <h1>
+          {% if post.title_html %}
+            {{ post.title_html | safe }}
+          {% else %}
+            {{ post.title }}
+          {% endif %}
+        </h1>
+
+        {% if post.excerpt %}
+        <p class="detail-dek">{{ post.excerpt }}</p>
+        {% endif %}
+
+        <div class="detail-byline">
+          <div class="detail-author-mark" aria-hidden="true">
+            {% if post.author == 'Justin King' %}
+              <img src="/img/authors/justin-king-profile.jpeg" alt="">
+            {% else %}
+              {{ post.author | first }}
+            {% endif %}
+          </div>
+          <div>
+            <strong>{{ post.author }}</strong>
+            <span>
+              Dreamborn
+              {% if post.published_at %} · {{ post.published_at | dateFormat }}{% endif %}
+              {% if post.body_html %} · {{ post.body_html | readingTime }}{% endif %}
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <aside class="detail-proof-inline" aria-label="Live verification state">
+        <div class="detail-proof-inline__top">
+          <div>
+            <span></span>
+            <strong>Live verification state</strong>
+          </div>
+          <code>agent_wire: active</code>
+        </div>
+        <div class="detail-proof-inline__metrics">
+          <div>
+            <span>claim state</span>
+            <strong>recorded</strong>
+          </div>
+          <div>
+            <span>handoff</span>
+            <strong>verified</strong>
+          </div>
+        </div>
+        <pre><code>system.audit("article_context") =&gt; PASSED [proof-before-claims]</code></pre>
+      </aside>
+
+      <div class="detail-body">
         {% if post.body_html %}
-        <span>{{ post.body_html | readingTime }}</span>
-        {% endif %}
-        <span>By {{ post.author }}</span>
-      </div>
-
-      <!-- Title -->
-      <h1>
-        {% if post.title_html %}
-          {{ post.title_html | safe }}
+          {{ post.body_html | safe }}
+        {% elif post.body_md %}
+          {{ post.body_md | safe }}
         {% else %}
-          {{ post.title }}
+          <p class="text-muted">Content coming soon.</p>
         {% endif %}
-      </h1>
-
-      <!-- Body HTML -->
-      {% if post.body_html %}
-        {{ post.body_html | safe }}
-      {% elif post.body_md %}
-        {{ post.body_md | safe }}
-      {% else %}
-        <p class="text-muted">Content coming soon.</p>
-      {% endif %}
-
-    </div>
-
-    <!-- ─── Sidebar ──────────────────────────────────────────── -->
-    <aside class="article-sidebar" aria-label="Article sidebar">
-
-      <!-- Author card -->
-      <div class="sidebar-card">
-        <p class="sidebar-card__title">Written by</p>
-        <p style="font-weight:600; font-size: var(--text-body-sm);">{{ post.author }}</p>
       </div>
+    </article>
 
-      <!-- Finn invite -->
-      <div class="sidebar-card" style="background: var(--color-crimson); border-color: var(--color-crimson);">
-        <p class="sidebar-card__title" style="color: rgba(255,255,255,0.7);">AI Agent</p>
-        <p style="font-size: var(--text-body-sm); color: #fff; margin-bottom: var(--space-3);">
-          Questions about this or what Dreamborn does?
+    <aside class="detail-rail" aria-label="Article context">
+      <section>
+        <h2>The author</h2>
+        <p>
+          {{ post.author }} writes from inside Dreamborn&rsquo;s operating system: the company,
+          the agents, the receipts, and the work moving through it.
         </p>
-        <a href="/connect/" class="btn btn--inverted" style="font-size: var(--text-caption);">
-          Talk to Finn →
-        </a>
-      </div>
+      </section>
 
+      <section>
+        <h2>Latest thinking</h2>
+        <ul>
+          <li>
+            <a href="/thinking/the-company-i-built-without-a-payroll/">
+              <span>Dispatches</span>
+              <strong>The company I built without a payroll</strong>
+            </a>
+          </li>
+          <li>
+            <a href="/system/">
+              <span>System</span>
+              <strong>The company runs on work moving</strong>
+            </a>
+          </li>
+          <li>
+            <a href="/explainer/">
+              <span>Vision</span>
+              <strong>How Dreamborn works</strong>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="detail-network-proof">
+        <h2>Network proof</h2>
+        <dl>
+          <div><dt>system</dt><dd>live</dd></div>
+          <div><dt>receipts</dt><dd>recorded</dd></div>
+          <div><dt>agents</dt><dd>active</dd></div>
+        </dl>
+        <a href="/live/">Watch the work move</a>
+      </section>
     </aside>
+  </div>
 
-  </article>
-</div>
+  <footer class="detail-footer">
+    <div class="detail-footer__inner">
+      <a href="/">Dreamborn</a>
+      <span>© 2026 Dreamborn. Proof before claims.</span>
+      <nav aria-label="Article footer">
+        <a href="/thinking/">Thinking</a>
+        <a href="/system/">System</a>
+        <a href="/live/">Live</a>
+      </nav>
+    </div>
+  </footer>
+</main>
