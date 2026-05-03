@@ -2922,6 +2922,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .connect-hero,
+.connect-capabilities,
 .connect-stage {
   width: min(1520px, calc(100vw - 48px));
   margin: 0 auto;
@@ -2981,9 +2982,9 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .connect-stage {
-  padding: 24px 0 72px;
+  padding: 20px 0 72px;
   display: grid;
-  grid-template-columns: minmax(560px, 1fr) minmax(340px, 0.38fr);
+  grid-template-columns: minmax(520px, 1fr) minmax(420px, 0.82fr);
   gap: var(--space-5);
   align-items: stretch;
 }
@@ -3029,9 +3030,8 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .connect-rail {
-  display: grid;
-  gap: var(--space-5);
-  align-content: start;
+  display: flex;
+  min-height: min(760px, calc(100vh - 170px));
 }
 
 .connect-rail-panel {
@@ -3039,8 +3039,12 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .connect-rail-panel--booking {
+  width: 100%;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-color: rgba(139, 26, 26, 0.58);
   background:
     linear-gradient(145deg, rgba(139, 26, 26, 0.24), rgba(16, 13, 12, 0.92) 46%),
@@ -3104,9 +3108,9 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .connect-rail-panel--booking h2 {
-  max-width: 280px;
+  max-width: 420px;
   color: #fff;
-  font-size: clamp(30px, 4vw, 44px);
+  font-size: clamp(36px, 5vw, 64px);
   line-height: 0.98;
 }
 
@@ -3121,24 +3125,44 @@ p, h1, h2, h3, h4, h5, h6 {
   line-height: 1.58;
 }
 
+.connect-capabilities {
+  padding: 0 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.connect-capabilities .ops-panel-label {
+  margin-bottom: var(--space-3);
+}
+
 .connect-capability-list {
   display: grid;
-  gap: var(--space-3);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-2);
 }
 
 .connect-capability-list span {
-  min-height: 58px;
+  min-height: 64px;
   display: flex;
   align-items: center;
   padding: var(--space-3);
   border: 1px solid var(--color-border);
   background: rgba(255, 255, 255, 0.03);
   color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.3;
+  text-transform: uppercase;
+  transition: border-color var(--transition-base), background var(--transition-base);
+}
+
+.connect-capability-list span:hover {
+  border-color: rgba(139, 26, 26, 0.54);
+  background: rgba(139, 26, 26, 0.1);
 }
 
 .connect-booking {
+  width: 100%;
   margin-top: var(--space-6);
   border: 1px solid rgba(215, 177, 110, 0.32);
   background:
@@ -3205,7 +3229,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .connect-cal-frame cal-inline {
-  min-height: 680px;
+  min-height: 620px;
   overflow: hidden;
   border-color: var(--color-border);
   background: #100d0c;
@@ -3409,6 +3433,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 1080px) {
   .connect-hero,
+  .connect-capabilities,
   .connect-stage {
     width: min(100vw - 32px, 920px);
   }
@@ -3422,13 +3447,22 @@ p, h1, h2, h3, h4, h5, h6 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .connect-capability-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .connect-chat-shell {
     min-height: 720px;
+  }
+
+  .connect-rail {
+    min-height: auto;
   }
 }
 
 @media (max-width: 640px) {
   .connect-hero,
+  .connect-capabilities,
   .connect-stage {
     width: calc(100vw - 24px);
   }
@@ -3442,6 +3476,10 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 
   .connect-live-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-capability-list {
     grid-template-columns: 1fr;
   }
 
