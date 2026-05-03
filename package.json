@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "build": "eleventy",
+    "test": "node --test tests/*.test.mjs",
     "start": "eleventy --serve",
     "dev": "eleventy --serve",
     "hcs:receipt": "node scripts/publish-hcs-content-receipt.js",
