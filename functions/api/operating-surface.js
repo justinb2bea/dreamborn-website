@@ -528,7 +528,6 @@ function roleFor(agent) {
   const map = {
     quinn: 'Developer',
     quinn2: 'Developer',
-    quinn: 'Engineering',
     nova: 'Marketing',
     finn: 'Inbound',
     atlas: 'Architecture',
