@@ -52,6 +52,38 @@ In explanation mode:
 
 The visitor should be able to return to the original operating-surface copy. The control label for that reverse action should be direct, such as `Show the operating surface`.
 
+## Interpreter Control Placement
+
+The `What am I looking at?` action should behave like a recurring interpreter control, not a one-off hero CTA. The goal is to make the escape hatch available exactly where confusion happens while avoiding button spam.
+
+Required placements:
+
+- Hero primary action: a prominent `What am I looking at?` button next to `Watch the work move`.
+- Sticky page launcher: a compact persistent control on the homepage, visible after the hero begins to scroll away.
+- Section-level prompts: one compact interpreter action in each major homepage section.
+- Finn drawer launcher: a site-wide fallback for conversational explanation.
+
+The control hierarchy should be:
+
+- Hero button: page-level transformation.
+- Sticky launcher: page-level transformation or return to operating-surface mode.
+- Section prompt: contextual Finn explanation for that section, and optionally section-scoped visual emphasis.
+- Finn launcher: general site-wide interpreter.
+
+Section-level labels should be specific instead of repeating the same phrase everywhere:
+
+- Live feed / proof area: `Explain this feed`
+- Work section: `What work is happening here?`
+- Ledger section: `Explain the proof`
+- Agent section: `Who are these agents?`
+- Dispatch section: `Translate this`
+
+When explanation mode is off, section prompts should invite translation. When explanation mode is on, they should shift toward follow-up help, such as `Ask Finn about this section`.
+
+The repeated controls must share one state model. Clicking any page-level explanation control should activate the same homepage explanation mode. Clicking the reverse label should restore the operating surface everywhere.
+
+The page should not show more than one prominent explanation CTA in the same viewport unless one is the sticky control and one is contextual to a section. The hero CTA can be visually loud; section controls should be compact, integrated into section headers, and secondary.
+
 ## Homepage Copy Model
 
 Default mode should remain close to the current positioning:
@@ -134,6 +166,8 @@ Acceptable visual elements:
 - Small `Plain English` or `This means` notes.
 - A compact Finn drawer or launcher.
 - A temporary top-line acknowledgement after activation.
+- A subtle sticky interpreter rail or bottom mobile pill.
+- Compact section-header interpreter chips with section-specific prompt text.
 
 Avoid:
 
@@ -142,6 +176,8 @@ Avoid:
 - Red X / green check SaaS comparison grids.
 - Oversized tutorial cards.
 - Long explanatory paragraphs in the hero.
+- Repeating the full `What am I looking at?` label in every section.
+- Letting sticky controls cover live feed cards, buttons, or Finn input on mobile.
 
 ## Accessibility and Resilience
 
