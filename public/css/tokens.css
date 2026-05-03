@@ -199,6 +199,35 @@
   font-family: var(--font-editorial-heading);
 }
 
+[data-register="forge"] {
+  --color-bg: #0A0807;
+  --color-surface: #100D0C;
+  --color-surface-raised: #171110;
+  --color-text-primary: #F0EDE9;
+  --color-text-secondary: #C8C0B8;
+  --color-text-muted: #8A7E6A;
+  --color-border: #2A1F1C;
+  --color-border-strong: #4A342D;
+  --color-status-active: #8DC63F;
+  --color-status-idle: #C9963A;
+  --color-status-offline: #6B5F54;
+  --nav-height: 58px;
+}
+
+[data-register="forge"] h1,
+[data-register="forge"] h2,
+[data-register="forge"] h3,
+[data-register="forge"] h4 {
+  font-family: var(--font-body);
+  letter-spacing: 0;
+}
+
+[data-register="forge"] p,
+[data-register="forge"] .hero-subhead,
+[data-register="forge"] .body-text {
+  font-family: var(--font-body);
+}
+
 /* DM Sans is the base font — set on body */
 body {
   font-family: var(--font-body);

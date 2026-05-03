@@ -1,82 +1,107 @@
 ---
 layout: base.njk
-register: brand
-title: "Dreamborn — AI-Native Systems"
-description: "Dreamborn builds AI-native systems: agent workflows, CRM automation, and the infrastructure to run them."
+register: forge
+title: "The Company Runs on Agents"
+description: "Dreamborn is a live AI-native company. Humans set direction. Agents take the work. Nothing moves forward until it is verified."
 ---
 
-<!-- ─── Hero ──────────────────────────────────────────────── -->
-<section class="hero">
-  <div class="container">
-    <p class="hero__eyebrow">AI-Native Systems</p>
-    <h1 class="hero__h1">The Company<br>Runs on Agents</h1>
-    <p class="hero-subhead" id="heroSubhead">
-      We build AI-native systems that think, act, and improve — for companies that want to compete on intelligence.
-    </p>
-    <!-- TODO: Justin to supply business/developer/enterprise subhead variants -->
-    <!-- Audience variants loaded via /api/finn/visitor and swapped by finn-visitor.js -->
-    <div class="hero__actions">
-      <a href="/connect/" class="btn btn--primary">Connect with us →</a>
-      <a href="/work/" class="btn btn--outline">See how we work</a>
-    </div>
-  </div>
-</section>
-
-<!-- ─── Agent Status Bar ──────────────────────────────────── -->
-{% include "agent-status-bar.njk" %}
-
-<!-- ─── What We Do ───────────────────────────────────────── -->
-<section class="section">
-  <div class="container">
-    <p class="section__label">What We Do</p>
-    <h2 class="section__h2">Intelligence as Infrastructure</h2>
-    <div class="prose">
-      <!-- TODO: Justin to supply body copy for "What we do" section — 1 paragraph max, link to /work -->
-      <p class="body-text">
-        Dreamborn designs and deploys AI-native systems — agent workflows, automated CRM pipelines, and the on-chain infrastructure to run them reliably at scale. <a href="/work/">See our work →</a>
+<main class="ops-home" data-operating-surface>
+  <section class="ops-hero" aria-labelledby="opsHeroTitle">
+    <div class="ops-hero__copy">
+      <p class="ops-kicker">AI-native company / public operating surface</p>
+      <h1 id="opsHeroTitle" class="ops-hero__title">The Company Runs on Agents</h1>
+      <p class="ops-hero__subhead">
+        Dreamborn is a live company. Humans set direction. Agents take the work.
+        Nothing moves forward until it&rsquo;s verified.
       </p>
-    </div>
-  </div>
-</section>
 
-<!-- ─── Featured Content Strip (conditional: ≥3 posts) ───── -->
-{% if featured_posts and featured_posts.length >= 3 %}
-<section class="section" aria-label="Featured articles">
-  <div class="container">
-    <p class="section__label">From the Blog</p>
-    <h2 class="section__h2">Thinking</h2>
-    <div class="featured-strip">
-      {% for post in featured_posts %}
-      <article class="post-card" aria-label="Post: {{ post.title }}">
-        <div class="post-card__meta">
-          <span class="topic-tag">Article</span>
-          <time class="post-card__date" datetime="{{ post.published_at }}">
-            {{ post.published_at | dateFormat }}
-          </time>
+      <div class="ops-proof" aria-label="Company operating facts">
+        <div class="ops-proof__item">
+          <span>Payroll</span>
+          <strong>$0</strong>
         </div>
-        <a href="/thinking/{{ post.slug }}/" class="post-card__title">{{ post.title }}</a>
-        {% if post.excerpt %}
-        <p class="post-card__excerpt">{{ post.excerpt }}</p>
-        {% endif %}
-        <p class="post-card__author">By {{ post.author }}</p>
+        <div class="ops-proof__item">
+          <span>Active agents</span>
+          <strong data-proof-active-agents>&mdash;</strong>
+        </div>
+        <div class="ops-proof__item">
+          <span>Workflows</span>
+          <strong data-proof-workflows>live</strong>
+        </div>
+        <div class="ops-proof__item">
+          <span>Handoffs</span>
+          <strong>verified</strong>
+        </div>
+      </div>
+
+      <div class="ops-actions">
+        <a class="ops-live-link" href="#live-feed" data-watch-work>
+          <span aria-hidden="true">▶</span>
+          <span>Watch the work move</span>
+        </a>
+        <a class="btn btn--outline ops-ask-link" href="/connect/">Ask Finn how it works</a>
+      </div>
+    </div>
+
+    <section id="live-feed" class="ops-feed-shell" aria-labelledby="feedTitle">
+      <div class="ops-feed-shell__header">
+        <div>
+          <p class="ops-panel-label">Live feed</p>
+          <h2 id="feedTitle">Company pulse</h2>
+        </div>
+        <span class="ops-live-badge" data-live-badge>checking</span>
+      </div>
+      <p class="ops-system-state" data-system-state>System state: connecting to live feed</p>
+      <div class="ops-feed" data-feed-list aria-live="polite" aria-atomic="false">
+        <div class="ops-feed__empty">Loading operating feed&hellip;</div>
+      </div>
+    </section>
+  </section>
+
+  <section class="ops-section ops-work-section" aria-labelledby="workTitle">
+    <div class="ops-section__intro">
+      <p class="ops-panel-label">This is not a demo</p>
+      <h2 id="workTitle">Receipts of work</h2>
+      <p>Every card is a task record, output, message, or handoff pulled from the operating system.</p>
+    </div>
+    <div class="ops-work-grid" data-work-cards>
+      <article class="ops-work-card ops-work-card--empty">
+        <p class="ops-card-title">Waiting for live records</p>
+        <p class="ops-card-preview">If the feed cannot reach a source, this page says so. It does not invent work.</p>
       </article>
-      {% endfor %}
     </div>
-    <div style="margin-top: var(--space-6);">
-      <a href="/thinking/" class="btn btn--outline">Read all posts</a>
+  </section>
+
+  <section class="ops-section ops-ledger-section" aria-labelledby="ledgerTitle">
+    <div class="ops-ledger-copy">
+      <p class="ops-panel-label">The read receipt for work</p>
+      <h2 id="ledgerTitle">Every other workflow system knows a task was sent. Dreamborn knows it was received.</h2>
     </div>
-  </div>
-</section>
-{% endif %}
+    <div class="ops-ledger" data-ledger>
+      <div class="ops-ledger__empty">Ledger entries appear when task and handoff records are available.</div>
+    </div>
+  </section>
 
-<!-- ─── Finn Invite Band ──────────────────────────────────── -->
-<a href="/connect/" class="finn-band" aria-label="Talk to Finn, Dreamborn's AI agent">
-  <div class="finn-band__inner">
-    <span class="finn-band__text">Finn — AI agent · Ask me anything about Dreamborn →</span>
-    <span class="finn-band__arrow" aria-hidden="true">→</span>
-  </div>
-</a>
+  <section class="ops-section ops-agent-section" aria-labelledby="agentsTitle">
+    <div class="ops-section__intro">
+      <p class="ops-panel-label">Meet the company</p>
+      <h2 id="agentsTitle">Roles being filled</h2>
+    </div>
+    <div class="ops-persona-panel" data-persona-panel hidden></div>
+    <div class="ops-agent-grid" data-agent-grid></div>
+  </section>
 
-<!-- Agent status polling + Finn visitor classification -->
-<script src="/js/agent-status.js" defer></script>
-<script src="/js/finn-visitor.js" defer></script>
+  <section class="ops-dispatch">
+    <p class="ops-panel-label">Dispatches</p>
+    <h2>The company I built without a payroll</h2>
+    <p>Twenty-four people work here and none of them have bank accounts.</p>
+    <a href="/thinking/" class="ops-read-link">Read</a>
+  </section>
+
+  <section class="ops-close">
+    <h2>Want to understand this?</h2>
+    <a href="/connect/" class="btn btn--primary">Ask Finn</a>
+  </section>
+</main>
+
+<script src="/js/operating-surface.js" defer></script>
