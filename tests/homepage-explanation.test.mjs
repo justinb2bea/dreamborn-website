@@ -30,9 +30,10 @@ test('connect page uses global Finn script without duplicate page-only script', 
   assert.doesNotMatch(connect, /\/js\/finn-chat\.js/);
 });
 
-test('homepage explanation mode uses a crossfade swap transition', () => {
+test('homepage explanation mode uses a deterioration swap transition', () => {
   assert.match(operatingSurface, /ops-home--swapping/);
   assert.match(operatingSurface, /ops-home--settling/);
-  assert.match(css, /\.ops-home--swapping/);
-  assert.match(css, /\.ops-home--settling/);
+  assert.match(css, /ops-text-deteriorate/);
+  assert.match(css, /ops-text-materialize/);
+  assert.match(css, /steps\(4, end\)/);
 });

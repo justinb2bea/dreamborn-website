@@ -172,8 +172,8 @@
       root.classList.add('ops-home--settling');
       settleTimer = window.setTimeout(() => {
         root.classList.remove('ops-home--settling');
-      }, 240);
-    }, 170);
+      }, 380);
+    }, 260);
   }
 
   function applyExplanationMode(active) {
