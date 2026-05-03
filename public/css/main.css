@@ -3038,6 +3038,83 @@ p, h1, h2, h3, h4, h5, h6 {
   padding: var(--space-5);
 }
 
+.connect-rail-panel--booking {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(139, 26, 26, 0.58);
+  background:
+    linear-gradient(145deg, rgba(139, 26, 26, 0.24), rgba(16, 13, 12, 0.92) 46%),
+    #100d0c;
+  box-shadow:
+    0 0 0 1px rgba(139, 26, 26, 0.18) inset,
+    0 32px 90px rgba(139, 26, 26, 0.12),
+    0 28px 80px rgba(0, 0, 0, 0.34);
+}
+
+.connect-rail-panel--booking::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(#d7b16e, var(--color-crimson), rgba(139, 26, 26, 0.2));
+  content: "";
+}
+
+.connect-rail-panel--booking::after {
+  position: absolute;
+  right: -82px;
+  top: -82px;
+  width: 190px;
+  height: 190px;
+  border: 1px solid rgba(215, 177, 110, 0.18);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.connect-booking-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.connect-booking-head .ops-panel-label {
+  margin-bottom: 0;
+  color: #d7b16e;
+}
+
+.connect-booking-head > span {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid rgba(141, 198, 63, 0.26);
+  background: rgba(141, 198, 63, 0.08);
+  color: var(--color-status-active);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.connect-rail-panel--booking h2,
+.connect-rail-panel--booking p,
+.connect-rail-panel--booking .connect-booking {
+  position: relative;
+  z-index: 1;
+}
+
+.connect-rail-panel--booking h2 {
+  max-width: 280px;
+  color: #fff;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 0.98;
+}
+
+.connect-rail-panel--booking p {
+  margin-top: var(--space-4);
+  color: rgba(240, 237, 233, 0.76);
+}
+
 .connect-rail-panel p {
   color: var(--color-text-secondary);
   font-size: 15px;
@@ -3062,19 +3139,47 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .connect-booking {
-  margin-top: var(--space-5);
-  border: 1px solid rgba(139, 26, 26, 0.45);
-  background: linear-gradient(135deg, rgba(139, 26, 26, 0.22), rgba(255, 255, 255, 0.035));
+  margin-top: var(--space-6);
+  border: 1px solid rgba(215, 177, 110, 0.32);
+  background:
+    linear-gradient(135deg, rgba(139, 26, 26, 0.42), rgba(215, 177, 110, 0.1)),
+    rgba(255, 255, 255, 0.04);
+  transition: border-color var(--transition-base), transform var(--transition-base), background var(--transition-base);
+}
+
+.connect-booking:hover {
+  border-color: rgba(215, 177, 110, 0.62);
+  transform: translateY(-2px);
+}
+
+.connect-booking[open] {
+  transform: none;
+  border-color: rgba(139, 26, 26, 0.72);
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .connect-booking summary {
-  min-height: 74px;
-  padding: var(--space-4);
-  display: grid;
-  gap: var(--space-1);
+  min-height: 92px;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-2);
   cursor: pointer;
   color: var(--color-text-primary);
   list-style: none;
+}
+
+.connect-booking summary::after {
+  position: absolute;
+  right: var(--space-5);
+  color: #d7b16e;
+  content: "→";
+  font-size: 24px;
+}
+
+.connect-booking[open] summary::after {
+  content: "↓";
 }
 
 .connect-booking summary::-webkit-details-marker {
@@ -3082,12 +3187,14 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .connect-booking summary span {
-  font-size: 18px;
+  color: #fff;
+  font-size: 21px;
   font-weight: 800;
 }
 
 .connect-booking summary small {
-  color: var(--color-text-muted);
+  max-width: calc(100% - 42px);
+  color: rgba(240, 237, 233, 0.62);
   font-family: var(--font-mono);
   font-size: 11px;
   text-transform: uppercase;
