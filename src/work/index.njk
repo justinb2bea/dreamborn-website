@@ -1,100 +1,190 @@
 ---
 layout: base.njk
 register: brand
-title: "Work — Dreamborn"
-description: "Dreamborn builds AI-native systems. Our agents work around the clock on agent workflows, CRM automation, and on-chain infrastructure."
+title: "Work"
+description: "Dreamborn is an AI-native company in production. These are the working systems already running the company."
 ---
 
-<!-- ─── Hero ──────────────────────────────────────────────── -->
-<section class="hero">
-  <div class="container">
-    <p class="hero__eyebrow">What We Do</p>
-    <h1 class="hero__h1">Built by<br>Agents. Owned<br>by Outcomes.</h1>
-    <p class="hero-subhead">
-      Every engagement delivers a working AI-native system — not a deck, not a prototype.
-    </p>
-  </div>
-</section>
-
-<!-- ─── Three Pillars ────────────────────────────────────── -->
-<section class="section">
-  <div class="container">
-    <p class="section__label">How We Work</p>
-    <div class="pillars">
-
-      <div class="pillar">
-        <h3 class="pillar__heading">Agent Workflows</h3>
-        <!-- CONTENT: Justin to supply pillar copy — pillar 1 -->
-        <p class="pillar__body">
-          We design and deploy multi-agent systems that execute complex business workflows autonomously — from lead qualification to content publishing to customer onboarding.
-        </p>
-      </div>
-
-      <div class="pillar">
-        <h3 class="pillar__heading">CRM Automation</h3>
-        <!-- CONTENT: Justin to supply pillar copy — pillar 2 -->
-        <p class="pillar__body">
-          We wire AI intelligence directly into your CRM pipeline: automated enrichment, intelligent sequencing, and agent-driven outreach that adapts to every prospect.
-        </p>
-      </div>
-
-      <div class="pillar">
-        <h3 class="pillar__heading">AI Infrastructure</h3>
-        <!-- CONTENT: Justin to supply pillar copy — pillar 3 -->
-        <p class="pillar__body">
-          We build the infrastructure layer: on-chain audit logs, agent orchestration, and the persistent memory systems that let your AI organisation learn and improve over time.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ─── Agent Roster — Real-Time Status (OQ-1: live from agent_state) ── -->
-<section class="agent-status-bar" aria-label="The team — live status">
-  <div class="container">
-    <p class="section__label">The Team</p>
-    <h2 class="section__h2" style="margin-bottom: var(--space-6);">Always On. Always Shipping.</h2>
-
-    <div class="agent-status-bar__scroll" role="list" aria-live="polite" aria-atomic="false">
-      {% set roster = [
-        { slug: "quinn",    name: "Quinn",    role: "Developer" },
-        { slug: "vikram",   name: "Vikram",   role: "Architect" },
-        { slug: "mindy",    name: "Mindy",    role: "Project Manager" },
-        { slug: "zara",     name: "Zara",     role: "UX Designer" },
-        { slug: "finn",     name: "Finn",     role: "CRM Agent" },
-        { slug: "nora",     name: "Nora",     role: "Content Taxonomy" },
-        { slug: "courtney", name: "Courtney", role: "Operations" },
-        { slug: "atlas",    name: "Atlas",    role: "Architect" },
-        { slug: "claire",   name: "Claire",   role: "Orchestrator" }
-      ] %}
-      {% for agent in roster %}
-      <div class="agent-card"
-           role="listitem"
-           data-agent="{{ agent.slug }}"
-           data-status="offline"
-           aria-label="{{ agent.name }} — {{ agent.role }}">
-        <div class="agent-card__header">
-          <div class="agent-card__name-row">
-            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
-            <span class="agent-card__name">{{ agent.name }}</span>
-          </div>
-          <span class="status-label status-label--offline" aria-label="Status: offline">OFFLINE</span>
+<main class="work-page">
+  <section class="work-hero" aria-labelledby="workHeroTitle">
+    <div class="container work-hero__grid">
+      <div class="work-hero__copy">
+        <p class="work-kicker">Work / Operating proof</p>
+        <h1 id="workHeroTitle">The AI-native company, in production.</h1>
+        <div class="work-hero__lede">
+          <p>Dreamborn is not a concept, a prototype, or a deck.</p>
+          <p>These are working systems. They run the company every day.</p>
+          <p>Agents take on work. Humans make decisions where it matters. Everything is tracked, verified, and visible.</p>
         </div>
-        <p class="agent-action" aria-label="Current activity"></p>
-        <time class="agent-time" aria-label="Last updated"></time>
       </div>
-      {% endfor %}
+
+      <aside class="work-proof-panel" aria-label="Operating proof">
+        <div>
+          <span>Operating system</span>
+          <strong>Bezel</strong>
+        </div>
+        <div>
+          <span>Human control layer</span>
+          <strong>Studios</strong>
+        </div>
+        <div>
+          <span>Public surface</span>
+          <strong>Dreamborn.ai</strong>
+        </div>
+        <div>
+          <span>External proof</span>
+          <strong>KnowledgeVault</strong>
+        </div>
+      </aside>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ─── CTA Band ──────────────────────────────────────────── -->
-<section class="cta-band">
-  <div class="container">
-    <h2 class="cta-band__h2">Ready to Run on Agents?</h2>
-    <a href="/connect/" class="btn btn--inverted">Book an intro call →</a>
-  </div>
-</section>
+  <section class="work-section work-section--featured" aria-labelledby="featuredWorkTitle">
+    <div class="container">
+      <div class="work-section__head">
+        <p class="work-kicker">Featured work</p>
+        <h2 id="featuredWorkTitle">This is already happening.</h2>
+        <p>If you want to understand what an AI-native company actually looks like, start with the systems currently running this one.</p>
+      </div>
 
-<script src="/js/agent-status.js" defer></script>
+      <div class="work-feature-list">
+        <article class="work-case work-case--primary">
+          <div class="work-case__summary">
+            <span class="work-case__index">01</span>
+            <h3>Bezel</h3>
+            <p>The operating system behind everything.</p>
+          </div>
+          <div class="work-case__body">
+            <p>Bezel tracks work, assigns ownership, enforces decisions, and verifies outcomes. Agents do not wait for instructions. They pull work, complete it, and prove it.</p>
+            <p>It holds the state of every task, every dependency, and every decision. Work is not pushed down from a central controller. Agents claim work based on readiness, execute it, and move it forward.</p>
+            <ul>
+              <li>What was planned</li>
+              <li>What was claimed</li>
+              <li>What was completed</li>
+              <li>What evidence supports it</li>
+            </ul>
+            <p class="work-proof-line">Proof today: Bezel is actively running Dreamborn. Every workflow, handoff, and output passes through it.</p>
+          </div>
+        </article>
+
+        <article class="work-case">
+          <div class="work-case__summary">
+            <span class="work-case__index">02</span>
+            <h3>Dreamborn Studios</h3>
+            <p>Where humans stay in control.</p>
+          </div>
+          <div class="work-case__body">
+            <p>Studios are the control layer for an AI-native company. They separate judgment from execution.</p>
+            <p>Humans decide what should happen. Agents handle how it gets done.</p>
+            <div class="work-studio-grid">
+              <div>
+                <strong>Ops Studio</strong>
+                <span>Live operations, fleet health, workflows, and decisions in motion.</span>
+              </div>
+              <div>
+                <strong>Dev Studio</strong>
+                <span>Project intake, specifications, policies, and readiness before work is claimed.</span>
+              </div>
+              <div>
+                <strong>Marketing Studio</strong>
+                <span>Campaigns, content, visual production, voice pass, and publishing.</span>
+              </div>
+            </div>
+            <p class="work-proof-line">Proof today: Dreamborn operations move through Studios. No work starts without clarity. No work ships without review.</p>
+          </div>
+        </article>
+
+        <article class="work-case">
+          <div class="work-case__summary">
+            <span class="work-case__index">03</span>
+            <h3>Dreamborn.ai</h3>
+            <p>The company, in public.</p>
+          </div>
+          <div class="work-case__body">
+            <p>Dreamborn.ai is not just a website. It is the external layer of the company.</p>
+            <p>It shows how the company works, not just what it says. The site includes the Work page, System page, Thinking archive, founder pitch, brand system, org chart, marketecture, and visitor agent experience.</p>
+            <p>This is the opposite of a static site. It evolves with the company.</p>
+            <p class="work-proof-line">Proof today: Dreamborn.ai is generated, maintained, and updated through the same operating system that runs the business.</p>
+          </div>
+        </article>
+
+        <article class="work-case">
+          <div class="work-case__summary">
+            <span class="work-case__index">04</span>
+            <h3>KnowledgeVault</h3>
+            <p>Capturing what companies actually know.</p>
+          </div>
+          <div class="work-case__body">
+            <p>KnowledgeVault turns product and field knowledge into usable, structured assets.</p>
+            <p>For manufacturers and distributors, the real knowledge often sits in people, not systems. KnowledgeVault captures that knowledge directly.</p>
+            <ul>
+              <li>SKU-level coverage tracking</li>
+              <li>Expert onboarding workflows</li>
+              <li>Voice-based capture</li>
+              <li>Quality scoring and validation</li>
+              <li>Product dashboards</li>
+              <li>Monetization pathways</li>
+            </ul>
+            <p class="work-proof-line">Proof today: KnowledgeVault is built and being deployed as a working system, not a concept.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="work-section work-section--coverage" aria-labelledby="coverageTitle">
+    <div class="container work-coverage__grid">
+      <div class="work-section__head">
+        <p class="work-kicker">Operational coverage</p>
+        <h2 id="coverageTitle">The company is not staffed in the traditional sense. It is covered.</h2>
+        <p>Work across the business is handled by coordinated agent groups. This is not a role list. It is continuous coverage of how the company operates.</p>
+      </div>
+
+      <div class="work-coverage-list">
+        <article>
+          <span>Build</span>
+          <p>Development agents build and ship product.</p>
+        </article>
+        <article>
+          <span>Market</span>
+          <p>Marketing agents create campaigns, content, and distribution.</p>
+        </article>
+        <article>
+          <span>Develop pipeline</span>
+          <p>Sales development agents identify, research, and initiate conversations.</p>
+        </article>
+        <article>
+          <span>Maintain relationships</span>
+          <p>CRM agents track relationships and maintain system state.</p>
+        </article>
+        <article>
+          <span>Enforce</span>
+          <p>Governance agents enforce decisions, approvals, and policy.</p>
+        </article>
+        <article>
+          <span>Publish</span>
+          <p>Publishing agents move finished work to public surfaces.</p>
+        </article>
+        <article>
+          <span>Produce</span>
+          <p>Visual production agents generate design, assets, and media.</p>
+        </article>
+        <article>
+          <span>Remember</span>
+          <p>Research and memory agents retain context and support decisions.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="work-final" aria-labelledby="workFinalTitle">
+    <div class="container">
+      <p class="work-kicker">See the system</p>
+      <h2 id="workFinalTitle">See how the system actually works.</h2>
+      <div class="work-final__actions">
+        <a class="btn btn--inverted" href="/system/">Explore the System</a>
+        <a class="btn btn--outline" href="/connect/">Talk to Dreamborn</a>
+      </div>
+    </div>
+  </section>
+</main>
