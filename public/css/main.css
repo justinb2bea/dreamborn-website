@@ -1,9 +1,7 @@
 /* ============================================================
    dreamborn.ai — Main Stylesheet
-   Import tokens first, then component styles.
+   Import the canonical Dreamborn design system first, then page styles.
    ============================================================ */
-
-@import url('/css/tokens.css');
 
 /* ─── Reset ────────────────────────────────────────────────── */
 *, *::before, *::after {
@@ -92,7 +90,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .nav__wordmark {
-  font-family: var(--font-brand-heading);
+  font-family: var(--font-brand-signal);
   font-size: 20px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -2240,7 +2238,8 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 
   .nav__links li:nth-child(2),
-  .nav__links li:nth-child(3) {
+  .nav__links li:nth-child(3),
+  .nav__links li:nth-child(5) {
     display: none;
   }
 
@@ -6553,6 +6552,274 @@ cal-inline {
 
 .thinking-footer a:hover {
   color: rgba(240, 237, 233, 0.78);
+}
+
+/* ─── Justin profile / speaker page ─────────────────────────── */
+.justin-page {
+  --justin-green: #8DC63F;
+  --justin-crimson: #C03535;
+  --justin-amber: #C9963A;
+  --justin-blue: #7FA7B8;
+  min-height: 100vh;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+    var(--color-bg);
+  background-size: 48px 48px;
+}
+
+.justin-hero,
+.justin-timeline,
+.justin-section {
+  width: min(1520px, calc(100vw - 48px));
+  margin: 0 auto;
+}
+
+.justin-hero {
+  min-height: calc(100vh - var(--nav-height));
+  display: grid;
+  grid-template-columns: minmax(470px, 1fr) minmax(360px, 0.5fr);
+  gap: 32px;
+  align-items: stretch;
+  padding: 48px 0 28px;
+}
+
+.justin-hero__copy,
+.justin-proof,
+.justin-timeline article,
+.justin-topic-panel,
+.justin-twitter,
+.justin-booking {
+  border: 1px solid var(--color-border);
+  background: rgba(16, 13, 12, 0.86);
+}
+
+.justin-hero__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(32px, 64px, 72px);
+}
+
+.justin-hero h1 {
+  max-width: 860px;
+  margin: 0 0 24px;
+  color: var(--color-text-primary);
+  font-size: 6rem;
+  font-weight: 600;
+  line-height: 0.94;
+}
+
+.justin-hero__lede {
+  max-width: 720px;
+  color: var(--color-text-secondary);
+  font-size: 1.35rem;
+  line-height: 1.42;
+}
+
+.justin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.justin-proof {
+  align-self: end;
+  display: grid;
+  gap: 0;
+  padding: 18px;
+}
+
+.justin-proof__portrait {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 18px;
+  border: 1px solid var(--color-border-strong);
+}
+
+.justin-proof div {
+  display: grid;
+  gap: 6px;
+  padding: 18px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.justin-proof span,
+.justin-timeline p {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.justin-proof strong {
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+  line-height: 1.15;
+}
+
+.justin-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 20px 0 76px;
+}
+
+.justin-timeline article {
+  min-height: 300px;
+  padding: 24px;
+  border-top: 3px solid var(--justin-amber);
+}
+
+.justin-timeline__pivot {
+  border-top-color: var(--justin-green) !important;
+  background: rgba(141, 198, 63, 0.08) !important;
+}
+
+.justin-timeline p {
+  color: var(--justin-green);
+  font-weight: 700;
+}
+
+.justin-timeline h2 {
+  margin: 34px 0 18px;
+  color: var(--color-text-primary);
+  font-size: 2rem;
+  line-height: 1.04;
+}
+
+.justin-timeline span {
+  color: var(--color-text-secondary);
+  line-height: 1.58;
+}
+
+.justin-section {
+  padding: 0 0 80px;
+}
+
+.justin-speaking,
+.justin-live,
+.justin-booking {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.justin-section h2 {
+  max-width: 780px;
+  margin: 0 0 22px;
+  color: var(--color-text-primary);
+  font-size: 4rem;
+  line-height: 0.98;
+}
+
+.justin-section p {
+  max-width: 680px;
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.justin-topic-panel {
+  padding: 28px;
+}
+
+.justin-topic-panel h3 {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 1.55rem;
+}
+
+.justin-topic-panel ul {
+  display: grid;
+  gap: 14px;
+  margin: 22px 0 28px;
+  padding-left: 20px;
+  color: var(--color-text-secondary);
+}
+
+.justin-live__intro {
+  position: sticky;
+  top: calc(var(--nav-height) + 28px);
+}
+
+.justin-twitter {
+  min-height: 640px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.justin-booking {
+  padding: 32px;
+}
+
+.justin-cal-frame {
+  min-height: 680px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: rgba(255,255,255,0.02);
+}
+
+.justin-cal-frame cal-inline {
+  display: block;
+  width: 100%;
+  min-height: 680px;
+}
+
+@media (max-width: 1100px) {
+  .justin-hero h1 {
+    font-size: 4.4rem;
+  }
+
+  .justin-section h2 {
+    font-size: 3.25rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .justin-hero,
+  .justin-timeline,
+  .justin-speaking,
+  .justin-live,
+  .justin-booking {
+    width: min(100% - 28px, 680px);
+    grid-template-columns: 1fr;
+  }
+
+  .justin-hero {
+    min-height: auto;
+    padding-top: 28px;
+  }
+
+  .justin-hero__copy,
+  .justin-booking {
+    padding: 24px;
+  }
+
+  .justin-hero h1 {
+    font-size: 3.35rem;
+  }
+
+  .justin-hero__lede,
+  .justin-section p {
+    font-size: 1rem;
+  }
+
+  .justin-timeline article {
+    min-height: 0;
+  }
+
+  .justin-section h2 {
+    font-size: 2.55rem;
+  }
+
+  .justin-live__intro {
+    position: static;
+  }
 }
 
 @media (max-width: 900px) {

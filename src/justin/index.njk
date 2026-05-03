@@ -1,0 +1,193 @@
+---
+layout: base.njk
+register: forge
+title: "Justin King"
+description: "Justin King is Dreamborn's Head AI Engineer for Agent Clusters and a speaker on the transition from B2B e-commerce leadership to AI-native operating systems."
+---
+
+<main class="justin-page">
+  <section class="justin-hero" aria-labelledby="justinHeroTitle">
+    <div class="justin-hero__copy">
+      <p class="ops-kicker">Justin King / Head AI Engineer / Agent Clusters</p>
+      <h1 id="justinHeroTitle">From B2B e-commerce grandfather to AI systems builder.</h1>
+      <p class="justin-hero__lede">
+        Justin King helps operators understand what comes after chatbots: agent clusters,
+        verified work, and AI-native companies where humans set direction while agents carry execution.
+      </p>
+      <div class="justin-actions">
+        <a class="btn btn--primary" href="#booking">Book Justin as a speaker</a>
+        <a class="btn btn--outline" href="#twitter-feed">Read the live feed</a>
+      </div>
+    </div>
+
+    <aside class="justin-proof" aria-label="Speaker profile summary">
+      <img src="/img/authors/JustinKingProfile.jpeg" alt="Justin King" class="justin-proof__portrait">
+      <div>
+        <span>Current role</span>
+        <strong>Head AI Engineer</strong>
+      </div>
+      <div>
+        <span>Operating thesis</span>
+        <strong>Agent Clusters</strong>
+      </div>
+      <div>
+        <span>Native context</span>
+        <strong>B2B commerce, AI systems, operator change</strong>
+      </div>
+    </aside>
+  </section>
+
+  <section class="justin-timeline" aria-label="Past, pivot, now">
+    <article>
+      <p>Past</p>
+      <h2>B2B e-commerce thought leader</h2>
+      <span>
+        Justin spent decades where distributors, manufacturers, catalogs, product data,
+        and revenue operations collide. That work made him one of the early voices operators
+        trusted when B2B commerce moved from back-office project to board-level strategy.
+      </span>
+    </article>
+    <article class="justin-timeline__pivot">
+      <p>Pivot</p>
+      <h2>From digital channels to autonomous work</h2>
+      <span>
+        The AI transition is not a career change so much as a pattern match. The same
+        issues that made commerce transformation hard now define agentic work:
+        trust, handoffs, structured knowledge, governance, and proof that work happened.
+      </span>
+    </article>
+    <article>
+      <p>Now</p>
+      <h2>Agent clusters for the AI-native company</h2>
+      <span>
+        At Dreamborn, Justin is building the operating model in public: specialized agents,
+        human decision gates, durable memory, live receipts, and systems that make execution visible.
+      </span>
+    </article>
+  </section>
+
+  <section class="justin-section justin-speaking" aria-labelledby="speakingTitle">
+    <div>
+      <p class="ops-panel-label">Speaker platform</p>
+      <h2 id="speakingTitle">Book Justin for the AI transition talk.</h2>
+      <p>
+        This talk is for leadership teams, associations, conferences, and operator groups that
+        need a grounded path from legacy digital transformation into AI-native operations.
+        Justin brings the scars of B2B e-commerce change and the builder perspective of
+        designing agent clusters now.
+      </p>
+    </div>
+
+    <aside class="justin-topic-panel">
+      <h3>Signature topics</h3>
+      <ul>
+        <li>How B2B e-commerce prepared operators for the agent era</li>
+        <li>Why agent clusters matter more than one large assistant</li>
+        <li>Turning expert knowledge into repeatable AI workflows</li>
+        <li>Trust, verification, and governance for autonomous work</li>
+      </ul>
+      <a class="btn btn--primary" href="#booking">Book Justin as a speaker</a>
+    </aside>
+  </section>
+
+  <section class="justin-section justin-live" id="twitter-feed" aria-labelledby="twitterFeedTitle">
+    <div class="justin-live__intro">
+      <p class="ops-panel-label">Live thinking</p>
+      <h2 id="twitterFeedTitle">Twitter feed</h2>
+      <p>
+        Current notes on AI engineering, agent clusters, B2B transformation,
+        and building Dreamborn in public.
+      </p>
+      <a class="btn btn--outline" href="https://twitter.com/justinking">Open on X</a>
+    </div>
+    <div class="justin-twitter">
+      <a class="twitter-timeline" data-theme="dark" data-height="620" href="https://twitter.com/justinking">
+        Tweets by Justin King
+      </a>
+    </div>
+  </section>
+
+  <section class="justin-section justin-booking" id="booking" aria-labelledby="bookingTitle">
+    <div>
+      <p class="ops-panel-label">Executive route</p>
+      <h2 id="bookingTitle">Bring the AI transition conversation to your audience.</h2>
+      <p>
+        Use the calendar for speaking inquiries, podcast requests, leadership briefings,
+        and operator sessions on how companies move from digital transformation into agentic work.
+      </p>
+    </div>
+    <div class="justin-cal-frame">
+      <cal-inline data-cal-link="justin-king"></cal-inline>
+    </div>
+  </section>
+</main>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script>
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else {
+          p(cal, ar);
+        }
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", { origin: "https://cal.com" });
+  Cal("preload", { calLink: "justin-king" });
+  Cal("ui", {
+    theme: "dark",
+    hideEventTypeDetails: false,
+    cssVarsPerTheme: {
+      dark: {
+        "cal-brand": "#8DC63F",
+        "cal-brand-emphasis": "#A3DC55",
+        "cal-brand-text": "#101406",
+        "cal-brand-subtle": "#C9963A",
+        "cal-bg": "#100D0C",
+        "cal-bg-emphasis": "#18110F",
+        "cal-bg-subtle": "#171110",
+        "cal-bg-muted": "#0A0807",
+        "cal-bg-inverted": "#F0EDE9",
+        "cal-text": "#C8C0B8",
+        "cal-text-emphasis": "#F0EDE9",
+        "cal-text-subtle": "#8A7E6A",
+        "cal-border": "#2A1F1C",
+        "cal-border-emphasis": "#8DC63F",
+        "cal-border-subtle": "#3B2A25",
+        "cal-border-muted": "#1F1714",
+        "cal-border-booker": "#2A1F1C",
+        "cal-border-booker-width": "1px",
+        "radius": "0.25rem"
+      }
+    }
+  });
+  Cal("inline", {
+    elementOrSelector: "cal-inline",
+    calLink: "justin-king",
+    config: {
+      layout: "month_view",
+      theme: "dark",
+      hideEventTypeDetails: false
+    }
+  });
+</script>
