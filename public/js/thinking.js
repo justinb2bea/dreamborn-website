@@ -121,19 +121,25 @@
         ? new Date(post.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
         : '';
 
-      const card = document.createElement('article');
-      card.className = 'post-card';
-      card.setAttribute('aria-label', `Post: ${escapeHtml(post.title)}`);
-      card.innerHTML = `
-        <div class="post-card__meta">
-          <span class="topic-tag">${escapeHtml(topicLabel)}</span>
-          <time class="post-card__date" datetime="${escapeHtml(post.published_at || '')}">${escapeHtml(date)}</time>
+      const article = document.createElement('article');
+      article.className = 'thinking-entry';
+      article.setAttribute('aria-label', `Post: ${escapeHtml(post.title)}`);
+      article.innerHTML = `
+        <div class="thinking-entry__meta">
+          <span class="thinking-badge">Proof verified</span>
+          <span class="thinking-category">${escapeHtml(topicLabel)}</span>
         </div>
-        <a href="/thinking/${escapeHtml(post.slug)}/" class="post-card__title">${escapeHtml(post.title)}</a>
-        ${post.excerpt ? `<p class="post-card__excerpt">${escapeHtml(post.excerpt)}</p>` : ''}
-        <p class="post-card__author">By ${escapeHtml(post.author || '')}</p>
+        <a href="/thinking/${escapeHtml(post.slug)}/" class="thinking-entry__title">${escapeHtml(post.title)}</a>
+        ${post.excerpt ? `<p class="thinking-entry__excerpt">${escapeHtml(post.excerpt)}</p>` : ''}
+        <div class="thinking-entry__footer">
+          <div>
+            <strong>${escapeHtml(post.author || 'Dreamborn')}</strong>
+            <span>Dreamborn</span>
+          </div>
+          <time datetime="${escapeHtml(post.published_at || '')}">${escapeHtml(date)}</time>
+        </div>
       `;
-      grid.appendChild(card);
+      grid.appendChild(article);
     });
   }
 

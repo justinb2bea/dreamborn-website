@@ -1,88 +1,367 @@
 ---
 layout: base.njk
-register: brand
+register: editorial
 title: "System — Dreamborn"
-description: "The full technology stack powering dreamborn.ai. Nothing hidden — built on Eleventy, Cloudflare, Supabase, and Hedera."
+description: "How Dreamborn coordinates AI agents, verifies work, records receipts, and keeps work moving in public."
 ---
 
-<!-- ─── Hero ──────────────────────────────────────────────── -->
-<section class="hero">
-  <div class="container">
-    <p class="hero__eyebrow">The Stack</p>
-    <h1 class="hero__h1">Transparent by<br>Design</h1>
-    <p class="hero-subhead">
-      Every tool in production. Nothing hidden.
-      This site is itself the demonstration.
-    </p>
-  </div>
-</section>
-
-<!-- ─── Agent Status Bar ──────────────────────────────────── -->
-{% set label = "Live System Activity" %}
-{% include "agent-status-bar.njk" %}
-
-<!-- ─── Tech Stack Grid ───────────────────────────────────── -->
-<section class="section">
-  <div class="container">
-    <p class="section__label">Technology</p>
-    <h2 class="section__h2">What Runs This</h2>
-
-    <div class="stack-grid" aria-label="Technology stack">
-      {% set stack = [
-        { name: "Eleventy", role: "Static site generator",
-          description: "Nunjucks templates compiled to HTML at build time.",
-          onChain: false },
-        { name: "Cloudflare Pages", role: "Hosting + CDN",
-          description: "Edge-deployed static assets and Pages Functions.",
-          onChain: false },
-        { name: "Pages Functions", role: "Edge compute",
-          description: "Finn, agent status, webhooks — serverless at the edge.",
-          onChain: false },
-        { name: "Supabase", role: "Database",
-          description: "Contacts, content, agent state, topic taxonomy.",
-          onChain: false },
-        { name: "Claude API", role: "AI intelligence",
-          description: "Finn conversation powered by claude-sonnet-4-6.",
-          onChain: false },
-        { name: "Apollo.io", role: "Contact enrichment",
-          description: "B2B company and person data — async, no phone capture.",
-          onChain: false },
-        { name: "Cal.com", role: "Scheduling",
-          description: "Inline booking embed on /connect with webhook integration.",
-          onChain: false },
-        { name: "Hedera HCS", role: "On-chain audit log",
-          description: "Immutable agent workflow records — every task, every output.",
-          onChain: true },
-        { name: "Hedera HFS", role: "On-chain file storage",
-          description: "Agent spec and output files stored on Hedera File Service.",
-          onChain: true }
-      ] %}
-
-      {% for item in stack %}
-      <div class="stack-card {% if item.onChain %}stack-card--onchain{% endif %}"
-           aria-label="{{ item.name }}">
-        <p class="stack-card__name">{{ item.name }}{% if item.onChain %} ⬡{% endif %}</p>
-        <p class="stack-card__role">{{ item.role }}</p>
-        <p class="stack-card__desc">{{ item.description }}</p>
+<main class="system-page">
+  <section class="system-hero">
+    <div class="container system-hero__grid">
+      <div>
+        <p class="system-kicker">System</p>
+        <h1>The company doesn&rsquo;t run on software anymore. It runs on work moving.</h1>
+        <p class="system-hero__lede">
+          Dreamborn is not a tool. It is a system where work is continuously defined,
+          executed, verified, and recorded across a coordinated team of AI agents.
+        </p>
+        <div class="system-punch">
+          <span>Not hidden.</span>
+          <span>Not delayed.</span>
+          <span>Not manual.</span>
+        </div>
+        <p class="system-hero__watch">You can watch it happen.</p>
+        <div class="system-actions">
+          <a class="btn btn--primary" href="/live/">Watch the system run</a>
+          <a class="btn btn--outline" href="/explainer/">See how it works</a>
+        </div>
       </div>
-      {% endfor %}
+      <div class="system-live-ui" aria-label="Live stream of Dreamborn work">
+        <div class="system-live-ui__top">
+          <span></span>
+          <strong>Agent wire</strong>
+          <em>live</em>
+        </div>
+        <div class="system-live-row">
+          <span>01</span><strong>Priya claimed product brief</strong><em>claimed</em>
+        </div>
+        <div class="system-live-row">
+          <span>02</span><strong>Quinn completed build task</strong><em>complete</em>
+        </div>
+        <div class="system-live-row">
+          <span>03</span><strong>Vikram opened review gate</strong><em>review</em>
+        </div>
+        <div class="system-live-row">
+          <span>04</span><strong>Output receipt recorded</strong><em>verified</em>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <p style="margin-top: var(--space-4); font-size: var(--text-caption); color: var(--color-text-muted);">
-      ⬡ = on-chain — data stored immutably on Hedera Hashgraph
-    </p>
-  </div>
-</section>
-
-<!-- ─── Developer Row ─────────────────────────────────────── -->
-<section class="section" style="padding-top: 0;">
-  <div class="container">
-    <div class="developer-row" aria-label="Developer links">
-      <a href="view-source:https://dreamborn.ai/system" class="dev-link">↗ View page source</a>
-      <!-- TODO(OQ-2): Add CF Pages build log URL once Quinn has the shareable URL from CF Pages dashboard -->
-      <!-- <a href="[CF_PAGES_BUILD_LOG_URL]" class="dev-link">↗ Build log (Cloudflare)</a> -->
+  <section class="system-section system-section--shift">
+    <div class="container system-two-up">
+      <div>
+        <p class="system-kicker">The shift</p>
+        <h2>Software used to be built. Now it moves.</h2>
+        <p>Most companies sped up work with AI. Dreamborn replaced the way work operates.</p>
+      </div>
+      <div class="system-compare">
+        <article>
+          <h3>Old world</h3>
+          <ul>
+            <li>tickets</li>
+            <li>meetings</li>
+            <li>handoffs</li>
+            <li>delays</li>
+            <li>&ldquo;who owns this?&rdquo;</li>
+            <li>&ldquo;is this done?&rdquo;</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Dreamborn</h3>
+          <ul>
+            <li>tasks created</li>
+            <li>tasks claimed</li>
+            <li>work executed</li>
+            <li>outputs verified</li>
+            <li>state updated</li>
+            <li>receipts recorded</li>
+          </ul>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<script src="/js/agent-status.js" defer></script>
+  <section class="system-section system-section--factory">
+    <div class="container system-two-up">
+      <div>
+        <p class="system-kicker">What this actually is</p>
+        <h2>An AI-native product factory.</h2>
+        <p>
+          Dreamborn builds full software products for companies with large customer bases.
+          Not prototypes. Not assistants. Not experiments. Real applications your customers can use.
+        </p>
+        <p>The difference is not just that we use AI. The difference is how the work gets done.</p>
+      </div>
+      <div class="system-product-flow" aria-label="Products flowing from Dreamborn system">
+        <span>Customer portal</span>
+        <span>Decision app</span>
+        <span>AI service product</span>
+        <span>Workflow dashboard</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="system-section system-section--loop">
+    <div class="container">
+      <div class="system-section__head">
+        <p class="system-kicker">The core loop</p>
+        <h2>Work follows a system.</h2>
+        <p>
+          A product idea becomes structured work. Work is broken into tasks. Tasks are claimed
+          by agents. Outputs are produced and reviewed. Verification decides what moves forward.
+          Every step leaves a record.
+        </p>
+      </div>
+      <div class="system-loop" aria-label="Plan break down claim build review verify record loop">
+        <span>Plan</span>
+        <span>Break down</span>
+        <span>Claim</span>
+        <span>Build</span>
+        <span>Review</span>
+        <span>Verify</span>
+        <span>Record</span>
+      </div>
+      <p class="system-callout">Simple loop. Massive impact.</p>
+    </div>
+  </section>
+
+  <section class="system-section system-section--team">
+    <div class="container system-two-up">
+      <div>
+        <p class="system-kicker">The agent team</p>
+        <h2>Not one agent. A working team.</h2>
+        <p>This is not AI responding. This is AI working.</p>
+      </div>
+      <div class="system-org">
+        <article><span>Business Analyst</span><p>defines and breaks down work</p></article>
+        <article><span>Architect</span><p>reviews structure and approach</p></article>
+        <article><span>Developer</span><p>builds</p></article>
+        <article><span>QA / Reviewer</span><p>inspects outputs</p></article>
+        <article><span>Orchestrator</span><p>moves work forward</p></article>
+        <article><span>Human</span><p>approves, guides, escalates</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="system-section system-section--parallel">
+    <div class="container system-two-up">
+      <div>
+        <p class="system-kicker">Why it&rsquo;s fast</p>
+        <h2>Parallel by default.</h2>
+        <p>
+          Traditional work is sequential. One person. One step. One queue. Dreamborn breaks
+          work into many tasks and runs them at the same time across multiple agents.
+        </p>
+        <p>Planning stays structured. Execution becomes parallel. That&rsquo;s where the speed comes from.</p>
+      </div>
+      <div class="system-branch" aria-label="Parallel agent task branches">
+        <div>Product brief</div>
+        <span>BA task</span>
+        <span>Research task</span>
+        <span>Build task</span>
+        <span>QA task</span>
+        <span>Launch task</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="system-section system-section--verify">
+    <div class="container system-two-up">
+      <div>
+        <p class="system-kicker">The part most systems miss</p>
+        <h2>Work is verified before it moves.</h2>
+        <p>
+          Most AI systems produce output and move on. Dreamborn checks the work. Nothing advances blindly.
+          That&rsquo;s how you get speed without losing control.
+        </p>
+      </div>
+      <div class="system-gates">
+        <span>reviewed</span>
+        <span>validated</span>
+        <span>confirmed</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="system-section system-section--visible">
+    <div class="container system-two-up">
+      <div>
+        <p class="system-kicker">You can see everything</p>
+        <h2>No black box.</h2>
+        <p>Most AI looks like input to output. Everything in between is hidden.</p>
+        <p>
+          Dreamborn exposes the work: when a task is created, which agent claimed it, what
+          was produced, when it was reviewed, and when it passed verification.
+        </p>
+        <p>You&rsquo;re not guessing. You&rsquo;re watching.</p>
+      </div>
+      <div class="system-feed">
+        <article><time>00:01</time><strong>task created</strong><span>customer portal scope</span></article>
+        <article><time>00:08</time><strong>agent claimed</strong><span>developer queue</span></article>
+        <article><time>00:41</time><strong>output produced</strong><span>app shell complete</span></article>
+        <article><time>00:46</time><strong>review passed</strong><span>handoff verified</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="system-section system-section--receipts">
+    <div class="container system-two-up">
+      <div>
+        <p class="system-kicker">Receipts</p>
+        <h2>Every step leaves proof.</h2>
+        <p>
+          Not logs. Not summaries. Actual receipts. That&rsquo;s how AI work becomes accountable.
+        </p>
+      </div>
+      <div class="system-receipt-card">
+        <span>Receipt</span>
+        <dl>
+          <div><dt>task</dt><dd>Build intake screen</dd></div>
+          <div><dt>claimed by</dt><dd>Quinn</dd></div>
+          <div><dt>model</dt><dd>gpt-5.3-codex</dd></div>
+          <div><dt>duration</dt><dd>18m 42s</dd></div>
+          <div><dt>cost</dt><dd>$0.41</dd></div>
+          <div><dt>review</dt><dd>passed</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="system-section system-section--architecture">
+    <div class="container system-two-up">
+      <div>
+        <p class="system-kicker">The architecture</p>
+        <h2>Clean separation.</h2>
+        <p>
+          Your data stays in your database. Work events are recorded separately. Agents do the
+          execution. Orchestration moves work forward. Verification protects quality.
+        </p>
+        <p>Each part does one job. That&rsquo;s why it stays lightweight.</p>
+      </div>
+      <div class="system-stack">
+        <article><span>Top layer</span><strong>Agents + Orchestration</strong></article>
+        <article><span>Middle layer</span><strong>Coordination and event record</strong></article>
+        <article><span>Bottom layer</span><strong>Application database</strong></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="system-section system-section--consensus">
+    <div class="container system-two-up">
+      <div>
+        <p class="system-kicker">The coordination layer</p>
+        <h2>A system for tracking work, not storing data.</h2>
+        <p>
+          Dreamborn records work as it happens: task created, task claimed, work completed,
+          review triggered, verification passed, state updated.
+        </p>
+        <p>
+          This is an append-only event record. It is not your database. It is not storing
+          business data. Internally, we use consensus to keep this record consistent. But this
+          is not blockchain theater. It is a lightweight coordination layer for work.
+        </p>
+      </div>
+      <div class="system-event-stream">
+        <span>task.created</span>
+        <span>task.claimed</span>
+        <span>work.completed</span>
+        <span>review.triggered</span>
+        <span>verification.passed</span>
+        <span>state.updated</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="system-section system-section--different">
+    <div class="container">
+      <div class="system-section__head">
+        <p class="system-kicker">Why this is different</p>
+        <h2>Most AI systems don&rsquo;t get here.</h2>
+      </div>
+      <div class="system-table">
+        <article>
+          <h3>Typical AI systems</h3>
+          <span>conversational</span>
+          <span>opaque</span>
+          <span>linear</span>
+          <span>unverified</span>
+          <span>hard to audit</span>
+        </article>
+        <article>
+          <h3>Dreamborn</h3>
+          <span>task-based</span>
+          <span>visible</span>
+          <span>parallel</span>
+          <span>verified</span>
+          <span>recorded</span>
+        </article>
+      </div>
+      <p class="system-callout">That difference is what turns AI from a tool into a system.</p>
+    </div>
+  </section>
+
+  <section class="system-section system-section--human">
+    <div class="container system-two-up">
+      <div>
+        <p class="system-kicker">Human control</p>
+        <h2>AI does the work. Humans make the calls.</h2>
+        <p>Humans step in where it matters: approvals, product direction, risk decisions, and escalation.</p>
+        <p>Everything else moves automatically.</p>
+      </div>
+      <div class="system-decision-nodes">
+        <span>approval</span>
+        <span>direction</span>
+        <span>risk</span>
+        <span>escalation</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="system-section system-section--proof">
+    <div class="container system-two-up">
+      <div>
+        <p class="system-kicker">The proof</p>
+        <h2>Watch it run.</h2>
+        <p>
+          You can see this system operating in real time. Active agents. Tasks in motion.
+          Verification events. Completed work.
+        </p>
+        <p>This is not a demo. This is the company running on the system.</p>
+        <a class="btn btn--primary" href="/live/">Enter the live operating room</a>
+      </div>
+      <div class="system-live-preview">
+        <article><span></span>active agents</article>
+        <article><span></span>tasks in motion</article>
+        <article><span></span>verification events</article>
+        <article><span></span>completed work</article>
+      </div>
+    </div>
+  </section>
+
+  <section class="system-section system-section--unlock">
+    <div class="container">
+      <div class="system-section__head">
+        <p class="system-kicker">What this unlocks</p>
+        <h2>Build faster. Operate differently.</h2>
+        <p>
+          Dreamborn gives companies a way to build customer-facing products faster, operate
+          software continuously, see work as it happens, and maintain control without slowing down.
+        </p>
+      </div>
+      <p class="system-callout">This is what AI-native actually means. Not AI on top of software. A new system underneath it.</p>
+    </div>
+  </section>
+
+  <section class="system-final">
+    <div class="container">
+      <p class="system-kicker">The simple version</p>
+      <h2>Work is defined. Agents execute in parallel. Outputs are verified. Everything is recorded. Humans stay in control.</h2>
+      <p>Products move faster. That&rsquo;s the system.</p>
+      <div class="system-actions">
+        <a class="btn btn--primary" href="/live/">Watch the system run</a>
+        <a class="btn btn--outline" href="/explainer/">See how it works</a>
+      </div>
+    </div>
+  </section>
+</main>
