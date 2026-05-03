@@ -14,11 +14,13 @@
   const activeAgents = root.querySelector('[data-proof-active-agents]');
   const workflows = root.querySelector('[data-proof-workflows]');
   const explainToggle = root.querySelector('[data-explain-toggle]');
+  const explainStatus = root.querySelector('[data-explain-status]');
   const explainTextNodes = Array.from(root.querySelectorAll('[data-explain-text], [data-explain-toggle-label]'));
 
   const POLL_MS = 30_000;
   let lastUpdatedAt = null;
   let explanationActive = false;
+  let reassemblyTimer = null;
 
   async function refresh() {
     try {
@@ -157,6 +159,9 @@
     explanationActive = active;
     root.classList.toggle('ops-home--explained', active);
     root.setAttribute('data-explanation-mode', active ? 'explained' : 'default');
+    root.classList.remove('ops-home--reassembling');
+    if (explainStatus) explainStatus.classList.remove('ops-explain-status--visible');
+    if (reassemblyTimer) window.clearTimeout(reassemblyTimer);
 
     explainTextNodes.forEach((node) => {
       const html = active ? node.dataset.explainedHtml : node.dataset.defaultHtml;
@@ -174,6 +179,15 @@
 
     if (active && window.matchMedia('(max-width: 640px)').matches) {
       root.scrollIntoView({ block: 'start' });
+    }
+
+    if (!active) {
+      root.classList.add('ops-home--reassembling');
+      if (explainStatus) explainStatus.classList.add('ops-explain-status--visible');
+      reassemblyTimer = window.setTimeout(() => {
+        root.classList.remove('ops-home--reassembling');
+        if (explainStatus) explainStatus.classList.remove('ops-explain-status--visible');
+      }, 1800);
     }
 
     window.dispatchEvent(new CustomEvent('dreamborn:explanation-mode', {

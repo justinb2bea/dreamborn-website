@@ -27,6 +27,9 @@
   document.addEventListener('click', function (event) {
     const openTrigger = event.target.closest('[data-finn-open]');
     if (openTrigger) {
+      if (openTrigger.hasAttribute('data-explain-toggle') && openTrigger.getAttribute('aria-pressed') === 'false') {
+        return;
+      }
       const prompt = openTrigger.dataset.finnPrompt || '';
       openDrawer(prompt);
       return;
@@ -61,8 +64,11 @@
   };
 
   window.addEventListener('dreamborn:explanation-mode', function (event) {
-    if (!event.detail?.active) return;
-    openDrawer('Explain what I\'m looking at on the Dreamborn homepage.');
+    if (event.detail?.active) {
+      openDrawer('Explain what I\'m looking at on the Dreamborn homepage.');
+      return;
+    }
+    closeDrawer();
   });
 
   function openDrawer(prompt) {

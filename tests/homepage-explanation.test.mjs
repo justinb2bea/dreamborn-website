@@ -13,6 +13,8 @@ test('homepage exposes explanation mode copy hooks', () => {
   assert.match(homepage, /data-default-text="What's your AI strategy\? This is ours\."/);
   assert.match(homepage, /data-explained-text="A company operating through AI agents\."/);
   assert.match(homepage, /data-explanation-note/);
+  assert.match(homepage, /data-explain-status/);
+  assert.match(homepage, /Back to the company in motion\./);
   assert.match(homepage, /Explain what I&#39;m looking at on the Dreamborn homepage\./);
 });
 
