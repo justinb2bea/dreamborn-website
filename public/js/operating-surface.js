@@ -13,7 +13,7 @@
   const liveBadge = root.querySelector('[data-live-badge]');
   const activeAgents = root.querySelector('[data-proof-active-agents]');
   const workflows = root.querySelector('[data-proof-workflows]');
-  const explainToggle = root.querySelector('[data-explain-toggle]');
+  const explainToggles = Array.from(root.querySelectorAll('[data-explain-toggle]'));
   const explainStatus = root.querySelector('[data-explain-status]');
   const explainTextNodes = Array.from(root.querySelectorAll('[data-explain-text], [data-explain-toggle-label]'));
 
@@ -190,9 +190,7 @@
       }
     });
 
-    if (explainToggle) {
-      explainToggle.setAttribute('aria-pressed', active ? 'true' : 'false');
-    }
+    syncExplainToggles(active);
 
     if (active && window.matchMedia('(max-width: 640px)').matches) {
       root.scrollIntoView({ block: 'start' });
@@ -212,11 +210,19 @@
     }));
   }
 
+  function syncExplainToggles(active) {
+    explainToggles.forEach((toggle) => {
+      toggle.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
   function bindExplanationToggle() {
-    if (!explainToggle) return;
-    explainToggle.setAttribute('aria-pressed', 'false');
-    explainToggle.addEventListener('click', function () {
-      setExplanationMode(!explanationActive);
+    if (!explainToggles.length) return;
+    syncExplainToggles(false);
+    explainToggles.forEach((toggle) => {
+      toggle.addEventListener('click', function () {
+        setExplanationMode(!explanationActive);
+      });
     });
   }
 
