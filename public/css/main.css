@@ -1322,6 +1322,34 @@ p, h1, h2, h3, h4, h5, h6 {
   margin: var(--space-6) 0;
 }
 
+.article-figure {
+  margin: var(--space-8) 0;
+}
+
+.article-figure img {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.article-figure figcaption {
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--text-body-sm);
+  line-height: 1.4;
+}
+
+.article-figure--wide {
+  width: min(920px, calc(100vw - 48px));
+  max-width: none;
+}
+
+@media (max-width: 900px) {
+  .article-figure--wide {
+    width: 100%;
+  }
+}
+
 .article-meta {
   display: flex;
   align-items: center;

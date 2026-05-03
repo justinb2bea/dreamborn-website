@@ -35,7 +35,7 @@ description: "Articles and thinking from Dreamborn on AI-native systems, agent w
     {% for post in thinking.initial_posts %}
     <article class="post-card" aria-label="Post: {{ post.title }}">
       <div class="post-card__meta">
-        <span class="topic-tag" aria-label="Category">Article</span>
+        <span class="topic-tag" aria-label="Category">{{ post.topic_label or 'Article' }}</span>
         <time class="post-card__date" datetime="{{ post.published_at }}">
           {{ post.published_at | dateFormat }}
         </time>

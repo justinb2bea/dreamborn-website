@@ -6,10 +6,12 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "public/fonts": "fonts" });
   eleventyConfig.addPassthroughCopy({ "public/css": "css" });
   eleventyConfig.addPassthroughCopy({ "public/js": "js" });
+  eleventyConfig.addPassthroughCopy({ "public/img": "img" });
 
   // Watch targets
   eleventyConfig.addWatchTarget("public/css/");
   eleventyConfig.addWatchTarget("public/js/");
+  eleventyConfig.addWatchTarget("public/img/");
 
   // Filters
   eleventyConfig.addFilter("dateFormat", (date, fmt = "MMMM d, yyyy") => {

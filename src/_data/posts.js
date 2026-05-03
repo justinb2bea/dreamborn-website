@@ -3,12 +3,13 @@
  * Used by Eleventy pagination to create /thinking/[slug]/ pages.
  */
 module.exports = async function () {
+  const local = require('./local_posts.js');
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !key) {
     console.warn("[posts] SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY not set — returning []");
-    return [];
+    return local.posts;
   }
 
   try {
@@ -27,9 +28,18 @@ module.exports = async function () {
       return [];
     }
 
-    return await res.json();
+    const remotePosts = await res.json();
+    return mergePosts(local.posts, remotePosts);
   } catch (err) {
     console.warn("[posts] Fetch error:", err.message);
-    return [];
+    return local.posts;
   }
 };
+
+function mergePosts(localPosts, remotePosts) {
+  const bySlug = new Map();
+  [...localPosts, ...remotePosts].forEach((post) => {
+    if (post && post.slug) bySlug.set(post.slug, post);
+  });
+  return [...bySlug.values()].sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+}
