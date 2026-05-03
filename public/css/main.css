@@ -3140,25 +3140,35 @@ p, h1, h2, h3, h4, h5, h6 {
   gap: var(--space-2);
 }
 
-.connect-capability-list span {
+.connect-capability-list button {
   min-height: 64px;
   display: flex;
   align-items: center;
+  width: 100%;
   padding: var(--space-3);
   border: 1px solid var(--color-border);
   background: rgba(255, 255, 255, 0.03);
   color: var(--color-text-primary);
+  cursor: pointer;
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 700;
   line-height: 1.3;
+  text-align: left;
   text-transform: uppercase;
-  transition: border-color var(--transition-base), background var(--transition-base);
+  transition: border-color var(--transition-base), background var(--transition-base), transform var(--transition-base);
 }
 
-.connect-capability-list span:hover {
+.connect-capability-list button:hover,
+.connect-capability-list button:focus-visible {
   border-color: rgba(139, 26, 26, 0.54);
   background: rgba(139, 26, 26, 0.1);
+  transform: translateY(-2px);
+}
+
+.connect-capability-list button:focus-visible {
+  outline: 2px solid rgba(215, 177, 110, 0.7);
+  outline-offset: 3px;
 }
 
 .connect-booking {

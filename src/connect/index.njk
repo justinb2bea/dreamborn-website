@@ -26,11 +26,11 @@ description: "Enter Dreamborn's AI strategy room. Ask Finn, pressure-test your o
   <section class="connect-capabilities" aria-label="What Finn can do">
     <p class="ops-panel-label">Finn can</p>
     <div class="connect-capability-list">
-      <span>Explain Bezel</span>
-      <span>Pressure-test your AI strategy</span>
-      <span>Map agent coverage for your company</span>
-      <span>Show live operating proof</span>
-      <span>Route you to Justin</span>
+      <button type="button" data-finn-prompt="Explain Bezel and how it runs an AI-native company.">Explain Bezel</button>
+      <button type="button" data-finn-prompt="Pressure-test my AI strategy.">Pressure-test your AI strategy</button>
+      <button type="button" data-finn-prompt="Map agent coverage for my company.">Map agent coverage for your company</button>
+      <button type="button" data-finn-prompt="Show me live operating proof for Dreamborn.">Show live operating proof</button>
+      <button type="button" data-finn-prompt="I want to talk to Justin.">Route you to Justin</button>
     </div>
   </section>
 
@@ -67,12 +67,12 @@ description: "Enter Dreamborn's AI strategy room. Ask Finn, pressure-test your o
         </div>
 
         <div class="suggested-prompts" id="finnPrompts" role="group" aria-label="Suggested messages">
-          <button class="prompt-pill" data-prompt="Pressure-test my AI strategy">Pressure-test my AI strategy</button>
-          <button class="prompt-pill" data-prompt="Show me how Dreamborn runs">Show me how Dreamborn runs</button>
-          <button class="prompt-pill" data-prompt="What would Bezel do for my company?">What would Bezel do for my company?</button>
-          <button class="prompt-pill" data-prompt="How would you rebuild CRM AI first?">How would you rebuild CRM AI first?</button>
-          <button class="prompt-pill" data-prompt="I'm building agent workflows">I&rsquo;m building agent workflows</button>
-          <button class="prompt-pill" data-prompt="I want to talk to Justin">I want to talk to Justin</button>
+          <button class="prompt-pill" data-finn-prompt="Pressure-test my AI strategy">Pressure-test my AI strategy</button>
+          <button class="prompt-pill" data-finn-prompt="Show me how Dreamborn runs">Show me how Dreamborn runs</button>
+          <button class="prompt-pill" data-finn-prompt="What would Bezel do for my company?">What would Bezel do for my company?</button>
+          <button class="prompt-pill" data-finn-prompt="How would you rebuild CRM AI first?">How would you rebuild CRM AI first?</button>
+          <button class="prompt-pill" data-finn-prompt="I'm building agent workflows">I&rsquo;m building agent workflows</button>
+          <button class="prompt-pill" data-finn-prompt="I want to talk to Justin">I want to talk to Justin</button>
         </div>
 
         <p class="finn-error" id="finnError" role="alert">

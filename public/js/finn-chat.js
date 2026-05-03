@@ -23,16 +23,20 @@
   const promptsEl    = document.getElementById('finnPrompts');
   const errorEl      = document.getElementById('finnError');
 
-  // ─── Prompt pills ────────────────────────────────────────────
-  if (promptsEl) {
-    promptsEl.querySelectorAll('.prompt-pill').forEach(function (pill) {
-      pill.addEventListener('click', function () {
-        const text = pill.dataset.prompt;
-        if (!text) return;
-        submitMessage(text);
-      });
+  // ─── Prompt starters ────────────────────────────────────────
+  document.querySelectorAll('[data-finn-prompt]').forEach(function (starter) {
+    starter.addEventListener('click', function () {
+      const text = starter.dataset.finnPrompt;
+      if (!text) return;
+
+      const chat = document.querySelector('.connect-chat-shell');
+      if (chat) {
+        chat.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      submitMessage(text);
     });
-  }
+  });
 
   // ─── Send on Enter (not Shift+Enter) ─────────────────────────
   window.handleFinnKeydown = function (e) {
