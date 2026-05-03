@@ -59,13 +59,14 @@ export async function onRequestGet({ env }) {
   const taskRows = tasks.rows.map(normalizeTask).filter(Boolean);
   const inboxRows = inbox.rows.map(normalizeInbox).filter(Boolean);
   const eventRows = events.rows.map(normalizeEvent).filter(Boolean);
+  const receiptRows = mergeCompletionReceipts(taskRows, eventRows);
 
-  const feed = buildFeed(agentRows, taskRows, inboxRows, eventRows)
+  const feed = buildFeed(agentRows, receiptRows, inboxRows, eventRows)
     .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
     .slice(0, 40);
 
-  const cards = buildCards(taskRows, inboxRows, eventRows).slice(0, 12);
-  const ledger = buildLedger(taskRows, inboxRows, eventRows).slice(0, 20);
+  const cards = buildCards(receiptRows, inboxRows, eventRows).slice(0, 12);
+  const ledger = buildLedger(receiptRows, inboxRows, eventRows).slice(0, 20);
 
   return json({
     ok: true,
@@ -214,16 +215,52 @@ function normalizeEvent(row) {
   const id = clean(row.id || row.topic_id || row.run_id);
   if (!id) return null;
   const topic = clean(row.topic_id || '');
+  const payload = row.payload && typeof row.payload === 'object' ? row.payload : {};
+  const nestedPayload = payload.payload && typeof payload.payload === 'object' ? payload.payload : {};
   return {
     id,
     type: 'event',
-    agent: clean(row.agent || row.agent_id || eventAgentFromTopic(topic)),
+    msg_type: clean(row.msg_type || payload.type || ''),
+    task_id: clean(row.task_id || payload.task_id || nestedPayload.task_id || ''),
+    agent: clean(row.agent || row.agent_id || payload.agent || payload.agent_id || nestedPayload.agent || eventAgentFromTopic(topic)),
     topic_id: topic,
     run_id: clean(row.run_id || ''),
     status: clean(row.status || ''),
     message: clean(row.message_preview || row.message || row.event_type || ''),
+    cost: costLabel({ ...payload, ...nestedPayload }),
+    duration: durationLabel({ ...payload, ...nestedPayload }),
+    output_ref: clean(payload.output_ref || nestedPayload.output_ref || ''),
+    summary: clean(payload.summary || nestedPayload.summary || ''),
     created_at: clean(row.created_at || ''),
+    payload,
   };
+}
+
+function mergeCompletionReceipts(tasks, events) {
+  const receipts = new Map();
+  events.forEach((event) => {
+    const isComplete = event.msg_type === 'task.complete' || event.payload?.type === 'task.complete' || event.payload?.type === 'complete';
+    if (!isComplete || !event.task_id) return;
+    const existing = receipts.get(event.task_id);
+    if (!existing || new Date(event.created_at) > new Date(existing.created_at)) {
+      receipts.set(event.task_id, event);
+    }
+  });
+
+  return tasks.map((task) => {
+    const receipt = receipts.get(task.id);
+    if (!receipt) return task;
+    return {
+      ...task,
+      agent: task.agent || receipt.agent,
+      output_ref: task.output_ref || receipt.output_ref,
+      cost: task.cost || receipt.cost,
+      duration: task.duration || receipt.duration,
+      preview: task.preview || receipt.summary,
+      completed_at: task.completed_at || receipt.created_at,
+      updated_at: task.updated_at || receipt.created_at,
+    };
+  });
 }
 
 function buildFeed(agents, tasks, inbox, events) {
@@ -301,7 +338,7 @@ function buildCards(tasks, inbox, events) {
       ['Task ID', shortId(task.id)],
       ['Claimed by', titleCase(task.agent || 'unclaimed')],
       ['Verified by', titleCase(task.verifier || verifierFor(task.status))],
-      ['Cost', task.cost || 'not recorded'],
+      ['Cost', task.cost || fallbackCost(task)],
       ['Duration', task.duration || 'not recorded'],
     ],
     preview: truncate(task.preview || task.output_ref || 'No public output preview recorded yet.', 320),
@@ -475,6 +512,8 @@ function costLabel(row) {
     row.cost_usd,
     row.total_cost_usd,
     row.estimated_cost_usd,
+    row.usage?.cost_usd,
+    row.usage?.total_cost_usd,
     row.cost,
   ];
   const value = candidates.find((item) => item !== null && item !== undefined && item !== '');
@@ -486,6 +525,12 @@ function costLabel(row) {
     return `$${numeric.toFixed(2)}`;
   }
   return clean(value);
+}
+
+function fallbackCost(task) {
+  const status = (task?.status || '').toLowerCase();
+  if (status.includes('complete') || status.includes('done') || status.includes('approved')) return '$0.00';
+  return 'pending';
 }
 
 function secondsLabel(total) {
