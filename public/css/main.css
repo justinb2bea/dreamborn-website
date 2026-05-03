@@ -4551,6 +4551,8 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .how-hero__grid {
   position: relative;
+  grid-template-columns: minmax(0, 1.34fr) minmax(280px, 0.52fr);
+  gap: clamp(24px, 3.6vw, 48px);
   z-index: 1;
 }
 
@@ -4559,7 +4561,10 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .how-hero h1 {
+  max-width: 980px;
   color: var(--color-text-inverse);
+  font-size: clamp(42px, 5vw, 74px);
+  line-height: 0.96;
 }
 
 .how-hero__lede {
@@ -4590,6 +4595,8 @@ p, h1, h2, h3, h4, h5, h6 {
 .how-system-map {
   display: grid;
   gap: var(--space-3);
+  width: min(100%, 340px);
+  justify-self: end;
 }
 
 .how-system-map > span {
@@ -4610,8 +4617,8 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .how-system-card {
-  padding: var(--space-5);
-  font-size: 20px;
+  padding: var(--space-4);
+  font-size: 17px;
   font-weight: 700;
 }
 
@@ -4963,7 +4970,12 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 
   .how-page h1 {
-    font-size: clamp(42px, 12vw, 56px);
+    font-size: clamp(38px, 10.5vw, 50px);
+  }
+
+  .how-system-map {
+    width: 100%;
+    justify-self: stretch;
   }
 
   .how-system-map > span {
