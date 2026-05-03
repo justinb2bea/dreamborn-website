@@ -501,6 +501,10 @@ p, h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
+.ops-hero__title span {
+  color: var(--ops-crimson);
+}
+
 .ops-hero__subhead {
   max-width: 640px;
   color: var(--color-text-secondary);
