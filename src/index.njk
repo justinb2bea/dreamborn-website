@@ -6,6 +6,18 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
 ---
 
 <main class="ops-home" data-operating-surface>
+  <button class="ops-explain-sticky"
+          type="button"
+          data-explain-toggle
+          data-explain-sticky
+          data-finn-open
+          data-finn-prompt="Explain what I&#39;m looking at on the Dreamborn homepage.">
+    <span aria-hidden="true">?</span>
+    <span data-explain-toggle-label
+          data-default-text="Explain this page"
+          data-explained-text="Show operating surface">Explain this page</span>
+  </button>
+
   <section class="ops-hero" aria-labelledby="opsHeroTitle">
     <div class="ops-hero__copy">
       <p class="ops-kicker"
@@ -91,6 +103,14 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
               data-explained-text="Live company activity">Company pulse</h2>
         </div>
         <span class="ops-live-badge" data-live-badge>checking</span>
+        <button class="ops-context-explain"
+                type="button"
+                data-finn-open
+                data-finn-prompt="Explain the live Dreamborn feed in plain English.">
+          <span data-explain-text
+                data-default-text="Explain this feed"
+                data-explained-text="Ask Finn about this feed">Explain this feed</span>
+        </button>
       </div>
       <p class="ops-system-state" data-system-state>System state: connecting to live feed</p>
       <div class="ops-feed" data-feed-list aria-live="polite" aria-atomic="false">
@@ -112,6 +132,14 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
       <p data-explain-text
          data-default-text="Every card is a task record, output, message, or handoff pulled from the operating system."
          data-explained-text="Every card is evidence that an agent picked up, produced, checked, or handed off real work.">Every card is a task record, output, message, or handoff pulled from the operating system.</p>
+      <button class="ops-context-explain"
+              type="button"
+              data-finn-open
+              data-finn-prompt="Explain what work is happening on the Dreamborn homepage.">
+        <span data-explain-text
+              data-default-text="What work is happening here?"
+              data-explained-text="Ask Finn about this work">What work is happening here?</span>
+      </button>
     </div>
     <div class="ops-work-grid" data-work-cards>
       <article class="ops-work-card ops-work-card--empty">
@@ -131,6 +159,14 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
           data-explain-text
           data-default-text="Every other workflow system knows a task was sent. Dreamborn knows it was received."
           data-explained-text="The ledger shows when work was claimed, received, and recorded, so progress is not just assumed.">Every other workflow system knows a task was sent. Dreamborn knows it was received.</h2>
+      <button class="ops-context-explain"
+              type="button"
+              data-finn-open
+              data-finn-prompt="Explain the Dreamborn proof ledger in plain English.">
+        <span data-explain-text
+              data-default-text="Explain the proof"
+              data-explained-text="Ask Finn about the proof">Explain the proof</span>
+      </button>
     </div>
     <div class="ops-ledger" data-ledger>
       <div class="ops-ledger__empty">Ledger entries appear when task and handoff records are available.</div>
@@ -147,6 +183,14 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
           data-explain-text
           data-default-text="Roles being filled"
           data-explained-text="Who does the work">Roles being filled</h2>
+      <button class="ops-context-explain"
+              type="button"
+              data-finn-open
+              data-finn-prompt="Explain who the Dreamborn agents are and what they do.">
+        <span data-explain-text
+              data-default-text="Who are these agents?"
+              data-explained-text="Ask Finn about these agents">Who are these agents?</span>
+      </button>
     </div>
     <div class="ops-persona-panel" data-persona-panel hidden></div>
     <div class="ops-agent-grid" data-agent-grid></div>
@@ -159,6 +203,14 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
        data-explained-text="Founder notes">Dispatches</p>
     <h2>The company I built without a payroll</h2>
     <p>Twenty-four people work here and none of them have bank accounts.</p>
+    <button class="ops-context-explain"
+            type="button"
+            data-finn-open
+            data-finn-prompt="Translate this Dreamborn dispatch section in plain English.">
+      <span data-explain-text
+            data-default-text="Translate this"
+            data-explained-text="Ask Finn about this dispatch">Translate this</span>
+    </button>
     <a href="/thinking/" class="ops-read-link">Read</a>
   </section>
 
