@@ -36,6 +36,28 @@ description: "Watch Dreamborn's public operating surface: agent wires, task rece
     </div>
   </section>
 
+  <section class="live-agent-strip" aria-labelledby="liveAgentsTitle">
+    <div class="live-agent-strip__header">
+      <div>
+        <p class="ops-panel-label">Fleet</p>
+        <h2 id="liveAgentsTitle">Live now</h2>
+      </div>
+      <span data-agent-count>0 agents</span>
+    </div>
+    <div class="live-fleet" data-live-agents aria-live="polite" aria-atomic="false">
+      <div class="live-fleet__stage">
+        <div class="fleet-stage-label fleet-stage-label--live" data-fleet-live-label>Live now</div>
+        <div class="fleet-stage" data-fleet-stage>
+          <div class="ops-feed__empty">Loading agent states&hellip;</div>
+        </div>
+      </div>
+      <div class="live-fleet__bench">
+        <div class="fleet-stage-label fleet-stage-label--idle">Idle fleet</div>
+        <div class="fleet-bench" data-fleet-bench></div>
+      </div>
+    </div>
+  </section>
+
   <section class="live-room__grid" aria-label="Dreamborn live operating surface">
     <section class="live-panel live-panel--wire" aria-labelledby="wireTitle">
       <div class="live-panel__header">
@@ -71,9 +93,15 @@ description: "Watch Dreamborn's public operating surface: agent wires, task rece
     <aside class="live-panel live-panel--inspect" aria-labelledby="inspectTitle">
       <div class="live-panel__header">
         <div>
-          <p class="ops-panel-label">Inspection</p>
-          <h2 id="inspectTitle">Selected work</h2>
+          <p class="ops-panel-label">Wire network</p>
+          <h2 id="inspectTitle">Engine traffic</h2>
         </div>
+      </div>
+      <div class="live-network" data-live-network>
+        <div class="ops-feed__empty">Loading wire network&hellip;</div>
+      </div>
+      <div class="live-inspector-label">
+        <span>Selected work</span>
       </div>
       <div class="live-inspector" data-live-inspector>
         <p>Select a wire event or receipt to inspect the work record.</p>

@@ -9,6 +9,11 @@
   const cardsRoot = root.querySelector('[data-live-cards]');
   const ledgerRoot = root.querySelector('[data-live-ledger]');
   const inspector = root.querySelector('[data-live-inspector]');
+  const agentsRoot = root.querySelector('[data-live-agents]');
+  const fleetStage = root.querySelector('[data-fleet-stage]');
+  const fleetBench = root.querySelector('[data-fleet-bench]');
+  const fleetLiveLabel = root.querySelector('[data-fleet-live-label]');
+  const networkRoot = root.querySelector('[data-live-network]');
   const liveBadge = root.querySelector('[data-live-badge]');
   const liveUpdated = root.querySelector('[data-live-updated]');
   const systemState = root.querySelector('[data-system-state]');
@@ -18,6 +23,7 @@
   const feedCount = root.querySelector('[data-feed-count]');
   const cardCount = root.querySelector('[data-card-count]');
   const ledgerCount = root.querySelector('[data-ledger-count]');
+  const agentCount = root.querySelector('[data-agent-count]');
 
   let currentData = null;
   let selectedId = null;
@@ -40,6 +46,7 @@
     const feed = data.feed || [];
     const cards = data.cards || [];
     const ledger = data.ledger || [];
+    const agents = data.agents || [];
     const state = data.system_state || {};
 
     if (!selectedId && cards[0]) selectedId = cards[0].id;
@@ -51,12 +58,126 @@
     if (feedCount) feedCount.textContent = `${feed.length} events`;
     if (cardCount) cardCount.textContent = `${cards.length} receipts`;
     if (ledgerCount) ledgerCount.textContent = `${ledger.length} rows`;
+    if (agentCount) agentCount.textContent = `${agents.length} agents`;
 
+    renderAgents(agents);
+    renderNetwork(agents);
     renderFeed(feed);
     renderCards(cards);
     renderLedger(ledger);
     renderInspector(findSelected());
     updateLiveAge();
+  }
+
+  function renderAgents(agents) {
+    if (!agentsRoot || !fleetStage || !fleetBench) return;
+    if (!agents.length) {
+      fleetStage.innerHTML = '<div class="ops-feed__empty">No public agent states returned yet.</div>';
+      fleetBench.innerHTML = '';
+      return;
+    }
+
+    const live = agents
+      .filter((agent) => ['working', 'blocked', 'verification'].includes(normalizeStatus(agent.status)))
+      .sort((a, b) => agentRank(a) - agentRank(b));
+    const idle = agents
+      .filter((agent) => !['working', 'blocked', 'verification'].includes(normalizeStatus(agent.status)))
+      .sort((a, b) => String(a.name || a.id).localeCompare(String(b.name || b.id)));
+
+    if (fleetLiveLabel) {
+      fleetLiveLabel.textContent = live.length ? `Live now - ${live.length} active` : 'Live now - 0 active';
+    }
+
+    fleetStage.innerHTML = live.length ? live.map((agent) => {
+      const status = normalizeStatus(agent.status);
+      const taskCardId = findCardIdByTask(agent.task_id);
+      const role = roleLabel(agent);
+      const fill = status === 'blocked' ? 100 : status === 'verification' ? 76 : 55;
+      const taskText = cleanAction(agent.action) || (status === 'blocked' ? 'Blocked' : status === 'verification' ? 'Awaiting verification' : 'Working...');
+      return `
+        <button class="fleet-scard fleet-scard--${escapeAttr(status)}" type="button"
+          data-agent-id="${escapeAttr(agent.id || '')}"
+          data-agent-task-card="${escapeAttr(taskCardId || '')}"
+          ${taskCardId ? '' : 'disabled'}>
+          <div class="fleet-scard__header">
+            <div class="fleet-scard__avatar" style="--fleet-color:${escapeAttr(roleColor(role))}">${escapeHtml(initial(agent.name || agent.id || 'A'))}</div>
+            <div>
+              <div class="fleet-scard__name">${escapeHtml(agent.name || agent.id || 'Agent')}</div>
+              <div class="fleet-scard__role">${escapeHtml(role)}</div>
+            </div>
+          </div>
+          <div class="fleet-scard__bar">
+            <div class="fleet-scard__fill fleet-scard__fill--${escapeAttr(status)}" style="width:${fill}%"></div>
+          </div>
+          <div class="fleet-scard__task">${escapeHtml(taskText)}</div>
+          <div class="fleet-scard__elapsed">
+            <span>${escapeHtml(agent.task_id ? String(agent.task_id).slice(0, 16) : status)}</span>
+            <span>${escapeHtml(timeAgo(agent.updated_at))}</span>
+          </div>
+        </button>
+      `;
+    }).join('') : '<div class="ops-feed__empty">All agents idle.</div>';
+
+    fleetBench.innerHTML = idle.map((agent) => {
+      const taskCardId = findCardIdByTask(agent.task_id);
+      const role = roleLabel(agent);
+      return `
+        <button class="fleet-chip" type="button"
+          data-agent-id="${escapeAttr(agent.id || '')}"
+          data-agent-task-card="${escapeAttr(taskCardId || '')}"
+          ${taskCardId ? '' : 'disabled'}>
+          <span class="fleet-chip__dot" style="--fleet-color:${escapeAttr(roleColor(role))}" aria-hidden="true"></span>
+          <span class="fleet-chip__name">${escapeHtml(agent.name || agent.id || 'Agent')}</span>
+        </button>
+      `;
+    }).join('');
+  }
+
+  function renderNetwork(agents) {
+    if (!networkRoot) return;
+    const live = (agents || [])
+      .filter((agent) => ['working', 'blocked', 'verification'].includes(normalizeStatus(agent.status)))
+      .slice(0, 5);
+    const nodes = live.length ? live : (agents || []).slice(0, 5);
+    if (!nodes.length) {
+      networkRoot.innerHTML = '<div class="ops-feed__empty">No public network nodes returned yet.</div>';
+      return;
+    }
+
+    networkRoot.innerHTML = `
+      <div class="wire-map" style="--wire-count:${nodes.length}">
+        <svg class="wire-map__svg" viewBox="0 0 360 230" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <filter id="wireGlow">
+              <feGaussianBlur stdDeviation="2.4" result="blur"></feGaussianBlur>
+              <feMerge>
+                <feMergeNode in="blur"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+              </feMerge>
+            </filter>
+          </defs>
+          ${nodes.map((agent, index) => {
+            const y = wireY(index, nodes.length);
+            return `
+              <path class="wire-map__line wire-map__line--${escapeAttr(normalizeStatus(agent.status))}" d="M54 ${y} C135 ${y}, 166 115, 250 115"></path>
+              <circle class="wire-map__packet" r="4">
+                <animateMotion dur="${3.4 + index * 0.38}s" repeatCount="indefinite" begin="${index * 0.42}s" path="M54 ${y} C135 ${y}, 166 115, 250 115"></animateMotion>
+              </circle>
+            `;
+          }).join('')}
+        </svg>
+        <div class="wire-map__engine">
+          <strong>Engine</strong>
+          <span>Consensus</span>
+        </div>
+        ${nodes.map((agent, index) => `
+          <div class="wire-map__node wire-map__node--${escapeAttr(normalizeStatus(agent.status))}" style="--node-y:${wireY(index, nodes.length)}px">
+            <strong>${escapeHtml(agent.name || agent.id || 'Agent')}</strong>
+            <span>${escapeHtml(cleanAction(agent.action) || normalizeStatus(agent.status))}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
   }
 
   function renderFeed(feed) {
@@ -163,6 +284,89 @@
     return cards.find((card) => card.id === selectedId) || cards[0] || null;
   }
 
+  function findCardIdByTask(taskId) {
+    if (!taskId || !currentData) return '';
+    const needle = String(taskId);
+    const cards = currentData.cards || [];
+    const match = cards.find((card) => {
+      if (String(card.id || '').includes(needle)) return true;
+      return (card.meta || []).some(([label, value]) => /task id/i.test(label) && String(value) === needle);
+    });
+    return match ? match.id : '';
+  }
+
+  function normalizeStatus(status) {
+    const value = String(status || 'idle').toLowerCase();
+    if (['working', 'running', 'active', 'claimed'].includes(value)) return 'working';
+    if (['blocked', 'error', 'failed'].includes(value)) return 'blocked';
+    if (['review', 'pending', 'verifying', 'awaiting_verification'].includes(value)) return 'verification';
+    return 'idle';
+  }
+
+  function agentRank(agent) {
+    const status = normalizeStatus(agent.status);
+    if (status === 'working') return 0;
+    if (status === 'verification') return 1;
+    if (status === 'blocked') return 2;
+    return 3;
+  }
+
+  function cleanAction(action) {
+    return String(action || '')
+      .replace(/^(claimed|working on|completed):?\s*/i, '')
+      .slice(0, 88);
+  }
+
+  function roleLabel(agent) {
+    const raw = String((agent.roles && agent.roles[0]) || agent.role || 'other').toLowerCase();
+    if (raw.includes('develop')) return 'dev';
+    if (raw.includes('architect') || raw.includes('platform')) return 'platform';
+    if (raw.includes('project') || raw.includes('supervisor') || raw.includes('ops')) return 'ops';
+    if (raw.includes('market')) return 'marketing';
+    if (raw.includes('visual') || raw.includes('graphic') || raw.includes('design')) return 'design';
+    if (raw.includes('business') || raw.includes('planner') || raw === 'ba') return 'planning';
+    if (raw.includes('crm') || raw.includes('sales')) return 'crm';
+    return raw.split(/[ /]/)[0] || 'other';
+  }
+
+  function roleColor(role) {
+    const colors = {
+      ops: '#C9963A',
+      platform: '#6A9A2C',
+      dev: '#3D9BE9',
+      design: '#9B6FC2',
+      planning: '#C9963A',
+      crm: '#3DAA8C',
+      marketing: '#BE5A9B',
+      other: '#6B5F54'
+    };
+    return colors[role] || colors.other;
+  }
+
+  function initial(name) {
+    const text = String(name || 'A').trim();
+    return text ? text[0].toUpperCase() : 'A';
+  }
+
+  function timeAgo(value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    const seconds = Math.max(0, Math.floor((Date.now() - date.getTime()) / 1000));
+    if (seconds < 60) return `${seconds}s ago`;
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 48) return `${hours}h ago`;
+    return `${Math.floor(hours / 24)}d ago`;
+  }
+
+  function wireY(index, count) {
+    if (count <= 1) return 115;
+    const min = 38;
+    const max = 194;
+    return Math.round(min + (index * (max - min)) / (count - 1));
+  }
+
   function renderUnavailable(message) {
     if (liveBadge) liveBadge.textContent = 'unavailable';
     if (liveUpdated) liveUpdated.textContent = message;
@@ -177,6 +381,15 @@
       const trigger = event.target.closest('[data-select-id]');
       if (!trigger || trigger.disabled) return;
       const id = trigger.getAttribute('data-select-id');
+      if (!id) return;
+      selectedId = id;
+      if (currentData) render(currentData);
+    });
+
+    root.addEventListener('click', function (event) {
+      const trigger = event.target.closest('[data-agent-task-card]');
+      if (!trigger || trigger.disabled) return;
+      const id = trigger.getAttribute('data-agent-task-card');
       if (!id) return;
       selectedId = id;
       if (currentData) render(currentData);
