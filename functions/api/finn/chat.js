@@ -2,7 +2,8 @@
  * POST /api/finn/chat
  * Relays visitor messages to Claude API (claude-sonnet-4-6) and returns Finn's response.
  * Handles lead capture (email detection → contacts upsert → Apollo enrichment).
- * Stateless Worker — browser sends full conversation history on every turn.
+ * Browser sends full conversation history on every turn.
+ * Transcript snapshots are stored asynchronously in Supabase when configured.
  */
 
 // ─── Rate limiting (per-IP, per-isolate) ─────────────────────
@@ -73,7 +74,14 @@ export async function onRequestPost(context) {
     return Response.json({ error: 'Invalid JSON' }, { status: 400 });
   }
 
-  const { messages = [], visitor_email = null } = body;
+  const {
+    messages = [],
+    visitor_email = null,
+    session_id = null,
+    page_path = null,
+    referrer = null,
+    source_prompt = null,
+  } = body;
 
   // Validate messages array
   if (!Array.isArray(messages) || messages.length === 0) {
@@ -123,17 +131,34 @@ export async function onRequestPost(context) {
   // ─── Lead capture: scan last user message for email ──────────
   // OQ-5: no phone capture — Apollo enrichment only
   const lastUserMsg = [...messages].reverse().find(m => m.role === 'user');
+  const detectedEmail = visitor_email || extractEmail(lastUserMsg?.content);
   if (!visitor_email && lastUserMsg) {
-    const emailMatch = lastUserMsg.content.match(
-      /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/
-    );
-    if (emailMatch) {
+    if (detectedEmail) {
       // Fire-and-forget: capture contact + Apollo enrichment
-      context.waitUntil(captureContact(emailMatch[0], env));
+      context.waitUntil(captureContact(detectedEmail, env));
     }
   }
 
+  context.waitUntil(recordFinnTranscript({
+    env,
+    request,
+    sessionId: session_id,
+    visitorEmail: detectedEmail,
+    pagePath: page_path,
+    referrer,
+    sourcePrompt: source_prompt,
+    messages,
+    reply,
+    lastUserMessage: lastUserMsg?.content || null,
+  }));
+
   return Response.json({ reply });
+}
+
+function extractEmail(text) {
+  if (!text || typeof text !== 'string') return null;
+  const emailMatch = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+  return emailMatch ? emailMatch[0].toLowerCase() : null;
 }
 
 // ─── Lead capture ─────────────────────────────────────────────
@@ -185,6 +210,89 @@ async function captureContact(email, env) {
   } catch {
     // Silent failure — enrichment is best-effort
   }
+}
+
+async function recordFinnTranscript({
+  env,
+  request,
+  sessionId,
+  visitorEmail,
+  pagePath,
+  referrer,
+  sourcePrompt,
+  messages,
+  reply,
+  lastUserMessage,
+}) {
+  if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY) return;
+
+  const transcriptMessages = [
+    ...messages.map(sanitizeTranscriptMessage),
+    sanitizeTranscriptMessage({ role: 'assistant', content: reply }),
+  ];
+  const safeSessionId = normalizeSessionId(sessionId);
+  const ip = request.headers.get('CF-Connecting-IP') || '';
+  const userAgent = request.headers.get('User-Agent') || '';
+  const ipHash = ip ? await hashText(`${env.FINN_ANALYTICS_SALT || ''}:${ip}`) : null;
+
+  try {
+    await fetch(`${env.SUPABASE_URL}/rest/v1/finn_chat_transcripts`, {
+      method: 'POST',
+      headers: {
+        apikey: env.SUPABASE_SERVICE_ROLE_KEY,
+        Authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal',
+      },
+      body: JSON.stringify({
+        session_id: safeSessionId,
+        visitor_email: visitorEmail || null,
+        ip_hash: ipHash,
+        user_agent: truncate(userAgent, 500),
+        page_path: truncate(typeof pagePath === 'string' ? pagePath : null, 500),
+        referrer: truncate(typeof referrer === 'string' ? referrer : null, 1000),
+        turn_count: transcriptMessages.filter(msg => msg.role === 'user').length,
+        last_user_message: truncate(lastUserMessage, 4000),
+        reply: truncate(reply, 4000),
+        messages: transcriptMessages,
+        metadata: {
+          source: 'finn_chat',
+          source_prompt: sourcePrompt || null,
+          cf_ray: request.headers.get('CF-Ray') || null,
+          country: request.headers.get('CF-IPCountry') || null,
+        },
+      }),
+    });
+  } catch {
+    // Analytics storage must never break chat.
+  }
+}
+
+function normalizeSessionId(sessionId) {
+  if (typeof sessionId !== 'string' || !sessionId.trim()) {
+    return `server-${crypto.randomUUID()}`;
+  }
+  return truncate(sessionId.trim(), 120);
+}
+
+function sanitizeTranscriptMessage(message) {
+  return {
+    role: message.role === 'assistant' ? 'assistant' : 'user',
+    content: truncate(message.content, 4000) || '',
+  };
+}
+
+async function hashText(text) {
+  const bytes = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return [...new Uint8Array(digest)]
+    .map(byte => byte.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+function truncate(value, maxLength) {
+  if (typeof value !== 'string') return value;
+  return value.length > maxLength ? value.slice(0, maxLength) : value;
 }
 
 // ─── Apollo enrichment ────────────────────────────────────────

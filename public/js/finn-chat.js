@@ -12,8 +12,10 @@
   // ─── State ──────────────────────────────────────────────────
   window.finnMessages = []; // Array<{ role: 'user'|'assistant', content: string }>
   window.finnVisitorEmail = null;
+  window.finnSessionId = getFinnSessionId();
   let finnReady = true;
   let promptsHidden = false;
+  let lastStarterPrompt = null;
 
   // ─── DOM refs ────────────────────────────────────────────────
   const messagesEl   = document.getElementById('finnMessages');
@@ -28,6 +30,7 @@
     starter.addEventListener('click', function () {
       const text = starter.dataset.finnPrompt;
       if (!text) return;
+      lastStarterPrompt = text;
 
       const chat = document.querySelector('.connect-chat-shell');
       if (chat) {
@@ -87,6 +90,10 @@
         body: JSON.stringify({
           messages: window.finnMessages,
           visitor_email: window.finnVisitorEmail,
+          session_id: window.finnSessionId,
+          page_path: window.location.pathname,
+          referrer: document.referrer || null,
+          source_prompt: lastStarterPrompt,
         }),
         signal: controller.signal,
       });
@@ -110,6 +117,7 @@
       // Hide typing, render reply
       setTyping(false);
       appendBubble('finn', reply);
+      lastStarterPrompt = null;
 
     } catch (err) {
       clearTimeout(timeoutId);
@@ -118,6 +126,7 @@
     } finally {
       finnReady = true;
       setSendDisabled(false);
+      lastStarterPrompt = null;
     }
   }
 
@@ -182,5 +191,20 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
+  }
+
+  function getFinnSessionId() {
+    const key = 'dreamborn:finn_session_id';
+    try {
+      const existing = window.sessionStorage.getItem(key);
+      if (existing) return existing;
+      const created = crypto.randomUUID
+        ? crypto.randomUUID()
+        : `finn-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      window.sessionStorage.setItem(key, created);
+      return created;
+    } catch {
+      return `finn-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    }
   }
 })();
