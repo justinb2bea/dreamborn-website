@@ -433,6 +433,11 @@ p, h1, h2, h3, h4, h5, h6 {
   background-size: 48px 48px;
 }
 
+.ops-home [data-explain-text],
+.ops-home [data-explain-toggle-label] {
+  transition: color var(--transition-base), opacity var(--transition-base);
+}
+
 .ops-hero {
   width: min(1520px, calc(100vw - 48px));
   min-height: calc(100vh - var(--nav-height));
@@ -511,6 +516,10 @@ p, h1, h2, h3, h4, h5, h6 {
   color: var(--ops-crimson);
 }
 
+.ops-home--explained .ops-hero__title {
+  max-width: 760px;
+}
+
 .ops-hero__subhead {
   max-width: 640px;
   color: var(--color-text-secondary);
@@ -557,6 +566,23 @@ p, h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-primary);
   font-size: 18px;
   font-weight: 500;
+}
+
+.ops-proof__note {
+  display: block;
+  margin-top: var(--space-2);
+  max-height: 0;
+  overflow: hidden;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  line-height: 1.45;
+  opacity: 0;
+  transition: opacity var(--transition-base), max-height var(--transition-base);
+}
+
+.ops-home--explained .ops-proof__note {
+  max-height: 4.5rem;
+  opacity: 1;
 }
 
 .ops-actions {
@@ -3466,6 +3492,118 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .finn-error.visible { display: block; }
+
+/* ─── Global Finn Drawer ───────────────────────────────────── */
+.finn-drawer {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: 120;
+  pointer-events: none;
+}
+
+.finn-drawer__launcher,
+.finn-drawer__panel {
+  pointer-events: auto;
+}
+
+.finn-drawer__launcher {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 46px;
+  border: 1px solid rgba(141, 198, 63, 0.36);
+  background: rgba(10, 8, 7, 0.94);
+  color: var(--color-status-active);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.finn-drawer__launcher span:first-child {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(141, 198, 63, 0.14);
+}
+
+.finn-drawer__panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + var(--space-3));
+  width: min(420px, calc(100vw - 32px));
+  max-height: min(680px, calc(100vh - 120px));
+  opacity: 0;
+  transform: translateY(12px);
+  visibility: hidden;
+  transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
+}
+
+.finn-drawer--open .finn-drawer__panel {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.finn-drawer__topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-bottom: 0;
+  background: rgba(10, 8, 7, 0.98);
+}
+
+.finn-drawer__topline h2 {
+  color: var(--color-text-primary);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.finn-drawer__close {
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+}
+
+.finn-drawer__close:hover {
+  color: var(--color-text-primary);
+  border-color: rgba(141, 198, 63, 0.3);
+}
+
+.finn-chat--drawer {
+  max-height: calc(min(680px, calc(100vh - 120px)) - 82px);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+@media (max-width: 640px) {
+  .finn-drawer {
+    right: var(--space-4);
+    left: var(--space-4);
+    bottom: var(--space-4);
+  }
+
+  .finn-drawer__panel {
+    right: 0;
+    width: 100%;
+  }
+
+  .finn-drawer__launcher {
+    width: 100%;
+    justify-content: center;
+  }
+}
 
 @media (max-width: 1080px) {
   .connect-hero,
