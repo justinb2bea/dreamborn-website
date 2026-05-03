@@ -238,7 +238,16 @@ function normalizeEvent(row) {
 
 function mergeCompletionReceipts(tasks, events) {
   const receipts = new Map();
+  const claims = new Map();
   events.forEach((event) => {
+    const isClaim = event.msg_type === 'task.claim' || event.msg_type === 'task.claimed' || event.payload?.type === 'task.claim';
+    if (isClaim && event.task_id) {
+      const existingClaim = claims.get(event.task_id);
+      if (!existingClaim || new Date(event.created_at) < new Date(existingClaim.created_at)) {
+        claims.set(event.task_id, event);
+      }
+    }
+
     const isComplete = event.msg_type === 'task.complete' || event.payload?.type === 'task.complete' || event.payload?.type === 'complete';
     if (!isComplete || !event.task_id) return;
     const existing = receipts.get(event.task_id);
@@ -249,16 +258,19 @@ function mergeCompletionReceipts(tasks, events) {
 
   return tasks.map((task) => {
     const receipt = receipts.get(task.id);
-    if (!receipt) return task;
+    const claim = claims.get(task.id);
+    if (!receipt && !claim) return task;
+    const lifecycleDuration = claim && receipt ? secondsBetween(claim.created_at, receipt.created_at) : '';
     return {
       ...task,
-      agent: task.agent || receipt.agent,
-      output_ref: task.output_ref || receipt.output_ref,
-      cost: task.cost || receipt.cost,
-      duration: task.duration || receipt.duration,
-      preview: task.preview || receipt.summary,
-      completed_at: task.completed_at || receipt.created_at,
-      updated_at: task.updated_at || receipt.created_at,
+      agent: task.agent || receipt?.agent || claim?.agent,
+      output_ref: task.output_ref || receipt?.output_ref || '',
+      cost: task.cost || receipt?.cost || '',
+      duration: task.duration || receipt?.duration || (lifecycleDuration ? secondsLabel(lifecycleDuration) : ''),
+      preview: task.preview || receipt?.summary || '',
+      completed_at: task.completed_at || receipt?.created_at || '',
+      claimed_at: task.claimed_at || claim?.created_at || '',
+      updated_at: task.updated_at || receipt?.created_at || task.created_at,
     };
   });
 }
@@ -327,7 +339,7 @@ function buildFeed(agents, tasks, inbox, events) {
 }
 
 function buildCards(tasks, inbox, events) {
-  const taskCards = tasks.map((task) => ({
+  const taskCards = tasks.filter(hasReceiptTelemetry).map((task) => ({
     id: `task-${task.id}`,
     kind: 'task',
     eyebrow: task.role || 'Task',
@@ -338,8 +350,8 @@ function buildCards(tasks, inbox, events) {
       ['Task ID', shortId(task.id)],
       ['Claimed by', titleCase(task.agent || 'unclaimed')],
       ['Verified by', titleCase(task.verifier || verifierFor(task.status))],
-      ['Cost', task.cost || fallbackCost(task)],
-      ['Duration', task.duration || 'not recorded'],
+      ['Cost', task.cost],
+      ['Duration', task.duration],
     ],
     preview: truncate(task.preview || task.output_ref || 'No public output preview recorded yet.', 320),
     full_output: task.output_ref
@@ -387,13 +399,7 @@ function buildCards(tasks, inbox, events) {
   const primaryTasks = taskCards
     .filter((card) => card.timestamp)
     .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-  const primaryInbox = inboxCards
-    .filter((card) => card.timestamp)
-    .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-  const secondary = eventCards
-    .filter((card) => card.timestamp)
-    .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-  return [...primaryTasks, ...primaryInbox, ...secondary];
+  return primaryTasks;
 }
 
 function buildLedger(tasks, inbox, events) {
@@ -500,11 +506,7 @@ function durationLabel(row) {
   const explicit = row.duration || row.duration_seconds;
   if (typeof explicit === 'number') return secondsLabel(explicit);
   if (typeof explicit === 'string' && explicit.trim()) return explicit.trim();
-  const started = row.claimed_at || row.started_at || row.created_at;
-  const ended = row.completed_at || row.updated_at;
-  if (!started || !ended) return '';
-  const diff = Math.max(0, Math.floor((new Date(ended) - new Date(started)) / 1000));
-  return diff ? secondsLabel(diff) : '';
+  return '';
 }
 
 function costLabel(row) {
@@ -527,10 +529,17 @@ function costLabel(row) {
   return clean(value);
 }
 
-function fallbackCost(task) {
-  const status = (task?.status || '').toLowerCase();
-  if (status.includes('complete') || status.includes('done') || status.includes('approved')) return '$0.00';
-  return 'pending';
+function hasReceiptTelemetry(task) {
+  const status = (task.status || '').toLowerCase();
+  const terminal = status.includes('complete') || status.includes('done') || status.includes('approved');
+  return terminal && Boolean(task.cost) && task.cost !== '$0.00' && Boolean(task.duration) && task.duration !== '0s';
+}
+
+function secondsBetween(start, end) {
+  const startedAt = new Date(start);
+  const endedAt = new Date(end);
+  if (Number.isNaN(startedAt.getTime()) || Number.isNaN(endedAt.getTime())) return 0;
+  return Math.max(0, Math.floor((endedAt - startedAt) / 1000));
 }
 
 function secondsLabel(total) {
