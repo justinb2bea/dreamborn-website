@@ -13,9 +13,12 @@
   const liveBadge = root.querySelector('[data-live-badge]');
   const activeAgents = root.querySelector('[data-proof-active-agents]');
   const workflows = root.querySelector('[data-proof-workflows]');
+  const explainToggle = root.querySelector('[data-explain-toggle]');
+  const explainTextNodes = Array.from(root.querySelectorAll('[data-explain-text], [data-explain-toggle-label]'));
 
   const POLL_MS = 30_000;
   let lastUpdatedAt = null;
+  let explanationActive = false;
 
   async function refresh() {
     try {
@@ -150,6 +153,38 @@
     if (feedList) feedList.innerHTML = '<div class="ops-feed__empty">Live operating feed unavailable.</div>';
   }
 
+  function setExplanationMode(active) {
+    explanationActive = active;
+    root.classList.toggle('ops-home--explained', active);
+    root.setAttribute('data-explanation-mode', active ? 'explained' : 'default');
+
+    explainTextNodes.forEach((node) => {
+      const html = active ? node.dataset.explainedHtml : node.dataset.defaultHtml;
+      const text = active ? node.dataset.explainedText : node.dataset.defaultText;
+      if (html) {
+        node.innerHTML = html;
+      } else if (text) {
+        node.textContent = text;
+      }
+    });
+
+    if (explainToggle) {
+      explainToggle.setAttribute('aria-pressed', active ? 'true' : 'false');
+    }
+
+    window.dispatchEvent(new CustomEvent('dreamborn:explanation-mode', {
+      detail: { active, source: 'homepage' },
+    }));
+  }
+
+  function bindExplanationToggle() {
+    if (!explainToggle) return;
+    explainToggle.setAttribute('aria-pressed', 'false');
+    explainToggle.addEventListener('click', function () {
+      setExplanationMode(!explanationActive);
+    });
+  }
+
   function bindClicks() {
     document.addEventListener('click', function (event) {
       const trigger = event.target.closest('[data-open-card]');
@@ -217,6 +252,7 @@
     return escapeHtml(value).replace(/`/g, '&#96;');
   }
 
+  bindExplanationToggle();
   bindClicks();
   refresh();
   setInterval(refresh, POLL_MS);

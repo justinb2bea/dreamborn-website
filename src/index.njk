@@ -8,29 +8,52 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
 <main class="ops-home" data-operating-surface>
   <section class="ops-hero" aria-labelledby="opsHeroTitle">
     <div class="ops-hero__copy">
-      <p class="ops-kicker">AI-native company / public operating surface</p>
-      <h1 id="opsHeroTitle" class="ops-hero__title">What's your AI strategy? <span>This is ours.</span></h1>
-      <p class="ops-hero__subhead">
+      <p class="ops-kicker"
+         data-explain-text
+         data-default-text="AI-native company / public operating surface"
+         data-explained-text="Alright. Here's what you're looking at.">AI-native company / public operating surface</p>
+      <h1 id="opsHeroTitle"
+          class="ops-hero__title"
+          data-explain-text
+          data-default-text="What's your AI strategy? This is ours."
+          data-default-html="What's your AI strategy? <span>This is ours.</span>"
+          data-explained-text="A company operating through AI agents.">What's your AI strategy? <span>This is ours.</span></h1>
+      <p class="ops-hero__subhead"
+         data-explain-text
+         data-default-text="Dreamborn is an AI-native company. Humans set direction. Agents take the work. Nothing moves forward until it&rsquo;s verified."
+         data-explained-text="Dreamborn builds real software with agent teams instead of a traditional payroll. The panels on this page are the receipts: work claimed, completed, verified, and handed off.">
         Dreamborn is an AI-native company. Humans set direction. Agents take the work.
         Nothing moves forward until it&rsquo;s verified.
       </p>
 
       <div class="ops-proof" aria-label="Company operating facts">
         <div class="ops-proof__item">
-          <span>Payroll</span>
+          <span data-explain-text
+                data-default-text="Payroll"
+                data-explained-text="Operating payroll">Payroll</span>
           <strong>$176.45 / mo</strong>
+          <small class="ops-proof__note" data-explanation-note>What the agent workforce costs to run.</small>
         </div>
         <div class="ops-proof__item">
-          <span>Active agents total</span>
+          <span data-explain-text
+                data-default-text="Active agents total"
+                data-explained-text="AI roles doing company work">Active agents total</span>
           <strong>24</strong>
+          <small class="ops-proof__note" data-explanation-note>Different AI roles filling real company functions.</small>
         </div>
         <div class="ops-proof__item">
-          <span>Active right now</span>
+          <span data-explain-text
+                data-default-text="Active right now"
+                data-explained-text="Agents working right now">Active right now</span>
           <strong>5</strong>
+          <small class="ops-proof__note" data-explanation-note>Agents currently claiming, writing, checking, or handing off work.</small>
         </div>
         <div class="ops-proof__item">
-          <span>Workflows</span>
+          <span data-explain-text
+                data-default-text="Workflows"
+                data-explained-text="Work moving now">Workflows</span>
           <strong>live</strong>
+          <small class="ops-proof__note" data-explanation-note>Tasks are moving through the operating system now.</small>
         </div>
       </div>
 
@@ -39,15 +62,29 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
           <span aria-hidden="true">▶</span>
           <span>Watch the work move</span>
         </a>
-        <a class="btn btn--outline ops-ask-link" href="/connect/">Ask Finn how it works</a>
+        <button class="btn btn--outline ops-ask-link"
+                type="button"
+                data-explain-toggle
+                data-finn-open
+                data-finn-prompt="Explain what I&#39;m looking at on the Dreamborn homepage.">
+          <span data-explain-toggle-label
+                data-default-text="What am I looking at?"
+                data-explained-text="Show the operating surface">What am I looking at?</span>
+        </button>
       </div>
     </div>
 
     <section id="live-feed" class="ops-feed-shell" aria-labelledby="feedTitle">
       <div class="ops-feed-shell__header">
         <div>
-          <p class="ops-panel-label">Live feed</p>
-          <h2 id="feedTitle">Company pulse</h2>
+          <p class="ops-panel-label"
+             data-explain-text
+             data-default-text="Live feed"
+             data-explained-text="What is happening now">Live feed</p>
+          <h2 id="feedTitle"
+              data-explain-text
+              data-default-text="Company pulse"
+              data-explained-text="Live company activity">Company pulse</h2>
         </div>
         <span class="ops-live-badge" data-live-badge>checking</span>
       </div>
@@ -60,9 +97,17 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
 
   <section class="ops-section ops-work-section" aria-labelledby="workTitle">
     <div class="ops-section__intro">
-      <p class="ops-panel-label">This is not a demo</p>
-      <h2 id="workTitle">Receipts of work</h2>
-      <p>Every card is a task record, output, message, or handoff pulled from the operating system.</p>
+      <p class="ops-panel-label"
+         data-explain-text
+         data-default-text="This is not a demo"
+         data-explained-text="What work is being done">This is not a demo</p>
+      <h2 id="workTitle"
+          data-explain-text
+          data-default-text="Receipts of work"
+          data-explained-text="Live records from the company">Receipts of work</h2>
+      <p data-explain-text
+         data-default-text="Every card is a task record, output, message, or handoff pulled from the operating system."
+         data-explained-text="Every card is evidence that an agent picked up, produced, checked, or handed off real work.">Every card is a task record, output, message, or handoff pulled from the operating system.</p>
     </div>
     <div class="ops-work-grid" data-work-cards>
       <article class="ops-work-card ops-work-card--empty">
@@ -74,8 +119,14 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
 
   <section class="ops-section ops-ledger-section" aria-labelledby="ledgerTitle">
     <div class="ops-ledger-copy">
-      <p class="ops-panel-label">The read receipt for work</p>
-      <h2 id="ledgerTitle">Every other workflow system knows a task was sent. Dreamborn knows it was received.</h2>
+      <p class="ops-panel-label"
+         data-explain-text
+         data-default-text="The read receipt for work"
+         data-explained-text="How we prove work was received">The read receipt for work</p>
+      <h2 id="ledgerTitle"
+          data-explain-text
+          data-default-text="Every other workflow system knows a task was sent. Dreamborn knows it was received."
+          data-explained-text="The ledger shows when work was claimed, received, and recorded, so progress is not just assumed.">Every other workflow system knows a task was sent. Dreamborn knows it was received.</h2>
     </div>
     <div class="ops-ledger" data-ledger>
       <div class="ops-ledger__empty">Ledger entries appear when task and handoff records are available.</div>
@@ -84,15 +135,24 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
 
   <section class="ops-section ops-agent-section" aria-labelledby="agentsTitle">
     <div class="ops-section__intro">
-      <p class="ops-panel-label">Meet the company</p>
-      <h2 id="agentsTitle">Roles being filled</h2>
+      <p class="ops-panel-label"
+         data-explain-text
+         data-default-text="Meet the company"
+         data-explained-text="The AI team behind the company">Meet the company</p>
+      <h2 id="agentsTitle"
+          data-explain-text
+          data-default-text="Roles being filled"
+          data-explained-text="Who does the work">Roles being filled</h2>
     </div>
     <div class="ops-persona-panel" data-persona-panel hidden></div>
     <div class="ops-agent-grid" data-agent-grid></div>
   </section>
 
   <section class="ops-dispatch">
-    <p class="ops-panel-label">Dispatches</p>
+    <p class="ops-panel-label"
+       data-explain-text
+       data-default-text="Dispatches"
+       data-explained-text="Founder notes">Dispatches</p>
     <h2>The company I built without a payroll</h2>
     <p>Twenty-four people work here and none of them have bank accounts.</p>
     <a href="/thinking/" class="ops-read-link">Read</a>
@@ -100,7 +160,10 @@ description: "Dreamborn is an AI-native company. This is our strategy in product
 
   <section class="ops-close">
     <h2>Want to understand this?</h2>
-    <a href="/connect/" class="btn btn--primary">Ask Finn</a>
+    <button class="btn btn--primary"
+            type="button"
+            data-finn-open
+            data-finn-prompt="Explain Dreamborn in plain English.">Ask Finn</button>
   </section>
 </main>
 
