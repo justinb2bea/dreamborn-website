@@ -60,6 +60,36 @@ description: "Articles and thinking from Dreamborn on AI-native systems, agent w
         </p>
       </header>
 
+      {% set featuredPost = null %}
+      {% for post in thinking.initial_posts %}
+        {% if post.featured and not featuredPost %}
+          {% set featuredPost = post %}
+        {% endif %}
+      {% endfor %}
+      {% if featuredPost %}
+      <article class="thinking-featured" aria-label="Featured post: {{ featuredPost.title }}">
+        <div class="thinking-featured__eyebrow">
+          <span>Featured dispatch</span>
+          <em>{{ featuredPost.topic_label or 'Article' }}</em>
+        </div>
+        <a href="/thinking/{{ featuredPost.slug }}/" class="thinking-featured__title">
+          {% if featuredPost.title_html %}
+            {{ featuredPost.title_html | safe }}
+          {% else %}
+            {{ featuredPost.title }}
+          {% endif %}
+        </a>
+        {% if featuredPost.excerpt %}
+        <p>{{ featuredPost.excerpt }}</p>
+        {% endif %}
+        <div class="thinking-featured__meta">
+          <strong>{{ featuredPost.author }}</strong>
+          <time datetime="{{ featuredPost.published_at }}">{{ featuredPost.published_at | dateFormat }}</time>
+          <a href="/thinking/{{ featuredPost.slug }}/">Read featured</a>
+        </div>
+      </article>
+      {% endif %}
+
       <div class="thinking-list" id="postGrid" aria-live="polite" aria-atomic="false">
         {% for post in thinking.initial_posts %}
         <article class="thinking-entry" aria-label="Post: {{ post.title }}">

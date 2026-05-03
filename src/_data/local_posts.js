@@ -10,6 +10,7 @@ const foundingDispatch = {
   excerpt: 'Twenty-four people work here and none of them have bank accounts.',
   author: 'Justin King',
   status: 'published',
+  featured: true,
   topic_ids: ['dispatches'],
   topic_label: 'Dispatches',
   published_at: '2026-05-02T19:46:00.000Z',
