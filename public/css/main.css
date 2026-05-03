@@ -2910,31 +2910,211 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .dev-link:hover { color: var(--color-chain); }
 
-/* ─── /connect Layout ───────────────────────────────────────── */
-.connect-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-12);
-  padding: var(--space-12) 0;
+/* ─── /connect — Strategy Room ─────────────────────────────── */
+.connect-room {
+  min-height: calc(100vh - var(--nav-height));
+  overflow-x: clip;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+    #0a0807;
+  background-size: 48px 48px;
 }
 
-@media (max-width: 900px) {
-  .connect-layout { grid-template-columns: 1fr; }
+.connect-hero,
+.connect-stage {
+  width: min(1520px, calc(100vw - 48px));
+  margin: 0 auto;
+}
+
+.connect-hero {
+  padding: clamp(44px, 7vw, 92px) 0 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-8);
+  align-items: end;
+}
+
+.connect-hero h1 {
+  max-width: 1040px;
+  margin: 0 0 var(--space-6);
+  color: var(--color-text-primary);
+  font-family: var(--font-editorial-heading);
+  font-size: clamp(52px, 7.2vw, 112px);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.94;
+}
+
+.connect-hero p:not(.ops-kicker) {
+  max-width: 820px;
+  color: var(--color-text-secondary);
+  font-size: clamp(19px, 2vw, 27px);
+  line-height: 1.35;
+}
+
+.connect-live-strip {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 220px;
+}
+
+.connect-live-strip span {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid rgba(141, 198, 63, 0.22);
+  background: rgba(141, 198, 63, 0.06);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.connect-live-strip span::before {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: var(--space-2);
+  border-radius: 50%;
+  background: var(--color-status-active);
+  box-shadow: 0 0 0 6px rgba(141, 198, 63, 0.1);
+  content: "";
+}
+
+.connect-stage {
+  padding: 24px 0 72px;
+  display: grid;
+  grid-template-columns: minmax(560px, 1fr) minmax(340px, 0.38fr);
+  gap: var(--space-5);
+  align-items: stretch;
+}
+
+.connect-chat-shell,
+.connect-rail-panel {
+  border: 1px solid var(--color-border);
+  background: rgba(16, 13, 12, 0.88);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+}
+
+.connect-chat-shell {
+  min-height: min(760px, calc(100vh - 170px));
+  padding: var(--space-5);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: var(--space-4);
+}
+
+.connect-chat-topline {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.connect-chat-topline h2,
+.connect-rail-panel h2 {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: clamp(22px, 3vw, 34px);
+  letter-spacing: 0;
+}
+
+.connect-chat-topline > span {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid rgba(141, 198, 63, 0.24);
+  color: var(--color-status-active);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.connect-rail {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+.connect-rail-panel {
+  padding: var(--space-5);
+}
+
+.connect-rail-panel p {
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1.58;
+}
+
+.connect-capability-list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.connect-capability-list span {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.connect-booking {
+  margin-top: var(--space-5);
+  border: 1px solid rgba(139, 26, 26, 0.45);
+  background: linear-gradient(135deg, rgba(139, 26, 26, 0.22), rgba(255, 255, 255, 0.035));
+}
+
+.connect-booking summary {
+  min-height: 74px;
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-1);
+  cursor: pointer;
+  color: var(--color-text-primary);
+  list-style: none;
+}
+
+.connect-booking summary::-webkit-details-marker {
+  display: none;
+}
+
+.connect-booking summary span {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.connect-booking summary small {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.connect-cal-frame {
+  padding: 0 var(--space-3) var(--space-3);
+}
+
+.connect-cal-frame cal-inline {
+  min-height: 680px;
+  overflow: hidden;
+  border-color: var(--color-border);
+  background: #100d0c;
 }
 
 /* ─── Finn Chat ─────────────────────────────────────────────── */
 .finn-chat {
+  min-height: 0;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
   overflow: hidden;
-  height: 560px;
-  background: var(--color-bg);
-}
-
-@media (max-width: 900px) {
-  .finn-chat { height: 480px; }
+  height: 100%;
+  background:
+    radial-gradient(circle at top right, rgba(139, 26, 26, 0.16), transparent 34%),
+    #0f0b0a;
 }
 
 .finn-chat__header {
@@ -2943,38 +3123,40 @@ p, h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  background: var(--color-surface);
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .finn-chat__avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--color-crimson);
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(139, 26, 26, 0.52);
+  background: var(--color-crimson);
   color: #fff;
   font-size: 14px;
-  font-weight: 600;
-  flex-shrink: 0;
+  font-weight: 700;
 }
 
 .finn-chat__name {
   font-size: var(--text-body-sm);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-text-primary);
 }
 
 .finn-chat__subtitle {
+  font-family: var(--font-mono);
   font-size: var(--text-caption);
   color: var(--color-text-muted);
+  text-transform: uppercase;
 }
 
 .finn-chat__messages {
   flex: 1;
   overflow-y: auto;
-  padding: var(--space-4);
+  padding: var(--space-5);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -2983,24 +3165,23 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .message-bubble {
-  max-width: 85%;
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-lg);
-  font-size: var(--text-body-sm);
-  line-height: 1.5;
+  max-width: min(760px, 86%);
+  padding: var(--space-4) var(--space-5);
+  border-radius: 0;
+  font-size: 15px;
+  line-height: 1.55;
 }
 
 .message-bubble--finn {
-  background: var(--color-surface);
+  background: rgba(255, 255, 255, 0.055);
   border: 1px solid var(--color-border);
-  border-bottom-left-radius: var(--radius-sm);
+  color: var(--color-text-primary);
   align-self: flex-start;
 }
 
 .message-bubble--user {
   background: var(--color-crimson);
   color: #fff;
-  border-bottom-right-radius: var(--radius-sm);
   align-self: flex-end;
 }
 
@@ -3008,7 +3189,7 @@ p, h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  padding: 0 var(--space-4) var(--space-3);
+  padding: 0 var(--space-5) var(--space-4);
   transition: opacity var(--transition-slow), max-height var(--transition-slow);
   overflow: hidden;
 }
@@ -3021,52 +3202,61 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .prompt-pill {
-  font-size: var(--text-caption);
+  min-height: 34px;
   padding: var(--space-1) var(--space-3);
   border: 1px solid var(--color-border);
-  border-radius: 100px;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.02);
   color: var(--color-text-secondary);
   cursor: pointer;
-  transition: all var(--transition-base);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  transition: border-color var(--transition-base), color var(--transition-base), background var(--transition-base);
 }
 
 .prompt-pill:hover {
-  border-color: var(--color-crimson);
-  color: var(--color-crimson);
+  border-color: rgba(139, 26, 26, 0.72);
+  background: rgba(139, 26, 26, 0.13);
+  color: var(--color-text-primary);
 }
 
 .finn-chat__input-area {
   border-top: 1px solid var(--color-border);
-  padding: var(--space-3);
+  padding: var(--space-4);
   display: flex;
   gap: var(--space-2);
-  background: var(--color-bg);
+  background: rgba(255, 255, 255, 0.025);
 }
 
 .finn-chat__input {
   flex: 1;
+  min-height: 44px;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-2) var(--space-3);
+  border-radius: 0;
+  padding: var(--space-3);
   font-size: var(--text-body-sm);
   color: var(--color-text-primary);
-  background: var(--color-bg);
+  background: #0a0807;
   resize: none;
   outline: none;
   transition: border-color var(--transition-base);
 }
 
+.finn-chat__input::placeholder {
+  color: var(--color-text-muted);
+}
+
 .finn-chat__input:focus { border-color: var(--color-crimson); }
 
 .finn-chat__send {
+  min-width: 92px;
   padding: var(--space-2) var(--space-4);
   background: var(--color-crimson);
   color: #fff;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   font-size: var(--text-body-sm);
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: background var(--transition-base);
   flex-shrink: 0;
@@ -3109,6 +3299,70 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .finn-error.visible { display: block; }
+
+@media (max-width: 1080px) {
+  .connect-hero,
+  .connect-stage {
+    width: min(100vw - 32px, 920px);
+  }
+
+  .connect-hero,
+  .connect-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-live-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .connect-chat-shell {
+    min-height: 720px;
+  }
+}
+
+@media (max-width: 640px) {
+  .connect-hero,
+  .connect-stage {
+    width: calc(100vw - 24px);
+  }
+
+  .connect-hero {
+    padding-top: var(--space-12);
+  }
+
+  .connect-hero h1 {
+    font-size: clamp(42px, 13vw, 60px);
+  }
+
+  .connect-live-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-chat-shell,
+  .connect-rail-panel {
+    padding: var(--space-3);
+  }
+
+  .connect-chat-topline {
+    display: grid;
+  }
+
+  .connect-chat-shell {
+    min-height: 660px;
+  }
+
+  .finn-chat__input-area {
+    display: grid;
+  }
+
+  .finn-chat__send {
+    min-height: 44px;
+  }
+
+  .connect-cal-frame cal-inline {
+    min-height: 560px;
+  }
+}
 
 /* ─── /work — Operating Proof ─────────────────────────────── */
 .work-page {

@@ -1,32 +1,39 @@
 ---
 layout: base.njk
-register: brand
-title: "Connect — Dreamborn"
-description: "Book a call with Dreamborn or chat with Finn, our AI agent. Find out if AI-native systems are right for your business."
+register: forge
+title: "Ask Finn"
+description: "Enter Dreamborn's AI strategy room. Ask Finn, pressure-test your operating model, or book a call with Justin."
 ---
 
-<!-- ─── Hero ──────────────────────────────────────────────── -->
-<section class="hero" style="padding-bottom: var(--space-8);">
-  <div class="container">
-    <p class="hero__eyebrow">Let's Talk</p>
-    <h1 class="hero__h1">Connect With<br>Dreamborn</h1>
-    <p class="hero-subhead">
-      Book a call directly or chat with Finn first — our AI agent qualifies,
-      answers questions, and helps you figure out if we're the right fit.
-    </p>
-  </div>
-</section>
+<main class="connect-room">
+  <section class="connect-hero" aria-labelledby="connectHeroTitle">
+    <div class="connect-hero__copy">
+      <p class="ops-kicker">Connect / AI strategy room</p>
+      <h1 id="connectHeroTitle">What&rsquo;s your AI strategy? Bring it here.</h1>
+      <p>
+        Dreamborn is an AI-native company. Finn can show you how it works, pressure-test what you&rsquo;re building, and route you to the right next conversation.
+      </p>
+    </div>
 
-<!-- ─── Connect Layout ────────────────────────────────────── -->
-<div class="container">
-  <div class="connect-layout">
+    <div class="connect-live-strip" aria-label="Dreamborn operating status">
+      <span>Finn online</span>
+      <span>Bezel live</span>
+      <span>24 agents</span>
+      <span>5 active now</span>
+    </div>
+  </section>
 
-    <!-- ─── Finn Chat ──────────────────────────────────────── -->
-    <div>
-      <h2 style="margin-bottom: var(--space-4);">Chat with Finn</h2>
+  <section class="connect-stage" aria-label="Ask Finn">
+    <div class="connect-chat-shell">
+      <div class="connect-chat-topline">
+        <div>
+          <p class="ops-panel-label">Front-door operator</p>
+          <h2>Start with Finn.</h2>
+        </div>
+        <span>live</span>
+      </div>
+
       <div class="finn-chat" role="region" aria-label="Chat with Finn, Dreamborn's AI agent">
-
-        <!-- Header -->
         <div class="finn-chat__header">
           <div class="finn-chat__avatar" aria-hidden="true">F</div>
           <div>
@@ -35,41 +42,35 @@ description: "Book a call with Dreamborn or chat with Finn, our AI agent. Find o
           </div>
         </div>
 
-        <!-- Messages -->
         <div class="finn-chat__messages" id="finnMessages" role="log" aria-live="polite" aria-label="Conversation">
-
-          <!-- Greeting (pre-rendered — no fetch required) -->
           <div class="message-bubble message-bubble--finn" role="article" aria-label="Finn: greeting">
-            I'm Finn — Dreamborn's AI agent. I help visitors understand what we do and connect them with the right people.<br><br>
-            What brings you here today?
+            I&rsquo;m Finn. I can show you how Dreamborn runs, pressure-test your AI strategy, or help you decide whether this operating model fits your company.<br><br>
+            What are you trying to build?
           </div>
 
-          <!-- Typing indicator (hidden by default) -->
           <div class="finn-typing" id="finnTyping" aria-hidden="true" aria-label="Finn is typing">
             <span class="finn-typing-dot"></span>
             <span class="finn-typing-dot"></span>
             <span class="finn-typing-dot"></span>
           </div>
-
         </div>
 
-        <!-- Suggested Prompts -->
         <div class="suggested-prompts" id="finnPrompts" role="group" aria-label="Suggested messages">
-          <button class="prompt-pill" data-prompt="Tell me about Dreamborn">Tell me about Dreamborn</button>
-          <button class="prompt-pill" data-prompt="What does working with you look like?">What does working with you look like?</button>
-          <button class="prompt-pill" data-prompt="I want to book a call">I want to book a call</button>
+          <button class="prompt-pill" data-prompt="Pressure-test my AI strategy">Pressure-test my AI strategy</button>
+          <button class="prompt-pill" data-prompt="Show me how Dreamborn runs">Show me how Dreamborn runs</button>
+          <button class="prompt-pill" data-prompt="What would Bezel do for my company?">What would Bezel do for my company?</button>
+          <button class="prompt-pill" data-prompt="I'm building agent workflows">I&rsquo;m building agent workflows</button>
+          <button class="prompt-pill" data-prompt="I want to talk to Justin">I want to talk to Justin</button>
         </div>
 
-        <!-- Error state -->
         <p class="finn-error" id="finnError" role="alert">
-          Finn is temporarily unavailable. <a href="#calEmbed">Book directly →</a>
+          Finn is temporarily unavailable. <a href="#booking">Book directly &rarr;</a>
         </p>
 
-        <!-- Input Area -->
         <div class="finn-chat__input-area">
           <textarea class="finn-chat__input"
                     id="finnInput"
-                    placeholder="Type a message…"
+                    placeholder="Tell Finn what you&rsquo;re trying to build..."
                     aria-label="Message Finn"
                     rows="1"
                     maxlength="2000"
@@ -81,31 +82,40 @@ description: "Book a call with Dreamborn or chat with Finn, our AI agent. Find o
             Send
           </button>
         </div>
-
       </div>
     </div>
 
-    <!-- ─── Cal.com Embed ──────────────────────────────────── -->
-    <div id="calEmbed">
-      <h2 style="margin-bottom: var(--space-4);">Book a Call</h2>
+    <aside class="connect-rail" aria-label="What Finn can do">
+      <section class="connect-rail-panel">
+        <p class="ops-panel-label">Finn can</p>
+        <div class="connect-capability-list">
+          <span>Explain Bezel</span>
+          <span>Pressure-test your AI strategy</span>
+          <span>Map agent coverage for your company</span>
+          <span>Show live operating proof</span>
+          <span>Route you to Justin</span>
+        </div>
+      </section>
 
-      <!-- Desktop: inline embed -->
-      <div class="cal-desktop-cal">
-        <cal-inline data-cal-link="justin-king/intro"></cal-inline>
-      </div>
+      <section class="connect-rail-panel connect-rail-panel--booking" id="booking">
+        <p class="ops-panel-label">Ready for the room</p>
+        <h2>Book with Justin.</h2>
+        <p>If the conversation is real, take it live. The calendar opens here.</p>
 
-      <!-- Mobile: collapsed behind details/summary -->
-      <details class="cal-mobile-toggle">
-        <summary>Book a time instead →</summary>
-        <cal-inline data-cal-link="justin-king/intro" style="margin-top: var(--space-4);"></cal-inline>
-      </details>
+        <details class="connect-booking">
+          <summary>
+            <span>Open calendar</span>
+            <small>Intro call / live walkthrough</small>
+          </summary>
+          <div class="connect-cal-frame">
+            <cal-inline data-cal-link="justin-king/intro"></cal-inline>
+          </div>
+        </details>
+      </section>
+    </aside>
+  </section>
+</main>
 
-    </div>
-
-  </div>
-</div>
-
-<!-- Cal.com embed script -->
 <script>
   (function (C, A, L) {
     let p = function (a, ar) { a.q.push(ar); };
@@ -136,12 +146,47 @@ description: "Book a call with Dreamborn or chat with Finn, our AI agent. Find o
     };
   })(window, "https://app.cal.com/embed/embed.js", "init");
   Cal("init", { origin: "https://cal.com" });
+  Cal("preload", { calLink: "justin-king/intro" });
+  Cal("ui", {
+    theme: "dark",
+    hideEventTypeDetails: false,
+    cssVarsPerTheme: {
+      dark: {
+        "cal-brand": "#8B1A1A",
+        "cal-brand-emphasis": "#A52A24",
+        "cal-brand-text": "#FFFFFF",
+        "cal-brand-subtle": "#D7B16E",
+        "cal-bg": "#100D0C",
+        "cal-bg-emphasis": "#18110F",
+        "cal-bg-subtle": "#171110",
+        "cal-bg-muted": "#0A0807",
+        "cal-bg-inverted": "#F0EDE9",
+        "cal-text": "#C8C0B8",
+        "cal-text-emphasis": "#F0EDE9",
+        "cal-text-subtle": "#8A7E6A",
+        "cal-border": "#2A1F1C",
+        "cal-border-emphasis": "#8B1A1A",
+        "cal-border-subtle": "#3B2A25",
+        "cal-border-muted": "#1F1714",
+        "cal-border-booker": "#2A1F1C",
+        "cal-border-booker-width": "1px",
+        "radius": "0.25rem",
+        "radius-sm": "0.125rem",
+        "radius-md": "0.25rem",
+        "radius-lg": "0.5rem",
+        "spacing": "0.25rem"
+      }
+    }
+  });
   Cal("inline", {
     elementOrSelector: "cal-inline",
     calLink: "justin-king/intro",
-    config: { layout: "month_view" }
+    config: {
+      layout: "month_view",
+      theme: "dark",
+      hideEventTypeDetails: false
+    }
   });
 </script>
 
-<!-- Finn chat logic -->
 <script src="/js/finn-chat.js" defer></script>
