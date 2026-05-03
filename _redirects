@@ -1,0 +1,7 @@
+# Cloudflare Pages redirects
+
+# /thinking with trailing slash handled by 11ty
+# /thinking/[slug] pages are statically generated
+
+# Fallback: 404 page
+/*  /404.html  404

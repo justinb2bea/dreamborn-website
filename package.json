@@ -1,21 +1,24 @@
 {
   "name": "dreamborn-website",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "dreamborn.ai — AI-native company website",
+  "private": true,
   "scripts": {
     "build": "eleventy",
-    "serve": "eleventy --serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "eleventy --serve",
+    "dev": "eleventy --serve",
+    "postinstall": "node scripts/download-fonts.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@11ty/eleventy": "^3.1.5",
     "@fontsource/bebas-neue": "^5.2.7",
-    "@fontsource/dm-sans": "^5.2.8",
-    "@fontsource/fraunces": "^5.2.9",
-    "@fontsource/lora": "^5.2.8"
+    "@fontsource/dm-sans": "^5.0.0",
+    "@fontsource/fraunces": "^5.0.0",
+    "@fontsource/lora": "^5.0.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

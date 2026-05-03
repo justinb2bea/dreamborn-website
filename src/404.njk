@@ -1,0 +1,22 @@
+---
+layout: base.njk
+register: brand
+title: "Not Found — Dreamborn"
+permalink: /404.html
+---
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <p class="hero__eyebrow">404</p>
+    <h1 class="hero__h1">Page Not<br>Found</h1>
+    <p class="hero-subhead">
+      This page doesn't exist — or an agent moved it without filing the paperwork.
+    </p>
+    <div class="hero__actions">
+      <a href="/" class="btn btn--primary">Back to home →</a>
+      <a href="/thinking/" class="btn btn--outline">Read something</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

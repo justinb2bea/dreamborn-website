@@ -1,0 +1,88 @@
+---
+layout: base.njk
+register: brand
+title: "System — Dreamborn"
+description: "The full technology stack powering dreamborn.ai. Nothing hidden — built on Eleventy, Cloudflare, Supabase, and Hedera."
+---
+
+<!-- ─── Hero ──────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <p class="hero__eyebrow">The Stack</p>
+    <h1 class="hero__h1">Transparent by<br>Design</h1>
+    <p class="hero-subhead">
+      Every tool in production. Nothing hidden.
+      This site is itself the demonstration.
+    </p>
+  </div>
+</section>
+
+<!-- ─── Agent Status Bar ──────────────────────────────────── -->
+{% set label = "Live System Activity" %}
+{% include "agent-status-bar.njk" %}
+
+<!-- ─── Tech Stack Grid ───────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <p class="section__label">Technology</p>
+    <h2 class="section__h2">What Runs This</h2>
+
+    <div class="stack-grid" aria-label="Technology stack">
+      {% set stack = [
+        { name: "Eleventy", role: "Static site generator",
+          description: "Nunjucks templates compiled to HTML at build time.",
+          onChain: false },
+        { name: "Cloudflare Pages", role: "Hosting + CDN",
+          description: "Edge-deployed static assets and Pages Functions.",
+          onChain: false },
+        { name: "Pages Functions", role: "Edge compute",
+          description: "Finn, agent status, webhooks — serverless at the edge.",
+          onChain: false },
+        { name: "Supabase", role: "Database",
+          description: "Contacts, content, agent state, topic taxonomy.",
+          onChain: false },
+        { name: "Claude API", role: "AI intelligence",
+          description: "Finn conversation powered by claude-sonnet-4-6.",
+          onChain: false },
+        { name: "Apollo.io", role: "Contact enrichment",
+          description: "B2B company and person data — async, no phone capture.",
+          onChain: false },
+        { name: "Cal.com", role: "Scheduling",
+          description: "Inline booking embed on /connect with webhook integration.",
+          onChain: false },
+        { name: "Hedera HCS", role: "On-chain audit log",
+          description: "Immutable agent workflow records — every task, every output.",
+          onChain: true },
+        { name: "Hedera HFS", role: "On-chain file storage",
+          description: "Agent spec and output files stored on Hedera File Service.",
+          onChain: true }
+      ] %}
+
+      {% for item in stack %}
+      <div class="stack-card {% if item.onChain %}stack-card--onchain{% endif %}"
+           aria-label="{{ item.name }}">
+        <p class="stack-card__name">{{ item.name }}{% if item.onChain %} ⬡{% endif %}</p>
+        <p class="stack-card__role">{{ item.role }}</p>
+        <p class="stack-card__desc">{{ item.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <p style="margin-top: var(--space-4); font-size: var(--text-caption); color: var(--color-text-muted);">
+      ⬡ = on-chain — data stored immutably on Hedera Hashgraph
+    </p>
+  </div>
+</section>
+
+<!-- ─── Developer Row ─────────────────────────────────────── -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="developer-row" aria-label="Developer links">
+      <a href="view-source:https://dreamborn.ai/system" class="dev-link">↗ View page source</a>
+      <!-- TODO(OQ-2): Add CF Pages build log URL once Quinn has the shareable URL from CF Pages dashboard -->
+      <!-- <a href="[CF_PAGES_BUILD_LOG_URL]" class="dev-link">↗ Build log (Cloudflare)</a> -->
+    </div>
+  </div>
+</section>
+
+<script src="/js/agent-status.js" defer></script>

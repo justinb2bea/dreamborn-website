@@ -1,0 +1,73 @@
+---
+layout: base.njk
+register: editorial
+title: "Thinking — Dreamborn"
+description: "Articles and thinking from Dreamborn on AI-native systems, agent workflows, and the future of work."
+---
+
+<!-- ─── Page Header ───────────────────────────────────────── -->
+<div class="container">
+  <header class="page-header">
+    <h1 class="page-header__h1">Thinking</h1>
+    <p class="page-header__subhead">Writing on AI-native systems, agent workflows, and what comes next.</p>
+  </header>
+
+  <!-- ─── Filter Bar (no sort dropdown — OQ-4 resolved: date-desc only) ── -->
+  <div class="filter-bar" role="group" aria-label="Filter posts by topic" id="filterBar">
+    <button class="filter-pill"
+            aria-pressed="true"
+            data-topic-id=""
+            onclick="handleTopicFilter(this, null)">
+      All topics
+    </button>
+    {% for topic in thinking.topics %}
+    <button class="filter-pill"
+            aria-pressed="false"
+            data-topic-id="{{ topic.id }}"
+            onclick="handleTopicFilter(this, '{{ topic.id }}')">
+      {{ topic.label }}
+    </button>
+    {% endfor %}
+  </div>
+
+  <!-- ─── Post Grid ─────────────────────────────────────────── -->
+  <div class="post-grid" id="postGrid" aria-live="polite" aria-atomic="false">
+    {% for post in thinking.initial_posts %}
+    <article class="post-card" aria-label="Post: {{ post.title }}">
+      <div class="post-card__meta">
+        <span class="topic-tag" aria-label="Category">Article</span>
+        <time class="post-card__date" datetime="{{ post.published_at }}">
+          {{ post.published_at | dateFormat }}
+        </time>
+      </div>
+      <a href="/thinking/{{ post.slug }}/" class="post-card__title">{{ post.title }}</a>
+      {% if post.excerpt %}
+      <p class="post-card__excerpt">{{ post.excerpt }}</p>
+      {% endif %}
+      <p class="post-card__author">By {{ post.author }}</p>
+    </article>
+    {% else %}
+    <p class="text-muted" style="grid-column: 1/-1; padding: var(--space-8) 0;">
+      No posts published yet. Check back soon.
+    </p>
+    {% endfor %}
+  </div>
+
+  <!-- ─── Load More ────────────────────────────────────────── -->
+  <div class="load-more-wrap" id="loadMoreWrap"
+       {% if thinking.initial_posts.length < 12 %}style="display:none"{% endif %}>
+    <button class="btn btn--outline" id="loadMoreBtn" onclick="loadMorePosts()">
+      Load more
+    </button>
+  </div>
+
+  <!-- Build-time data for JS -->
+  <script id="thinkingData" type="application/json">
+    {
+      "initialCount": {{ thinking.initial_posts.length | json }},
+      "topics": {{ thinking.topics | json }}
+    }
+  </script>
+</div>
+
+<script src="/js/thinking.js" defer></script>

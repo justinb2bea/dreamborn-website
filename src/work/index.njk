@@ -1,0 +1,100 @@
+---
+layout: base.njk
+register: brand
+title: "Work — Dreamborn"
+description: "Dreamborn builds AI-native systems. Our agents work around the clock on agent workflows, CRM automation, and on-chain infrastructure."
+---
+
+<!-- ─── Hero ──────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <p class="hero__eyebrow">What We Do</p>
+    <h1 class="hero__h1">Built by<br>Agents. Owned<br>by Outcomes.</h1>
+    <p class="hero-subhead">
+      Every engagement delivers a working AI-native system — not a deck, not a prototype.
+    </p>
+  </div>
+</section>
+
+<!-- ─── Three Pillars ────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <p class="section__label">How We Work</p>
+    <div class="pillars">
+
+      <div class="pillar">
+        <h3 class="pillar__heading">Agent Workflows</h3>
+        <!-- CONTENT: Justin to supply pillar copy — pillar 1 -->
+        <p class="pillar__body">
+          We design and deploy multi-agent systems that execute complex business workflows autonomously — from lead qualification to content publishing to customer onboarding.
+        </p>
+      </div>
+
+      <div class="pillar">
+        <h3 class="pillar__heading">CRM Automation</h3>
+        <!-- CONTENT: Justin to supply pillar copy — pillar 2 -->
+        <p class="pillar__body">
+          We wire AI intelligence directly into your CRM pipeline: automated enrichment, intelligent sequencing, and agent-driven outreach that adapts to every prospect.
+        </p>
+      </div>
+
+      <div class="pillar">
+        <h3 class="pillar__heading">AI Infrastructure</h3>
+        <!-- CONTENT: Justin to supply pillar copy — pillar 3 -->
+        <p class="pillar__body">
+          We build the infrastructure layer: on-chain audit logs, agent orchestration, and the persistent memory systems that let your AI organisation learn and improve over time.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Agent Roster — Real-Time Status (OQ-1: live from agent_state) ── -->
+<section class="agent-status-bar" aria-label="The team — live status">
+  <div class="container">
+    <p class="section__label">The Team</p>
+    <h2 class="section__h2" style="margin-bottom: var(--space-6);">Always On. Always Shipping.</h2>
+
+    <div class="agent-status-bar__scroll" role="list" aria-live="polite" aria-atomic="false">
+      {% set roster = [
+        { slug: "quinn",    name: "Quinn",    role: "Developer" },
+        { slug: "vikram",   name: "Vikram",   role: "Architect" },
+        { slug: "mindy",    name: "Mindy",    role: "Project Manager" },
+        { slug: "zara",     name: "Zara",     role: "UX Designer" },
+        { slug: "finn",     name: "Finn",     role: "CRM Agent" },
+        { slug: "nora",     name: "Nora",     role: "Content Taxonomy" },
+        { slug: "courtney", name: "Courtney", role: "Operations" },
+        { slug: "atlas",    name: "Atlas",    role: "Architect" },
+        { slug: "claire",   name: "Claire",   role: "Orchestrator" }
+      ] %}
+      {% for agent in roster %}
+      <div class="agent-card"
+           role="listitem"
+           data-agent="{{ agent.slug }}"
+           data-status="offline"
+           aria-label="{{ agent.name }} — {{ agent.role }}">
+        <div class="agent-card__header">
+          <div class="agent-card__name-row">
+            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
+            <span class="agent-card__name">{{ agent.name }}</span>
+          </div>
+          <span class="status-label status-label--offline" aria-label="Status: offline">OFFLINE</span>
+        </div>
+        <p class="agent-action" aria-label="Current activity"></p>
+        <time class="agent-time" aria-label="Last updated"></time>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA Band ──────────────────────────────────────────── -->
+<section class="cta-band">
+  <div class="container">
+    <h2 class="cta-band__h2">Ready to Run on Agents?</h2>
+    <a href="/connect/" class="btn btn--inverted">Book an intro call →</a>
+  </div>
+</section>
+
+<script src="/js/agent-status.js" defer></script>

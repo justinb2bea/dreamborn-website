@@ -1,0 +1,66 @@
+---
+layout: base.njk
+register: editorial
+pagination:
+  data: posts
+  size: 1
+  alias: post
+permalink: "/thinking/{{ post.slug }}/"
+eleventyComputed:
+  title: "{{ post.title }} — Dreamborn"
+  no_chrome: "{{ 'true' if post.no_chrome }}"
+---
+
+<div class="container">
+  <article class="article-layout">
+
+    <!-- ─── Article Body ────────────────────────────────────── -->
+    <div class="article-body">
+
+      <!-- Meta -->
+      <div class="article-meta">
+        <time datetime="{{ post.published_at }}">{{ post.published_at | dateFormat }}</time>
+        {% if post.body_html %}
+        <span>{{ post.body_html | readingTime }}</span>
+        {% endif %}
+        <span>By {{ post.author }}</span>
+      </div>
+
+      <!-- Title -->
+      <h1>{{ post.title }}</h1>
+
+      <!-- Body HTML -->
+      {% if post.body_html %}
+        {{ post.body_html | safe }}
+      {% elif post.body_md %}
+        {{ post.body_md | safe }}
+      {% else %}
+        <p class="text-muted">Content coming soon.</p>
+      {% endif %}
+
+    </div>
+
+    <!-- ─── Sidebar ──────────────────────────────────────────── -->
+    <aside class="article-sidebar" aria-label="Article sidebar">
+
+      <!-- Author card -->
+      <div class="sidebar-card">
+        <p class="sidebar-card__title">Written by</p>
+        <p style="font-weight:600; font-size: var(--text-body-sm);">{{ post.author }}</p>
+      </div>
+
+      <!-- Finn invite -->
+      <div class="sidebar-card" style="background: var(--color-crimson); border-color: var(--color-crimson);">
+        <p class="sidebar-card__title" style="color: rgba(255,255,255,0.7);">AI Agent</p>
+        <p style="font-size: var(--text-body-sm); color: #fff; margin-bottom: var(--space-3);">
+          Questions about this or what Dreamborn does?
+        </p>
+        <a href="/connect/" class="btn btn--inverted" style="font-size: var(--text-caption);">
+          Talk to Finn →
+        </a>
+      </div>
+
+    </aside>
+
+  </article>
+</div>

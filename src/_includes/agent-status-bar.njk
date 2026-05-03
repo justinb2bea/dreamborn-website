@@ -1,0 +1,45 @@
+{#
+  Agent Status Bar — shared component
+  Used on: / (homepage), /work, /system
+  Parameters:
+    label: string (optional, default "Live Agent Activity")
+    agents: array of { slug, name } — static roster
+#}
+{% set statusLabel = label if label else "Live Agent Activity" %}
+
+<section class="agent-status-bar" aria-label="{{ statusLabel }}">
+  <div class="container">
+    <p class="agent-status-bar__label">{{ statusLabel }}</p>
+    <div class="agent-status-bar__scroll" role="list" aria-live="polite" aria-atomic="false">
+      {# Static roster — Quinn, Vikram, Mindy, Zara, Finn, Nora, Courtney, Atlas, Claire #}
+      {% set roster = [
+        { slug: "quinn",    name: "Quinn" },
+        { slug: "vikram",   name: "Vikram" },
+        { slug: "mindy",    name: "Mindy" },
+        { slug: "zara",     name: "Zara" },
+        { slug: "finn",     name: "Finn" },
+        { slug: "nora",     name: "Nora" },
+        { slug: "courtney", name: "Courtney" },
+        { slug: "atlas",    name: "Atlas" },
+        { slug: "claire",   name: "Claire" }
+      ] %}
+      {% for agent in roster %}
+      <div class="agent-card"
+           role="listitem"
+           data-agent="{{ agent.slug }}"
+           data-status="offline"
+           aria-label="{{ agent.name }} status">
+        <div class="agent-card__header">
+          <div class="agent-card__name-row">
+            <span class="status-dot status-dot--offline" aria-hidden="true"></span>
+            <span class="agent-card__name">{{ agent.name }}</span>
+          </div>
+          <span class="status-label status-label--offline" aria-label="Status: offline">OFFLINE</span>
+        </div>
+        <p class="agent-action" aria-label="Current activity"></p>
+        <time class="agent-time" aria-label="Last updated"></time>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,147 @@
+---
+layout: base.njk
+register: brand
+title: "Connect — Dreamborn"
+description: "Book a call with Dreamborn or chat with Finn, our AI agent. Find out if AI-native systems are right for your business."
+---
+
+<!-- ─── Hero ──────────────────────────────────────────────── -->
+<section class="hero" style="padding-bottom: var(--space-8);">
+  <div class="container">
+    <p class="hero__eyebrow">Let's Talk</p>
+    <h1 class="hero__h1">Connect With<br>Dreamborn</h1>
+    <p class="hero-subhead">
+      Book a call directly or chat with Finn first — our AI agent qualifies,
+      answers questions, and helps you figure out if we're the right fit.
+    </p>
+  </div>
+</section>
+
+<!-- ─── Connect Layout ────────────────────────────────────── -->
+<div class="container">
+  <div class="connect-layout">
+
+    <!-- ─── Finn Chat ──────────────────────────────────────── -->
+    <div>
+      <h2 style="margin-bottom: var(--space-4);">Chat with Finn</h2>
+      <div class="finn-chat" role="region" aria-label="Chat with Finn, Dreamborn's AI agent">
+
+        <!-- Header -->
+        <div class="finn-chat__header">
+          <div class="finn-chat__avatar" aria-hidden="true">F</div>
+          <div>
+            <p class="finn-chat__name">Finn</p>
+            <p class="finn-chat__subtitle">Dreamborn AI Agent</p>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="finn-chat__messages" id="finnMessages" role="log" aria-live="polite" aria-label="Conversation">
+
+          <!-- Greeting (pre-rendered — no fetch required) -->
+          <div class="message-bubble message-bubble--finn" role="article" aria-label="Finn: greeting">
+            I'm Finn — Dreamborn's AI agent. I help visitors understand what we do and connect them with the right people.<br><br>
+            What brings you here today?
+          </div>
+
+          <!-- Typing indicator (hidden by default) -->
+          <div class="finn-typing" id="finnTyping" aria-hidden="true" aria-label="Finn is typing">
+            <span class="finn-typing-dot"></span>
+            <span class="finn-typing-dot"></span>
+            <span class="finn-typing-dot"></span>
+          </div>
+
+        </div>
+
+        <!-- Suggested Prompts -->
+        <div class="suggested-prompts" id="finnPrompts" role="group" aria-label="Suggested messages">
+          <button class="prompt-pill" data-prompt="Tell me about Dreamborn">Tell me about Dreamborn</button>
+          <button class="prompt-pill" data-prompt="What does working with you look like?">What does working with you look like?</button>
+          <button class="prompt-pill" data-prompt="I want to book a call">I want to book a call</button>
+        </div>
+
+        <!-- Error state -->
+        <p class="finn-error" id="finnError" role="alert">
+          Finn is temporarily unavailable. <a href="#calEmbed">Book directly →</a>
+        </p>
+
+        <!-- Input Area -->
+        <div class="finn-chat__input-area">
+          <textarea class="finn-chat__input"
+                    id="finnInput"
+                    placeholder="Type a message…"
+                    aria-label="Message Finn"
+                    rows="1"
+                    maxlength="2000"
+                    onkeydown="handleFinnKeydown(event)"></textarea>
+          <button class="finn-chat__send"
+                  id="finnSendBtn"
+                  onclick="sendFinnMessage()"
+                  aria-label="Send message">
+            Send
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Cal.com Embed ──────────────────────────────────── -->
+    <div id="calEmbed">
+      <h2 style="margin-bottom: var(--space-4);">Book a Call</h2>
+
+      <!-- Desktop: inline embed -->
+      <div class="cal-desktop-cal">
+        <cal-inline data-cal-link="justin-king/intro"></cal-inline>
+      </div>
+
+      <!-- Mobile: collapsed behind details/summary -->
+      <details class="cal-mobile-toggle">
+        <summary>Book a time instead →</summary>
+        <cal-inline data-cal-link="justin-king/intro" style="margin-top: var(--space-4);"></cal-inline>
+      </details>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Cal.com embed script -->
+<script>
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else {
+          p(cal, ar);
+        }
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", { origin: "https://cal.com" });
+  Cal("inline", {
+    elementOrSelector: "cal-inline",
+    calLink: "justin-king/intro",
+    config: { layout: "month_view" }
+  });
+</script>
+
+<!-- Finn chat logic -->
+<script src="/js/finn-chat.js" defer></script>

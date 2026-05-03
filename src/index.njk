@@ -1,0 +1,82 @@
+---
+layout: base.njk
+register: brand
+title: "Dreamborn — AI-Native Systems"
+description: "Dreamborn builds AI-native systems: agent workflows, CRM automation, and the infrastructure to run them."
+---
+
+<!-- ─── Hero ──────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <p class="hero__eyebrow">AI-Native Systems</p>
+    <h1 class="hero__h1">The Company<br>Runs on Agents</h1>
+    <p class="hero-subhead" id="heroSubhead">
+      We build AI-native systems that think, act, and improve — for companies that want to compete on intelligence.
+    </p>
+    <!-- TODO: Justin to supply business/developer/enterprise subhead variants -->
+    <!-- Audience variants loaded via /api/finn/visitor and swapped by finn-visitor.js -->
+    <div class="hero__actions">
+      <a href="/connect/" class="btn btn--primary">Connect with us →</a>
+      <a href="/work/" class="btn btn--outline">See how we work</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Agent Status Bar ──────────────────────────────────── -->
+{% include "agent-status-bar.njk" %}
+
+<!-- ─── What We Do ───────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <p class="section__label">What We Do</p>
+    <h2 class="section__h2">Intelligence as Infrastructure</h2>
+    <div class="prose">
+      <!-- TODO: Justin to supply body copy for "What we do" section — 1 paragraph max, link to /work -->
+      <p class="body-text">
+        Dreamborn designs and deploys AI-native systems — agent workflows, automated CRM pipelines, and the on-chain infrastructure to run them reliably at scale. <a href="/work/">See our work →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Featured Content Strip (conditional: ≥3 posts) ───── -->
+{% if featured_posts and featured_posts.length >= 3 %}
+<section class="section" aria-label="Featured articles">
+  <div class="container">
+    <p class="section__label">From the Blog</p>
+    <h2 class="section__h2">Thinking</h2>
+    <div class="featured-strip">
+      {% for post in featured_posts %}
+      <article class="post-card" aria-label="Post: {{ post.title }}">
+        <div class="post-card__meta">
+          <span class="topic-tag">Article</span>
+          <time class="post-card__date" datetime="{{ post.published_at }}">
+            {{ post.published_at | dateFormat }}
+          </time>
+        </div>
+        <a href="/thinking/{{ post.slug }}/" class="post-card__title">{{ post.title }}</a>
+        {% if post.excerpt %}
+        <p class="post-card__excerpt">{{ post.excerpt }}</p>
+        {% endif %}
+        <p class="post-card__author">By {{ post.author }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    <div style="margin-top: var(--space-6);">
+      <a href="/thinking/" class="btn btn--outline">Read all posts</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ─── Finn Invite Band ──────────────────────────────────── -->
+<a href="/connect/" class="finn-band" aria-label="Talk to Finn, Dreamborn's AI agent">
+  <div class="finn-band__inner">
+    <span class="finn-band__text">Finn — AI agent · Ask me anything about Dreamborn →</span>
+    <span class="finn-band__arrow" aria-hidden="true">→</span>
+  </div>
+</a>
+
+<!-- Agent status polling + Finn visitor classification -->
+<script src="/js/agent-status.js" defer></script>
+<script src="/js/finn-visitor.js" defer></script>
