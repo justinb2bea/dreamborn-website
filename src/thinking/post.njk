@@ -1,7 +1,6 @@
 ---
 layout: base.njk
-register: editorial
-no_chrome: true
+register: forge
 pagination:
   data: posts
   size: 1
@@ -12,17 +11,6 @@ eleventyComputed:
 ---
 
 <main class="thinking-detail">
-  <header class="thinking-masthead">
-    <a class="thinking-masthead__brand" href="/">Dreamborn</a>
-    <nav aria-label="Article navigation">
-      <a href="/thinking/" aria-current="page">Thinking</a>
-      <a href="/system/">Systems</a>
-      <a href="/explainer/">How it works</a>
-      <a href="/live/">Live room</a>
-    </nav>
-    <a class="thinking-masthead__icon" href="/connect/" aria-label="Ask Finn">○</a>
-  </header>
-
   <div class="detail-shell">
     <article class="detail-article">
       <header class="detail-article__header">
@@ -139,15 +127,4 @@ eleventyComputed:
     </aside>
   </div>
 
-  <footer class="thinking-footer detail-footer">
-    <div class="thinking-footer__inner detail-footer__inner container-wide">
-      <a href="/">Dreamborn</a>
-      <span>© 2026 Dreamborn. Proof before claims.</span>
-      <nav aria-label="Article footer">
-        <a href="/thinking/">Thinking</a>
-        <a href="/system/">System</a>
-        <a href="/live/">Live</a>
-      </nav>
-    </div>
-  </footer>
 </main>
