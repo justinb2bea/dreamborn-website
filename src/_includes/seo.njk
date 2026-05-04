@@ -1,8 +1,6 @@
 {% set inferredType = 'website' %}
 {% if post %}
   {% set inferredType = 'article' %}
-{% elif page.url == '/justin/' %}
-  {% set inferredType = 'profile' %}
 {% endif %}
 {% set pageTitle = seoTitle or title or site.title %}
 {% if post and post.title %}
@@ -30,8 +28,6 @@
   {% set imagePath = image or site.socialImages.live %}
 {% elif page.url == '/thinking/' and site.socialImages.thinking %}
   {% set imagePath = image or site.socialImages.thinking %}
-{% elif page.url == '/justin/' and site.socialImages.justin %}
-  {% set imagePath = image or site.socialImages.justin %}
 {% elif page.url == '/connect/' and site.socialImages.connect %}
   {% set imagePath = image or site.socialImages.connect %}
 {% elif pageType == 'article' and site.socialImages.article %}
@@ -47,8 +43,6 @@
 {% set breadcrumbName = pageTitle %}
 {% if page.url == '/thinking/' %}
   {% set breadcrumbName = 'Thinking' %}
-{% elif page.url == '/justin/' %}
-  {% set breadcrumbName = 'Justin King' %}
 {% elif page.url == '/connect/' %}
   {% set breadcrumbName = 'Connect' %}
 {% elif page.url == '/explainer/' %}
@@ -79,8 +73,12 @@
 <meta property="og:image:height" content="630">
 
 <meta name="twitter:card" content="summary_large_image">
+{% if site.twitterHandle %}
 <meta name="twitter:site" content="{{ site.twitterHandle }}">
+{% endif %}
+{% if site.author.twitter %}
 <meta name="twitter:creator" content="{{ site.author.twitter }}">
+{% endif %}
 <meta name="twitter:title" content="{{ socialTitleValue }}">
 <meta name="twitter:description" content="{{ socialDescriptionValue }}">
 <meta name="twitter:image" content="{{ absoluteImage }}">
@@ -121,23 +119,6 @@
     }
   } %}
 <script type="application/ld+json">{{ site.jsonLd(websiteJsonLd) | safe }}</script>
-{% endif %}
-
-{% if pageType == 'profile' %}
-  {% set personJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: site.author.name,
-    url: site.author.url,
-    image: site.author.image,
-    sameAs: site.sameAs,
-    worksFor: {
-      '@type': 'Organization',
-      name: site.name,
-      url: site.url
-    }
-  } %}
-<script type="application/ld+json">{{ site.jsonLd(personJsonLd) | safe }}</script>
 {% endif %}
 
 {% if pageType == 'article' %}

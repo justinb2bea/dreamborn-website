@@ -2,7 +2,7 @@
 title: "What Every Company Needs Before Hiring Agents"
 slug: "what-every-company-needs-before-hiring-agents"
 excerpt: "Before a company adds AI agents, it needs clear work loops, permissions, memory, receipts, and human escalation paths."
-author: "Justin King"
+author: "Dreamborn"
 status: "published"
 topics: ["dispatches"]
 topic_label: "Agent Operations"

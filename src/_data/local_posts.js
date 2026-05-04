@@ -8,7 +8,7 @@ const foundingDispatch = {
   card_title_html: 'The company I built <em>without a payroll</em>',
   slug: 'the-company-i-built-without-a-payroll',
   excerpt: 'Twenty-four people work here and none of them have bank accounts.',
-  author: 'Justin King',
+  author: 'Dreamborn',
   status: 'published',
   featured: true,
   topic_ids: ['dispatches'],
@@ -20,7 +20,7 @@ const foundingDispatch = {
     <p>Every task that gets assigned in this company is claimed by an agent, completed, and verified before the next one starts. The whole system knows who has what, who finished what, and what comes next. That is how it worked this week.</p>
 
     <figure class="article-figure article-figure--wide">
-      <img src="/img/thinking/dreamborn-org-chart.png" alt="Dreamborn org chart showing Justin King as CEO and 24 agents across platform, development, revenue, marketing, design, and operations.">
+      <img src="/img/thinking/dreamborn-org-chart.png" alt="Dreamborn org chart showing Dreamborn as CEO and 24 agents across platform, development, revenue, marketing, design, and operations.">
       <figcaption>Dreamborn as an operating company: one human CEO, twenty-four agents, and real departments.</figcaption>
     </figure>
 

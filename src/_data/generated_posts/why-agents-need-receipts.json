@@ -13,7 +13,7 @@
     "dispatches"
   ],
   "topic_label": "Agent Operations",
-  "author": "Justin King",
+  "author": "Dreamborn",
   "scheduled_date": null,
   "published_at": "2026-05-04T18:40:00.000Z",
   "featured_image_url": null,
@@ -22,15 +22,15 @@
     "status": "verified",
     "network": "mainnet",
     "topic_id": "0.0.10451790",
-    "sequence_number": "10",
-    "transaction_id": "0.0.10451788@1777920693.765189096",
-    "consensus_timestamp": "2026-05-04T18:51:38.519Z",
+    "sequence_number": "20",
+    "transaction_id": "0.0.10451788@1777925083.591149986",
+    "consensus_timestamp": "2026-05-04T20:04:48.140Z",
     "body_sha256": "5801d1f52016b0fa1aac9a447f8bf20194f2b8a37cb0ca2f8f1bddda07e9babd",
-    "receipt_sha256": "b9f9fa72e636e70a1fa021fcdceee7328c1ff64afc5bfd84cce40d94ef1d4970",
+    "receipt_sha256": "2f3ec13189c43b802058e5b52218415c5167e38f080985454aae03adb305354f",
     "stream_id": "content:thinking:why-agents-need-receipts",
-    "stream_seq": 1,
+    "stream_seq": 2,
     "event_type": "content.published",
-    "verified_at": "2026-05-04T18:51:43.049Z",
-    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777920693.765189096"
+    "verified_at": "2026-05-04T20:04:52.474Z",
+    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777925083.591149986"
   }
 }

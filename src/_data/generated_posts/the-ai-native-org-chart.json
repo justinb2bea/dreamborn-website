@@ -13,7 +13,7 @@
     "dispatches"
   ],
   "topic_label": "AI-Native Company",
-  "author": "Justin King",
+  "author": "Dreamborn",
   "scheduled_date": null,
   "published_at": "2026-05-04T18:55:00.000Z",
   "featured_image_url": null,
@@ -22,15 +22,15 @@
     "status": "verified",
     "network": "mainnet",
     "topic_id": "0.0.10451790",
-    "sequence_number": "6",
-    "transaction_id": "0.0.10451788@1777920670.489862651",
-    "consensus_timestamp": "2026-05-04T18:51:17.711Z",
+    "sequence_number": "16",
+    "transaction_id": "0.0.10451788@1777925060.725303515",
+    "consensus_timestamp": "2026-05-04T20:04:27.528Z",
     "body_sha256": "d9e62f0c2f79b28313004636ecc1de299f657aa9c59265aa66a7812ace365a91",
-    "receipt_sha256": "5259c8e196f3876bdf7713b37223fd19c089d3383daa7606a8868b8870a03eb5",
+    "receipt_sha256": "27f68b2b9c2e68a7e775fb807a360dfeeca81a09d4694a4f2b3eb4ff3efb17e9",
     "stream_id": "content:thinking:the-ai-native-org-chart",
-    "stream_seq": 1,
+    "stream_seq": 2,
     "event_type": "content.published",
-    "verified_at": "2026-05-04T18:51:22.101Z",
-    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777920670.489862651"
+    "verified_at": "2026-05-04T20:04:32.184Z",
+    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777925060.725303515"
   }
 }

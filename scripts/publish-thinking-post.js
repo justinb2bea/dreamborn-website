@@ -37,7 +37,7 @@ async function main() {
     status,
     topic_ids: topicSlugs,
     topic_label: data.topic_label || titleCase(topicSlugs[0] || 'article'),
-    author: data.author || 'Justin King',
+    author: data.author || 'Dreamborn',
     scheduled_date: data.scheduled_date || null,
     published_at: status === 'published' ? publishedAt : null,
     featured_image_url: data.featured_image_url || null,

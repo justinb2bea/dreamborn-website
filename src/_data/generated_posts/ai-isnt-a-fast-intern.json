@@ -5,7 +5,7 @@
   "card_title_html": "AI is not <em>a fast intern</em>",
   "slug": "ai-isnt-a-fast-intern",
   "excerpt": "Working with agents does not reduce thinking. It forces better thinking, clearer direction, and sharper judgment.",
-  "author": "Justin King",
+  "author": "Dreamborn",
   "status": "published",
   "topic_ids": [
     "dispatches"
@@ -17,15 +17,15 @@
     "status": "verified",
     "network": "mainnet",
     "topic_id": "0.0.10451790",
-    "sequence_number": "2",
-    "transaction_id": "0.0.10451788@1777792133.736220859",
-    "consensus_timestamp": "2026-05-03T07:08:58.604Z",
+    "sequence_number": "12",
+    "transaction_id": "0.0.10451788@1777925039.525639287",
+    "consensus_timestamp": "2026-05-04T20:04:05.836Z",
     "body_sha256": "0fb7788cbe79f6810bb1dfab86f28729bc808af452fb2349ab918becec42a144",
-    "receipt_sha256": "b613bd313c221859ef2200514f6eb374f5b913abc497968e8a978335d5689a7e",
+    "receipt_sha256": "5c172612dfc217a1cde5830585b32fc89c56c51c2b55619aeba0d9e9f41e4c3e",
     "stream_id": "content:thinking:ai-isnt-a-fast-intern",
-    "stream_seq": 1,
+    "stream_seq": 2,
     "event_type": "content.published",
-    "verified_at": "2026-05-03T07:09:02.538Z",
-    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777792133.736220859"
+    "verified_at": "2026-05-04T20:04:09.448Z",
+    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777925039.525639287"
   }
 }

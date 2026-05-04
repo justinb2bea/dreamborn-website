@@ -7,10 +7,10 @@
   'use strict';
 
   const SUBHEADS = {
-    // TODO: Justin to supply final copy for each audience variant
-    business:   '[TODO: Justin to supply business-audience subhead copy]',
-    developer:  '[TODO: Justin to supply developer-audience subhead copy — reference to the stack is appropriate here]',
-    enterprise: '[TODO: Justin to supply enterprise-audience subhead copy]',
+    // TODO: Supply final copy for each audience variant.
+    business:   '[TODO: Dreamborn to supply business-audience subhead copy]',
+    developer:  '[TODO: Dreamborn to supply developer-audience subhead copy — reference to the stack is appropriate here]',
+    enterprise: '[TODO: Dreamborn to supply enterprise-audience subhead copy]',
   };
 
   async function classifyVisitor() {

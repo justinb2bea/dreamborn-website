@@ -2,7 +2,7 @@
 title: "Why PRDs Are Evidence, Not the Plan"
 slug: "why-prds-are-evidence-not-the-plan"
 excerpt: "In agentic product work, a PRD should be evidence for decision-making, not a static plan pretending the future is known."
-author: "Justin King"
+author: "Dreamborn"
 status: "published"
 topics: ["dispatches"]
 topic_label: "AI Product Building"

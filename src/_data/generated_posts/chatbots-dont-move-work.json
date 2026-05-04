@@ -13,7 +13,7 @@
     "dispatches"
   ],
   "topic_label": "AI Product Building",
-  "author": "Justin King",
+  "author": "Dreamborn",
   "scheduled_date": null,
   "published_at": "2026-05-04T18:50:00.000Z",
   "featured_image_url": null,
@@ -22,15 +22,15 @@
     "status": "verified",
     "network": "mainnet",
     "topic_id": "0.0.10451790",
-    "sequence_number": "4",
-    "transaction_id": "0.0.10451788@1777920655.876489075",
-    "consensus_timestamp": "2026-05-04T18:51:04.753Z",
+    "sequence_number": "14",
+    "transaction_id": "0.0.10451788@1777925050.564077857",
+    "consensus_timestamp": "2026-05-04T20:04:15.253Z",
     "body_sha256": "1f7fb57ca7cf95bc06c1f87cd9a3137923578a6ce1ee3e00a615dabac5b7e265",
-    "receipt_sha256": "b9a35179b24b70f489dd22d01af2db8ba3c0ca0e539da303f87f75083d8f46e1",
+    "receipt_sha256": "f2d40a2ddc0342d2d4b1441823f7df826591869b0dec690cbb9d91e00d3d154a",
     "stream_id": "content:thinking:chatbots-dont-move-work",
-    "stream_seq": 1,
+    "stream_seq": 2,
     "event_type": "content.published",
-    "verified_at": "2026-05-04T18:51:09.588Z",
-    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777920655.876489075"
+    "verified_at": "2026-05-04T20:04:20.038Z",
+    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777925050.564077857"
   }
 }

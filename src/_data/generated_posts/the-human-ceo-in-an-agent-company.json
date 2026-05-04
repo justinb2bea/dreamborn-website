@@ -13,7 +13,7 @@
     "dispatches"
   ],
   "topic_label": "Human Governance",
-  "author": "Justin King",
+  "author": "Dreamborn",
   "scheduled_date": null,
   "published_at": "2026-05-04T18:45:00.000Z",
   "featured_image_url": null,
@@ -22,15 +22,15 @@
     "status": "verified",
     "network": "mainnet",
     "topic_id": "0.0.10451790",
-    "sequence_number": "7",
-    "transaction_id": "0.0.10451788@1777920679.085987418",
-    "consensus_timestamp": "2026-05-04T18:51:22.835Z",
+    "sequence_number": "17",
+    "transaction_id": "0.0.10451788@1777925065.211939644",
+    "consensus_timestamp": "2026-05-04T20:04:33.074Z",
     "body_sha256": "289931c94149fb36fc416db4d0a7e086c45ffeb5fe2996f6bb45b51cf0e34b6a",
-    "receipt_sha256": "f15eb08c1d77d85eeb3493ccc348b0c207fff1e7375780e384b7aeaa8a955cd8",
+    "receipt_sha256": "7d7cb13093781bf115e5b7bd88463ca2146a4e0ad4a5e8ab945e1c42e9028b84",
     "stream_id": "content:thinking:the-human-ceo-in-an-agent-company",
-    "stream_seq": 1,
+    "stream_seq": 2,
     "event_type": "content.published",
-    "verified_at": "2026-05-04T18:51:27.510Z",
-    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777920679.085987418"
+    "verified_at": "2026-05-04T20:04:37.568Z",
+    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777925065.211939644"
   }
 }

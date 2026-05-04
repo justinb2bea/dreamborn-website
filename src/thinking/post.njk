@@ -16,11 +16,12 @@ eleventyComputed:
   type: "article"
   published: "{{ post.published_at }}"
   modified: "{{ post.updated_at or post.published_at }}"
-  author: "{{ post.author }}"
+  author: "{{ post.author or 'Dreamborn' }}"
   section: "{{ post.topic_label or 'Thinking' }}"
 ---
 
 <main class="thinking-detail">
+  {% set displayAuthor = post.author or 'Dreamborn' %}
   <div class="detail-shell">
     <article class="detail-article">
       <header class="detail-article__header">
@@ -43,14 +44,10 @@ eleventyComputed:
 
         <div class="detail-byline">
           <div class="detail-author-mark" aria-hidden="true">
-            {% if post.author == 'Justin King' %}
-              <img src="/img/authors/JustinKingProfile.jpeg" alt="">
-            {% else %}
-              {{ post.author | first }}
-            {% endif %}
+            {{ displayAuthor | first }}
           </div>
           <div>
-            <strong>{{ post.author }}</strong>
+            <strong>{{ displayAuthor }}</strong>
             <span>
               Dreamborn
               {% if post.published_at %} · {{ post.published_at | dateFormat }}{% endif %}
@@ -109,7 +106,7 @@ eleventyComputed:
       <section>
         <h2>The author</h2>
         <p>
-          {{ post.author }} writes from inside Dreamborn&rsquo;s operating system: the company,
+          {{ displayAuthor }} writes from inside Dreamborn&rsquo;s operating system: the company,
           the agents, the receipts, and the work moving through it.
         </p>
       </section>

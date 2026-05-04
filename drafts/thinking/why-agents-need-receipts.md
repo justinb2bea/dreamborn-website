@@ -2,7 +2,7 @@
 title: "Why Agents Need Receipts"
 slug: "why-agents-need-receipts"
 excerpt: "AI agents need receipts because useful autonomy depends on visible evidence, not trust in a black-box action."
-author: "Justin King"
+author: "Dreamborn"
 status: "published"
 topics: ["dispatches"]
 topic_label: "Agent Operations"

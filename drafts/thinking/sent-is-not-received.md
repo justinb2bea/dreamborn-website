@@ -2,7 +2,7 @@
 title: "Sent Is Not Received"
 slug: "sent-is-not-received"
 excerpt: "Most workflow systems know a task was sent. The next generation has to know it was received."
-author: "Justin King"
+author: "Dreamborn"
 status: "published"
 topics: ["dispatches"]
 topic_label: "Agent Operations"

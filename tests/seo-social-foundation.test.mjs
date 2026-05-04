@@ -82,7 +82,6 @@ const corePages = [
   ['/system/', 'website'],
   ['/live/', 'website'],
   ['/thinking/', 'website'],
-  ['/justin/', 'profile'],
   ['/connect/', 'website'],
 ];
 
@@ -121,6 +120,7 @@ test('sitemap robots and feeds are generated', () => {
   assert.match(sitemap, /<loc>https:\/\/dreamborn\.ai\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/dreamborn\.ai\/thinking\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/dreamborn\.ai\/thinking\/the-company-i-built-without-a-payroll\/<\/loc>/);
+  assert.doesNotMatch(sitemap, /https:\/\/dreamborn\.ai\/justin\//);
 
   const robots = readPublic('/robots.txt');
   assert.match(robots, /User-agent: \*/);

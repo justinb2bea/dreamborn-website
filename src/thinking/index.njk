@@ -89,7 +89,7 @@ section: "Thinking"
         <p>{{ featuredPost.excerpt }}</p>
         {% endif %}
         <div class="thinking-featured__meta">
-          <strong>{{ featuredPost.author }}</strong>
+          <strong>{{ featuredPost.author or 'Dreamborn' }}</strong>
           <time datetime="{{ featuredPost.published_at }}">{{ featuredPost.published_at | dateFormat }}</time>
           <a href="/thinking/{{ featuredPost.slug }}/">Read featured</a>
         </div>
@@ -115,7 +115,7 @@ section: "Thinking"
           {% endif %}
           <div class="thinking-entry__footer">
             <div>
-              <strong>{{ post.author }}</strong>
+              <strong>{{ post.author or 'Dreamborn' }}</strong>
               <span>Dreamborn</span>
             </div>
             <time datetime="{{ post.published_at }}">{{ post.published_at | dateFormat }}</time>

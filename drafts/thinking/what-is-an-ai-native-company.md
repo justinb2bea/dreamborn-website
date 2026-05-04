@@ -2,7 +2,7 @@
 title: "What Is an AI-Native Company?"
 slug: "what-is-an-ai-native-company"
 excerpt: "An AI-native company is not a normal company with chatbots attached. It is a company designed around AI as an operating layer."
-author: "Justin King"
+author: "Dreamborn"
 status: "published"
 topics: ["dispatches"]
 topic_label: "AI-Native Company"

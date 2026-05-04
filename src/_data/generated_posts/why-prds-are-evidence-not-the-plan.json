@@ -13,7 +13,7 @@
     "dispatches"
   ],
   "topic_label": "AI Product Building",
-  "author": "Justin King",
+  "author": "Dreamborn",
   "scheduled_date": null,
   "published_at": "2026-05-04T19:00:00.000Z",
   "featured_image_url": null,
@@ -22,15 +22,15 @@
     "status": "verified",
     "network": "mainnet",
     "topic_id": "0.0.10451790",
-    "sequence_number": "11",
-    "transaction_id": "0.0.10451788@1777920698.868948322",
-    "consensus_timestamp": "2026-05-04T18:51:43.733Z",
+    "sequence_number": "21",
+    "transaction_id": "0.0.10451788@1777925087.945801384",
+    "consensus_timestamp": "2026-05-04T20:04:53.148Z",
     "body_sha256": "e2e02ef7255c315141da38019e0c90403ce62de3a79daccbe6c981318d8f38ef",
-    "receipt_sha256": "cc8cb881e9b95e4183a50b2b3251222ed1429e67347604d2e57b441edde459c7",
+    "receipt_sha256": "01cda6b0b7cb702cb48282a3cd74c586d1782bd5b988b3e8a86cadcb72adce23",
     "stream_id": "content:thinking:why-prds-are-evidence-not-the-plan",
-    "stream_seq": 1,
+    "stream_seq": 2,
     "event_type": "content.published",
-    "verified_at": "2026-05-04T18:51:47.194Z",
-    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777920698.868948322"
+    "verified_at": "2026-05-04T20:04:57.184Z",
+    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777925087.945801384"
   }
 }

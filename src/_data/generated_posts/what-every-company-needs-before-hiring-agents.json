@@ -13,7 +13,7 @@
     "dispatches"
   ],
   "topic_label": "Agent Operations",
-  "author": "Justin King",
+  "author": "Dreamborn",
   "scheduled_date": null,
   "published_at": "2026-05-04T19:05:00.000Z",
   "featured_image_url": null,
@@ -22,15 +22,15 @@
     "status": "verified",
     "network": "mainnet",
     "topic_id": "0.0.10451790",
-    "sequence_number": "8",
-    "transaction_id": "0.0.10451788@1777920681.820299298",
-    "consensus_timestamp": "2026-05-04T18:51:28.223Z",
+    "sequence_number": "18",
+    "transaction_id": "0.0.10451788@1777925072.222276732",
+    "consensus_timestamp": "2026-05-04T20:04:38.167Z",
     "body_sha256": "91fdfa4c5f816b4803534c8a692b458c9415661f17653518c50059aa7ba73ddd",
-    "receipt_sha256": "b0ffcc3d85c2f5aeed6a68d78b71f195c4ff157dd57231bb93cc209ff1b82553",
+    "receipt_sha256": "ae4d0d35cb15dde56fed9d445dab95dc123f8183238703b99b751cae9a32733e",
     "stream_id": "content:thinking:what-every-company-needs-before-hiring-agents",
-    "stream_seq": 1,
+    "stream_seq": 2,
     "event_type": "content.published",
-    "verified_at": "2026-05-04T18:51:32.301Z",
-    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777920681.820299298"
+    "verified_at": "2026-05-04T20:04:42.376Z",
+    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777925072.222276732"
   }
 }

@@ -2,7 +2,7 @@
 title: "The Human CEO in an Agent Company"
 slug: "the-human-ceo-in-an-agent-company"
 excerpt: "An agent company still needs a human CEO. The job changes from carrying tasks to defining judgment, authority, and risk."
-author: "Justin King"
+author: "Dreamborn"
 status: "published"
 topics: ["dispatches"]
 topic_label: "Human Governance"

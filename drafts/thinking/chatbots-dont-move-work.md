@@ -2,7 +2,7 @@
 title: "Chatbots Don't Move Work"
 slug: "chatbots-dont-move-work"
 excerpt: "Chatbots can answer, draft, and summarize. Companies need AI systems that can move work through real operational loops."
-author: "Justin King"
+author: "Dreamborn"
 status: "published"
 topics: ["dispatches"]
 topic_label: "AI Product Building"

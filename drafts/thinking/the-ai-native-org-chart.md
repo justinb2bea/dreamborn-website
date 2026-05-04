@@ -2,7 +2,7 @@
 title: "The AI-Native Org Chart"
 slug: "the-ai-native-org-chart"
 excerpt: "The AI-native org chart is not just people and roles. It is humans, agents, systems, authority, memory, and receipts."
-author: "Justin King"
+author: "Dreamborn"
 status: "published"
 topics: ["dispatches"]
 topic_label: "AI-Native Company"
