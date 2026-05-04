@@ -38,6 +38,11 @@ module.exports = function(eleventyConfig) {
     return `${h}:${m}`;
   });
 
+  eleventyConfig.addFilter("rssDate", (date) => {
+    if (!date) return "";
+    return new Date(date).toUTCString();
+  });
+
   eleventyConfig.addFilter("json", (val) => JSON.stringify(val));
 
   // Collections: all posts (used for pagination)

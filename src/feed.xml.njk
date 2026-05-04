@@ -15,7 +15,7 @@ eleventyExcludeFromCollections: true
       <title>{{ post.title | escape }}</title>
       <link>{{ site.url }}/thinking/{{ post.slug }}/</link>
       <guid>{{ site.url }}/thinking/{{ post.slug }}/</guid>
-      {% if post.published_at %}<pubDate>{{ post.published_at }}</pubDate>{% endif %}
+      {% if post.published_at %}<pubDate>{{ post.published_at | rssDate }}</pubDate>{% endif %}
       {% if post.excerpt %}<description>{{ post.excerpt | escape }}</description>{% endif %}
     </item>
     {% endfor %}
