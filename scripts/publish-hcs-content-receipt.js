@@ -17,6 +17,7 @@ async function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
   const all = args.includes('--all');
+  const requestedNetwork = parseNetworkFlag(args);
   const target = args.find((arg) => !arg.startsWith('--'));
 
   if (!all && !target) {
@@ -24,13 +25,13 @@ async function main() {
   }
 
   const files = all ? listPostFiles() : [resolvePostFile(target)];
-  const client = dryRun ? null : createDreambornClient();
+  const client = dryRun ? null : createDreambornClient(requestedNetwork);
   const topicId = getReceiptTopicId();
 
   try {
     const results = [];
     for (const file of files) {
-      const result = await publishReceiptForFile({ file, topicId, client, dryRun });
+      const result = await publishReceiptForFile({ file, topicId, client, dryRun, network: requestedNetwork });
       results.push(result);
     }
     console.log(JSON.stringify(results, null, 2));
@@ -39,7 +40,7 @@ async function main() {
   }
 }
 
-function createDreambornClient() {
+function createDreambornClient(requestedNetwork) {
   const operatorId =
     process.env.DREAMBORN_OPERATOR_ID ||
     process.env.BEZELIQ_OPERATOR_ID ||
@@ -52,7 +53,7 @@ function createDreambornClient() {
     process.env.HEDERA_OPERATOR_KEY ||
     process.env.HEDERA_PRIVATE_KEY;
 
-  const network = getDreambornNetwork();
+  const network = getDreambornNetwork(requestedNetwork);
 
   if (!operatorId || !operatorKey) {
     fail('DREAMBORN_OPERATOR_ID and DREAMBORN_OPERATOR_KEY are required');
@@ -69,15 +70,26 @@ function getReceiptTopicId() {
   return topicId;
 }
 
-function getDreambornNetwork() {
-  return process.env.DREAMBORN_HEDERA_NETWORK || process.env.HEDERA_NETWORK || 'testnet';
+function parseNetworkFlag(args) {
+  const hasMainnet = args.includes('--mainnet');
+  const hasTestnet = args.includes('--testnet');
+  if (hasMainnet && hasTestnet) fail('Use only one network flag: --mainnet or --testnet');
+  if (hasMainnet) return 'mainnet';
+  if (hasTestnet) return 'testnet';
+  return null;
+}
+
+function getDreambornNetwork(requestedNetwork) {
+  const network = requestedNetwork || process.env.DREAMBORN_HEDERA_NETWORK || process.env.HEDERA_NETWORK || 'mainnet';
+  if (!['mainnet', 'testnet'].includes(network)) fail(`Unsupported Hedera network: ${network}`);
+  return network;
 }
 
 function getHashScanBaseUrl(network) {
   return network === 'mainnet' ? 'https://hashscan.io/mainnet' : 'https://hashscan.io/testnet';
 }
 
-async function publishReceiptForFile({ file, topicId, client, dryRun }) {
+async function publishReceiptForFile({ file, topicId, client, dryRun, network }) {
   const post = readJson(file);
   const canonical = canonicalizePost(post);
   const bodySha256 = sha256(canonical.body_html || '');
@@ -130,6 +142,7 @@ async function publishReceiptForFile({ file, topicId, client, dryRun }) {
       file: path.relative(process.cwd(), file),
       dry_run: true,
       topic_id: topicId,
+      network: getDreambornNetwork(network),
       body_sha256: bodySha256,
       receipt_sha256: receiptSha256,
       event,
@@ -146,7 +159,7 @@ async function publishReceiptForFile({ file, topicId, client, dryRun }) {
   const record = await response.getRecord(client);
   const receipt = {
     status: 'verified',
-    network: getDreambornNetwork(),
+    network: getDreambornNetwork(network),
     topic_id: topicId,
     sequence_number: record.receipt.topicSequenceNumber.toString(),
     transaction_id: txId,
@@ -157,7 +170,7 @@ async function publishReceiptForFile({ file, topicId, client, dryRun }) {
     stream_seq: event.stream_seq,
     event_type: event.type,
     verified_at: new Date().toISOString(),
-    hashscan_url: `${getHashScanBaseUrl(getDreambornNetwork())}/transaction/${encodeURIComponent(txId)}`,
+    hashscan_url: `${getHashScanBaseUrl(getDreambornNetwork(network))}/transaction/${encodeURIComponent(txId)}`,
   };
 
   writeJson(file, {

@@ -17,5 +17,20 @@
   "scheduled_date": null,
   "published_at": "2026-05-04T18:45:00.000Z",
   "featured_image_url": null,
-  "no_chrome": false
+  "no_chrome": false,
+  "hcs_receipt": {
+    "status": "verified",
+    "network": "mainnet",
+    "topic_id": "0.0.10451790",
+    "sequence_number": "7",
+    "transaction_id": "0.0.10451788@1777920679.085987418",
+    "consensus_timestamp": "2026-05-04T18:51:22.835Z",
+    "body_sha256": "289931c94149fb36fc416db4d0a7e086c45ffeb5fe2996f6bb45b51cf0e34b6a",
+    "receipt_sha256": "f15eb08c1d77d85eeb3493ccc348b0c207fff1e7375780e384b7aeaa8a955cd8",
+    "stream_id": "content:thinking:the-human-ceo-in-an-agent-company",
+    "stream_seq": 1,
+    "event_type": "content.published",
+    "verified_at": "2026-05-04T18:51:27.510Z",
+    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777920679.085987418"
+  }
 }

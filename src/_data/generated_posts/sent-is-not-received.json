@@ -17,5 +17,20 @@
   "scheduled_date": null,
   "published_at": "2026-05-04T18:35:00.000Z",
   "featured_image_url": null,
-  "no_chrome": false
+  "no_chrome": false,
+  "hcs_receipt": {
+    "status": "verified",
+    "network": "mainnet",
+    "topic_id": "0.0.10451790",
+    "sequence_number": "5",
+    "transaction_id": "0.0.10451788@1777920662.653318098",
+    "consensus_timestamp": "2026-05-04T18:51:10.774Z",
+    "body_sha256": "a034017292490d6535e19ca4743f2ca5b05889237ff312acb673cbe0f7fb5447",
+    "receipt_sha256": "74b727275ff62249411f37f7bb1b934e3236390e627ff4dd77a83943cf46b2e0",
+    "stream_id": "content:thinking:sent-is-not-received",
+    "stream_seq": 1,
+    "event_type": "content.published",
+    "verified_at": "2026-05-04T18:51:17.241Z",
+    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777920662.653318098"
+  }
 }

@@ -17,5 +17,20 @@
   "scheduled_date": null,
   "published_at": "2026-05-04T18:40:00.000Z",
   "featured_image_url": null,
-  "no_chrome": false
+  "no_chrome": false,
+  "hcs_receipt": {
+    "status": "verified",
+    "network": "mainnet",
+    "topic_id": "0.0.10451790",
+    "sequence_number": "10",
+    "transaction_id": "0.0.10451788@1777920693.765189096",
+    "consensus_timestamp": "2026-05-04T18:51:38.519Z",
+    "body_sha256": "5801d1f52016b0fa1aac9a447f8bf20194f2b8a37cb0ca2f8f1bddda07e9babd",
+    "receipt_sha256": "b9f9fa72e636e70a1fa021fcdceee7328c1ff64afc5bfd84cce40d94ef1d4970",
+    "stream_id": "content:thinking:why-agents-need-receipts",
+    "stream_seq": 1,
+    "event_type": "content.published",
+    "verified_at": "2026-05-04T18:51:43.049Z",
+    "hashscan_url": "https://hashscan.io/mainnet/transaction/0.0.10451788%401777920693.765189096"
+  }
 }
