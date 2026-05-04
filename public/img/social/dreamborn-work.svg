@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Dreamborn Work</title>
+  <desc id="desc">Production systems and agent-built operating proof.</desc>
+  <rect width="1200" height="630" fill="#18100f"/>
+  <rect x="64" y="64" width="1072" height="502" rx="28" fill="#f8f0e6"/>
+  <circle cx="980" cy="154" r="46" fill="#cc3f2f"/>
+  <path d="M118 430 C260 340 348 440 482 352 S746 252 918 346 1050 388 1092 330" fill="none" stroke="#cc3f2f" stroke-width="8"/>
+  <text x="118" y="144" fill="#7b4a3f" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="2">work</text>
+  <text x="118" y="224" fill="#18100f" font-family="Georgia, serif" font-size="72" font-weight="700">Dreamborn Work</text>
+  <text x="122" y="306" fill="#3a2a24" font-family="Arial, sans-serif" font-size="32">Production systems and agent-built operating proof.</text>
+  <text x="122" y="512" fill="#7b4a3f" font-family="Arial, sans-serif" font-size="26">Dreamborn</text>
+</svg>
