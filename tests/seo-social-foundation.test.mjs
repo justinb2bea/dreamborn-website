@@ -127,6 +127,10 @@ test('sitemap robots and feeds are generated', () => {
   assert.match(robots, /Allow: \//);
   assert.match(robots, /Sitemap: https:\/\/dreamborn\.ai\/sitemap\.xml/);
 
+  const redirects = readPublic('/_redirects');
+  assert.match(redirects, /\/justin \/ 301/);
+  assert.match(redirects, /\/justin\/ \/ 301/);
+
   const rss = readPublic('/feed.xml');
   assert.match(rss, /<rss version="2\.0"/);
   assert.match(rss, /The company I built without a payroll/);
