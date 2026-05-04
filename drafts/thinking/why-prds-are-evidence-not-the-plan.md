@@ -3,10 +3,10 @@ title: "Why PRDs Are Evidence, Not the Plan"
 slug: "why-prds-are-evidence-not-the-plan"
 excerpt: "In agentic product work, a PRD should be evidence for decision-making, not a static plan pretending the future is known."
 author: "Justin King"
-status: "draft"
+status: "published"
 topics: ["dispatches"]
 topic_label: "AI Product Building"
-published_at: null
+published_at: "2026-05-04T19:00:00.000Z"
 featured_image_url: null
 ---
 
@@ -90,4 +90,3 @@ That is a better product operating system.
 The PRD still matters.
 
 It just stops pretending to be the plan.
-

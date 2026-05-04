@@ -3,10 +3,10 @@ title: "What Every Company Needs Before Hiring Agents"
 slug: "what-every-company-needs-before-hiring-agents"
 excerpt: "Before a company adds AI agents, it needs clear work loops, permissions, memory, receipts, and human escalation paths."
 author: "Justin King"
-status: "draft"
+status: "published"
 topics: ["dispatches"]
 topic_label: "Agent Operations"
-published_at: null
+published_at: "2026-05-04T19:05:00.000Z"
 featured_image_url: null
 ---
 
@@ -108,4 +108,3 @@ Then expand.
 An AI-native company is not created by hiring a swarm of agents.
 
 It is created by building the operating layer where agents can do useful work and humans can still see what is true.
-

@@ -3,10 +3,10 @@ title: "The AI-Native Org Chart"
 slug: "the-ai-native-org-chart"
 excerpt: "The AI-native org chart is not just people and roles. It is humans, agents, systems, authority, memory, and receipts."
 author: "Justin King"
-status: "draft"
+status: "published"
 topics: ["dispatches"]
 topic_label: "AI-Native Company"
-published_at: null
+published_at: "2026-05-04T18:55:00.000Z"
 featured_image_url: null
 ---
 
@@ -97,4 +97,3 @@ Dreamborn's bet is that the future company will be organized around work loops, 
 The org chart will still matter.
 
 It will just include more than humans.
-

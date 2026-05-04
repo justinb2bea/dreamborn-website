@@ -3,10 +3,10 @@ title: "The Human CEO in an Agent Company"
 slug: "the-human-ceo-in-an-agent-company"
 excerpt: "An agent company still needs a human CEO. The job changes from carrying tasks to defining judgment, authority, and risk."
 author: "Justin King"
-status: "draft"
+status: "published"
 topics: ["dispatches"]
 topic_label: "Human Governance"
-published_at: null
+published_at: "2026-05-04T18:45:00.000Z"
 featured_image_url: null
 ---
 
@@ -92,4 +92,3 @@ An agent company still needs a human at the top.
 But that human should not be trapped inside every handoff.
 
 The human should define the system, inspect the receipts, make the calls that matter, and keep the company pointed at something worth building.
-

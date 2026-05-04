@@ -3,10 +3,10 @@ title: "Sent Is Not Received"
 slug: "sent-is-not-received"
 excerpt: "Most workflow systems know a task was sent. The next generation has to know it was received."
 author: "Justin King"
-status: "draft"
+status: "published"
 topics: ["dispatches"]
 topic_label: "Agent Operations"
-published_at: null
+published_at: "2026-05-04T18:35:00.000Z"
 featured_image_url: null
 ---
 
@@ -92,4 +92,3 @@ That is how AI work compounds.
 Not because every answer is perfect.
 
 Because every loop leaves enough context for the company to know what happened and decide what should happen next.
-

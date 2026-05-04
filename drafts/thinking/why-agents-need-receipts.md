@@ -3,10 +3,10 @@ title: "Why Agents Need Receipts"
 slug: "why-agents-need-receipts"
 excerpt: "AI agents need receipts because useful autonomy depends on visible evidence, not trust in a black-box action."
 author: "Justin King"
-status: "draft"
+status: "published"
 topics: ["dispatches"]
 topic_label: "Agent Operations"
-published_at: null
+published_at: "2026-05-04T18:40:00.000Z"
 featured_image_url: null
 ---
 
@@ -98,4 +98,3 @@ Dreamborn is being built around that premise.
 Agents should not just produce more artifacts. They should make the company's work more legible.
 
 That starts with receipts.
-

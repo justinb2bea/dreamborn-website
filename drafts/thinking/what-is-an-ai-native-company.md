@@ -3,10 +3,10 @@ title: "What Is an AI-Native Company?"
 slug: "what-is-an-ai-native-company"
 excerpt: "An AI-native company is not a normal company with chatbots attached. It is a company designed around AI as an operating layer."
 author: "Justin King"
-status: "draft"
+status: "published"
 topics: ["dispatches"]
 topic_label: "AI-Native Company"
-published_at: null
+published_at: "2026-05-04T18:30:00.000Z"
 featured_image_url: null
 ---
 
@@ -93,4 +93,3 @@ Dreamborn is being built around the belief that the next company is not staffed 
 The future is not a bigger dashboard.
 
 It is a company that can move work, remember why it moved, and show the human exactly where judgment is needed.
-

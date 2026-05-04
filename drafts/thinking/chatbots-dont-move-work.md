@@ -3,10 +3,10 @@ title: "Chatbots Don't Move Work"
 slug: "chatbots-dont-move-work"
 excerpt: "Chatbots can answer, draft, and summarize. Companies need AI systems that can move work through real operational loops."
 author: "Justin King"
-status: "draft"
+status: "published"
 topics: ["dispatches"]
 topic_label: "AI Product Building"
-published_at: null
+published_at: "2026-05-04T18:50:00.000Z"
 featured_image_url: null
 ---
 
@@ -87,4 +87,3 @@ Dreamborn is focused on that layer.
 Not another box where you ask the model a question.
 
 A system where work can move, leave evidence, and bring the human in at the right moment.
-
