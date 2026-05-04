@@ -18,22 +18,55 @@ function readPublic(pathname) {
   return readFileSync(join(siteRoot, pathname.replace(/^\//, '')), 'utf8');
 }
 
+function attrValue(tag, name) {
+  const pattern = new RegExp(`\\s${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s"'=<>` + '`' + `]+))`, 'i');
+  const match = tag.match(pattern);
+  return match ? (match[1] ?? match[2] ?? match[3] ?? '') : '';
+}
+
+function metaTags(html) {
+  return [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => match[0]);
+}
+
 function metaContent(html, selector) {
-  const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const pattern = new RegExp(`<meta[^>]+(?:name|property)=["']${escaped}["'][^>]+content=["']([^"']+)["'][^>]*>`);
-  const match = html.match(pattern);
-  return match ? match[1] : '';
+  const tag = metaTags(html).find((candidate) => {
+    return attrValue(candidate, 'name') === selector || attrValue(candidate, 'property') === selector;
+  });
+  return tag ? attrValue(tag, 'content') : '';
+}
+
+function linkTags(html) {
+  return [...html.matchAll(/<link\b[^>]*>/gi)].map((match) => match[0]);
+}
+
+function relIncludes(tag, rel) {
+  return attrValue(tag, 'rel').split(/\s+/).includes(rel);
 }
 
 function linkHref(html, rel) {
-  const pattern = new RegExp(`<link[^>]+rel=["']${rel}["'][^>]+href=["']([^"']+)["'][^>]*>`);
-  const match = html.match(pattern);
-  return match ? match[1] : '';
+  const tag = linkTags(html).find((candidate) => relIncludes(candidate, rel));
+  return tag ? attrValue(tag, 'href') : '';
 }
 
 function jsonLdBlocks(html) {
-  const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
-  return blocks.map((block) => JSON.parse(block[1]));
+  const blocks = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)];
+  return blocks
+    .filter((block) => attrValue(block[1], 'type') === 'application/ld+json')
+    .map((block) => JSON.parse(block[2]));
+}
+
+function jsonLdHasType(block, type) {
+  if (Array.isArray(block)) {
+    return block.some((item) => jsonLdHasType(item, type));
+  }
+
+  if (!block || typeof block !== 'object') return false;
+
+  const blockType = block['@type'];
+  const types = Array.isArray(blockType) ? blockType : [blockType];
+  if (types.includes(type)) return true;
+
+  return jsonLdHasType(block['@graph'], type);
 }
 
 function localSocialImageExists(imageUrl) {
@@ -56,8 +89,8 @@ const corePages = [
 test('core pages emit complete SEO and social metadata', () => {
   for (const [pathname, type] of corePages) {
     const html = readBuilt(pathname);
-    assert.match(html, /<title>[^<]+<\/title>/, `${pathname} has title`);
-    assert.match(html, /<meta name="description" content="[^"]+">/, `${pathname} has description`);
+    assert.match(html, /<title\b[^>]*>[^<]+<\/title>/i, `${pathname} has title`);
+    assert.ok(metaContent(html, 'description'), `${pathname} has description`);
     assert.equal(linkHref(html, 'canonical'), `https://dreamborn.ai${pathname}`);
     assert.equal(metaContent(html, 'og:type'), type);
     assert.ok(metaContent(html, 'og:title'), `${pathname} has og:title`);
@@ -65,8 +98,9 @@ test('core pages emit complete SEO and social metadata', () => {
     assert.ok(metaContent(html, 'twitter:card'), `${pathname} has twitter card`);
     assert.ok(metaContent(html, 'twitter:image'), `${pathname} has twitter image`);
     assert.ok(localSocialImageExists(metaContent(html, 'og:image')), `${pathname} OG image exists locally`);
-    assert.equal((html.match(/rel="canonical"/g) || []).length, 1, `${pathname} has one canonical`);
-    assert.equal((html.match(/<title>/g) || []).length, 1, `${pathname} has one title`);
+    assert.ok(localSocialImageExists(metaContent(html, 'twitter:image')), `${pathname} Twitter image exists locally`);
+    assert.equal(linkTags(html).filter((tag) => relIncludes(tag, 'canonical')).length, 1, `${pathname} has one canonical`);
+    assert.equal((html.match(/<title\b[^>]*>/gi) || []).length, 1, `${pathname} has one title`);
     assert.ok(jsonLdBlocks(html).length >= 1, `${pathname} has JSON-LD`);
   }
 });
@@ -78,7 +112,7 @@ test('thinking posts emit article metadata and article schema', () => {
   assert.ok(metaContent(html, 'article:author'));
   assert.ok(metaContent(html, 'twitter:image'));
   const blocks = jsonLdBlocks(html);
-  assert.ok(blocks.some((block) => block['@type'] === 'Article'), 'Article JSON-LD exists');
+  assert.ok(blocks.some((block) => jsonLdHasType(block, 'Article')), 'Article JSON-LD exists');
 });
 
 test('sitemap robots and feeds are generated', () => {
