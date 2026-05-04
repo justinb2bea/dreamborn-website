@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
@@ -69,10 +69,10 @@ function jsonLdHasType(block, type) {
   return jsonLdHasType(block['@graph'], type);
 }
 
-function localSocialImageExists(imageUrl) {
-  if (!imageUrl.startsWith('https://dreamborn.ai/')) return false;
-  const pathname = new URL(imageUrl).pathname.replace(/^\//, '');
-  return existsSync(join(siteRoot, pathname));
+function isCloudflareImageUrl(imageUrl) {
+  if (!imageUrl.startsWith('https://imagedelivery.net/')) return false;
+  const url = new URL(imageUrl);
+  return url.pathname.split('/').filter(Boolean).length >= 3 && url.pathname.endsWith('/public');
 }
 
 const corePages = [
@@ -97,8 +97,8 @@ test('core pages emit complete SEO and social metadata', () => {
     assert.ok(metaContent(html, 'og:description'), `${pathname} has og:description`);
     assert.ok(metaContent(html, 'twitter:card'), `${pathname} has twitter card`);
     assert.ok(metaContent(html, 'twitter:image'), `${pathname} has twitter image`);
-    assert.ok(localSocialImageExists(metaContent(html, 'og:image')), `${pathname} OG image exists locally`);
-    assert.ok(localSocialImageExists(metaContent(html, 'twitter:image')), `${pathname} Twitter image exists locally`);
+    assert.ok(isCloudflareImageUrl(metaContent(html, 'og:image')), `${pathname} OG image uses Cloudflare Images`);
+    assert.ok(isCloudflareImageUrl(metaContent(html, 'twitter:image')), `${pathname} Twitter image uses Cloudflare Images`);
     assert.equal(linkTags(html).filter((tag) => relIncludes(tag, 'canonical')).length, 1, `${pathname} has one canonical`);
     assert.equal((html.match(/<title\b[^>]*>/gi) || []).length, 1, `${pathname} has one title`);
     assert.ok(jsonLdBlocks(html).length >= 1, `${pathname} has JSON-LD`);
@@ -110,7 +110,8 @@ test('thinking posts emit article metadata and article schema', () => {
   assert.equal(metaContent(html, 'og:type'), 'article');
   assert.ok(metaContent(html, 'article:published_time'));
   assert.ok(metaContent(html, 'article:author'));
-  assert.ok(metaContent(html, 'twitter:image'));
+  assert.ok(isCloudflareImageUrl(metaContent(html, 'og:image')), 'article OG image uses Cloudflare Images');
+  assert.ok(isCloudflareImageUrl(metaContent(html, 'twitter:image')), 'article Twitter image uses Cloudflare Images');
   const blocks = jsonLdBlocks(html);
   assert.ok(blocks.some((block) => jsonLdHasType(block, 'Article')), 'Article JSON-LD exists');
 });
@@ -133,4 +134,7 @@ test('sitemap robots and feeds are generated', () => {
   const jsonFeed = JSON.parse(readPublic('/feed.json'));
   assert.equal(jsonFeed.version, 'https://jsonfeed.org/version/1.1');
   assert.ok(jsonFeed.items.some((item) => item.url === 'https://dreamborn.ai/thinking/the-company-i-built-without-a-payroll/'));
+
+  const manifest = JSON.parse(readPublic('/manifest.webmanifest'));
+  assert.ok(isCloudflareImageUrl(manifest.icons[0].src), 'manifest icon uses Cloudflare Images');
 });

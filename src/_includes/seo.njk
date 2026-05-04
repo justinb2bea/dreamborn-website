@@ -37,7 +37,7 @@
 {% elif pageType == 'article' and site.socialImages.article %}
   {% set imagePath = image or site.socialImages.article %}
 {% endif %}
-{% set absoluteImage = site.url ~ imagePath %}
+{% set absoluteImage = site.absoluteUrl(imagePath) %}
 {% set socialImageAlt = imageAlt or site.defaultImageAlt %}
 {% set robotsValue = robots or 'index,follow' %}
 {% set articlePublished = published or date or post.published_at %}
@@ -102,7 +102,7 @@
   '@type': 'Organization',
   name: site.name,
   url: site.url,
-  logo: site.url ~ site.defaultImage,
+  logo: site.absoluteUrl(site.defaultImage),
   sameAs: site.sameAs
 } %}
 <script type="application/ld+json">{{ site.jsonLd(organizationJsonLd) | safe }}</script>
@@ -160,7 +160,7 @@
       url: site.url,
       logo: {
         '@type': 'ImageObject',
-        url: site.url ~ site.defaultImage
+        url: site.absoluteUrl(site.defaultImage)
       }
     },
     mainEntityOfPage: canonicalUrl,

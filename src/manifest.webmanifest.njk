@@ -12,9 +12,9 @@ eleventyExcludeFromCollections: true
   "theme_color": {{ site.themeColor | json | safe }},
   "icons": [
     {
-      "src": {{ '/img/social/dreamborn-default.svg' | json | safe }},
+      "src": {{ site.defaultImage | json | safe }},
       "sizes": {{ '1200x630' | json | safe }},
-      "type": {{ 'image/svg+xml' | json | safe }}
+      "type": {{ 'image/png' | json | safe }}
     }
   ]
 }
