@@ -1,0 +1,18 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% for url in ['/', '/explainer/', '/thinking/', '/live/', '/work/', '/system/', '/justin/', '/connect/'] %}
+  <url>
+    <loc>{{ site.url }}{{ url }}</loc>
+  </url>
+{% endfor %}
+{% for post in posts %}
+  <url>
+    <loc>{{ site.url }}/thinking/{{ post.slug }}/</loc>
+    {% if post.updated_at or post.published_at %}<lastmod>{{ post.updated_at or post.published_at }}</lastmod>{% endif %}
+  </url>
+{% endfor %}
+</urlset>

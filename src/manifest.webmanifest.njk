@@ -1,0 +1,20 @@
+---
+permalink: /manifest.webmanifest
+eleventyExcludeFromCollections: true
+---
+{
+  "name": {{ site.name | json | safe }},
+  "short_name": {{ site.name | json | safe }},
+  "description": {{ site.description | json | safe }},
+  "start_url": {{ '/' | json | safe }},
+  "display": {{ 'standalone' | json | safe }},
+  "background_color": {{ '#18100f' | json | safe }},
+  "theme_color": {{ site.themeColor | json | safe }},
+  "icons": [
+    {
+      "src": {{ '/img/social/dreamborn-default.svg' | json | safe }},
+      "sizes": {{ '1200x630' | json | safe }},
+      "type": {{ 'image/svg+xml' | json | safe }}
+    }
+  ]
+}

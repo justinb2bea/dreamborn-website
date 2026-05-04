@@ -1,0 +1,23 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dreamborn Thinking</title>
+    <link>{{ site.url }}/thinking/</link>
+    <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
+    <description>{{ site.description | escape }}</description>
+    <language>en-us</language>
+    {% for post in posts %}
+    <item>
+      <title>{{ post.title | escape }}</title>
+      <link>{{ site.url }}/thinking/{{ post.slug }}/</link>
+      <guid>{{ site.url }}/thinking/{{ post.slug }}/</guid>
+      {% if post.published_at %}<pubDate>{{ post.published_at }}</pubDate>{% endif %}
+      {% if post.excerpt %}<description>{{ post.excerpt | escape }}</description>{% endif %}
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

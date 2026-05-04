@@ -1,0 +1,34 @@
+---
+permalink: /feed.json
+eleventyExcludeFromCollections: true
+---
+{
+  "version": {{ 'https://jsonfeed.org/version/1.1' | json | safe }},
+  "title": {{ 'Dreamborn Thinking' | json | safe }},
+  "home_page_url": {{ (site.url + '/thinking/') | json | safe }},
+  "feed_url": {{ (site.url + '/feed.json') | json | safe }},
+  "description": {{ site.description | json | safe }},
+  "authors": [
+    {
+      "name": {{ site.author.name | json | safe }},
+      "url": {{ site.author.url | json | safe }}
+    }
+  ],
+  "items": [
+    {% for post in posts %}
+    {% set postUrl = site.url + '/thinking/' + post.slug + '/' %}
+    {
+      "id": {{ postUrl | json | safe }},
+      "url": {{ postUrl | json | safe }},
+      "title": {{ post.title | json | safe }},
+      "summary": {% if post.excerpt %}{{ post.excerpt | json | safe }}{% else %}null{% endif %},
+      "content_html": {% if post.body_html %}{{ post.body_html | json | safe }}{% else %}null{% endif %},
+      "date_published": {% if post.published_at %}{{ post.published_at | json | safe }}{% else %}null{% endif %},
+      "author": {
+        "name": {% if post.author %}{{ post.author | json | safe }}{% else %}{{ site.author.name | json | safe }}{% endif %},
+        "url": {{ site.author.url | json | safe }}
+      }
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
