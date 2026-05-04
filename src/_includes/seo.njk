@@ -1,6 +1,3 @@
-{% macro jsonLd(data) -%}
-<script type="application/ld+json">{{ data | json | replace('<', '\\u003c') | safe }}</script>
-{%- endmacro %}
 {% set inferredType = 'website' %}
 {% if post %}
   {% set inferredType = 'article' %}
@@ -11,13 +8,7 @@
 {% if post and post.title %}
   {% set pageTitle = post.title %}
 {% endif %}
-{% if pageTitle == site.title %}
-  {% set fullTitle = pageTitle %}
-{% elif site.name in pageTitle %}
-  {% set fullTitle = pageTitle %}
-{% else %}
-  {% set fullTitle = pageTitle ~ ' — Dreamborn' %}
-{% endif %}
+{% set fullTitle = site.formatTitle(pageTitle) %}
 {% set pageDescription = description or site.description %}
 {% if post and post.excerpt %}
   {% set pageDescription = post.excerpt %}
@@ -114,7 +105,7 @@
   logo: site.url ~ site.defaultImage,
   sameAs: site.sameAs
 } %}
-{{ jsonLd(organizationJsonLd) }}
+<script type="application/ld+json">{{ site.jsonLd(organizationJsonLd) | safe }}</script>
 
 {% if page.url == '/' %}
   {% set websiteJsonLd = {
@@ -129,7 +120,7 @@
       url: site.url
     }
   } %}
-{{ jsonLd(websiteJsonLd) }}
+<script type="application/ld+json">{{ site.jsonLd(websiteJsonLd) | safe }}</script>
 {% endif %}
 
 {% if pageType == 'profile' %}
@@ -146,7 +137,7 @@
       url: site.url
     }
   } %}
-{{ jsonLd(personJsonLd) }}
+<script type="application/ld+json">{{ site.jsonLd(personJsonLd) | safe }}</script>
 {% endif %}
 
 {% if pageType == 'article' %}
@@ -175,7 +166,7 @@
     mainEntityOfPage: canonicalUrl,
     articleSection: articleSection
   } %}
-{{ jsonLd(articleJsonLd) }}
+<script type="application/ld+json">{{ site.jsonLd(articleJsonLd) | safe }}</script>
 {% endif %}
 
 {% if page.url != '/' %}
@@ -197,5 +188,5 @@
       }
     ]
   } %}
-{{ jsonLd(breadcrumbJsonLd) }}
+<script type="application/ld+json">{{ site.jsonLd(breadcrumbJsonLd) | safe }}</script>
 {% endif %}

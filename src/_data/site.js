@@ -1,8 +1,25 @@
 const siteUrl = 'https://dreamborn.ai';
+const siteName = 'Dreamborn';
+const siteTitle = `${siteName} — AI-Native Company in Production`;
+
+function formatTitle(value) {
+  if (!value || value === siteTitle || value.endsWith(` — ${siteName}`)) {
+    return value || siteTitle;
+  }
+
+  return `${value} — ${siteName}`;
+}
+
+function jsonLd(value) {
+  return JSON.stringify(value)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026');
+}
 
 module.exports = {
-  name: 'Dreamborn',
-  title: 'Dreamborn — AI-Native Company in Production',
+  name: siteName,
+  title: siteTitle,
   description: 'Dreamborn builds AI-native operating systems, agent workflows, and verified work surfaces for companies moving beyond software as usual.',
   url: siteUrl,
   locale: 'en_US',
@@ -30,4 +47,6 @@ module.exports = {
     justin: '/img/social/dreamborn-justin.svg',
     connect: '/img/social/dreamborn-connect.svg',
   },
+  formatTitle,
+  jsonLd,
 };
