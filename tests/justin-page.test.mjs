@@ -16,7 +16,22 @@ test('Justin page carries the speaker profile essentials', () => {
   assert.match(page, /platform\.twitter\.com\/widgets\.js/);
 });
 
-test('Dreamborn navigation links to Justin profile', () => {
+test('Dreamborn keeps Justin out of the primary header and links from secondary chrome', () => {
   const nav = readFileSync(new URL('../src/_includes/nav.njk', import.meta.url), 'utf8');
-  assert.match(nav, /href="\/justin\/"/);
+  const footer = readFileSync(new URL('../src/_includes/footer.njk', import.meta.url), 'utf8');
+  assert.doesNotMatch(nav, /<li><a href="\/justin\/"/);
+  assert.match(nav, /class="nav__secondary-link" href="\/justin\/"/);
+  assert.match(footer, /href="\/justin\/"/);
+});
+
+test('Dreamborn navigation has an accessible mobile menu toggle', () => {
+  const nav = readFileSync(new URL('../src/_includes/nav.njk', import.meta.url), 'utf8');
+  const base = readFileSync(new URL('../src/_layouts/base.njk', import.meta.url), 'utf8');
+  const script = readFileSync(new URL('../public/js/nav.js', import.meta.url), 'utf8');
+  assert.match(nav, /data-nav-toggle/);
+  assert.match(nav, /aria-controls="mainNavigationLinks"/);
+  assert.match(nav, /data-nav-menu/);
+  assert.match(base, /\/js\/nav\.js/);
+  assert.match(script, /aria-expanded/);
+  assert.match(script, /nav-open/);
 });

@@ -16,14 +16,27 @@
       >
     </a>
 
-    <ul class="nav__links" role="list">
+    <button class="nav__menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mainNavigationLinks"
+            aria-label="Open navigation menu"
+            data-nav-toggle>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+
+    <div class="nav__menu" id="mainNavigationLinks" data-nav-menu>
+      <ul class="nav__links" role="list">
       <li><a href="/explainer/" {% if page.url == '/explainer/' %}aria-current="page"{% endif %}>Explainer</a></li>
       <li><a href="/thinking/" {% if page.url == '/thinking/' %}aria-current="page"{% endif %}>Thinking</a></li>
       <li><a href="/live/" {% if page.url == '/live/' %}aria-current="page"{% endif %}>Live</a></li>
       <li><a href="/work/" {% if page.url == '/work/' %}aria-current="page"{% endif %}>Work</a></li>
       <li><a href="/system/" {% if page.url == '/system/' %}aria-current="page"{% endif %}>System</a></li>
-      <li><a href="/justin/" {% if page.url == '/justin/' %}aria-current="page"{% endif %}>Justin</a></li>
       <li><a href="/connect/" class="nav__cta" {% if page.url == '/connect/' %}aria-current="page"{% endif %}>Connect →</a></li>
-    </ul>
+      </ul>
+      <a class="nav__secondary-link" href="/justin/" {% if page.url == '/justin/' %}aria-current="page"{% endif %}>Justin King</a>
+    </div>
   </div>
 </nav>
