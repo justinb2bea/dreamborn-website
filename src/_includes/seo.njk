@@ -1,0 +1,196 @@
+{% set inferredType = 'website' %}
+{% if post %}
+  {% set inferredType = 'article' %}
+{% elif page.url == '/justin/' %}
+  {% set inferredType = 'profile' %}
+{% endif %}
+{% set pageTitle = seoTitle or title or site.title %}
+{% if post and post.title %}
+  {% set pageTitle = post.title %}
+{% endif %}
+{% if pageTitle == site.title %}
+  {% set fullTitle = pageTitle %}
+{% else %}
+  {% set fullTitle = pageTitle ~ ' — Dreamborn' %}
+{% endif %}
+{% set pageDescription = description or site.description %}
+{% if post and post.excerpt %}
+  {% set pageDescription = post.excerpt %}
+{% endif %}
+{% set socialTitleValue = socialTitle or pageTitle %}
+{% set socialDescriptionValue = socialDescription or pageDescription %}
+{% set pageType = type or inferredType %}
+{% set canonicalUrl = canonical or site.url ~ page.url %}
+{% set imagePath = image or site.defaultImage %}
+{% if page.url == '/' and site.socialImages.home %}
+  {% set imagePath = image or site.socialImages.home %}
+{% elif page.url == '/explainer/' and site.socialImages.explainer %}
+  {% set imagePath = image or site.socialImages.explainer %}
+{% elif page.url == '/work/' and site.socialImages.work %}
+  {% set imagePath = image or site.socialImages.work %}
+{% elif page.url == '/system/' and site.socialImages.system %}
+  {% set imagePath = image or site.socialImages.system %}
+{% elif page.url == '/live/' and site.socialImages.live %}
+  {% set imagePath = image or site.socialImages.live %}
+{% elif page.url == '/thinking/' and site.socialImages.thinking %}
+  {% set imagePath = image or site.socialImages.thinking %}
+{% elif page.url == '/justin/' and site.socialImages.justin %}
+  {% set imagePath = image or site.socialImages.justin %}
+{% elif page.url == '/connect/' and site.socialImages.connect %}
+  {% set imagePath = image or site.socialImages.connect %}
+{% elif pageType == 'article' and site.socialImages.article %}
+  {% set imagePath = image or site.socialImages.article %}
+{% endif %}
+{% set absoluteImage = site.url ~ imagePath %}
+{% set socialImageAlt = imageAlt or site.defaultImageAlt %}
+{% set robotsValue = robots or 'index,follow' %}
+{% set articlePublished = published or date or post.published_at %}
+{% set articleModified = modified or updated or post.updated_at or post.modified_at or post.published_at %}
+{% set articleAuthor = author or post.author or site.author.name %}
+{% set articleSection = section or post.topic_label or 'Thinking' %}
+{% set breadcrumbName = pageTitle %}
+{% if page.url == '/thinking/' %}
+  {% set breadcrumbName = 'Thinking' %}
+{% elif page.url == '/justin/' %}
+  {% set breadcrumbName = 'Justin King' %}
+{% elif page.url == '/connect/' %}
+  {% set breadcrumbName = 'Connect' %}
+{% elif page.url == '/explainer/' %}
+  {% set breadcrumbName = 'Explainer' %}
+{% elif page.url == '/work/' %}
+  {% set breadcrumbName = 'Work' %}
+{% elif page.url == '/system/' %}
+  {% set breadcrumbName = 'System' %}
+{% elif page.url == '/live/' %}
+  {% set breadcrumbName = 'Live' %}
+{% endif %}
+
+<title>{{ fullTitle }}</title>
+<meta name="description" content="{{ pageDescription }}">
+<meta name="robots" content="{{ robotsValue }}">
+<meta name="theme-color" content="{{ site.themeColor }}">
+<link rel="canonical" href="{{ canonicalUrl }}">
+
+<meta property="og:type" content="{{ pageType }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:locale" content="{{ site.locale }}">
+<meta property="og:title" content="{{ socialTitleValue }}">
+<meta property="og:description" content="{{ socialDescriptionValue }}">
+<meta property="og:url" content="{{ canonicalUrl }}">
+<meta property="og:image" content="{{ absoluteImage }}">
+<meta property="og:image:alt" content="{{ socialImageAlt }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="{{ site.twitterHandle }}">
+<meta name="twitter:creator" content="{{ site.author.twitter }}">
+<meta name="twitter:title" content="{{ socialTitleValue }}">
+<meta name="twitter:description" content="{{ socialDescriptionValue }}">
+<meta name="twitter:image" content="{{ absoluteImage }}">
+<meta name="twitter:image:alt" content="{{ socialImageAlt }}">
+
+{% if pageType == 'article' %}
+<meta property="article:published_time" content="{{ articlePublished }}">
+<meta property="article:modified_time" content="{{ articleModified }}">
+<meta property="article:author" content="{{ articleAuthor }}">
+<meta property="article:section" content="{{ articleSection }}">
+{% endif %}
+
+<link rel="alternate" type="application/rss+xml" title="{{ site.name }} RSS" href="{{ site.url }}/feed.xml">
+<link rel="alternate" type="application/feed+json" title="{{ site.name }} JSON Feed" href="{{ site.url }}/feed.json">
+<link rel="manifest" href="/manifest.webmanifest">
+
+{% set organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: site.url,
+  logo: site.url ~ site.defaultImage,
+  sameAs: site.sameAs
+} %}
+<script type="application/ld+json">{{ organizationJsonLd | json | safe }}</script>
+
+{% if page.url == '/' %}
+  {% set websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: site.name,
+    url: site.url,
+    description: site.description,
+    publisher: {
+      '@type': 'Organization',
+      name: site.name,
+      url: site.url
+    }
+  } %}
+<script type="application/ld+json">{{ websiteJsonLd | json | safe }}</script>
+{% endif %}
+
+{% if pageType == 'profile' %}
+  {% set personJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: site.author.name,
+    url: site.author.url,
+    image: site.author.image,
+    sameAs: site.sameAs,
+    worksFor: {
+      '@type': 'Organization',
+      name: site.name,
+      url: site.url
+    }
+  } %}
+<script type="application/ld+json">{{ personJsonLd | json | safe }}</script>
+{% endif %}
+
+{% if pageType == 'article' %}
+  {% set articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: pageTitle,
+    description: pageDescription,
+    image: absoluteImage,
+    datePublished: articlePublished,
+    dateModified: articleModified,
+    author: {
+      '@type': 'Person',
+      name: articleAuthor,
+      url: site.author.url
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: site.name,
+      url: site.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: site.url ~ site.defaultImage
+      }
+    },
+    mainEntityOfPage: canonicalUrl,
+    articleSection: articleSection
+  } %}
+<script type="application/ld+json">{{ articleJsonLd | json | safe }}</script>
+{% endif %}
+
+{% if page.url != '/' %}
+  {% set breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: site.name,
+        item: site.url ~ '/'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: breadcrumbName,
+        item: canonicalUrl
+      }
+    ]
+  } %}
+<script type="application/ld+json">{{ breadcrumbJsonLd | json | safe }}</script>
+{% endif %}

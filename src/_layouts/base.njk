@@ -7,17 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{% if title %}{{ title }} — Dreamborn{% else %}Dreamborn — AI-Native Systems{% endif %}</title>
-  <meta name="description" content="{% if description %}{{ description }}{% else %}Dreamborn builds AI-native systems: agent workflows, CRM automation, and the infrastructure to run them.{% endif %}">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="{% if title %}{{ title }} — Dreamborn{% else %}Dreamborn — AI-Native Systems{% endif %}">
-  <meta property="og:description" content="{% if description %}{{ description }}{% else %}Dreamborn builds AI-native systems: agent workflows, CRM automation, and the infrastructure to run them.{% endif %}">
-  <meta property="og:url" content="https://dreamborn.ai{{ page.url }}">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://dreamborn.ai{{ page.url }}">
+  {% include "seo.njk" %}
 
   <!-- Stylesheets (self-hosted — no external font CDN) -->
   <link rel="stylesheet" href="/css/dreamborn.css">
