@@ -7,7 +7,17 @@ pagination:
   alias: post
 permalink: "/thinking/{{ post.slug }}/"
 eleventyComputed:
-  title: "{{ post.title }} — Dreamborn"
+  title: "{{ post.title }}"
+  description: "{{ post.excerpt }}"
+  socialTitle: "{{ post.title }}"
+  socialDescription: "{{ post.excerpt }}"
+  image: "{{ post.social_image or site.socialImages.article }}"
+  imageAlt: "{{ post.social_image_alt or 'Dreamborn Thinking article social card.' }}"
+  type: "article"
+  published: "{{ post.published_at }}"
+  modified: "{{ post.updated_at or post.published_at }}"
+  author: "{{ post.author }}"
+  section: "{{ post.topic_label or 'Thinking' }}"
 ---
 
 <main class="thinking-detail">
