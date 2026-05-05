@@ -3876,6 +3876,7 @@ p, h1, h2, h3, h4, h5, h6 {
   opacity: 0;
   transform: translateY(12px);
   visibility: hidden;
+  filter: drop-shadow(0 28px 54px rgba(0, 0, 0, 0.5));
   transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
 }
 
@@ -3924,25 +3925,80 @@ p, h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 640px) {
   .finn-drawer {
-    right: var(--space-4);
-    left: var(--space-4);
-    bottom: var(--space-4);
+    right: var(--space-3);
+    left: var(--space-3);
+    bottom: var(--space-3);
   }
 
   .finn-drawer__panel {
     right: 0;
     width: 100%;
-    max-height: 38vh;
+    bottom: calc(100% + var(--space-2));
+    max-height: min(72vh, 620px);
     overflow: hidden;
+    border: 1px solid rgba(215, 177, 110, 0.28);
+    background: #17100e;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 24px 70px rgba(0, 0, 0, 0.72);
   }
 
   .finn-drawer__launcher {
     width: 100%;
     justify-content: center;
+    min-height: 50px;
+    border-color: rgba(141, 198, 63, 0.52);
+    background: #0a0807;
+  }
+
+  .finn-drawer__topline {
+    border: 0;
+    border-bottom: 1px solid rgba(215, 177, 110, 0.24);
+    background:
+      linear-gradient(135deg, rgba(139, 26, 26, 0.22), rgba(215, 177, 110, 0.06)),
+      #17100e;
   }
 
   .finn-chat--drawer {
-    max-height: calc(38vh - 82px);
+    max-height: calc(min(72vh, 620px) - 82px);
+    border: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+      #1b1412;
+  }
+
+  .finn-chat--drawer .finn-chat__header,
+  .finn-chat--drawer .finn-chat__input-area {
+    background: rgba(10, 8, 7, 0.72);
+    border-color: rgba(215, 177, 110, 0.18);
+  }
+
+  .finn-chat--drawer .finn-chat__messages {
+    min-height: 180px;
+    padding: var(--space-4);
+    background:
+      radial-gradient(circle at top left, rgba(141, 198, 63, 0.08), transparent 36%),
+      rgba(255, 255, 255, 0.025);
+  }
+
+  .finn-chat--drawer .message-bubble--finn {
+    background: rgba(240, 237, 233, 0.1);
+    border-color: rgba(215, 177, 110, 0.22);
+  }
+
+  .finn-chat--drawer .suggested-prompts {
+    padding: 0 var(--space-4) var(--space-4);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .finn-chat--drawer .prompt-pill {
+    background: rgba(10, 8, 7, 0.68);
+    border-color: rgba(215, 177, 110, 0.2);
+  }
+
+  .finn-chat--drawer .finn-chat__input {
+    background: #080605;
+    border-color: rgba(215, 177, 110, 0.24);
   }
 }
 

@@ -38,6 +38,14 @@ test('base layout includes global Finn drawer and script', () => {
   assert.match(base, /\/js\/finn-global\.js/);
 });
 
+test('mobile Finn drawer renders as a distinct sheet', () => {
+  assert.match(css, /@media \(max-width: 640px\)/);
+  assert.match(css, /\.finn-drawer__panel[\s\S]*max-height: min\(72vh, 620px\)/);
+  assert.match(css, /\.finn-chat--drawer[\s\S]*#1b1412/);
+  assert.match(css, /\.finn-chat--drawer \.message-bubble--finn[\s\S]*rgba\(240, 237, 233, 0\.1\)/);
+  assert.match(css, /\.finn-chat--drawer \.finn-chat__messages[\s\S]*min-height: 180px/);
+});
+
 test('connect page uses global Finn script without duplicate page-only script', () => {
   assert.match(connect, /connect-chat-shell/);
   assert.doesNotMatch(connect, /\/js\/finn-chat\.js/);
