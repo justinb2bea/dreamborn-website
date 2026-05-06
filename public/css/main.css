@@ -8571,3 +8571,19 @@ p, h1, h2, h3, h4, h5, h6 {
     transition: none;
   }
 }
+
+/* ─── Shared hero title scale — Thinking intentionally keeps its editorial treatment. */
+.hero__h1,
+.connect-hero h1,
+.live-room__header h1,
+.work-hero h1,
+.system-hero h1,
+.how-hero h1,
+.cluster-hero h1,
+.native-hero h1 {
+  font-family: var(--font-editorial-heading);
+  font-size: clamp(32px, 5.8vw, 64px);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.04;
+}

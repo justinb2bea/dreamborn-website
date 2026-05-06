@@ -26,3 +26,9 @@ test('Dreamborn navigation keeps Connect CTA green across pages', () => {
   assert.match(css, /\.nav__cta \{[^}]*color: var\(--db-lime-500\) !important;[^}]*border: 1px solid rgba\(141, 198, 63, 0\.42\)/);
   assert.doesNotMatch(css, /\.nav__cta \{[^}]*color: var\(--color-crimson\)/);
 });
+
+test('Dreamborn non-Thinking hero titles share the homepage title scale', () => {
+  const css = readFileSync(new URL('../public/css/main.css', import.meta.url), 'utf8');
+  assert.match(css, /\.connect-hero h1,[\s\S]*\.native-hero h1 \{[\s\S]*font-family: var\(--font-editorial-heading\);[\s\S]*font-size: clamp\(32px, 5\.8vw, 64px\);[\s\S]*font-weight: 600;[\s\S]*line-height: 1\.04;/);
+  assert.doesNotMatch(css, /\.thinking-header h1,[\s\S]*font-size: clamp\(32px, 5\.8vw, 64px\)/);
+});
