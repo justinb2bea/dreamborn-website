@@ -7,6 +7,7 @@ const aiNative = readFileSync(new URL('../src/ai-native/index.njk', import.meta.
 const nav = readFileSync(new URL('../src/_includes/nav.njk', import.meta.url), 'utf8');
 const footer = readFileSync(new URL('../src/_includes/footer.njk', import.meta.url), 'utf8');
 const sitemap = readFileSync(new URL('../src/sitemap.xml.njk', import.meta.url), 'utf8');
+const css = readFileSync(new URL('../public/css/main.css', import.meta.url), 'utf8');
 
 test('header exposes distinct explainer and AI-native routes', () => {
   assert.match(nav, /href="\/explainer\/"[\s\S]*>Explainer<\/a>/);
@@ -45,4 +46,9 @@ test('AI-native page preserves the prior explainer content under the new route',
 
 test('sitemap source includes AI-native canonical route', () => {
   assert.match(sitemap, /'\/ai-native\/'/);
+});
+
+test('explainer typography uses Fraunces display and Lora body copy', () => {
+  assert.match(css, /\.cluster-page h1,\s*\n\.cluster-page h2 \{[^}]*font-family: var\(--font-editorial-heading\)/);
+  assert.match(css, /\.cluster-page p,\s*\n\.cluster-page li \{[^}]*font-family: var\(--font-brand-body\)/);
 });

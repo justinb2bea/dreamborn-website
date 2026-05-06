@@ -6087,7 +6087,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .cluster-page h1,
 .cluster-page h2 {
   color: var(--color-text-inverse);
-  font-family: var(--font-brand-heading);
+  font-family: var(--font-editorial-heading);
   font-weight: 400;
   line-height: 0.96;
 }
@@ -6118,6 +6118,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .cluster-page p,
 .cluster-page li {
   color: rgba(240, 237, 233, 0.76);
+  font-family: var(--font-brand-body);
   font-size: 17px;
   line-height: 1.62;
 }
