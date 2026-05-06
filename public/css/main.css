@@ -6544,6 +6544,18 @@ p, h1, h2, h3, h4, h5, h6 {
   background: var(--color-crimson);
 }
 
+.cluster-final-card {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: clamp(32px, 5vw, 64px);
+  border: 1px solid rgba(215, 177, 110, 0.32);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(251, 247, 240, 0.9)),
+    #fbf7f0;
+  box-shadow: 0 32px 80px rgba(18, 13, 11, 0.22);
+}
+
 .cluster-final h2,
 .cluster-final p,
 .native-final h2,
@@ -6552,9 +6564,16 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-right: auto;
 }
 
-.cluster-final h2,
+.cluster-final .cluster-kicker {
+  color: var(--color-crimson) !important;
+}
+
+.cluster-final h2 {
+  color: #1a1a1a;
+}
+
 .cluster-final p {
-  color: var(--color-text-inverse);
+  color: #6f625d;
 }
 
 .cluster-final p,
@@ -6570,6 +6589,16 @@ p, h1, h2, h3, h4, h5, h6 {
 .cluster-final .cluster-actions,
 .native-final .native-actions {
   justify-content: center;
+}
+
+.cluster-final-card .btn--outline {
+  border-color: rgba(140, 26, 19, 0.28);
+  color: #1a1a1a;
+}
+
+.cluster-final-card .btn--outline:hover {
+  border-color: var(--color-crimson);
+  background: rgba(140, 26, 19, 0.06);
 }
 
 /* ─── /ai-native ───────────────────────────────────────────── */
