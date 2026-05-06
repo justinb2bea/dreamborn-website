@@ -25,13 +25,12 @@ test('homepage places Finn in the middle of the page', () => {
   assert.match(homepage, /Explain the thesis/);
   assert.match(homepage, /What should we own\?/);
   assert.match(homepage, /How does the agent cluster work\?/);
-  assert.match(homepage, /Explain this feed/);
-  assert.match(homepage, /Watch the work move/);
-  assert.match(homepage, /Receipts of work/);
+  assert.doesNotMatch(homepage, /Explain this feed/);
+  assert.match(homepage, /Open live room/);
+  assert.match(homepage, /Recent work/);
   assert.match(homepage, /data-work-preview="compact"/);
   assert.doesNotMatch(homepage, /ops-panel-label">Verified handoff/);
   assert.match(homepage, /Roles being filled/);
-  assert.match(homepage, /Explain the live Dreamborn feed in plain English\./);
 });
 
 test('base layout includes global Finn drawer and script', () => {

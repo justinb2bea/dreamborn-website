@@ -265,6 +265,41 @@
     });
   }
 
+  function bindScrollReveals() {
+    const targets = Array.from(root.querySelectorAll([
+      '.db-home-section',
+      '.db-home-quote',
+      '.db-home-final',
+      '.db-thinking-card',
+    ].join(',')));
+    if (!targets.length) return;
+
+    targets.forEach((target, index) => {
+      target.classList.add('db-reveal');
+      target.style.setProperty('--db-reveal-index', String(index % 4));
+    });
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const desktop = window.matchMedia('(min-width: 721px)').matches;
+    if (reducedMotion || desktop || !('IntersectionObserver' in window)) {
+      targets.forEach((target) => target.classList.add('db-reveal--visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('db-reveal--visible');
+        observer.unobserve(entry.target);
+      });
+    }, {
+      rootMargin: '0px 0px -12% 0px',
+      threshold: 0.16,
+    });
+
+    targets.forEach((target) => observer.observe(target));
+  }
+
   function updateLiveAge() {
     if (!liveBadge || !lastUpdatedAt) return;
     const seconds = Math.max(0, Math.floor((Date.now() - lastUpdatedAt.getTime()) / 1000));
@@ -302,6 +337,7 @@
 
   bindExplanationToggle();
   bindClicks();
+  bindScrollReveals();
   refresh();
   setInterval(refresh, POLL_MS);
   setInterval(updateLiveAge, 1000);

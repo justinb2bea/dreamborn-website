@@ -53,27 +53,6 @@ section: "Company"
           <li><span>03</span><strong>Owning the system</strong></li>
         </ol>
       </div>
-      <div class="db-system-strip" aria-label="Live operating facts">
-        <div><span>Agents</span><strong>24</strong></div>
-        <div><span>Now</span><strong>live</strong></div>
-        <div><span>Proof</span><strong>HCS</strong></div>
-      </div>
-      <div class="db-system-card db-system-card--feed">
-        <div class="db-system-card__header">
-          <p class="ops-panel-label">Live proof</p>
-          <span class="ops-live-badge" data-live-badge>checking</span>
-          <button class="ops-context-explain"
-                  type="button"
-                  data-finn-open
-                  data-finn-prompt="Explain the live Dreamborn feed in plain English.">
-            Explain this feed
-          </button>
-        </div>
-        <p class="ops-system-state" data-system-state>System state: connecting to live feed</p>
-        <div class="ops-feed db-home-feed" data-feed-list aria-live="polite" aria-atomic="false">
-          <div class="ops-feed__empty">Loading operating feed&hellip;</div>
-        </div>
-      </div>
     </aside>
   </section>
 
@@ -256,19 +235,19 @@ section: "Company"
     <div class="db-thinking-grid">
       {% for post in thinking.initial_posts %}
         {% if loop.index <= 4 %}
-        <article class="db-thinking-card">
+        <a class="db-thinking-card" href="/thinking/{{ post.slug }}/">
           <span>{{ post.topic_label or 'Thinking' }}</span>
-          <a href="/thinking/{{ post.slug }}/">
+          <strong>
             {% if post.card_title_html %}
               {{ post.card_title_html | safe }}
             {% else %}
               {{ post.title }}
             {% endif %}
-          </a>
+          </strong>
           {% if post.excerpt %}
           <p>{{ post.excerpt }}</p>
           {% endif %}
-        </article>
+        </a>
         {% endif %}
       {% endfor %}
     </div>
@@ -286,10 +265,10 @@ section: "Company"
     </div>
 
     <div class="db-proof-grid">
-      <section class="db-proof-panel" aria-label="Receipts of work">
-        <div class="db-proof-panel__head">
-          <p class="ops-panel-label">Receipts of work</p>
-          <a href="/live/">Watch the work move</a>
+      <section class="db-proof-panel" aria-label="Recent work">
+        <div class="db-proof-panel__head db-proof-panel__head--simple">
+          <h3>Recent work</h3>
+          <a href="/live/">Open live room</a>
         </div>
         <div class="ops-work-grid db-work-strip" data-work-cards data-work-preview="compact">
           <article class="ops-work-card ops-work-card--empty">
