@@ -1,317 +1,264 @@
 ---
 layout: base.njk
-register: editorial
-title: "How Dreamborn Works"
-description: "How Dreamborn builds AI-native software products with coordinated agents, verified workflows, and 24-hour product cycles."
-socialTitle: "How Dreamborn Works"
-socialDescription: "A plain-English guide to Dreamborn's AI-native company model, agent workflows, verification, and live operating system."
+register: brand
+title: "Dreamborn.ai — How It Works"
+description: "How Dreamborn coordinates role-based AI agents into a production-ready multi-agent cluster for enterprise software delivery."
+socialTitle: "Dreamborn.ai — How It Works"
+socialDescription: "Dreamborn runs a production-ready multi-agent cluster where specialized agents claim work in parallel across shared context, memory, orchestration, and verification."
 image: "https://imagedelivery.net/C0nJXN4TRwsrV5P_U5q4RQ/dreamborn-social-explainer/public"
-imageAlt: "Dreamborn explainer social card showing agent workflows and verified work."
+imageAlt: "Dreamborn explainer social card showing coordinated multi-agent clusters."
 type: "website"
 section: "Explainer"
 ---
 
-<main class="how-page">
-  <section class="how-hero">
-    <div class="container how-hero__grid">
-      <div class="how-hero__copy">
-        <p class="how-kicker">How Dreamborn works</p>
-        <h1>We Build AI-Native Software in Days, Not Quarters</h1>
-        <p class="how-hero__lede">
-          Dreamborn builds full AI-native applications for companies with large customer bases.
-          These are not prototypes, demos, or chatbots. They are working products powered by
-          coordinated agents that can act, decide, and complete work.
+<main class="cluster-page">
+  <section class="cluster-hero">
+    <div class="container cluster-hero__grid">
+      <div class="cluster-hero__copy">
+        <p class="cluster-kicker">Dreamborn.ai — How It Works</p>
+        <h1>Most AI companies have workflows. We built a production-ready multi-agent cluster.</h1>
+        <p class="cluster-hero__lede">
+          Most companies experimenting with AI are building linear pipelines. One agent writes
+          something. Another reviews it. Another pushes it somewhere else. That can be useful.
+          But it is not enough to build large, production-ready software systems at enterprise scale.
         </p>
-        <div class="how-actions">
-          <a class="btn btn--primary" href="/live/">Watch the Work Move</a>
-          <a class="btn btn--outline" href="/connect/">Ask Finn How It Works</a>
+        <p>
+          Dreamborn operates differently. Work moves across specialized agent teams in parallel:
+          requirements, architecture, development, review, QA, documentation, publishing, and
+          governance all moving simultaneously.
+        </p>
+        <div class="cluster-actions">
+          <a class="btn btn--primary" href="/live/">See the system in action</a>
+          <a class="btn btn--outline" href="/connect/">Talk to Dreamborn</a>
         </div>
       </div>
-      <div class="how-system-map" aria-label="Customer need to finished product workflow">
-        <div class="how-system-card">Customer Need</div>
-        <span></span>
-        <div class="how-system-card how-system-card--agents">
-          <small>Agent Team</small>
-          <strong>Research</strong>
-          <strong>Build</strong>
-          <strong>QA</strong>
+
+      <div class="cluster-map" aria-label="Animated multi-agent cluster map">
+        <div class="cluster-map__core">
+          <span>Orchestration</span>
+          <strong>Claiming live work</strong>
         </div>
-        <span></span>
-        <div class="how-system-card">Verified Workflow</div>
-        <span></span>
-        <div class="how-system-card">Finished Product</div>
+        <div class="cluster-node cluster-node--ba">BA</div>
+        <div class="cluster-node cluster-node--arch">Architecture</div>
+        <div class="cluster-node cluster-node--dev">Development</div>
+        <div class="cluster-node cluster-node--qa">QA</div>
+        <div class="cluster-node cluster-node--gov">Governance</div>
+        <div class="cluster-node cluster-node--pub">Publishing</div>
+        <span class="cluster-pulse cluster-pulse--one"></span>
+        <span class="cluster-pulse cluster-pulse--two"></span>
+        <span class="cluster-pulse cluster-pulse--three"></span>
       </div>
     </div>
   </section>
 
-  <section class="how-section how-section--split">
-    <div class="container how-two-up">
-      <div>
-        <p class="how-kicker">The old way is breaking</p>
-        <h2>Software Was Built for a Slower World</h2>
-        <p>
-          Most companies still build software through long timelines, large teams, handoffs,
-          tickets, meetings, and months of coordination. That model made sense when software
-          only supported the work.
-        </p>
-        <p>
-          But customers now expect more. They want tools that help them move faster, make
-          better decisions, and get work done without waiting on people or systems.
-        </p>
-      </div>
-      <div class="how-compare">
-        <article>
-          <h3>Traditional Software</h3>
-          <ul>
-            <li>Roadmaps</li>
-            <li>Meetings</li>
-            <li>Hand-offs</li>
-            <li>Six-month timelines</li>
-          </ul>
-        </article>
-        <article>
-          <h3>AI-Native Software</h3>
-          <ul>
-            <li>Agents</li>
-            <li>Live workflows</li>
-            <li>Verified handoffs</li>
-            <li>24-hour builds</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="how-section how-section--dark">
-    <div class="container how-two-up">
-      <div>
-        <p class="how-kicker">The shift</p>
-        <h2>We Stopped Building Software People Use. We Started Building Software That Works.</h2>
-        <p>
-          AI-native software does not simply give users another dashboard. It gives them a
-          system that can take action.
-        </p>
-        <p>
-          Agents receive context, make decisions, complete tasks, and pass work to the next
-          agent. Each handoff is checked. Each step is visible. The product operates more like
-          a team than a tool.
-        </p>
-      </div>
-      <div class="how-agent-flow" aria-label="Verified agent workflow">
-        <div>Research Agent</div>
-        <span>verified</span>
-        <div>Decision Agent</div>
-        <span>verified</span>
-        <div>Builder Agent</div>
-        <span>verified</span>
-        <div>QA Agent</div>
-        <span>verified</span>
-        <div>Delivery Agent</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="how-section how-section--native">
+  <section class="cluster-section cluster-section--compare">
     <div class="container">
-      <div class="how-section__head">
-        <p class="how-kicker">What AI-native means</p>
-        <h2>AI Is Not a Feature. It Is the Operating Model.</h2>
+      <div class="cluster-section__head">
+        <p class="cluster-kicker">What most teams build</p>
+        <h2>Pipelines are not clusters.</h2>
         <p>
-          Most companies are adding AI into existing software: a chatbot here, a search tool
-          there, a writing assistant bolted onto an old workflow. That is not AI-native.
+          Most AI systems today are built like assembly lines. Input goes in. One agent
+          processes it. Then another. Then another. That model works for simple automations:
+          generate a blog, summarize a meeting, route a ticket.
+        </p>
+        <p>
+          Enterprise software projects are not linear. They involve parallel workstreams,
+          shared context, role specialization, dependencies, review systems, human checkpoints,
+          conflicting priorities, iteration loops, scaling workloads, and long-running coordination.
         </p>
       </div>
-      <div class="how-definition">
-        <strong>AI-native software means:</strong>
+
+      <div class="cluster-compare" aria-label="Linear pipeline compared with distributed cluster">
+        <article>
+          <h3>Linear AI pipeline</h3>
+          <div class="cluster-pipeline">
+            <span>Input</span>
+            <span>Agent</span>
+            <span>Review</span>
+            <span>Push</span>
+          </div>
+        </article>
+        <article>
+          <h3>Distributed agent cluster</h3>
+          <div class="cluster-mini-map">
+            <span>BA</span><span>Architecture</span><span>Dev</span>
+            <span>QA</span><span>Governance</span><span>Publish</span>
+          </div>
+        </article>
+      </div>
+      <p class="cluster-brandline">Pipelines automate steps. Clusters coordinate systems.</p>
+    </div>
+  </section>
+
+  <section class="cluster-section">
+    <div class="container cluster-two-up">
+      <div>
+        <p class="cluster-kicker">What a cluster is</p>
+        <h2>Think less chatbot. More operating system.</h2>
         <p>
-          A product built around AI agents that can understand context, perform tasks,
-          coordinate with other agents, and complete workflows with human oversight where it matters.
+          A Dreamborn cluster is a coordinated environment of specialized AI agents operating
+          across shared context, memory, orchestration, and task systems.
+        </p>
+        <p>
+          Each agent has a defined role, access permissions, working memory, system instructions,
+          context windows, available tools, claimable work queues, and verification requirements.
+        </p>
+        <blockquote>The cluster behaves less like a chatbot and more like an enterprise development organization.</blockquote>
+      </div>
+      <div class="cluster-capability-list">
+        <span>Defined role</span>
+        <span>Access permissions</span>
+        <span>Working memory</span>
+        <span>System instructions</span>
+        <span>Context windows</span>
+        <span>Available tools</span>
+        <span>Claimable work queues</span>
+        <span>Verification requirements</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cluster-section cluster-section--roles">
+    <div class="container">
+      <div class="cluster-section__head">
+        <p class="cluster-kicker">Role-based agents</p>
+        <h2>Specialization matters.</h2>
+        <p>
+          Most AI demos treat intelligence like one general-purpose brain. That is not how
+          large projects work in real companies. Enterprise projects succeed because teams
+          specialize. Dreamborn mirrors that structure.
         </p>
       </div>
-      <div class="how-stack">
+
+      <div class="cluster-role-grid">
         <article>
           <span>01</span>
-          <h3>AI-Added</h3>
-          <p>AI placed inside an existing product.</p>
+          <h3>Business Analysis Agents</h3>
+          <p>Break down business problems into structured requirements, workflows, edge cases, and execution plans.</p>
         </article>
         <article>
           <span>02</span>
-          <h3>AI-First</h3>
-          <p>AI shapes the user experience.</p>
+          <h3>Architecture &amp; Review Agents</h3>
+          <p>Validate system structure, scalability, dependencies, security concerns, and technical direction.</p>
         </article>
         <article>
           <span>03</span>
-          <h3>AI-Native</h3>
-          <p>Agents run the system itself.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="how-section how-section--products">
-    <div class="container">
-      <div class="how-section__head">
-        <p class="how-kicker">What we build</p>
-        <h2>We Build Products Your Customers Can Actually Use</h2>
-        <p>
-          Dreamborn builds AI-native software applications for companies with large customer
-          bases. These products can be sold, deployed, embedded, or offered as part of a
-          larger customer experience.
-        </p>
-      </div>
-      <div class="how-deliverables">
-        <span>The application</span>
-        <span>The agent team</span>
-        <span>The orchestration layer</span>
-        <span>The workflows</span>
-        <span>The handoff logic</span>
-        <span>The verification system</span>
-      </div>
-      <div class="how-product-grid">
-        <article><h3>Customer Portal</h3><p>Built with agents inside.</p></article>
-        <article><h3>AI Service Assistant</h3><p>Built with agents inside.</p></article>
-        <article><h3>Workflow Automation Product</h3><p>Built with agents inside.</p></article>
-        <article><h3>Decision Support Tool</h3><p>Built with agents inside.</p></article>
-        <article><h3>Agent-Powered Customer App</h3><p>Built with agents inside.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="how-section how-section--timeline">
-    <div class="container how-two-up">
-      <div>
-        <p class="how-kicker">Why 24 hours is possible</p>
-        <h2>The Timeline Collapses When Agents Do the Work</h2>
-        <p>
-          Traditional development takes months because the work moves through people,
-          departments, tickets, meetings, and reviews.
-        </p>
-        <p>
-          Dreamborn uses an enterprise development team made up of coordinated agents. They
-          claim work, build, test, review, and hand off tasks inside a live system. What
-          normally takes a team six months can be built in 24 hours. Not because corners are cut.
-          Because the operating model changed.
-        </p>
-      </div>
-      <div class="how-timeline">
-        <div>
-          <strong>Traditional Build</strong>
-          <span>Month 1</span><span>Month 2</span><span>Month 3</span>
-          <span>Month 4</span><span>Month 5</span><span>Month 6</span>
-        </div>
-        <div>
-          <strong>Dreamborn Build</strong>
-          <span>Idea</span><span>Build</span><span>Verify</span><span>Launch</span>
-          <em>24 Hours</em>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="how-section how-section--agents">
-    <div class="container how-two-up">
-      <div>
-        <p class="how-kicker">Agents in tow</p>
-        <h2>We Don&rsquo;t Just Deliver Software. We Deliver the Agents That Run It.</h2>
-        <p>
-          A Dreamborn product often comes with agents already inside it. These agents are
-          connected. They know their roles. They understand when to act, when to hand off,
-          and when to ask for human judgment.
-        </p>
-        <p>
-          That is orchestration. Without orchestration, agents are disconnected assistants.
-          With orchestration, they become a working team.
-        </p>
-      </div>
-      <div class="how-orbit" aria-label="Agent team connected to orchestration layer">
-        <div class="how-orbit__center">Orchestration Layer</div>
-        <span>Strategy Agent</span>
-        <span>Customer Agent</span>
-        <span>Data Agent</span>
-        <span>Workflow Agent</span>
-        <span>QA Agent</span>
-        <span>Reporting Agent</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="how-section how-section--exec">
-    <div class="container">
-      <div class="how-section__head">
-        <p class="how-kicker">Why this matters to executives</p>
-        <h2>This Creates New Revenue, Not Just New Efficiency</h2>
-        <p>
-          For executives, the opportunity is not simply doing current work faster. The bigger
-          opportunity is creating products that were not possible before.
-        </p>
-      </div>
-      <div class="how-outcomes">
-        <article>
-          <h3>New Revenue</h3>
-          <p>Sell AI-native products to your customer base.</p>
+          <h3>Development Agents</h3>
+          <p>Build features, APIs, interfaces, services, integrations, and infrastructure components.</p>
         </article>
         <article>
-          <h3>Better Retention</h3>
-          <p>Give customers tools they rely on every day.</p>
+          <span>04</span>
+          <h3>QA &amp; Verification Agents</h3>
+          <p>Test outputs, identify regressions, verify requirements, and challenge assumptions.</p>
         </article>
         <article>
-          <h3>Faster Innovation</h3>
-          <p>Launch in days instead of waiting quarters.</p>
+          <span>05</span>
+          <h3>Governance Agents</h3>
+          <p>Ensure standards, documentation, consistency, and production-readiness.</p>
+        </article>
+        <article>
+          <span>06</span>
+          <h3>Publishing &amp; Communication Agents</h3>
+          <p>Generate deployment documentation, release notes, summaries, presentations, and operational visibility.</p>
+        </article>
+        <article>
+          <span>07</span>
+          <h3>Orchestration Agents</h3>
+          <p>Track state, manage queues, distribute work, prevent collisions, and verify handoffs.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="how-section how-section--start">
-    <div class="container how-two-up">
+  <section class="cluster-section cluster-section--claiming">
+    <div class="container cluster-two-up">
       <div>
-        <p class="how-kicker">How we start</p>
-        <h2>Start With One High-Value Customer Problem</h2>
+        <p class="cluster-kicker">Parallel task claiming</p>
+        <h2>This is where the leverage changes.</h2>
         <p>
-          You do not need to transform the whole company first. Start with one product, one
-          customer problem, and one workflow that matters.
+          Traditional software teams are bottlenecked by sequential work. Requirements wait for
+          architecture. Architecture waits for development. Development waits for QA. QA waits
+          for fixes.
         </p>
+        <p>
+          Dreamborn clusters reduce that bottleneck through parallel task claiming. The
+          orchestration layer continuously exposes available work, and specialized agents claim
+          tasks dynamically based on priority, dependencies, role capability, current workload,
+          context access, and system state.
+        </p>
+        <blockquote>Large projects stop behaving like queues and start behaving like coordinated systems.</blockquote>
       </div>
-      <div class="how-process">
-        <div><span>1</span><strong>Identify the customer problem</strong></div>
-        <div><span>2</span><strong>Design the agent workflow</strong></div>
-        <div><span>3</span><strong>Build the application</strong></div>
-        <div><span>4</span><strong>Launch the working product</strong></div>
+      <div class="cluster-flow">
+        <div><strong>Feature request enters</strong><span>00:00</span></div>
+        <div><strong>BA agents generate requirements</strong><span>00:08</span></div>
+        <div><strong>Architecture agents identify dependencies</strong><span>00:12</span></div>
+        <div><strong>Dev agents scaffold services and APIs</strong><span>00:18</span></div>
+        <div><strong>QA agents generate scenarios</strong><span>00:22</span></div>
+        <div><strong>Governance validates standards</strong><span>00:26</span></div>
       </div>
     </div>
   </section>
 
-  <section class="how-section how-section--proof">
-    <div class="container how-two-up">
+  <section class="cluster-section cluster-section--scale">
+    <div class="container cluster-two-up">
       <div>
-        <p class="how-kicker">Proof / live demo</p>
-        <h2>Watch the Work Move</h2>
+        <p class="cluster-kicker">Scaling the cluster</p>
+        <h2>Enterprise work requires elastic execution.</h2>
         <p>
-          The best way to understand Dreamborn is to see it operating. Watch agents claim
-          work, complete tasks, verify handoffs, and move software from idea to launch.
+          Dreamborn clusters are designed as infrastructure. Need more development throughput?
+          Add development agents. Need faster QA coverage? Expand verification capacity. Need
+          to process large requirement sets? Increase BA agents.
         </p>
-        <p>This is not a concept. This is how the company runs.</p>
-        <a class="btn btn--primary" href="/live/">Watch the Work Move</a>
+        <p>The cluster expands around workload, not around headcount.</p>
       </div>
-      <div class="how-live-cards">
-        <article><span></span>Agent claimed task</article>
-        <article><span></span>Workflow completed</article>
-        <article><span></span>QA passed</article>
-        <article><span></span>Product updated</article>
-        <article><span></span>Handoff verified</article>
+      <div class="cluster-scale" aria-label="Workload scales cluster capacity">
+        <span>Workload increases</span>
+        <div><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <strong>More agents activate</strong>
+        <em>Throughput rises</em>
       </div>
     </div>
   </section>
 
-  <section class="how-final">
+  <section class="cluster-section cluster-section--production">
     <div class="container">
-      <h2>What Could You Build If Six Months Became 24 Hours?</h2>
+      <div class="cluster-section__head">
+        <p class="cluster-kicker">Production-ready matters</p>
+        <h2>Fast is meaningless if the output is fragile.</h2>
+        <p>
+          One of the biggest misconceptions in AI today is that generating code equals building
+          production software. It does not. Production-ready systems require review layers,
+          verification systems, governance, state management, dependency awareness, documentation,
+          testing, recovery strategies, human oversight, and operational visibility.
+        </p>
+      </div>
+      <div class="cluster-proof-grid">
+        <span>Review layers</span>
+        <span>Verification systems</span>
+        <span>Governance</span>
+        <span>State management</span>
+        <span>Dependency awareness</span>
+        <span>Documentation</span>
+        <span>Testing</span>
+        <span>Recovery strategies</span>
+        <span>Human oversight</span>
+        <span>Operational visibility</span>
+      </div>
+      <p class="cluster-brandline">Anyone can generate code. Very few systems can coordinate production-ready software delivery.</p>
+    </div>
+  </section>
+
+  <section class="cluster-final">
+    <div class="container">
+      <p class="cluster-kicker">The operating model</p>
+      <h2>This is not prompt engineering. This is an AI-native operating model.</h2>
       <p>
-        Dreamborn builds AI-native software products for companies ready to move faster than their market.
+        Dreamborn builds AI-native software systems powered by coordinated multi-agent execution:
+        production-ready, role-based, parallelized, scalable, and built for real enterprise work.
       </p>
-      <div class="how-actions">
-        <a class="btn btn--primary" href="/live/">Watch the Work Move</a>
-        <a class="btn btn--outline" href="/connect/">Ask Finn How It Works</a>
+      <div class="cluster-actions">
+        <a class="btn btn--primary" href="/live/">See the system in action</a>
+        <a class="btn btn--outline" href="/connect/">Talk to Dreamborn</a>
       </div>
     </div>
   </section>

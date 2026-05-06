@@ -78,6 +78,7 @@ function isCloudflareImageUrl(imageUrl) {
 const corePages = [
   ['/', 'website'],
   ['/explainer/', 'website'],
+  ['/ai-native/', 'website'],
   ['/work/', 'website'],
   ['/system/', 'website'],
   ['/live/', 'website'],
@@ -120,6 +121,7 @@ test('thinking posts emit article metadata and article schema', () => {
 test('sitemap robots and feeds are generated', () => {
   const sitemap = readPublic('/sitemap.xml');
   assert.match(sitemap, /<loc>https:\/\/dreamborn\.ai\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/dreamborn\.ai\/ai-native\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/dreamborn\.ai\/thinking\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/dreamborn\.ai\/thinking\/the-company-i-built-without-a-payroll\/<\/loc>/);
   assert.doesNotMatch(sitemap, /https:\/\/dreamborn\.ai\/justin\//);

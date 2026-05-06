@@ -1,0 +1,188 @@
+---
+layout: base.njk
+register: editorial
+title: "What Is AI-Native?"
+description: "A concise guide to AI-native companies: agents, memory, receipts, human governance, work loops, and operating systems built around AI from the start."
+socialTitle: "What Is AI-Native?"
+socialDescription: "AI-native is an operating model, not a chatbot or feature. This guide explains the components through Dreamborn's Thinking series."
+image: "https://imagedelivery.net/C0nJXN4TRwsrV5P_U5q4RQ/dreamborn-social-thinking/public"
+imageAlt: "Dreamborn AI-native concept guide social card."
+type: "website"
+section: "AI-Native"
+---
+
+{% set reading = [
+  {
+    slug: "what-is-an-ai-native-company",
+    title: "What Is an AI-Native Company?",
+    label: "Definition",
+    text: "The core argument: AI-native means AI becomes part of the operating layer."
+  },
+  {
+    slug: "chatbots-dont-move-work",
+    title: "Chatbots Don't Move Work",
+    label: "Work loops",
+    text: "Why answer generation is not enough for companies that need work to move."
+  },
+  {
+    slug: "sent-is-not-received",
+    title: "Sent Is Not Received",
+    label: "Receipt",
+    text: "The difference between sending work and knowing it was received."
+  },
+  {
+    slug: "why-agents-need-receipts",
+    title: "Why Agents Need Receipts",
+    label: "Evidence",
+    text: "Useful autonomy depends on visible evidence, not black-box trust."
+  },
+  {
+    slug: "the-ai-native-org-chart",
+    title: "The AI-Native Org Chart",
+    label: "Organization",
+    text: "Humans, agents, systems, authority, memory, and receipts belong on the chart."
+  },
+  {
+    slug: "the-human-ceo-in-an-agent-company",
+    title: "The Human CEO in an Agent Company",
+    label: "Governance",
+    text: "The human role moves from carrying tasks to defining judgment and authority."
+  },
+  {
+    slug: "what-every-company-needs-before-hiring-agents",
+    title: "What Every Company Needs Before Hiring Agents",
+    label: "Readiness",
+    text: "Work loops, permissions, memory, receipts, and escalation must exist first."
+  },
+  {
+    slug: "why-prds-are-evidence-not-the-plan",
+    title: "Why PRDs Are Evidence, Not the Plan",
+    label: "Planning",
+    text: "Agentic product work needs evidence connected to reality, not static plans."
+  },
+  {
+    slug: "ai-isnt-a-fast-intern",
+    title: "AI is not a fast intern",
+    label: "Leadership",
+    text: "Working with agents forces clearer direction, sharper judgment, and better thinking."
+  },
+  {
+    slug: "atlas-on-agent-memory",
+    title: "I am Atlas, and this is what I remember",
+    label: "Memory",
+    text: "A dispatch from the agent memory layer and the move toward streaming agent work."
+  }
+] %}
+
+<main class="native-page">
+  <section class="native-hero">
+    <div class="container native-hero__grid">
+      <div>
+        <p class="native-kicker">What is AI-native?</p>
+        <h1>An AI-native company is not a normal company with chatbots attached.</h1>
+        <p class="native-hero__lede">
+          AI-native is an operating model. It is the way work is assigned, how context is
+          carried, how decisions are recorded, how results are verified, and how humans stay
+          in control when agents participate in the company.
+        </p>
+      </div>
+      <div class="native-definition">
+        <span>Definition</span>
+        <p>
+          A company becomes AI-native when agents, humans, systems, memory, authority, queues,
+          verification, and receipts are designed together instead of bolted onto an old workflow.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="native-section">
+    <div class="container">
+      <div class="native-section__head">
+        <p class="native-kicker">The components</p>
+        <h2>AI-native means the operating layer changes.</h2>
+        <p>
+          The Thinking series breaks this down from different angles. This page is the concise
+          map: the parts that must exist before agents become infrastructure instead of demos.
+        </p>
+      </div>
+
+      <div class="native-component-map">
+        <article>
+          <span>01</span>
+          <h3>Work moves, not just words.</h3>
+          <p>Chatbots answer. AI-native systems move work through real loops with context, ownership, and next steps.</p>
+          <a href="/thinking/chatbots-dont-move-work/">Read the essay</a>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Agents need memory.</h3>
+          <p>Useful agents need durable context that survives one prompt, one session, and one handoff.</p>
+          <a href="/thinking/atlas-on-agent-memory/">Read the essay</a>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Receipts make autonomy inspectable.</h3>
+          <p>Companies need to know what happened, who received it, what evidence exists, and what should happen next.</p>
+          <a href="/thinking/why-agents-need-receipts/">Read the essay</a>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Humans govern authority and judgment.</h3>
+          <p>AI-native does not mean human-absent. Humans set standards, risk, escalation, taste, and final authority.</p>
+          <a href="/thinking/the-human-ceo-in-an-agent-company/">Read the essay</a>
+        </article>
+        <article>
+          <span>05</span>
+          <h3>PRDs are evidence, not the plan.</h3>
+          <p>Agentic work learns while it moves. Planning artifacts must stay connected to evidence instead of pretending the future is fixed.</p>
+          <a href="/thinking/why-prds-are-evidence-not-the-plan/">Read the essay</a>
+        </article>
+        <article>
+          <span>06</span>
+          <h3>The org chart includes systems.</h3>
+          <p>The real structure includes humans, agents, queues, permissions, memory, tools, receipts, and verification gates.</p>
+          <a href="/thinking/the-ai-native-org-chart/">Read the essay</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="native-section native-section--reading">
+    <div class="container">
+      <div class="native-section__head">
+        <p class="native-kicker">The series</p>
+        <h2>Ten essays on the components of AI-native work.</h2>
+        <p>
+          These posts are the source library behind the concept: work movement, receipt,
+          governance, org design, memory, readiness, planning, and leadership.
+        </p>
+      </div>
+
+      <div class="native-reading-grid">
+        {% for item in reading %}
+        <a href="/thinking/{{ item.slug }}/">
+          <span>{{ item.label }}</span>
+          <strong>{{ item.title }}</strong>
+          <p>{{ item.text }}</p>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="native-final">
+    <div class="container">
+      <p class="native-kicker">How Dreamborn applies it</p>
+      <h2>This is the operating model Dreamborn builds with.</h2>
+      <p>
+        The AI-native idea becomes concrete inside Dreamborn's multi-agent cluster: role-based
+        agents, shared context, parallel task claiming, verification, receipts, and human governance.
+      </p>
+      <div class="native-actions">
+        <a class="btn btn--primary" href="/explainer/">See how Dreamborn works</a>
+        <a class="btn btn--outline" href="/thinking/what-is-an-ai-native-company/">Read the defining essay</a>
+      </div>
+    </div>
+  </section>
+</main>
