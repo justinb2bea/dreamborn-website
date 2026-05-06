@@ -44,7 +44,11 @@ eleventyComputed:
 
         <div class="detail-byline">
           <div class="detail-author-mark" aria-hidden="true">
-            {{ displayAuthor | first }}
+            {% if displayAuthor == 'Justin King' %}
+              <img src="/img/authors/JustinKingProfile.jpeg" alt="">
+            {% else %}
+              {{ displayAuthor | first }}
+            {% endif %}
           </div>
           <div>
             <strong>{{ displayAuthor }}</strong>

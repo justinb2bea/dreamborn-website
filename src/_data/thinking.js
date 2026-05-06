@@ -39,9 +39,16 @@ module.exports = async function () {
 function mergePosts(localPosts, remotePosts) {
   const bySlug = new Map();
   [...localPosts, ...remotePosts].forEach((post) => {
-    if (post && post.slug) bySlug.set(post.slug, post);
+    if (post && post.slug) bySlug.set(post.slug, normalizePost(post));
   });
   return [...bySlug.values()].sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+}
+
+function normalizePost(post) {
+  if (post.author === 'Dreamborn') {
+    return { ...post, author: 'Justin King' };
+  }
+  return post;
 }
 
 function mergeTopics(localTopics, remoteTopics) {

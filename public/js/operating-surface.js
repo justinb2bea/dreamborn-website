@@ -77,6 +77,8 @@
 
   function renderCards(cards) {
     if (!cardsRoot) return;
+    const compact = cardsRoot.dataset.workPreview === 'compact';
+    const visibleCards = compact ? cards.slice(0, 3) : cards;
     if (!cards.length) {
       cardsRoot.innerHTML = `
         <article class="ops-work-card ops-work-card--empty">
@@ -87,7 +89,7 @@
       return;
     }
 
-    cardsRoot.innerHTML = cards.map((card) => `
+    cardsRoot.innerHTML = visibleCards.map((card) => `
       <article class="ops-work-card ops-work-card--${escapeAttr(card.status_kind || 'queued')}" id="${escapeAttr(card.id)}" data-card-id="${escapeAttr(card.id)}">
         <div class="ops-work-card__topline">
           <span class="ops-card-eyebrow">${escapeHtml(card.eyebrow || card.kind || 'Work')}</span>
@@ -95,7 +97,7 @@
         </div>
         <h3 class="ops-card-title">${escapeHtml(card.title || 'Recorded work')}</h3>
         <dl class="ops-card-meta">
-          ${(card.meta || []).map(([label, value]) => `
+          ${(compact ? (card.meta || []).slice(0, 2) : (card.meta || [])).map(([label, value]) => `
             <div>
               <dt>${escapeHtml(label)}</dt>
               <dd>${escapeHtml(value)}</dd>
@@ -103,14 +105,19 @@
           `).join('')}
         </dl>
         <p class="ops-card-preview">${escapeHtml(card.preview || '')}</p>
-        ${card.full_output ? `
+        ${!compact && card.full_output ? `
           <details class="ops-card-output">
             <summary>View full output</summary>
             <pre>${escapeHtml(card.full_output)}</pre>
           </details>
         ` : ''}
       </article>
-    `).join('');
+    `).join('') + (compact && cards.length > visibleCards.length ? `
+      <a class="db-receipt-more" href="/live/">
+        <span>${cards.length - visibleCards.length} more records</span>
+        <strong>Open live room</strong>
+      </a>
+    ` : '');
   }
 
   function renderLedger(rows) {

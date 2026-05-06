@@ -108,7 +108,9 @@ test('thinking posts emit article metadata and article schema', () => {
   const html = readBuilt('/thinking/the-company-i-built-without-a-payroll/');
   assert.equal(metaContent(html, 'og:type'), 'article');
   assert.ok(metaContent(html, 'article:published_time'));
-  assert.ok(metaContent(html, 'article:author'));
+  assert.equal(metaContent(html, 'article:author'), 'Justin King');
+  assert.match(html, /<strong>Justin King<\/strong>/);
+  assert.match(html, /\/img\/authors\/JustinKingProfile\.jpeg/);
   assert.ok(isCloudflareImageUrl(metaContent(html, 'og:image')), 'article OG image uses Cloudflare Images');
   assert.ok(isCloudflareImageUrl(metaContent(html, 'twitter:image')), 'article Twitter image uses Cloudflare Images');
   const blocks = jsonLdBlocks(html);

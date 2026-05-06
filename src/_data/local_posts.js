@@ -8,7 +8,7 @@ const foundingDispatch = {
   card_title_html: 'The company I built <em>without a payroll</em>',
   slug: 'the-company-i-built-without-a-payroll',
   excerpt: 'Twenty-four people work here and none of them have bank accounts.',
-  author: 'Dreamborn',
+  author: 'Justin King',
   status: 'published',
   featured: true,
   topic_ids: ['dispatches'],

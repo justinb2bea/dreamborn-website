@@ -8,29 +8,30 @@ const connect = readFileSync(new URL('../src/connect/index.njk', import.meta.url
 const operatingSurface = readFileSync(new URL('../public/js/operating-surface.js', import.meta.url), 'utf8');
 const css = readFileSync(new URL('../public/css/main.css', import.meta.url), 'utf8');
 
-test('homepage exposes explanation mode copy hooks', () => {
-  assert.match(homepage, /data-explain-toggle/);
-  assert.match(homepage, /What am I looking at\?/);
-  assert.match(homepage, /Show the operating surface/);
-  assert.match(homepage, /data-default-text="What's your AI strategy\? This is ours\."/);
-  assert.match(homepage, /data-explained-text="A company operating through AI agents\."/);
-  assert.match(homepage, /data-explanation-note/);
-  assert.match(homepage, /data-explain-status/);
-  assert.match(homepage, /Back to the company in motion\./);
-  assert.match(homepage, /Explain what I&#39;m looking at on the Dreamborn homepage\./);
+test('homepage removes explanation controls from primary chrome', () => {
+  assert.doesNotMatch(homepage, /data-explain-toggle/);
+  assert.doesNotMatch(homepage, /data-explain-sticky/);
+  assert.doesNotMatch(homepage, /ops-explain-sticky/);
+  assert.doesNotMatch(homepage, /What am I looking at\?/);
+  assert.doesNotMatch(homepage, /Explain this page/);
+  assert.match(homepage, /data-default-text="The Next Era of Software Will Not Be Rented"/);
+  assert.match(homepage, /data-explained-text="Companies will build the systems that make them different\."/);
 });
 
-test('homepage repeats interpreter controls strategically', () => {
-  assert.match(homepage, /data-explain-sticky/);
-  assert.match(homepage, /data-default-text="Explain this page"/);
-  assert.match(homepage, /data-explained-text="Show operating surface"/);
+test('homepage places Finn in the middle of the page', () => {
+  assert.match(homepage, /db-home-finn/);
+  assert.match(homepage, /Ask Finn/);
+  assert.match(homepage, /Want to pressure-test the thesis\?/);
+  assert.match(homepage, /Explain the thesis/);
+  assert.match(homepage, /What should we own\?/);
+  assert.match(homepage, /How does the agent cluster work\?/);
   assert.match(homepage, /Explain this feed/);
-  assert.match(homepage, /What work is happening here\?/);
-  assert.match(homepage, /Explain the proof/);
-  assert.match(homepage, /Who are these agents\?/);
-  assert.match(homepage, /Translate this/);
+  assert.match(homepage, /Watch the work move/);
+  assert.match(homepage, /Receipts of work/);
+  assert.match(homepage, /data-work-preview="compact"/);
+  assert.doesNotMatch(homepage, /ops-panel-label">Verified handoff/);
+  assert.match(homepage, /Roles being filled/);
   assert.match(homepage, /Explain the live Dreamborn feed in plain English\./);
-  assert.match(homepage, /Explain the Dreamborn proof ledger in plain English\./);
 });
 
 test('base layout includes global Finn drawer and script', () => {
