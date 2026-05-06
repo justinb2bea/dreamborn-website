@@ -266,17 +266,33 @@
   }
 
   function bindScrollReveals() {
-    const targets = Array.from(root.querySelectorAll([
-      '.db-home-section',
-      '.db-home-quote',
-      '.db-home-final',
+    const revealSelectors = [
+      '.db-home-hero__story > *',
+      '.db-home-system > *',
+      '.db-transition > *',
+      '.db-home-section__head > *',
+      '.db-home-section--split > *',
+      '.db-home-prose > *',
+      '.db-inline-queue',
+      '.db-cluster-grid > *',
+      '.db-compare-grid > *',
+      '.db-native-grid > *',
+      '.db-work-loop > *',
+      '.db-build-grid > *',
+      '.db-home-finn > *',
+      '.db-finn-panel > *',
       '.db-thinking-card',
-    ].join(',')));
+      '.db-proof-panel',
+      '.db-home-quote > *',
+      '.db-home-final > *',
+      '.db-final-card > *',
+    ];
+    const targets = Array.from(root.querySelectorAll(revealSelectors.join(',')));
     if (!targets.length) return;
 
     targets.forEach((target, index) => {
       target.classList.add('db-reveal');
-      target.style.setProperty('--db-reveal-index', String(index % 4));
+      target.style.setProperty('--db-reveal-index', String(index % 6));
     });
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -293,8 +309,8 @@
         observer.unobserve(entry.target);
       });
     }, {
-      rootMargin: '0px 0px -12% 0px',
-      threshold: 0.16,
+      rootMargin: '0px 0px -8% 0px',
+      threshold: 0.12,
     });
 
     targets.forEach((target) => observer.observe(target));
