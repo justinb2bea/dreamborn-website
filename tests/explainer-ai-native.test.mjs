@@ -48,7 +48,7 @@ test('sitemap source includes AI-native canonical route', () => {
   assert.match(sitemap, /'\/ai-native\/'/);
 });
 
-test('explainer typography uses Fraunces display and Lora body copy', () => {
+test('explainer typography uses Fraunces display and homepage body copy', () => {
   assert.match(css, /\.cluster-page h1,\s*\n\.cluster-page h2 \{[^}]*font-family: var\(--font-editorial-heading\)/);
-  assert.match(css, /\.cluster-page p,\s*\n\.cluster-page li \{[^}]*font-family: var\(--font-brand-body\)/);
+  assert.match(css, /\.cluster-page p,\s*\n\.cluster-page li \{[^}]*font-family: var\(--font-body\)/);
 });

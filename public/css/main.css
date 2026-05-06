@@ -6118,7 +6118,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .cluster-page p,
 .cluster-page li {
   color: rgba(240, 237, 233, 0.76);
-  font-family: var(--font-brand-body);
+  font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.62;
 }
@@ -6387,6 +6387,7 @@ p, h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(140, 26, 19, 0.18);
   background: #fff;
   color: #1a1a1a !important;
+  font-family: var(--font-body);
   font-size: 13px;
   font-weight: 700;
   text-align: center;
@@ -6426,6 +6427,7 @@ p, h1, h2, h3, h4, h5, h6 {
   border-color: rgba(215, 177, 110, 0.22);
   background: rgba(240, 237, 233, 0.08);
   color: rgba(240, 237, 233, 0.9);
+  font-family: var(--font-body);
   font-weight: 700;
 }
 
@@ -6472,6 +6474,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .cluster-flow strong {
   color: rgba(240, 237, 233, 0.92);
+  font-family: var(--font-body);
   line-height: 1.25;
 }
 
@@ -6527,6 +6530,7 @@ p, h1, h2, h3, h4, h5, h6 {
   border-color: rgba(240, 237, 233, 0.14);
   background: rgba(240, 237, 233, 0.07);
   color: rgba(240, 237, 233, 0.88);
+  font-family: var(--font-body);
   font-weight: 700;
 }
 
