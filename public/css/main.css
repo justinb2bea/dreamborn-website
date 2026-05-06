@@ -117,12 +117,12 @@ p, h1, h2, h3, h4, h5, h6 {
 
 [data-register="forge"] .nav__cta {
   color: var(--color-status-active) !important;
-  border-color: rgba(141, 198, 63, 0.35);
+  border-color: rgba(141, 198, 63, 0.42);
 }
 
 [data-register="forge"] .nav__cta:hover {
   background: rgba(141, 198, 63, 0.1) !important;
-  color: var(--color-text-primary) !important;
+  color: var(--color-status-active) !important;
 }
 
 .nav__menu {
@@ -154,16 +154,17 @@ p, h1, h2, h3, h4, h5, h6 {
 .nav__cta {
   font-size: var(--text-body-sm) !important;
   font-weight: 600 !important;
-  color: var(--color-crimson) !important;
-  border: 1px solid var(--color-crimson);
+  color: var(--db-lime-500) !important;
+  border: 1px solid rgba(141, 198, 63, 0.42);
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-md);
-  transition: background var(--transition-base), color var(--transition-base) !important;
+  transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base) !important;
 }
 
 .nav__cta:hover {
-  background: var(--color-crimson) !important;
-  color: #fff !important;
+  border-color: var(--db-lime-500);
+  background: rgba(141, 198, 63, 0.12) !important;
+  color: var(--db-lime-500) !important;
 }
 
 .nav__menu-toggle {

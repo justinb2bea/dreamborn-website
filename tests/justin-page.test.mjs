@@ -20,3 +20,9 @@ test('Dreamborn navigation has an accessible mobile menu toggle', () => {
   assert.match(script, /aria-expanded/);
   assert.match(script, /nav-open/);
 });
+
+test('Dreamborn navigation keeps Connect CTA green across pages', () => {
+  const css = readFileSync(new URL('../public/css/main.css', import.meta.url), 'utf8');
+  assert.match(css, /\.nav__cta \{[^}]*color: var\(--db-lime-500\) !important;[^}]*border: 1px solid rgba\(141, 198, 63, 0\.42\)/);
+  assert.doesNotMatch(css, /\.nav__cta \{[^}]*color: var\(--color-crimson\)/);
+});
