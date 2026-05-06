@@ -33,17 +33,14 @@ test('explainer page is the Dreamborn multi-agent cluster explanation', () => {
   assert.match(explainer, /Talk to Dreamborn/);
 });
 
-test('AI-native page synthesizes the thinking series', () => {
-  assert.match(aiNative, /normal company with chatbots attached/i);
-  assert.match(aiNative, /AI-native is an operating model/i);
-  assert.match(aiNative, /Work moves, not just words/);
-  assert.match(aiNative, /Agents need memory/);
-  assert.match(aiNative, /Receipts make autonomy inspectable/);
-  assert.match(aiNative, /Humans govern authority and judgment/);
-  assert.match(aiNative, /PRDs are evidence, not the plan/);
-  assert.match(aiNative, /what-is-an-ai-native-company/);
-  assert.match(aiNative, /chatbots-dont-move-work/);
-  assert.match(aiNative, /atlas-on-agent-memory/);
+test('AI-native page preserves the prior explainer content under the new route', () => {
+  assert.match(aiNative, /title: "What Is AI-Native\?"/);
+  assert.match(aiNative, /What is AI-native\?/);
+  assert.match(aiNative, /We Build AI-Native Software in Days, Not Quarters/);
+  assert.match(aiNative, /Software Was Built for a Slower World/);
+  assert.match(aiNative, /AI Is Not a Feature\. It Is the Operating Model\./);
+  assert.match(aiNative, /The Timeline Collapses When Agents Do the Work/);
+  assert.match(aiNative, /Watch the Work Move/);
 });
 
 test('sitemap source includes AI-native canonical route', () => {

@@ -2,186 +2,316 @@
 layout: base.njk
 register: editorial
 title: "What Is AI-Native?"
-description: "A concise guide to AI-native companies: agents, memory, receipts, human governance, work loops, and operating systems built around AI from the start."
+description: "A plain-English guide to AI-native software products, coordinated agents, verified workflows, and 24-hour product cycles."
 socialTitle: "What Is AI-Native?"
-socialDescription: "AI-native is an operating model, not a chatbot or feature. This guide explains the components through Dreamborn's Thinking series."
-image: "https://imagedelivery.net/C0nJXN4TRwsrV5P_U5q4RQ/dreamborn-social-thinking/public"
-imageAlt: "Dreamborn AI-native concept guide social card."
+socialDescription: "A plain-English guide to AI-native software products, agent workflows, verification, and live operating systems."
+image: "https://imagedelivery.net/C0nJXN4TRwsrV5P_U5q4RQ/dreamborn-social-explainer/public"
+imageAlt: "Dreamborn explainer social card showing agent workflows and verified work."
 type: "website"
 section: "AI-Native"
 ---
 
-{% set reading = [
-  {
-    slug: "what-is-an-ai-native-company",
-    title: "What Is an AI-Native Company?",
-    label: "Definition",
-    text: "The core argument: AI-native means AI becomes part of the operating layer."
-  },
-  {
-    slug: "chatbots-dont-move-work",
-    title: "Chatbots Don't Move Work",
-    label: "Work loops",
-    text: "Why answer generation is not enough for companies that need work to move."
-  },
-  {
-    slug: "sent-is-not-received",
-    title: "Sent Is Not Received",
-    label: "Receipt",
-    text: "The difference between sending work and knowing it was received."
-  },
-  {
-    slug: "why-agents-need-receipts",
-    title: "Why Agents Need Receipts",
-    label: "Evidence",
-    text: "Useful autonomy depends on visible evidence, not black-box trust."
-  },
-  {
-    slug: "the-ai-native-org-chart",
-    title: "The AI-Native Org Chart",
-    label: "Organization",
-    text: "Humans, agents, systems, authority, memory, and receipts belong on the chart."
-  },
-  {
-    slug: "the-human-ceo-in-an-agent-company",
-    title: "The Human CEO in an Agent Company",
-    label: "Governance",
-    text: "The human role moves from carrying tasks to defining judgment and authority."
-  },
-  {
-    slug: "what-every-company-needs-before-hiring-agents",
-    title: "What Every Company Needs Before Hiring Agents",
-    label: "Readiness",
-    text: "Work loops, permissions, memory, receipts, and escalation must exist first."
-  },
-  {
-    slug: "why-prds-are-evidence-not-the-plan",
-    title: "Why PRDs Are Evidence, Not the Plan",
-    label: "Planning",
-    text: "Agentic product work needs evidence connected to reality, not static plans."
-  },
-  {
-    slug: "ai-isnt-a-fast-intern",
-    title: "AI is not a fast intern",
-    label: "Leadership",
-    text: "Working with agents forces clearer direction, sharper judgment, and better thinking."
-  },
-  {
-    slug: "atlas-on-agent-memory",
-    title: "I am Atlas, and this is what I remember",
-    label: "Memory",
-    text: "A dispatch from the agent memory layer and the move toward streaming agent work."
-  }
-] %}
-
-<main class="native-page">
-  <section class="native-hero">
-    <div class="container native-hero__grid">
-      <div>
-        <p class="native-kicker">What is AI-native?</p>
-        <h1>An AI-native company is not a normal company with chatbots attached.</h1>
-        <p class="native-hero__lede">
-          AI-native is an operating model. It is the way work is assigned, how context is
-          carried, how decisions are recorded, how results are verified, and how humans stay
-          in control when agents participate in the company.
+<main class="how-page">
+  <section class="how-hero">
+    <div class="container how-hero__grid">
+      <div class="how-hero__copy">
+        <p class="how-kicker">What is AI-native?</p>
+        <h1>We Build AI-Native Software in Days, Not Quarters</h1>
+        <p class="how-hero__lede">
+          Dreamborn builds full AI-native applications for companies with large customer bases.
+          These are not prototypes, demos, or chatbots. They are working products powered by
+          coordinated agents that can act, decide, and complete work.
         </p>
+        <div class="how-actions">
+          <a class="btn btn--primary" href="/live/">Watch the Work Move</a>
+          <a class="btn btn--outline" href="/connect/">Ask Finn How It Works</a>
+        </div>
       </div>
-      <div class="native-definition">
-        <span>Definition</span>
-        <p>
-          A company becomes AI-native when agents, humans, systems, memory, authority, queues,
-          verification, and receipts are designed together instead of bolted onto an old workflow.
-        </p>
+      <div class="how-system-map" aria-label="Customer need to finished product workflow">
+        <div class="how-system-card">Customer Need</div>
+        <span></span>
+        <div class="how-system-card how-system-card--agents">
+          <small>Agent Team</small>
+          <strong>Research</strong>
+          <strong>Build</strong>
+          <strong>QA</strong>
+        </div>
+        <span></span>
+        <div class="how-system-card">Verified Workflow</div>
+        <span></span>
+        <div class="how-system-card">Finished Product</div>
       </div>
     </div>
   </section>
 
-  <section class="native-section">
-    <div class="container">
-      <div class="native-section__head">
-        <p class="native-kicker">The components</p>
-        <h2>AI-native means the operating layer changes.</h2>
+  <section class="how-section how-section--split">
+    <div class="container how-two-up">
+      <div>
+        <p class="how-kicker">The old way is breaking</p>
+        <h2>Software Was Built for a Slower World</h2>
         <p>
-          The Thinking series breaks this down from different angles. This page is the concise
-          map: the parts that must exist before agents become infrastructure instead of demos.
+          Most companies still build software through long timelines, large teams, handoffs,
+          tickets, meetings, and months of coordination. That model made sense when software
+          only supported the work.
+        </p>
+        <p>
+          But customers now expect more. They want tools that help them move faster, make
+          better decisions, and get work done without waiting on people or systems.
         </p>
       </div>
+      <div class="how-compare">
+        <article>
+          <h3>Traditional Software</h3>
+          <ul>
+            <li>Roadmaps</li>
+            <li>Meetings</li>
+            <li>Hand-offs</li>
+            <li>Six-month timelines</li>
+          </ul>
+        </article>
+        <article>
+          <h3>AI-Native Software</h3>
+          <ul>
+            <li>Agents</li>
+            <li>Live workflows</li>
+            <li>Verified handoffs</li>
+            <li>24-hour builds</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
 
-      <div class="native-component-map">
+  <section class="how-section how-section--dark">
+    <div class="container how-two-up">
+      <div>
+        <p class="how-kicker">The shift</p>
+        <h2>We Stopped Building Software People Use. We Started Building Software That Works.</h2>
+        <p>
+          AI-native software does not simply give users another dashboard. It gives them a
+          system that can take action.
+        </p>
+        <p>
+          Agents receive context, make decisions, complete tasks, and pass work to the next
+          agent. Each handoff is checked. Each step is visible. The product operates more like
+          a team than a tool.
+        </p>
+      </div>
+      <div class="how-agent-flow" aria-label="Verified agent workflow">
+        <div>Research Agent</div>
+        <span>verified</span>
+        <div>Decision Agent</div>
+        <span>verified</span>
+        <div>Builder Agent</div>
+        <span>verified</span>
+        <div>QA Agent</div>
+        <span>verified</span>
+        <div>Delivery Agent</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section how-section--native">
+    <div class="container">
+      <div class="how-section__head">
+        <p class="how-kicker">What AI-native means</p>
+        <h2>AI Is Not a Feature. It Is the Operating Model.</h2>
+        <p>
+          Most companies are adding AI into existing software: a chatbot here, a search tool
+          there, a writing assistant bolted onto an old workflow. That is not AI-native.
+        </p>
+      </div>
+      <div class="how-definition">
+        <strong>AI-native software means:</strong>
+        <p>
+          A product built around AI agents that can understand context, perform tasks,
+          coordinate with other agents, and complete workflows with human oversight where it matters.
+        </p>
+      </div>
+      <div class="how-stack">
         <article>
           <span>01</span>
-          <h3>Work moves, not just words.</h3>
-          <p>Chatbots answer. AI-native systems move work through real loops with context, ownership, and next steps.</p>
-          <a href="/thinking/chatbots-dont-move-work/">Read the essay</a>
+          <h3>AI-Added</h3>
+          <p>AI placed inside an existing product.</p>
         </article>
         <article>
           <span>02</span>
-          <h3>Agents need memory.</h3>
-          <p>Useful agents need durable context that survives one prompt, one session, and one handoff.</p>
-          <a href="/thinking/atlas-on-agent-memory/">Read the essay</a>
+          <h3>AI-First</h3>
+          <p>AI shapes the user experience.</p>
         </article>
         <article>
           <span>03</span>
-          <h3>Receipts make autonomy inspectable.</h3>
-          <p>Companies need to know what happened, who received it, what evidence exists, and what should happen next.</p>
-          <a href="/thinking/why-agents-need-receipts/">Read the essay</a>
-        </article>
-        <article>
-          <span>04</span>
-          <h3>Humans govern authority and judgment.</h3>
-          <p>AI-native does not mean human-absent. Humans set standards, risk, escalation, taste, and final authority.</p>
-          <a href="/thinking/the-human-ceo-in-an-agent-company/">Read the essay</a>
-        </article>
-        <article>
-          <span>05</span>
-          <h3>PRDs are evidence, not the plan.</h3>
-          <p>Agentic work learns while it moves. Planning artifacts must stay connected to evidence instead of pretending the future is fixed.</p>
-          <a href="/thinking/why-prds-are-evidence-not-the-plan/">Read the essay</a>
-        </article>
-        <article>
-          <span>06</span>
-          <h3>The org chart includes systems.</h3>
-          <p>The real structure includes humans, agents, queues, permissions, memory, tools, receipts, and verification gates.</p>
-          <a href="/thinking/the-ai-native-org-chart/">Read the essay</a>
+          <h3>AI-Native</h3>
+          <p>Agents run the system itself.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="native-section native-section--reading">
+  <section class="how-section how-section--products">
     <div class="container">
-      <div class="native-section__head">
-        <p class="native-kicker">The series</p>
-        <h2>Ten essays on the components of AI-native work.</h2>
+      <div class="how-section__head">
+        <p class="how-kicker">What we build</p>
+        <h2>We Build Products Your Customers Can Actually Use</h2>
         <p>
-          These posts are the source library behind the concept: work movement, receipt,
-          governance, org design, memory, readiness, planning, and leadership.
+          Dreamborn builds AI-native software applications for companies with large customer
+          bases. These products can be sold, deployed, embedded, or offered as part of a
+          larger customer experience.
         </p>
       </div>
-
-      <div class="native-reading-grid">
-        {% for item in reading %}
-        <a href="/thinking/{{ item.slug }}/">
-          <span>{{ item.label }}</span>
-          <strong>{{ item.title }}</strong>
-          <p>{{ item.text }}</p>
-        </a>
-        {% endfor %}
+      <div class="how-deliverables">
+        <span>The application</span>
+        <span>The agent team</span>
+        <span>The orchestration layer</span>
+        <span>The workflows</span>
+        <span>The handoff logic</span>
+        <span>The verification system</span>
+      </div>
+      <div class="how-product-grid">
+        <article><h3>Customer Portal</h3><p>Built with agents inside.</p></article>
+        <article><h3>AI Service Assistant</h3><p>Built with agents inside.</p></article>
+        <article><h3>Workflow Automation Product</h3><p>Built with agents inside.</p></article>
+        <article><h3>Decision Support Tool</h3><p>Built with agents inside.</p></article>
+        <article><h3>Agent-Powered Customer App</h3><p>Built with agents inside.</p></article>
       </div>
     </div>
   </section>
 
-  <section class="native-final">
+  <section class="how-section how-section--timeline">
+    <div class="container how-two-up">
+      <div>
+        <p class="how-kicker">Why 24 hours is possible</p>
+        <h2>The Timeline Collapses When Agents Do the Work</h2>
+        <p>
+          Traditional development takes months because the work moves through people,
+          departments, tickets, meetings, and reviews.
+        </p>
+        <p>
+          Dreamborn uses an enterprise development team made up of coordinated agents. They
+          claim work, build, test, review, and hand off tasks inside a live system. What
+          normally takes a team six months can be built in 24 hours. Not because corners are cut.
+          Because the operating model changed.
+        </p>
+      </div>
+      <div class="how-timeline">
+        <div>
+          <strong>Traditional Build</strong>
+          <span>Month 1</span><span>Month 2</span><span>Month 3</span>
+          <span>Month 4</span><span>Month 5</span><span>Month 6</span>
+        </div>
+        <div>
+          <strong>Dreamborn Build</strong>
+          <span>Idea</span><span>Build</span><span>Verify</span><span>Launch</span>
+          <em>24 Hours</em>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section how-section--agents">
+    <div class="container how-two-up">
+      <div>
+        <p class="how-kicker">Agents in tow</p>
+        <h2>We Don&rsquo;t Just Deliver Software. We Deliver the Agents That Run It.</h2>
+        <p>
+          A Dreamborn product often comes with agents already inside it. These agents are
+          connected. They know their roles. They understand when to act, when to hand off,
+          and when to ask for human judgment.
+        </p>
+        <p>
+          That is orchestration. Without orchestration, agents are disconnected assistants.
+          With orchestration, they become a working team.
+        </p>
+      </div>
+      <div class="how-orbit" aria-label="Agent team connected to orchestration layer">
+        <div class="how-orbit__center">Orchestration Layer</div>
+        <span>Strategy Agent</span>
+        <span>Customer Agent</span>
+        <span>Data Agent</span>
+        <span>Workflow Agent</span>
+        <span>QA Agent</span>
+        <span>Reporting Agent</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section how-section--exec">
     <div class="container">
-      <p class="native-kicker">How Dreamborn applies it</p>
-      <h2>This is the operating model Dreamborn builds with.</h2>
+      <div class="how-section__head">
+        <p class="how-kicker">Why this matters to executives</p>
+        <h2>This Creates New Revenue, Not Just New Efficiency</h2>
+        <p>
+          For executives, the opportunity is not simply doing current work faster. The bigger
+          opportunity is creating products that were not possible before.
+        </p>
+      </div>
+      <div class="how-outcomes">
+        <article>
+          <h3>New Revenue</h3>
+          <p>Sell AI-native products to your customer base.</p>
+        </article>
+        <article>
+          <h3>Better Retention</h3>
+          <p>Give customers tools they rely on every day.</p>
+        </article>
+        <article>
+          <h3>Faster Innovation</h3>
+          <p>Launch in days instead of waiting quarters.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section how-section--start">
+    <div class="container how-two-up">
+      <div>
+        <p class="how-kicker">How we start</p>
+        <h2>Start With One High-Value Customer Problem</h2>
+        <p>
+          You do not need to transform the whole company first. Start with one product, one
+          customer problem, and one workflow that matters.
+        </p>
+      </div>
+      <div class="how-process">
+        <div><span>1</span><strong>Identify the customer problem</strong></div>
+        <div><span>2</span><strong>Design the agent workflow</strong></div>
+        <div><span>3</span><strong>Build the application</strong></div>
+        <div><span>4</span><strong>Launch the working product</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section how-section--proof">
+    <div class="container how-two-up">
+      <div>
+        <p class="how-kicker">Proof / live demo</p>
+        <h2>Watch the Work Move</h2>
+        <p>
+          The best way to understand Dreamborn is to see it operating. Watch agents claim
+          work, complete tasks, verify handoffs, and move software from idea to launch.
+        </p>
+        <p>This is not a concept. This is how the company runs.</p>
+        <a class="btn btn--primary" href="/live/">Watch the Work Move</a>
+      </div>
+      <div class="how-live-cards">
+        <article><span></span>Agent claimed task</article>
+        <article><span></span>Workflow completed</article>
+        <article><span></span>QA passed</article>
+        <article><span></span>Product updated</article>
+        <article><span></span>Handoff verified</article>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-final">
+    <div class="container">
+      <h2>What Could You Build If Six Months Became 24 Hours?</h2>
       <p>
-        The AI-native idea becomes concrete inside Dreamborn's multi-agent cluster: role-based
-        agents, shared context, parallel task claiming, verification, receipts, and human governance.
+        Dreamborn builds AI-native software products for companies ready to move faster than their market.
       </p>
-      <div class="native-actions">
-        <a class="btn btn--primary" href="/explainer/">See how Dreamborn works</a>
-        <a class="btn btn--outline" href="/thinking/what-is-an-ai-native-company/">Read the defining essay</a>
+      <div class="how-actions">
+        <a class="btn btn--primary" href="/live/">Watch the Work Move</a>
+        <a class="btn btn--outline" href="/connect/">Ask Finn How It Works</a>
       </div>
     </div>
   </section>
