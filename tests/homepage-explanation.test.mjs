@@ -33,6 +33,14 @@ test('homepage places Finn in the middle of the page', () => {
   assert.match(homepage, /Roles being filled/);
 });
 
+test('homepage keeps second hero proof box on desktop only', () => {
+  assert.match(homepage, /db-system-strip db-system-strip--desktop/);
+  assert.match(homepage, /<span>Agents<\/span><strong>24<\/strong>/);
+  assert.match(homepage, /<span>Now<\/span><strong>live<\/strong>/);
+  assert.match(homepage, /<span>Proof<\/span><strong>HCS<\/strong>/);
+  assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.db-system-strip--desktop \{[\s\S]*display: none;/);
+});
+
 test('base layout includes global Finn drawer and script', () => {
   assert.match(base, /include "finn-drawer\.njk"/);
   assert.match(base, /\/js\/finn-global\.js/);

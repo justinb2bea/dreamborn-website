@@ -8391,6 +8391,10 @@ body.nav-open .nav {
     border-bottom: 0;
   }
 
+  .db-system-strip--desktop {
+    display: none;
+  }
+
   .db-system-card__header,
   .db-proof-panel__head {
     align-items: flex-start;
