@@ -5,9 +5,14 @@
   const toggle = document.querySelector('[data-nav-toggle]');
   if (!nav || !toggle) return;
 
+  const header = toggle.closest('.nav');
+  updateScrollState();
+
   toggle.addEventListener('click', function () {
     setOpen(toggle.getAttribute('aria-expanded') !== 'true');
   });
+
+  window.addEventListener('scroll', updateScrollState, { passive: true });
 
   nav.addEventListener('click', function (event) {
     if (event.target.closest('a')) setOpen(false);
@@ -29,5 +34,10 @@
     document.body.classList.toggle('nav-open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  }
+
+  function updateScrollState() {
+    if (!header) return;
+    header.classList.toggle('nav--scrolled', window.scrollY > 8);
   }
 })();

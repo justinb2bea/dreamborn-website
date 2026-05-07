@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 
 const root = dirname(fileURLToPath(new URL('../package.json', import.meta.url)));
 const siteRoot = join(root, '_site');
+const generatedPostsRoot = join(root, 'src', '_data', 'generated_posts');
 
 function readBuilt(pathname) {
   const file = pathname === '/'
@@ -116,6 +117,27 @@ test('thinking posts emit article metadata and article schema', () => {
   assert.ok(isCloudflareImageUrl(metaContent(html, 'twitter:image')), 'article Twitter image uses Cloudflare Images');
   const blocks = jsonLdBlocks(html);
   assert.ok(blocks.some((block) => jsonLdHasType(block, 'Article')), 'Article JSON-LD exists');
+});
+
+test('thinking article body lists keep markers inside the prose column', () => {
+  const css = readFileSync(new URL('../public/css/main.css', import.meta.url), 'utf8');
+  assert.match(css, /\.detail-body ul,[\s\S]*\.detail-body ol \{[\s\S]*padding-left: 1\.35em;[\s\S]*list-style-position: outside;/);
+  assert.match(css, /\.detail-body li \{[\s\S]*padding-left: 0\.35em;/);
+  assert.match(css, /\.detail-body li::marker \{[\s\S]*color: var\(--db-lime-500\);/);
+});
+
+test('rewritten generated posts use paragraph format without lists', () => {
+  const leaveAsWritten = new Set([
+    'ai-isnt-a-fast-intern.json',
+    'atlas-on-agent-memory.json',
+  ]);
+
+  for (const file of readdirSync(generatedPostsRoot).filter((name) => name.endsWith('.json'))) {
+    if (leaveAsWritten.has(file)) continue;
+    const post = JSON.parse(readFileSync(join(generatedPostsRoot, file), 'utf8'));
+    assert.doesNotMatch(post.body_html, /<\/?(?:ol|ul|li)\b/, `${file} has no HTML lists`);
+    assert.doesNotMatch(post.body_md, /^\s*(?:\d+\.|[-*])\s/m, `${file} has no markdown lists`);
+  }
 });
 
 test('sitemap robots and feeds are generated', () => {
