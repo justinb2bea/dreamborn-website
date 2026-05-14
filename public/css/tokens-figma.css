@@ -1,7 +1,7 @@
 /* ============================================================
    tokens-figma.css — AUTO-GENERATED from Figma. Do not edit.
    Source file: DREAMBORN-DESIGN-SYSTEM-FIG
-   Exported:    2026-05-13T11:22:03.125Z
+   Exported:    2026-05-14T12:10:10.500Z
    ============================================================ */
 
 :root {
@@ -86,6 +86,21 @@
   --db-orb-primary: #8C1A1340;
   --db-orb-secondary: #8DC63F26;
   --db-orb-tertiary: #6B5F5426;
+  --db-status-live-bg: #8DC63F1A;
+  --db-status-live-border: #8DC63F33;
+  --db-status-claim-bg: #C9963A1A;
+  --db-status-claim-border: #C9963A40;
+  --db-status-blocked-bg: #8C1A131F;
+  --db-status-blocked-border: #8C1A1340;
+  --db-status-pending-bg: #6B5F541A;
+  --db-status-pending-border: #6B5F5433;
+  --db-terminal-bg: #1C1110;
+  --db-terminal-text: #C8BFBA;
+  --db-terminal-text-muted: #7A6E68;
+  --db-focus-ring: var(--db-lime-500);
+  --db-disabled-bg: var(--db-neutral-800);
+  --db-disabled-text: var(--db-neutral-500);
+  --db-disabled-border: var(--db-neutral-700);
 }
 
 [data-register="editorial"] {
@@ -114,6 +129,21 @@
   --db-orb-primary: #00000000;
   --db-orb-secondary: #00000000;
   --db-orb-tertiary: #00000000;
+  --db-status-live-bg: #8DC63F1A;
+  --db-status-live-border: #8DC63F33;
+  --db-status-claim-bg: #C9963A1A;
+  --db-status-claim-border: #C9963A40;
+  --db-status-blocked-bg: #8C1A131F;
+  --db-status-blocked-border: #8C1A1340;
+  --db-status-pending-bg: #6B5F541A;
+  --db-status-pending-border: #6B5F5433;
+  --db-terminal-bg: #1C1110;
+  --db-terminal-text: #C8BFBA;
+  --db-terminal-text-muted: #7A6E68;
+  --db-focus-ring: var(--db-lime-600);
+  --db-disabled-bg: var(--db-neutral-100);
+  --db-disabled-text: var(--db-neutral-300);
+  --db-disabled-border: var(--db-neutral-200);
 }
 
 [data-register="forge"] {
@@ -142,6 +172,21 @@
   --db-orb-primary: #00000000;
   --db-orb-secondary: #00000000;
   --db-orb-tertiary: #00000000;
+  --db-status-live-bg: #8DC63F1A;
+  --db-status-live-border: #8DC63F33;
+  --db-status-claim-bg: #C9963A1A;
+  --db-status-claim-border: #C9963A40;
+  --db-status-blocked-bg: #8C1A131F;
+  --db-status-blocked-border: #8C1A1340;
+  --db-status-pending-bg: #6B5F541A;
+  --db-status-pending-border: #6B5F5433;
+  --db-terminal-bg: #1C1110;
+  --db-terminal-text: #C8BFBA;
+  --db-terminal-text-muted: #7A6E68;
+  --db-focus-ring: var(--db-lime-500);
+  --db-disabled-bg: var(--db-neutral-800);
+  --db-disabled-text: var(--db-neutral-500);
+  --db-disabled-border: var(--db-neutral-700);
 }
 
 /* ─── Text Styles ─── */

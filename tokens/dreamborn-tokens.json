@@ -1,7 +1,7 @@
 {
   "meta": {
     "file": "DREAMBORN-DESIGN-SYSTEM-FIG",
-    "exportedAt": "2026-05-13T11:22:03.125Z",
+    "exportedAt": "2026-05-14T12:10:10.500Z",
     "pluginVersion": "mcp-1.0.0"
   },
   "collections": {
@@ -72,7 +72,22 @@
         "status-pending": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/700}", "brand": "{Color/Primitive.neutral/700}", "forge": "{Color/Primitive.neutral/700}" } },
         "orb-primary": { "type": "COLOR", "values": { "editorial": "#00000000", "brand": "#8C1A1340", "forge": "#00000000" } },
         "orb-secondary": { "type": "COLOR", "values": { "editorial": "#00000000", "brand": "#8DC63F26", "forge": "#00000000" } },
-        "orb-tertiary": { "type": "COLOR", "values": { "editorial": "#00000000", "brand": "#6B5F5426", "forge": "#00000000" } }
+        "orb-tertiary": { "type": "COLOR", "values": { "editorial": "#00000000", "brand": "#6B5F5426", "forge": "#00000000" } },
+        "status-live-bg": { "type": "COLOR", "values": { "editorial": "#8DC63F1A", "brand": "#8DC63F1A", "forge": "#8DC63F1A" } },
+        "status-live-border": { "type": "COLOR", "values": { "editorial": "#8DC63F33", "brand": "#8DC63F33", "forge": "#8DC63F33" } },
+        "status-claim-bg": { "type": "COLOR", "values": { "editorial": "#C9963A1A", "brand": "#C9963A1A", "forge": "#C9963A1A" } },
+        "status-claim-border": { "type": "COLOR", "values": { "editorial": "#C9963A40", "brand": "#C9963A40", "forge": "#C9963A40" } },
+        "status-blocked-bg": { "type": "COLOR", "values": { "editorial": "#8C1A131F", "brand": "#8C1A131F", "forge": "#8C1A131F" } },
+        "status-blocked-border": { "type": "COLOR", "values": { "editorial": "#8C1A1340", "brand": "#8C1A1340", "forge": "#8C1A1340" } },
+        "status-pending-bg": { "type": "COLOR", "values": { "editorial": "#6B5F541A", "brand": "#6B5F541A", "forge": "#6B5F541A" } },
+        "status-pending-border": { "type": "COLOR", "values": { "editorial": "#6B5F5433", "brand": "#6B5F5433", "forge": "#6B5F5433" } },
+        "terminal-bg": { "type": "COLOR", "values": { "editorial": "#1C1110", "brand": "#1C1110", "forge": "#1C1110" } },
+        "terminal-text": { "type": "COLOR", "values": { "editorial": "#C8BFBA", "brand": "#C8BFBA", "forge": "#C8BFBA" } },
+        "terminal-text-muted": { "type": "COLOR", "values": { "editorial": "#7A6E68", "brand": "#7A6E68", "forge": "#7A6E68" } },
+        "focus-ring": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.lime/600}", "brand": "{Color/Primitive.lime/500}", "forge": "{Color/Primitive.lime/500}" } },
+        "disabled-bg": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/100}", "brand": "{Color/Primitive.neutral/800}", "forge": "{Color/Primitive.neutral/800}" } },
+        "disabled-text": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/300}", "brand": "{Color/Primitive.neutral/500}", "forge": "{Color/Primitive.neutral/500}" } },
+        "disabled-border": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/200}", "brand": "{Color/Primitive.neutral/700}", "forge": "{Color/Primitive.neutral/700}" } }
       }
     },
     "Spacing": {

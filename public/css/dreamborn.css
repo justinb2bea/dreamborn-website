@@ -155,7 +155,7 @@
     --color-crimson:      var(--db-crimson-600);
     --color-crimson-dark: var(--db-crimson-700);
     --color-stone:        var(--db-stone);
-    --color-chain:        #C9963A;
+    --color-chain:        var(--db-status-claim);
     --color-lime:         var(--db-lime-100);
 
     --font-brand-signal:      var(--db-font-brand-signal);
@@ -218,7 +218,7 @@
     --color-status-idle:    var(--db-status-claim, #C9963A);
     --color-status-offline: var(--db-status-pending, var(--db-neutral-500));
     --color-accent:         var(--db-cta);
-    --color-accent-chain:   #C9963A;
+    --color-accent-chain:   var(--db-status-claim);
   }
 }
 
@@ -264,7 +264,7 @@
 
   ::selection {
     background: var(--db-cta);
-    color: white;
+    color: var(--db-text-inverse);
   }
 }
 
@@ -425,13 +425,13 @@
 
   .db-btn--primary {
     background: var(--db-cta);
-    color: white;
+    color: var(--db-text-inverse);
     border-color: var(--db-cta);
   }
   .db-btn--primary:hover {
     background: var(--db-cta-hover);
     border-color: var(--db-cta-hover);
-    color: white;
+    color: var(--db-text-inverse);
   }
 
   .db-btn--ghost {
@@ -451,7 +451,7 @@
   }
   .db-btn--accent:hover {
     background: var(--db-accent);
-    color: white;
+    color: var(--db-text-inverse);
     border-color: var(--db-accent);
   }
 
@@ -565,21 +565,21 @@
   /* --- TERMINAL BLOCK --- */
 
   .db-terminal {
-    background: #1C1110;
-    border: 1px solid var(--db-border-2, #3A2420);
+    background: var(--db-terminal-bg);
+    border: 1px solid var(--db-border-2);
     border-radius: var(--db-radius);
     padding: var(--db-space-5) var(--db-space-6);
     font-family: var(--db-font-mono);
     font-size: var(--db-text-xs);
     line-height: 2;
     overflow-x: auto;
-    color: #C8BFBA;
+    color: var(--db-terminal-text);
   }
 
-  .db-terminal .t-lime   { color: #8DC63F; }
-  .db-terminal .t-crim   { color: #C4352B; }
-  .db-terminal .t-gold   { color: #C9963A; }
-  .db-terminal .t-muted  { color: #7A6E68; }
+  .db-terminal .t-lime   { color: var(--db-lime-500); }
+  .db-terminal .t-crim   { color: #C4352B; } /* TODO: confirm with Justin — class name says "crim" but value is status-blocked color */
+  .db-terminal .t-gold   { color: var(--db-status-claim); }
+  .db-terminal .t-muted  { color: var(--db-terminal-text-muted); }
 
   /* --- ARTICLE HEADER (editorial) --- */
 
@@ -863,9 +863,9 @@
     border: 1px solid transparent;
   }
 
-  .db-status--complete { background: rgba(141,198,63,0.1);  color: var(--db-lime-600);       border-color: rgba(141,198,63,0.2); }
-  .db-status--progress { background: rgba(201,150,58,0.1);  color: var(--db-status-claim);   border-color: rgba(201,150,58,0.25); }
-  .db-status--blocked  { background: rgba(140,26,19,0.12);  color: var(--db-status-blocked); border-color: rgba(140,26,19,0.25); }
+  .db-status--complete { background: var(--db-status-live-bg);    color: var(--db-lime-600);       border-color: var(--db-status-live-border); }
+  .db-status--progress { background: var(--db-status-claim-bg);   color: var(--db-status-claim);   border-color: var(--db-status-claim-border); }
+  .db-status--blocked  { background: var(--db-status-blocked-bg); color: var(--db-status-blocked); border-color: var(--db-status-blocked-border); }
   .db-status--pending  { background: transparent;           color: var(--db-text-faint);     border-color: var(--db-border-2); }
 
   /* ==========================================================
@@ -1242,7 +1242,7 @@
     align-self: flex-end;
     background: var(--db-cta);
     border-color: var(--db-cta);
-    color: white;
+    color: var(--db-text-inverse);
   }
 
   .db-prompt-list {
