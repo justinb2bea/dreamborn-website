@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "file": "DREAMBORN-DESIGN-SYSTEM-FIG",
+    "exportedAt": "2026-05-13T11:22:03.125Z",
+    "pluginVersion": "mcp-1.0.0"
+  },
+  "collections": {
+    "Color/Primitive": {
+      "id": "VariableCollectionId:1:2",
+      "modes": ["Mode 1"],
+      "defaultMode": "Mode 1",
+      "variables": {
+        "crimson/100": { "type": "COLOR", "values": { "Mode 1": "#FDF2F1" } },
+        "crimson/200": { "type": "COLOR", "values": { "Mode 1": "#F9D5D3" } },
+        "crimson/300": { "type": "COLOR", "values": { "Mode 1": "#F0A8A4" } },
+        "crimson/400": { "type": "COLOR", "values": { "Mode 1": "#E07070" } },
+        "crimson/500": { "type": "COLOR", "values": { "Mode 1": "#C03535" } },
+        "crimson/600": { "type": "COLOR", "values": { "Mode 1": "#8C1A13" } },
+        "crimson/700": { "type": "COLOR", "values": { "Mode 1": "#6B130E" } },
+        "crimson/800": { "type": "COLOR", "values": { "Mode 1": "#4A0D09" } },
+        "crimson/900": { "type": "COLOR", "values": { "Mode 1": "#2E0805" } },
+        "lime/100": { "type": "COLOR", "values": { "Mode 1": "#F4FAE8" } },
+        "lime/200": { "type": "COLOR", "values": { "Mode 1": "#E4F2C3" } },
+        "lime/300": { "type": "COLOR", "values": { "Mode 1": "#C9E58A" } },
+        "lime/400": { "type": "COLOR", "values": { "Mode 1": "#ADDA50" } },
+        "lime/500": { "type": "COLOR", "values": { "Mode 1": "#8DC63F" } },
+        "lime/600": { "type": "COLOR", "values": { "Mode 1": "#6A9A2C" } },
+        "lime/700": { "type": "COLOR", "values": { "Mode 1": "#4E721F" } },
+        "lime/800": { "type": "COLOR", "values": { "Mode 1": "#344B14" } },
+        "lime/900": { "type": "COLOR", "values": { "Mode 1": "#1A260A" } },
+        "neutral/50": { "type": "COLOR", "values": { "Mode 1": "#FAF8F5" } },
+        "neutral/100": { "type": "COLOR", "values": { "Mode 1": "#F0EDE9" } },
+        "neutral/200": { "type": "COLOR", "values": { "Mode 1": "#E2DDD8" } },
+        "neutral/300": { "type": "COLOR", "values": { "Mode 1": "#C8C0B8" } },
+        "neutral/400": { "type": "COLOR", "values": { "Mode 1": "#9B8E87" } },
+        "neutral/500": { "type": "COLOR", "values": { "Mode 1": "#6B5F54" } },
+        "neutral/700": { "type": "COLOR", "values": { "Mode 1": "#3D3530" } },
+        "neutral/800": { "type": "COLOR", "values": { "Mode 1": "#1E1714" } },
+        "neutral/950": { "type": "COLOR", "values": { "Mode 1": "#0F0B0A" } },
+        "olive": { "type": "COLOR", "values": { "Mode 1": "#4A5828" } },
+        "ember": { "type": "COLOR", "values": { "Mode 1": "#5C2318" } },
+        "stone": { "type": "COLOR", "values": { "Mode 1": "#8A7E6A" } },
+        "white": { "type": "COLOR", "values": { "Mode 1": "#FFFFFF" } }
+      }
+    },
+    "Color/Semantic": {
+      "id": "VariableCollectionId:7:19",
+      "modes": ["editorial", "brand", "forge"],
+      "defaultMode": "editorial",
+      "variables": {
+        "text": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/950}", "brand": "{Color/Primitive.neutral/50}", "forge": "#E8E2DE" } },
+        "text-muted": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/500}", "brand": "{Color/Primitive.neutral/500}", "forge": "{Color/Primitive.neutral/500}" } },
+        "text-faint": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/300}", "brand": "#FAF8F540", "forge": "#3D3530" } },
+        "text-inverse": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.white}", "brand": "{Color/Primitive.white}", "forge": "{Color/Primitive.white}" } },
+        "bg": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/50}", "brand": "{Color/Primitive.neutral/950}", "forge": "#0A0807" } },
+        "bg-2": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/100}", "brand": "#1A100E", "forge": "#100D0C" } },
+        "bg-3": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/200}", "brand": "#221511", "forge": "#171110" } },
+        "surface": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.white}", "brand": "#1A100E", "forge": "#1C1614" } },
+        "surface-2": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/50}", "brand": "#221511", "forge": "#221A18" } },
+        "border": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/200}", "brand": "#2E1F1C", "forge": "#2A1F1C" } },
+        "border-2": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/300}", "brand": "#3A2420", "forge": "#362824" } },
+        "accent": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.lime/600}", "brand": "{Color/Primitive.lime/500}", "forge": "{Color/Primitive.lime/500}" } },
+        "accent-text": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.lime/600}", "brand": "{Color/Primitive.lime/600}", "forge": "{Color/Primitive.lime/600}" } },
+        "accent-bg": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.lime/100}", "brand": "#8DC63F14", "forge": "#8DC63F1F" } },
+        "accent-border": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.lime/300}", "brand": "#8DC63F40", "forge": "#8DC63F33" } },
+        "cta": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.crimson/600}", "brand": "{Color/Primitive.crimson/600}", "forge": "{Color/Primitive.crimson/600}" } },
+        "cta-hover": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.crimson/700}", "brand": "{Color/Primitive.crimson/700}", "forge": "{Color/Primitive.crimson/700}" } },
+        "cta-bg": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.crimson/100}", "brand": "#8C1A1314", "forge": "#8C1A1326" } },
+        "status-live": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.lime/500}", "brand": "{Color/Primitive.lime/500}", "forge": "{Color/Primitive.lime/500}" } },
+        "status-claim": { "type": "COLOR", "values": { "editorial": "#C9963A", "brand": "#C9963A", "forge": "#C9963A" } },
+        "status-blocked": { "type": "COLOR", "values": { "editorial": "#C4352B", "brand": "#C4352B", "forge": "#C4352B" } },
+        "status-pending": { "type": "COLOR", "values": { "editorial": "{Color/Primitive.neutral/700}", "brand": "{Color/Primitive.neutral/700}", "forge": "{Color/Primitive.neutral/700}" } },
+        "orb-primary": { "type": "COLOR", "values": { "editorial": "#00000000", "brand": "#8C1A1340", "forge": "#00000000" } },
+        "orb-secondary": { "type": "COLOR", "values": { "editorial": "#00000000", "brand": "#8DC63F26", "forge": "#00000000" } },
+        "orb-tertiary": { "type": "COLOR", "values": { "editorial": "#00000000", "brand": "#6B5F5426", "forge": "#00000000" } }
+      }
+    },
+    "Spacing": {
+      "id": "VariableCollectionId:9:3",
+      "modes": ["Mode 1"],
+      "defaultMode": "Mode 1",
+      "variables": {
+        "space/1": { "type": "FLOAT", "values": { "Mode 1": 4 } },
+        "space/2": { "type": "FLOAT", "values": { "Mode 1": 8 } },
+        "space/3": { "type": "FLOAT", "values": { "Mode 1": 12 } },
+        "space/4": { "type": "FLOAT", "values": { "Mode 1": 16 } },
+        "space/5": { "type": "FLOAT", "values": { "Mode 1": 20 } },
+        "space/6": { "type": "FLOAT", "values": { "Mode 1": 24 } },
+        "space/8": { "type": "FLOAT", "values": { "Mode 1": 32 } },
+        "space/10": { "type": "FLOAT", "values": { "Mode 1": 40 } },
+        "space/12": { "type": "FLOAT", "values": { "Mode 1": 48 } },
+        "space/16": { "type": "FLOAT", "values": { "Mode 1": 64 } },
+        "space/20": { "type": "FLOAT", "values": { "Mode 1": 80 } },
+        "space/24": { "type": "FLOAT", "values": { "Mode 1": 96 } },
+        "space/32": { "type": "FLOAT", "values": { "Mode 1": 128 } }
+      }
+    },
+    "Radius": {
+      "id": "VariableCollectionId:9:16",
+      "modes": ["Mode 1"],
+      "defaultMode": "Mode 1",
+      "variables": {
+        "radius/sm": { "type": "FLOAT", "values": { "Mode 1": 4 } },
+        "radius": { "type": "FLOAT", "values": { "Mode 1": 8 } },
+        "radius/md": { "type": "FLOAT", "values": { "Mode 1": 10 } },
+        "radius/lg": { "type": "FLOAT", "values": { "Mode 1": 14 } },
+        "radius/xl": { "type": "FLOAT", "values": { "Mode 1": 20 } },
+        "radius/full": { "type": "FLOAT", "values": { "Mode 1": 9999 } }
+      }
+    }
+  },
+  "textStyles": {
+    "Heading/H1": { "fontFamily": "Fraunces", "fontStyle": "SemiBold", "fontSize": 56, "lineHeight": 64, "letterSpacing": "0%" },
+    "Heading/H2": { "fontFamily": "Fraunces", "fontStyle": "SemiBold", "fontSize": 40, "lineHeight": 48, "letterSpacing": "0%" },
+    "Heading/H3": { "fontFamily": "Fraunces", "fontStyle": "SemiBold", "fontSize": 28, "lineHeight": 36, "letterSpacing": "0%" },
+    "Heading/H4": { "fontFamily": "DM Sans", "fontStyle": "SemiBold", "fontSize": 20, "lineHeight": 28, "letterSpacing": "0%" },
+    "Body/Large": { "fontFamily": "DM Sans", "fontStyle": "Regular", "fontSize": 18, "lineHeight": 28, "letterSpacing": "0%" },
+    "Body/Default": { "fontFamily": "DM Sans", "fontStyle": "Regular", "fontSize": 16, "lineHeight": 24, "letterSpacing": "0%" },
+    "Body/Small": { "fontFamily": "DM Sans", "fontStyle": "Regular", "fontSize": 14, "lineHeight": 20, "letterSpacing": "0%" },
+    "Label": { "fontFamily": "DM Sans", "fontStyle": "Medium", "fontSize": 12, "lineHeight": 16, "letterSpacing": "0%" },
+    "Caption": { "fontFamily": "DM Sans", "fontStyle": "Regular", "fontSize": 11, "lineHeight": 16, "letterSpacing": "0%" },
+    "Button/Default": { "fontFamily": "DM Sans", "fontStyle": "Medium", "fontSize": 16, "lineHeight": 24, "letterSpacing": "0%" }
+  }
+}

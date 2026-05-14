@@ -22,55 +22,31 @@
 @layer tokens, base, components;
 
 /* ============================================================
-   LAYER: TOKENS
-   All design decisions as CSS custom properties.
-   Semantic tokens re-map per register.
+   FIGMA-OWNED TOKENS — auto-generated, do not hand-edit.
+   Source: tokens-figma.css (built by scripts/figma-to-tokens.js
+   from the DREAMBORN Design System Figma file via Figma MCP).
+   Covers: primitives, semantic register tokens, spacing, radius,
+   text-style utility classes.
+   ============================================================ */
+@import url('tokens-figma.css') layer(tokens);
+
+/* ============================================================
+   LAYER: TOKENS — HAND-WRITTEN EXTRAS
+   Variables that haven't yet moved to Figma:
+     - Convenience aliases (--db-crimson, --db-lime, etc.)
+     - Typography per register (font families, weights, tracking)
+     - Type scale primitives
+     - Motion (easing, durations)
+     - Shadows
+     - Legacy compatibility aliases (--color-*, --space-*)
    ============================================================ */
 
 @layer tokens {
 
-  /* --- PALETTE --- */
+  /* --- CONVENIENCE ALIASES --- */
+  /* Shorthand pointers to the most-used primitives (which now come from tokens-figma.css). */
 
   :root {
-    /* Crimson scale */
-    --db-crimson-100: #FDF2F1;
-    --db-crimson-200: #F9D5D3;
-    --db-crimson-300: #F0A8A4;
-    --db-crimson-400: #E07070;
-    --db-crimson-500: #C03535;
-    --db-crimson-600: #8C1A13;
-    --db-crimson-700: #6B130E;
-    --db-crimson-800: #4A0D09;
-    --db-crimson-900: #2E0805;
-
-    /* Lime scale */
-    --db-lime-100: #F4FAE8;
-    --db-lime-200: #E4F2C3;
-    --db-lime-300: #C9E58A;
-    --db-lime-400: #ADDA50;
-    --db-lime-500: #8DC63F;
-    --db-lime-600: #6A9A2C;
-    --db-lime-700: #4E721F;
-    --db-lime-800: #344B14;
-    --db-lime-900: #1A260A;
-
-    /* Warm Neutral scale */
-    --db-neutral-50:  #FAF8F5;
-    --db-neutral-100: #F0EDE9;
-    --db-neutral-200: #E2DDD8;
-    --db-neutral-300: #C8C0B8;
-    --db-neutral-400: #9B8E87;
-    --db-neutral-500: #6B5F54;
-    --db-neutral-700: #3D3530;
-    --db-neutral-800: #1E1714;
-    --db-neutral-950: #0F0B0A;
-
-    /* Mark intersection colors */
-    --db-olive:  #4A5828; /* crimson × lime  */
-    --db-ember:  #5C2318; /* crimson × taupe */
-    --db-stone:  #8A7E6A; /* lime × taupe    */
-
-    /* Aliases */
     --db-crimson:    var(--db-crimson-600);
     --db-lime:       var(--db-lime-500);
     --db-lime-text:  var(--db-lime-600);
@@ -79,31 +55,12 @@
     --db-dark:       var(--db-neutral-950);
   }
 
-  /* --- SEMANTIC TOKENS: BRAND REGISTER (dark) --- */
+  /* --- TYPOGRAPHY PER REGISTER ---
+     Color semantics for these registers come from tokens-figma.css.
+     This block layers typography (fonts, weights, tracking) on top.
+  */
 
   [data-register="brand"] {
-    --db-bg:         var(--db-neutral-950);
-    --db-bg-2:       #1A100E;
-    --db-bg-3:       #221511;
-    --db-surface:    #1A100E;
-    --db-surface-2:  #221511;
-    --db-border:     #2E1F1C;
-    --db-border-2:   #3A2420;
-
-    --db-text:       var(--db-neutral-50);
-    --db-text-muted: var(--db-neutral-500);
-    --db-text-faint: rgba(250, 248, 245, 0.25);
-
-    --db-accent:     var(--db-lime-500);
-    --db-accent-text: var(--db-lime-600);
-    --db-accent-bg:  rgba(141, 198, 63, 0.08);
-    --db-accent-border: rgba(141, 198, 63, 0.25);
-
-    --db-cta:        var(--db-crimson-600);
-    --db-cta-hover:  var(--db-crimson-700);
-    --db-cta-bg:     rgba(140, 26, 19, 0.08);
-
-    /* Typography roles */
     --db-font-brand-signal:    'Bebas Neue', Impact, sans-serif;
     --db-font-brand-headline:  'Fraunces', Georgia, serif;
     --db-font-brand-narrative: 'Lora', Georgia, serif;
@@ -118,38 +75,9 @@
     --db-signal-weight: 400;
     --db-signal-tracking: 0.04em;
     --db-body-style: italic;
-
-    /* Orb ambient (from mark) */
-    --db-orb-primary:   rgba(140, 26, 19, 0.25);
-    --db-orb-secondary: rgba(141, 198, 63, 0.15);
-    --db-orb-tertiary:  rgba(107, 95, 84, 0.15);
   }
 
-  /* --- SEMANTIC TOKENS: EDITORIAL REGISTER (light) --- */
-
   [data-register="editorial"] {
-    --db-bg:         var(--db-neutral-50);
-    --db-bg-2:       var(--db-neutral-100);
-    --db-bg-3:       var(--db-neutral-200);
-    --db-surface:    #FFFFFF;
-    --db-surface-2:  var(--db-neutral-50);
-    --db-border:     var(--db-neutral-200);
-    --db-border-2:   var(--db-neutral-300);
-
-    --db-text:       var(--db-neutral-950);
-    --db-text-muted: var(--db-neutral-500);
-    --db-text-faint: var(--db-neutral-300);
-
-    --db-accent:     var(--db-lime-600);
-    --db-accent-text: var(--db-lime-600);
-    --db-accent-bg:  var(--db-lime-100);
-    --db-accent-border: var(--db-lime-300);
-
-    --db-cta:        var(--db-crimson-600);
-    --db-cta-hover:  var(--db-crimson-700);
-    --db-cta-bg:     var(--db-crimson-100);
-
-    /* Typography roles */
     --db-font-brand-signal:    'Bebas Neue', Impact, sans-serif;
     --db-font-brand-headline:  'Fraunces', Georgia, serif;
     --db-font-brand-narrative: 'Lora', Georgia, serif;
@@ -165,37 +93,7 @@
     --db-body-style: normal;
   }
 
-  /* --- SEMANTIC TOKENS: FORGE REGISTER (internal tools / cockpit) --- */
-
   [data-register="forge"] {
-    --db-bg:         #0A0807;
-    --db-bg-2:       #100D0C;
-    --db-bg-3:       #171110;
-    --db-surface:    #1C1614;
-    --db-surface-2:  #221A18;
-    --db-border:     #2A1F1C;
-    --db-border-2:   #362824;
-
-    --db-text:       #E8E2DE;
-    --db-text-muted: var(--db-neutral-500);
-    --db-text-faint: #3D3530;
-
-    --db-accent:     var(--db-lime-500);
-    --db-accent-text: var(--db-lime-600);
-    --db-accent-bg:  rgba(141, 198, 63, 0.12);
-    --db-accent-border: rgba(141, 198, 63, 0.2);
-
-    --db-cta:        var(--db-crimson-600);
-    --db-cta-hover:  var(--db-crimson-700);
-    --db-cta-bg:     rgba(140, 26, 19, 0.15);
-
-    /* Status colors — more prominent in forge */
-    --db-status-live:    var(--db-lime-500);
-    --db-status-claim:   #C9963A;
-    --db-status-blocked: #C4352B;
-    --db-status-pending: #3D3530;
-
-    /* Typography roles: DM Sans primary, Fira Code co-equal */
     --db-font-brand-signal:    'Bebas Neue', Impact, sans-serif;
     --db-font-brand-headline:  'Fraunces', Georgia, serif;
     --db-font-brand-narrative: 'Lora', Georgia, serif;
@@ -209,43 +107,9 @@
     --db-signal-weight: 400;
     --db-signal-tracking: 0.04em;
     --db-body-style: normal;
-
-    /* No orbs in forge */
-    --db-orb-primary:   transparent;
-    --db-orb-secondary: transparent;
-    --db-orb-tertiary:  transparent;
   }
 
-  /* --- SPACING --- */
-
-  :root {
-    --db-space-1:  0.25rem;   /*  4px */
-    --db-space-2:  0.5rem;    /*  8px */
-    --db-space-3:  0.75rem;   /* 12px */
-    --db-space-4:  1rem;      /* 16px */
-    --db-space-5:  1.25rem;   /* 20px */
-    --db-space-6:  1.5rem;    /* 24px */
-    --db-space-8:  2rem;      /* 32px */
-    --db-space-10: 2.5rem;    /* 40px */
-    --db-space-12: 3rem;      /* 48px */
-    --db-space-16: 4rem;      /* 64px */
-    --db-space-20: 5rem;      /* 80px */
-    --db-space-24: 6rem;      /* 96px */
-    --db-space-32: 8rem;      /* 128px */
-  }
-
-  /* --- RADIUS --- */
-
-  :root {
-    --db-radius-sm: 4px;
-    --db-radius:    8px;
-    --db-radius-md: 10px;
-    --db-radius-lg: 14px;
-    --db-radius-xl: 20px;
-    --db-radius-full: 9999px;
-  }
-
-  /* --- TYPE SCALE --- */
+  /* --- TYPE SCALE --- (deferred from Figma reconciliation) */
 
   :root {
     --db-text-xs:   0.625rem;   /* 10px — labels, captions */
@@ -262,7 +126,7 @@
     --db-text-7xl:  7rem;       /* 112px */
   }
 
-  /* --- MOTION --- */
+  /* --- MOTION --- (deferred from Figma) */
 
   :root {
     --db-ease:      cubic-bezier(0.16, 1, 0.3, 1);
@@ -273,7 +137,7 @@
     --db-duration-slow:   350ms;
   }
 
-  /* --- SHADOWS --- */
+  /* --- SHADOWS --- (deferred from Figma) */
 
   :root {
     --db-shadow-sm: 0 1px 4px rgba(15, 11, 10, 0.06);

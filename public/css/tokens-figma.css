@@ -1,0 +1,226 @@
+/* ============================================================
+   tokens-figma.css — AUTO-GENERATED from Figma. Do not edit.
+   Source file: DREAMBORN-DESIGN-SYSTEM-FIG
+   Exported:    2026-05-13T11:22:03.125Z
+   ============================================================ */
+
+:root {
+  /* ─── Primitives ─── */
+  --db-crimson-100: #FDF2F1;
+  --db-crimson-200: #F9D5D3;
+  --db-crimson-300: #F0A8A4;
+  --db-crimson-400: #E07070;
+  --db-crimson-500: #C03535;
+  --db-crimson-600: #8C1A13;
+  --db-crimson-700: #6B130E;
+  --db-crimson-800: #4A0D09;
+  --db-crimson-900: #2E0805;
+  --db-lime-100: #F4FAE8;
+  --db-lime-200: #E4F2C3;
+  --db-lime-300: #C9E58A;
+  --db-lime-400: #ADDA50;
+  --db-lime-500: #8DC63F;
+  --db-lime-600: #6A9A2C;
+  --db-lime-700: #4E721F;
+  --db-lime-800: #344B14;
+  --db-lime-900: #1A260A;
+  --db-neutral-50: #FAF8F5;
+  --db-neutral-100: #F0EDE9;
+  --db-neutral-200: #E2DDD8;
+  --db-neutral-300: #C8C0B8;
+  --db-neutral-400: #9B8E87;
+  --db-neutral-500: #6B5F54;
+  --db-neutral-700: #3D3530;
+  --db-neutral-800: #1E1714;
+  --db-neutral-950: #0F0B0A;
+  --db-olive: #4A5828;
+  --db-ember: #5C2318;
+  --db-stone: #8A7E6A;
+  --db-white: #FFFFFF;
+
+  /* ─── Spacing & Radius ─── */
+  --db-space-1: 4px;
+  --db-space-2: 8px;
+  --db-space-3: 12px;
+  --db-space-4: 16px;
+  --db-space-5: 20px;
+  --db-space-6: 24px;
+  --db-space-8: 32px;
+  --db-space-10: 40px;
+  --db-space-12: 48px;
+  --db-space-16: 64px;
+  --db-space-20: 80px;
+  --db-space-24: 96px;
+  --db-space-32: 128px;
+  --db-radius-sm: 4px;
+  --db-radius: 8px;
+  --db-radius-md: 10px;
+  --db-radius-lg: 14px;
+  --db-radius-xl: 20px;
+  --db-radius-full: 9999px;
+}
+
+[data-register="brand"] {
+  --db-text: var(--db-neutral-50);
+  --db-text-muted: var(--db-neutral-500);
+  --db-text-faint: #FAF8F540;
+  --db-text-inverse: var(--db-white);
+  --db-bg: var(--db-neutral-950);
+  --db-bg-2: #1A100E;
+  --db-bg-3: #221511;
+  --db-surface: #1A100E;
+  --db-surface-2: #221511;
+  --db-border: #2E1F1C;
+  --db-border-2: #3A2420;
+  --db-accent: var(--db-lime-500);
+  --db-accent-text: var(--db-lime-600);
+  --db-accent-bg: #8DC63F14;
+  --db-accent-border: #8DC63F40;
+  --db-cta: var(--db-crimson-600);
+  --db-cta-hover: var(--db-crimson-700);
+  --db-cta-bg: #8C1A1314;
+  --db-status-live: var(--db-lime-500);
+  --db-status-claim: #C9963A;
+  --db-status-blocked: #C4352B;
+  --db-status-pending: var(--db-neutral-700);
+  --db-orb-primary: #8C1A1340;
+  --db-orb-secondary: #8DC63F26;
+  --db-orb-tertiary: #6B5F5426;
+}
+
+[data-register="editorial"] {
+  --db-text: var(--db-neutral-950);
+  --db-text-muted: var(--db-neutral-500);
+  --db-text-faint: var(--db-neutral-300);
+  --db-text-inverse: var(--db-white);
+  --db-bg: var(--db-neutral-50);
+  --db-bg-2: var(--db-neutral-100);
+  --db-bg-3: var(--db-neutral-200);
+  --db-surface: var(--db-white);
+  --db-surface-2: var(--db-neutral-50);
+  --db-border: var(--db-neutral-200);
+  --db-border-2: var(--db-neutral-300);
+  --db-accent: var(--db-lime-600);
+  --db-accent-text: var(--db-lime-600);
+  --db-accent-bg: var(--db-lime-100);
+  --db-accent-border: var(--db-lime-300);
+  --db-cta: var(--db-crimson-600);
+  --db-cta-hover: var(--db-crimson-700);
+  --db-cta-bg: var(--db-crimson-100);
+  --db-status-live: var(--db-lime-500);
+  --db-status-claim: #C9963A;
+  --db-status-blocked: #C4352B;
+  --db-status-pending: var(--db-neutral-700);
+  --db-orb-primary: #00000000;
+  --db-orb-secondary: #00000000;
+  --db-orb-tertiary: #00000000;
+}
+
+[data-register="forge"] {
+  --db-text: #E8E2DE;
+  --db-text-muted: var(--db-neutral-500);
+  --db-text-faint: #3D3530;
+  --db-text-inverse: var(--db-white);
+  --db-bg: #0A0807;
+  --db-bg-2: #100D0C;
+  --db-bg-3: #171110;
+  --db-surface: #1C1614;
+  --db-surface-2: #221A18;
+  --db-border: #2A1F1C;
+  --db-border-2: #362824;
+  --db-accent: var(--db-lime-500);
+  --db-accent-text: var(--db-lime-600);
+  --db-accent-bg: #8DC63F1F;
+  --db-accent-border: #8DC63F33;
+  --db-cta: var(--db-crimson-600);
+  --db-cta-hover: var(--db-crimson-700);
+  --db-cta-bg: #8C1A1326;
+  --db-status-live: var(--db-lime-500);
+  --db-status-claim: #C9963A;
+  --db-status-blocked: #C4352B;
+  --db-status-pending: var(--db-neutral-700);
+  --db-orb-primary: #00000000;
+  --db-orb-secondary: #00000000;
+  --db-orb-tertiary: #00000000;
+}
+
+/* ─── Text Styles ─── */
+.text-heading-h1 {
+  font-family: 'Fraunces', sans-serif;
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 64px;
+  letter-spacing: 0%;
+}
+
+.text-heading-h2 {
+  font-family: 'Fraunces', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: 0%;
+}
+
+.text-heading-h3 {
+  font-family: 'Fraunces', sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: 0%;
+}
+
+.text-heading-h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0%;
+}
+
+.text-body-large {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0%;
+}
+
+.text-body-default {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+
+.text-body-small {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0%;
+}
+
+.text-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0%;
+}
+
+.text-caption {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0%;
+}
+
+.text-button-default {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
