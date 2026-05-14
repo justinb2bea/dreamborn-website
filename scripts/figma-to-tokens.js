@@ -142,10 +142,19 @@ function build() {
     const className = `text-${nameToCss(name)}`;
     const weight = FONT_STYLE_TO_WEIGHT[style.fontStyle] || 400;
     const lh = style.lineHeight === "AUTO" ? "normal" : `${style.lineHeight}px`;
-    const ls =
-      typeof style.letterSpacing === "string"
-        ? style.letterSpacing
-        : `${style.letterSpacing}px`;
+    // letter-spacing: CSS does not accept `%` units. Figma emits "0%" / "4%" for
+    // percent-based tracking — convert to em (percent of font-size) and emit a
+    // bare `0` for zero, since unit is unnecessary at zero.
+    let ls;
+    const rawLs = style.letterSpacing;
+    if (typeof rawLs === "string" && rawLs.endsWith("%")) {
+      const pct = parseFloat(rawLs);
+      ls = pct === 0 ? "0" : `${(pct / 100).toFixed(4)}em`;
+    } else if (typeof rawLs === "string") {
+      ls = rawLs;
+    } else {
+      ls = `${rawLs}px`;
+    }
 
     textStyleLines.push(`.${className} {`);
     textStyleLines.push(`  font-family: '${style.fontFamily}', sans-serif;`);

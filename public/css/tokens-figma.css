@@ -195,7 +195,7 @@
   font-weight: 600;
   font-size: 56px;
   line-height: 64px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .text-heading-h2 {
@@ -203,7 +203,7 @@
   font-weight: 600;
   font-size: 40px;
   line-height: 48px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .text-heading-h3 {
@@ -211,7 +211,7 @@
   font-weight: 600;
   font-size: 28px;
   line-height: 36px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .text-heading-h4 {
@@ -219,7 +219,7 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 28px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .text-body-large {
@@ -227,7 +227,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 28px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .text-body-default {
@@ -235,7 +235,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .text-body-small {
@@ -243,7 +243,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .text-label {
@@ -251,7 +251,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .text-caption {
@@ -259,7 +259,7 @@
   font-weight: 400;
   font-size: 11px;
   line-height: 16px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .text-button-default {
@@ -267,5 +267,5 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
