@@ -1,0 +1,974 @@
+---
+layout: base.njk
+register: brand
+title: "DREAMBORN — Concept: Operational Data Leading"
+description: "Homepage concept — brand register marketing with forge-style operational evidence as proof."
+permalink: /concepts/home-operational/
+eleventyExcludeFromCollections: true
+---
+
+<style>
+  /* ============================================================
+     Concept-only styles. Inline here for experimentation.
+     Typography: Cormorant Garamond (display) + Inter (body).
+     Both loaded via Google Fonts for the prototype; would be self-
+     hosted in production.
+     ============================================================ */
+
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  /* ---------- PAGE BACKGROUND ----------
+     45° diagonal grid (now visible) on a directional gradient that
+     drops from lighter warm gray (top-left) into near-black (bottom-
+     right). The gradient gives depth; the grid gives the crisp tech
+     feel. Lines show clearly against the lighter top-left and fade
+     into the dark bottom-right — that fade is the design.
+  */
+  .concept-page {
+    background-color: #0A0807;
+    background-image:
+      /* Inline SVG tile — 17×17 with a single diagonal stroke from
+         bottom-left to top-right. Tiles seamlessly. ~12px perpendicular
+         spacing between lines (17 / √2 ≈ 12). SVG renders hairlines
+         consistently across browsers and zoom levels — no dropouts. */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='17' height='17'><line x1='0' y1='17' x2='17' y2='0' stroke='%23C8C0B8' stroke-opacity='0.07' stroke-width='1'/></svg>"),
+      /* HORIZONTAL gradient — lighter gray on left, near-black on right.
+         Every section, all the way down the page, sees the same band. */
+      linear-gradient(
+        90deg,
+        #2C2620 0%,
+        #1F1813 28%,
+        #14100D 60%,
+        #08060A 100%
+      );
+    color: var(--db-text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* ---------- TYPE PRIMITIVES ---------- */
+  .display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+  }
+  .display--italic { font-style: italic; font-weight: 400; }
+  .body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    letter-spacing: 0;
+  }
+  .label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--db-text-muted);
+  }
+  .label--accent { color: var(--db-accent-text); }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .concept-hero {
+    position: relative;
+    min-height: 92vh;
+    display: grid;
+    place-items: center;
+    padding: var(--db-space-24) var(--db-space-8);
+  }
+
+  .concept-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    width: 100%;
+    display: grid;
+    gap: var(--db-space-12);
+  }
+
+  .concept-hero__live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--db-space-3);
+    padding: var(--db-space-2) var(--db-space-4);
+    border-radius: var(--db-radius-full);
+    background: rgba(138, 126, 106, 0.08);
+    border: 1px solid rgba(138, 126, 106, 0.25);
+    color: var(--db-text-muted);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+  .concept-hero__live-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--db-accent);
+    animation: db-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes db-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.75); }
+  }
+
+  .concept-hero__title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(2.75rem, 7.8vw, 7rem);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--db-text);
+    margin: 0;
+    max-width: 30ch;
+  }
+  .concept-hero__title em {
+    font-style: italic;
+    font-weight: 300;
+    color: inherit;
+  }
+  .concept-hero__title-alt {
+    color: var(--db-stone);
+  }
+
+  .concept-hero__subhead {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    line-height: 1.25;
+    color: var(--db-crimson-500);
+    margin: 0;
+    max-width: 36ch;
+    letter-spacing: -0.01em;
+  }
+
+  .concept-hero__lede {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--db-text-muted);
+    max-width: 58ch;
+    margin: 0;
+  }
+  .concept-hero__lede strong { color: var(--db-text); font-weight: 400; }
+
+  .concept-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--db-space-3);
+    padding: var(--db-space-3) var(--db-space-6);
+    border-radius: var(--db-radius-sm);
+    border: 1px solid var(--db-lime-500);
+    color: var(--db-lime-500);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all var(--db-duration) var(--db-ease);
+    width: fit-content;
+    background: transparent;
+  }
+  .concept-hero__cta:hover {
+    background: var(--db-lime-500);
+    color: var(--db-neutral-950);
+  }
+
+  /* ============================================================
+     COMMON SECTION PATTERN
+     ============================================================ */
+  .concept-section {
+    padding: var(--db-space-24) var(--db-space-8);
+    border-top: 1px solid rgba(138, 126, 106, 0.12);
+  }
+  .concept-section__inner {
+    max-width: 1080px;
+    margin-inline: auto;
+  }
+  .concept-section__head {
+    display: grid;
+    gap: var(--db-space-5);
+    margin-bottom: var(--db-space-12);
+    max-width: 720px;
+  }
+  .concept-section__title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    line-height: 1.1;
+    color: var(--db-text);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .concept-section__title em { font-style: italic; color: var(--db-stone); font-weight: 300; }
+  .concept-section__lede {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--db-text-muted);
+    margin: 0;
+    max-width: 62ch;
+  }
+  .concept-section__lede strong { color: var(--db-text); font-weight: 400; }
+
+  /* ============================================================
+     RECEIPT DROP
+     ============================================================ */
+  .concept-receipt__block {
+    background: #0C0A08;
+    border: 1px solid rgba(138, 126, 106, 0.22);
+    border-radius: var(--db-radius);
+    padding: var(--db-space-8);
+    font-family: 'Fira Code', 'SF Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.8;
+    color: var(--db-terminal-text);
+    display: grid;
+    gap: var(--db-space-3);
+    max-width: 760px;
+  }
+  .concept-receipt__row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: var(--db-space-6);
+  }
+  .concept-receipt__row dt {
+    color: var(--db-terminal-text-muted);
+    text-transform: uppercase;
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+    align-self: center;
+  }
+  .concept-receipt__row dd { margin: 0; color: var(--db-terminal-text); overflow-wrap: anywhere; }
+  .concept-receipt__row dd.is-live { color: var(--db-status-live); }
+  .concept-receipt__row dd.is-hash { color: var(--db-terminal-text-muted); font-size: 0.75rem; }
+
+  .concept-receipt__caption {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.875rem;
+    color: var(--db-text-muted);
+    margin: var(--db-space-6) 0 0;
+    font-style: italic;
+    max-width: 60ch;
+  }
+
+  /* ============================================================
+     LIVE WIRE
+     ============================================================ */
+  .concept-wire__display {
+    position: relative;
+    border: 1px solid rgba(138, 126, 106, 0.22);
+    border-radius: var(--db-radius);
+    overflow: hidden;
+    margin-top: var(--db-space-8);
+    background: #0C0A08;
+  }
+  .concept-wire__display::before,
+  .concept-wire__display::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .concept-wire__display::before { left: 0; background: linear-gradient(to right, #0C0A08, transparent); }
+  .concept-wire__display::after  { right: 0; background: linear-gradient(to left,  #0C0A08, transparent); }
+
+  .concept-wire__track {
+    display: flex;
+    gap: var(--db-space-12);
+    white-space: nowrap;
+    padding: var(--db-space-6) 0;
+    animation: wire-scroll 95s linear infinite;
+    will-change: transform;
+  }
+  .concept-wire__display:hover .concept-wire__track { animation-play-state: paused; }
+  @keyframes wire-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .concept-wire__event {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--db-space-3);
+    font-family: 'Fira Code', 'SF Mono', monospace;
+    font-size: 0.8125rem;
+    color: var(--db-text-muted);
+  }
+  .concept-wire__event .ev-time { color: var(--db-terminal-text-muted); font-size: 0.6875rem; }
+  .concept-wire__event .ev-agent { color: var(--db-text); font-weight: 500; }
+  .concept-wire__event .ev-live { color: var(--db-status-live); }
+  .concept-wire__event .ev-claim { color: var(--db-status-claim); }
+  .concept-wire__event .ev-blocked { color: var(--db-status-blocked); }
+
+  .concept-wire__hint {
+    text-align: center;
+    margin: var(--db-space-4) 0 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    color: var(--db-text-faint);
+    letter-spacing: 0.06em;
+  }
+
+  /* ============================================================
+     ORG CHART
+     ============================================================ */
+  .concept-org__inner {
+    display: grid;
+    grid-template-columns: 1fr 1.7fr;
+    gap: var(--db-space-16);
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .concept-org__inner { grid-template-columns: 1fr; }
+  }
+
+  .concept-org__scale-number {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(8rem, 18vw, 14rem);
+    line-height: 0.85;
+    color: var(--db-text);
+    margin: 0;
+    letter-spacing: -0.05em;
+  }
+  .concept-org__scale-label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--db-text-muted);
+    margin: var(--db-space-5) 0 0;
+    max-width: 32ch;
+  }
+  .concept-org__scale-label strong { color: var(--db-text); font-weight: 400; }
+
+  .concept-org__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--db-space-2);
+  }
+  @media (max-width: 600px) {
+    .concept-org__grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .concept-org__cell {
+    padding: var(--db-space-3);
+    border: 1px solid rgba(138, 126, 106, 0.18);
+    border-radius: var(--db-radius-sm);
+    background: #0C0A08;
+    display: grid;
+    gap: var(--db-space-2);
+    transition: border-color var(--db-duration) var(--db-ease), background var(--db-duration) var(--db-ease);
+  }
+  .concept-org__cell:hover { border-color: var(--db-stone); background: #232323; }
+  .concept-org__cell-top { display: flex; align-items: center; justify-content: space-between; }
+  .concept-org__cell-name {
+    font-family: 'Fira Code', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    color: var(--db-text);
+    letter-spacing: 0.04em;
+  }
+  .concept-org__cell-status {
+    width: 6px; height: 6px; border-radius: 50%;
+  }
+  .concept-org__cell-status.is-live { background: var(--db-status-live); animation: db-pulse 1.8s ease-in-out infinite; }
+  .concept-org__cell-status.is-claim { background: var(--db-status-claim); }
+  .concept-org__cell-status.is-blocked { background: var(--db-status-blocked); }
+  .concept-org__cell-status.is-pending { background: var(--db-status-pending); }
+  .concept-org__cell-role {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--db-text-faint);
+    font-weight: 500;
+  }
+
+  /* ============================================================
+     USE CASES (three stacked)
+     ============================================================ */
+  .concept-usecase__case {
+    margin-top: var(--db-space-12);
+  }
+  .concept-usecase__case:first-of-type {
+    margin-top: var(--db-space-4);
+  }
+  .concept-usecase__case-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.15;
+    color: var(--db-text);
+    margin: 0 0 var(--db-space-6);
+    letter-spacing: -0.005em;
+    max-width: 28ch;
+  }
+  .concept-usecase__case-title em { font-style: italic; color: var(--db-stone); font-weight: 300; }
+
+  .concept-usecase__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--db-space-6);
+  }
+  @media (max-width: 760px) {
+    .concept-usecase__grid { grid-template-columns: 1fr; }
+  }
+  .concept-usecase__col {
+    padding: var(--db-space-8);
+    border: 1px solid rgba(138, 126, 106, 0.2);
+    border-radius: var(--db-radius);
+    background: #0C0A08;
+    display: grid;
+    gap: var(--db-space-4);
+  }
+  .concept-usecase__col--db {
+    border-color: rgba(141, 198, 63, 0.35);
+    background: #0C0A08;
+  }
+  .concept-usecase__col-label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--db-text-faint);
+    margin: 0;
+  }
+  .concept-usecase__col-label--accent { color: var(--db-accent-text); }
+  .concept-usecase__col-body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--db-text-muted);
+    margin: 0;
+  }
+  .concept-usecase__col--db .concept-usecase__col-body { color: var(--db-text); }
+
+  .concept-usecase__close {
+    margin: var(--db-space-16) 0 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--db-text-muted);
+    max-width: 72ch;
+    font-style: italic;
+    padding-top: var(--db-space-8);
+    border-top: 1px solid rgba(138, 126, 106, 0.12);
+  }
+
+  /* ============================================================
+     FOUNDATION CARD — the final beat. Lime border, lime title, glow.
+     The last thing on the page; designed to be remembered.
+     ============================================================ */
+  .concept-foundation {
+    padding: var(--db-space-16) var(--db-space-8) var(--db-space-24);
+  }
+  .concept-foundation__inner {
+    max-width: 1080px;
+    margin-inline: auto;
+  }
+  .concept-foundation__card {
+    border: 1.5px solid var(--db-accent);
+    border-radius: var(--db-radius);
+    padding: var(--db-space-12) var(--db-space-12) var(--db-space-16);
+    background: #0C0A08;
+    display: grid;
+    gap: var(--db-space-10);
+    box-shadow: 0 0 60px rgba(141, 198, 63, 0.08), inset 0 0 0 1px rgba(141, 198, 63, 0.06);
+  }
+  .concept-foundation__title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    color: var(--db-accent);
+    margin: 0;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+  .concept-foundation__columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--db-space-12);
+  }
+  @media (max-width: 760px) {
+    .concept-foundation__columns { grid-template-columns: 1fr; gap: var(--db-space-10); }
+  }
+  .concept-foundation__col-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+    line-height: 1.2;
+    color: var(--db-text);
+    margin: 0 0 var(--db-space-4);
+    letter-spacing: -0.005em;
+  }
+  .concept-foundation__col-body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--db-text-muted);
+    margin: 0;
+  }
+  .concept-foundation__col-body strong { color: var(--db-text); font-weight: 400; }
+
+  /* ============================================================
+     BRAND STATEMENT
+     ============================================================ */
+  .concept-statement {
+    padding: var(--db-space-32) var(--db-space-8);
+    text-align: center;
+    border-top: 1px solid rgba(138, 126, 106, 0.12);
+  }
+  .concept-statement__inner { max-width: 880px; margin-inline: auto; }
+  .concept-statement__lede {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(1.875rem, 4vw, 3.25rem);
+    line-height: 1.25;
+    color: var(--db-text);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .concept-statement__lede em { font-style: italic; color: var(--db-stone); font-weight: 300; }
+
+  /* ============================================================
+     CLOSING CTA
+     ============================================================ */
+  .concept-close {
+    padding: var(--db-space-16) var(--db-space-8) var(--db-space-32);
+    text-align: center;
+    border-top: 1px solid rgba(138, 126, 106, 0.12);
+  }
+  .concept-close__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--db-space-3);
+    padding: var(--db-space-4) var(--db-space-12);
+    background: transparent;
+    color: var(--db-text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--db-stone);
+    border-radius: var(--db-radius-sm);
+    transition: all var(--db-duration) var(--db-ease);
+  }
+  .concept-close__cta:hover {
+    background: var(--db-stone);
+    color: var(--db-neutral-950);
+  }
+  .concept-close__caption {
+    margin: var(--db-space-5) 0 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.8125rem;
+    color: var(--db-text-faint);
+    font-weight: 300;
+  }
+  .concept-close__caption a { color: var(--db-text-muted); text-decoration: none; border-bottom: 1px dotted var(--db-text-faint); }
+  .concept-close__caption a:hover { color: var(--db-accent-text); }
+
+  /* ============================================================
+     CONCEPT MARK (footer note)
+     ============================================================ */
+  .concept-mark {
+    padding: var(--db-space-6) var(--db-space-8);
+    border-top: 1px dashed rgba(138, 126, 106, 0.15);
+    font-family: 'Fira Code', 'SF Mono', monospace;
+    font-size: 0.6875rem;
+    color: var(--db-text-faint);
+    text-align: center;
+  }
+</style>
+
+<main class="concept-page" data-register="brand">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="concept-hero" aria-labelledby="conceptHeroTitle">
+    <div class="concept-hero__inner">
+      <span class="concept-hero__live-badge" aria-label="Live operating status">
+        <span class="concept-hero__live-dot" aria-hidden="true"></span>
+        24 agents · live
+      </span>
+
+      <h1 id="conceptHeroTitle" class="concept-hero__title">
+        SaaS is being eclipsed.<br>
+        <span class="concept-hero__title-alt">Now you can <em>own</em> your software.</span>
+      </h1>
+
+      <p class="concept-hero__subhead">
+        The next era of software will not be rented.
+      </p>
+
+      <p class="concept-hero__lede">
+        Companies will build the software that runs their business.
+        <strong>DREAMBORN builds AI-native software systems</strong> for companies ready to
+        own the tools, workflows, intelligence, and customer experiences that used to be
+        trapped inside someone else's SaaS platform. What you'll see below is one such
+        system — already operating.
+      </p>
+
+      <a class="concept-hero__cta" href="#receipt">
+        See the work
+        <span aria-hidden="true">↓</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RECEIPT DROP
+       ============================================================ -->
+  <section id="receipt" class="concept-section" aria-labelledby="receiptTitle">
+    <div class="concept-section__inner">
+      <div class="concept-section__head">
+        <p class="label label--accent">Proof, not promises</p>
+        <h2 id="receiptTitle" class="concept-section__title">
+          Every task ends with <em>a record.</em>
+        </h2>
+        <p class="concept-section__lede">
+          The agent does the work. The system records what happened — when, by whom, with what
+          result. Another agent verifies. The receipt goes on a ledger you own.
+          <strong>This is what owning your AI looks like</strong> — not a chat window, but
+          a permanent record of work performed and proven.
+        </p>
+      </div>
+
+      <dl class="concept-receipt__block" aria-label="Sample task receipt">
+        <div class="concept-receipt__row">
+          <dt>Receipt</dt>
+          <dd>#2847</dd>
+        </div>
+        <div class="concept-receipt__row">
+          <dt>Agent</dt>
+          <dd>QUINN · Database engineer</dd>
+        </div>
+        <div class="concept-receipt__row">
+          <dt>Task</dt>
+          <dd>Migrated 5 staging databases to v3 schema; reconciled 12,481 rows.</dd>
+        </div>
+        <div class="concept-receipt__row">
+          <dt>Completed</dt>
+          <dd>2026-05-14 · 14:22:18 UTC</dd>
+        </div>
+        <div class="concept-receipt__row">
+          <dt>Verified by</dt>
+          <dd>IRIS · 14:24:03 UTC</dd>
+        </div>
+        <div class="concept-receipt__row">
+          <dt>Status</dt>
+          <dd class="is-live">PASSED · LIVE</dd>
+        </div>
+        <div class="concept-receipt__row">
+          <dt>Ledger hash</dt>
+          <dd class="is-hash">0x7a3b · 9f21 · 4c1e · b083 · 5d77 · 2918 · a4cf</dd>
+        </div>
+      </dl>
+
+      <p class="concept-receipt__caption">
+        One of 247 receipts written this week. In your operation, a receipt could be a closed
+        ticket, a verified onboarding, a deployed change, a billed invoice — whatever shape
+        the work takes.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LIVE WIRE
+       ============================================================ -->
+  <section class="concept-section" aria-labelledby="wireTitle">
+    <div class="concept-section__inner">
+      <div class="concept-section__head">
+        <p class="label label--accent">The wire</p>
+        <h2 id="wireTitle" class="concept-section__title">
+          A company that <em>talks to itself.</em>
+        </h2>
+        <p class="concept-section__lede">
+          Every claim, hand-off, completion, and escalation surfaces on the wire. You don't
+          have to watch — most of it is quiet — but there's always something real to look at.
+          <strong>The point isn't surveillance.</strong> It's that nothing gets lost between
+          the cracks because nothing slips through unnoticed.
+        </p>
+      </div>
+
+      <div class="concept-wire__display" aria-hidden="true">
+        <div class="concept-wire__track">
+          {# Repeat twice for seamless marquee #}
+          {% for pass in range(0, 2) %}
+            <div class="concept-wire__event"><span class="ev-time">2 min ago</span> <span class="ev-agent">ATLAS</span> finished memory consolidation · <span class="ev-live">live</span></div>
+            <div class="concept-wire__event"><span class="ev-time">4 min ago</span> <span class="ev-agent">QUINN</span> migrated staging-04 · <span class="ev-live">live</span></div>
+            <div class="concept-wire__event"><span class="ev-time">6 min ago</span> <span class="ev-agent">IRIS</span> verified receipt #2846 · <span class="ev-live">live</span></div>
+            <div class="concept-wire__event"><span class="ev-time">9 min ago</span> <span class="ev-agent">NOVA</span> claimed task #2848 · <span class="ev-claim">in-flight</span></div>
+            <div class="concept-wire__event"><span class="ev-time">12 min ago</span> <span class="ev-agent">SAGE</span> shipped weekly digest · <span class="ev-live">live</span></div>
+            <div class="concept-wire__event"><span class="ev-time">14 min ago</span> <span class="ev-agent">REX</span> escalated task #2845 · <span class="ev-blocked">blocked</span></div>
+            <div class="concept-wire__event"><span class="ev-time">18 min ago</span> <span class="ev-agent">FELIX</span> indexed 8,412 docs · <span class="ev-live">live</span></div>
+            <div class="concept-wire__event"><span class="ev-time">22 min ago</span> <span class="ev-agent">JUNO</span> rendered receipt batch · <span class="ev-live">live</span></div>
+            <div class="concept-wire__event"><span class="ev-time">27 min ago</span> <span class="ev-agent">CORA</span> drafted PR for review · <span class="ev-claim">in-flight</span></div>
+            <div class="concept-wire__event"><span class="ev-time">31 min ago</span> <span class="ev-agent">ECHO</span> rebuilt embeddings index · <span class="ev-live">live</span></div>
+          {% endfor %}
+        </div>
+      </div>
+      <p class="concept-wire__hint">— hover to pause —</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ORG CHART
+       ============================================================ -->
+  <section class="concept-section" aria-labelledby="orgTitle">
+    <div class="concept-section__inner">
+      <div class="concept-section__head">
+        <p class="label label--accent">The roster</p>
+        <h2 id="orgTitle" class="concept-section__title">
+          A team you couldn't otherwise <em>afford.</em>
+        </h2>
+        <p class="concept-section__lede">
+          Twenty-four agents is what one person can plausibly direct without losing the
+          thread. You won't start with all of them — most companies begin with three or
+          five, doing the work that was eating evenings and weekends.
+          <strong>DREAMBORN builds the roster around your actual operation</strong> and
+          grows it when you're ready.
+        </p>
+      </div>
+
+      <div class="concept-org__inner">
+        <div>
+          <p id="orgTitle" class="concept-org__scale-number">24</p>
+          <p class="concept-org__scale-label">
+            <strong>One human CEO.</strong> Twenty-four agents. Every name in this grid is
+            doing work right now.
+          </p>
+        </div>
+
+        <div class="concept-org__grid" aria-label="Agent roster">
+          {% set agents = [
+            {n: 'ATLAS',  r: 'Memory',     s: 'live'},
+            {n: 'BRIAR',  r: 'Research',   s: 'live'},
+            {n: 'CORA',   r: 'Code',       s: 'claim'},
+            {n: 'DANE',   r: 'Devops',     s: 'live'},
+            {n: 'ECHO',   r: 'Search',     s: 'live'},
+            {n: 'FELIX',  r: 'Indexing',   s: 'live'},
+            {n: 'GALE',   r: 'Comms',      s: 'pending'},
+            {n: 'HELIX',  r: 'Data',       s: 'live'},
+            {n: 'INDIGO', r: 'Design',     s: 'live'},
+            {n: 'IRIS',   r: 'Verify',     s: 'live'},
+            {n: 'IVY',    r: 'Outreach',   s: 'pending'},
+            {n: 'JADE',   r: 'Finance',    s: 'pending'},
+            {n: 'JUNO',   r: 'Render',     s: 'live'},
+            {n: 'KADE',   r: 'Routing',    s: 'live'},
+            {n: 'NOVA',   r: 'Migration',  s: 'claim'},
+            {n: 'QUINN',  r: 'Database',   s: 'live'},
+            {n: 'REX',    r: 'Triage',     s: 'blocked'},
+            {n: 'SAGE',   r: 'Content',    s: 'live'},
+            {n: 'TARA',   r: 'Ops',        s: 'live'},
+            {n: 'WOLFE',  r: 'Security',   s: 'live'},
+            {n: 'XANDER', r: 'Networking', s: 'live'},
+            {n: 'YUKI',   r: 'Support',    s: 'live'},
+            {n: 'ZARA',   r: 'Analytics',  s: 'claim'},
+            {n: 'AERO',   r: 'Platform',   s: 'live'}
+          ] %}
+          {% for agent in agents %}
+            <div class="concept-org__cell">
+              <div class="concept-org__cell-top">
+                <span class="concept-org__cell-name">{{ agent.n }}</span>
+                <span class="concept-org__cell-status is-{{ agent.s }}" aria-label="{{ agent.s }}"></span>
+              </div>
+              <span class="concept-org__cell-role">{{ agent.r }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       USE CASES — "three examples, one pattern"
+       Quiet, grounded, relatable. Each is a real piece of work most
+       businesses need but can't justify a full-time hire for.
+       ============================================================ -->
+  <section class="concept-section concept-usecase" aria-labelledby="usecaseTitle">
+    <div class="concept-section__inner">
+      <div class="concept-section__head">
+        <p class="label label--accent">Three examples. One pattern.</p>
+        <h2 id="usecaseTitle" class="concept-section__title">
+          Work you can't justify <em>a full hire for.</em>
+        </h2>
+        <p class="concept-section__lede">
+          Below are three pieces of work every business needs done. Each one is too small
+          for a full-time hire, too important to keep ignoring, and too easy to forget
+          until the moment it's already cost you. They share the same shape — and the
+          same solution.
+        </p>
+      </div>
+
+      <!-- USE CASE 1 — after-hours customer email -->
+      <div class="concept-usecase__case">
+        <h3 class="concept-usecase__case-title">A customer emails you <em>at 11 p.m. Tuesday.</em></h3>
+        <div class="concept-usecase__grid">
+          <div class="concept-usecase__col">
+            <p class="concept-usecase__col-label">Today</p>
+            <p class="concept-usecase__col-body">
+              The email sits in your inbox until morning. By the time you reply, the customer
+              has already emailed two of your competitors. The one who answered first wins.
+              You couldn't have stayed up to catch it, and you couldn't afford to hire someone
+              who would.
+            </p>
+          </div>
+          <div class="concept-usecase__col concept-usecase__col--db">
+            <p class="concept-usecase__col-label concept-usecase__col-label--accent">With DREAMBORN</p>
+            <p class="concept-usecase__col-body">
+              An agent on your roster reads the email at 11:02 p.m. It pulls the invoice from
+              your records, drafts a clear response, sends it, and writes a receipt your team
+              reviews in the morning. The customer's question is answered in minutes. Your
+              evening is your own.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- USE CASE 2 — weekly competitive analysis -->
+      <div class="concept-usecase__case">
+        <h3 class="concept-usecase__case-title">You haven't checked your competitor's pricing <em>in weeks.</em></h3>
+        <div class="concept-usecase__grid">
+          <div class="concept-usecase__col">
+            <p class="concept-usecase__col-label">Today</p>
+            <p class="concept-usecase__col-body">
+              Your top competitor changed three pricing tiers last Tuesday. You found out
+              from a prospect asking why your plan costs $200 more. A market analyst would
+              run you eighty thousand a year — and even then they'd catch maybe sixty percent
+              of what actually moves a deal.
+            </p>
+          </div>
+          <div class="concept-usecase__col concept-usecase__col--db">
+            <p class="concept-usecase__col-label concept-usecase__col-label--accent">With DREAMBORN</p>
+            <p class="concept-usecase__col-body">
+              An agent visits your competitor every Monday at 6 a.m. — pricing page, new
+              features, customer reviews, hiring postings, recent press. By 7 a.m. a
+              one-page brief is on your desk. Differences from last week are flagged.
+              Anything that moves your needle is at the top of your inbox before your
+              first meeting.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- USE CASE 3 — weekly sales report -->
+      <div class="concept-usecase__case">
+        <h3 class="concept-usecase__case-title">The pipeline report <em>nobody reads.</em></h3>
+        <div class="concept-usecase__grid">
+          <div class="concept-usecase__col">
+            <p class="concept-usecase__col-label">Today</p>
+            <p class="concept-usecase__col-body">
+              Your CRM has a pipeline dashboard. It's too dense to read in under twenty
+              minutes. Friday afternoon, someone exports CSVs, opens Excel, makes pivot
+              tables, sends a PDF nobody opens. By Monday morning, decisions are being
+              made on gut and last week's coincidences.
+            </p>
+          </div>
+          <div class="concept-usecase__col concept-usecase__col--db">
+            <p class="concept-usecase__col-label concept-usecase__col-label--accent">With DREAMBORN</p>
+            <p class="concept-usecase__col-body">
+              An agent watches your CRM, your call recordings, your email threads. Every
+              Sunday evening it ships you a one-page chart: what closed, what slipped,
+              what's stuck, who you should call this week. No CSVs. No pivot tables.
+              Just signal — and the receipts to back it up.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="concept-usecase__close">
+        Three examples, one shape. You couldn't justify hiring an overnight support
+        specialist, a dedicated competitive analyst, or a full-time pipeline auditor.
+        You can justify an agent for each. The same pattern applies to inbound triage,
+        contract review, customer onboarding, knowledge base maintenance, status reporting,
+        and the dozens of other quiet jobs your business needs done. Each one a seat at
+        your table that wasn't worth filling — until now.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BRAND STATEMENT
+       ============================================================ -->
+  <section class="concept-statement" aria-labelledby="statementTitle">
+    <div class="concept-statement__inner">
+      <p id="statementTitle" class="concept-statement__lede">
+        DREAMBORN is the first company built around <em>verified work, not assumed work.</em>
+        Every task ends in a receipt. Every receipt is signed. Every signature is on the
+        ledger. Nothing about this is hypothetical.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOUNDATION — two things that make this work
+       Subtle card. Simultaneous work + consensus infrastructure.
+       ============================================================ -->
+  <section class="concept-foundation" aria-labelledby="foundationTitle">
+    <div class="concept-foundation__inner">
+      <div class="concept-foundation__card">
+        <h2 id="foundationTitle" class="concept-foundation__title">Two things that make this work.</h2>
+        <div class="concept-foundation__columns">
+          <div>
+            <h3 class="concept-foundation__col-title">Twenty-four agents working at once.</h3>
+            <p class="concept-foundation__col-body">
+              Humans work in sequence — one task at a time, one decision at a time.
+              <strong>Agents don't.</strong> While one is migrating a database, another is
+              drafting customer replies, a third is rebuilding your search index, a fourth
+              is shipping your weekly report. That isn't faster software. It's a different
+              geometry of capacity — and it's the biggest advantage of running this way.
+            </p>
+          </div>
+          <div>
+            <h3 class="concept-foundation__col-title">A consensus network you couldn't build alone.</h3>
+            <p class="concept-foundation__col-body">
+              Every receipt your agents write is cryptographically signed and posted to an
+              <strong>enterprise consensus network</strong> — the same kind of distributed
+              infrastructure that financial institutions use to settle billion-dollar
+              transactions. Nothing in your operating history can be quietly altered.
+              Nothing gets lost. The record is yours, permanent, and verifiable by anyone
+              you grant access to.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA
+       ============================================================ -->
+  <section class="concept-close">
+    <a class="concept-close__cta" href="/connect/">
+      Connect
+      <span aria-hidden="true">→</span>
+    </a>
+    <p class="concept-close__caption">
+      Or watch the work move at <a href="/live/">/live/</a>.
+    </p>
+  </section>
+
+  <p class="concept-mark">DREAMBORN — homepage concept · operational data leading · brand register</p>
+</main>
