@@ -1,0 +1,1503 @@
+---
+layout: false
+permalink: /moodboards/forge/
+title: FORGE moodboard — DREAMBORN
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FORGE moodboard — DREAMBORN</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+  /* ── Forge palette — v2 ──────────────────────────────────────
+     Dark dev surface. Stone-to-black gradient stays. Components
+     now OPAQUE — diagonal lines belong to the body, never bleed
+     through panels. Bebas Neue replaces the serif: industrial,
+     condensed, all-caps. Sparks of Lime. Hammer and chisel.
+  */
+  :root {
+    --bg-light:       #3D3530;
+    --bg-dark:        #0F0B0A;
+    --surface:        #0A0807;   /* deeper than v1 — opaque panel */
+    --surface-2:      #141010;   /* lifted card */
+    --surface-3:      #1C1614;   /* hover / accent surface */
+    --text:           #FAF8F5;
+    --text-soft:      #C8C0B8;
+    --text-faint:     #8A7E6A;
+    --text-mute:      #6B5F54;
+    --stone:          #8A7E6A;
+    --rule:           rgba(138, 126, 106, 0.22);
+    --rule-bright:    rgba(138, 126, 106, 0.40);
+    --crimson:        #8C1A13;
+    --crimson-bright: #C03535;
+    --lime:           #8DC63F;
+    --lime-dim:       #6A9A2C;
+    --lime-glow:      rgba(141, 198, 63, 0.20);
+    --amber:          #C9A876;   /* idle / pending state */
+    --walnut:         #3D2D1F;   /* family bridge — from Brand */
+    --walnut-soft:    #5C4530;
+    --brass:          #B89868;   /* family bridge — from Brand */
+    --brass-soft:     #8A7050;
+    --radius:         0;
+
+    /* — nav uses Editorial darker cream — */
+    --nav-bg:         #EDE3D0;
+    --nav-ink:        #0F0B0A;
+    --nav-ink-soft:   #3D3530;
+    --nav-rule:       #D6CAB0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='17' height='17'><line x1='0' y1='17' x2='17' y2='0' stroke='%238A7E6A' stroke-opacity='0.14' stroke-width='1'/></svg>"),
+      linear-gradient(108deg, var(--bg-light) 0%, var(--bg-dark) 70%);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Top nav — borrowed Editorial darker cream ───────────── */
+  .topnav {
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-rule);
+  }
+
+  .topnav__inner {
+    max-width: 1700px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .topnav__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .topnav__logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  .topnav__items {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin-left: 24px;
+  }
+
+  .topnav__items a {
+    font-family: 'Fira Code', monospace;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--nav-ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .topnav__items a:hover,
+  .topnav__items a.is-active {
+    color: var(--nav-ink);
+  }
+
+  .topnav__items a.is-active {
+    border-bottom: 1px solid var(--lime-dim);
+    padding-bottom: 4px;
+    color: var(--lime-dim);
+  }
+
+  .topnav__cta {
+    margin-left: auto;
+    padding: 8px 18px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--nav-bg);
+    background: var(--lime-dim);
+    border: 1px solid transparent;
+    border-radius: 0;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .topnav__cta:hover {
+    background: var(--nav-ink);
+    color: var(--nav-bg);
+  }
+
+  .page { max-width: 1700px; margin: 0 auto; padding: 32px 32px 96px; }
+
+  /* ── Header ──────────────────────────────────────────────── */
+  .header { margin-bottom: 72px; }
+
+  .crumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .crumb a { color: var(--text-faint); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 1px; }
+  .crumb a:hover { color: var(--lime); border-color: var(--lime); }
+  .crumb span { color: var(--text-mute); }
+
+  .status-bar {
+    display: grid;
+    grid-template-columns: auto repeat(4, 1fr) auto;
+    gap: 0;
+    margin-bottom: 36px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+  }
+
+  .status-bar > div {
+    padding: 14px 22px;
+    border-right: 1px solid var(--rule);
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .status-bar > div:last-child { border-right: 0; }
+  .status-bar strong {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    font-weight: 400;
+  }
+  .status-bar .dot {
+    width: 8px; height: 8px;
+    background: var(--lime);
+    box-shadow: 0 0 0 4px var(--lime-glow);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .status-bar .live strong { color: var(--lime); }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px var(--lime-glow); }
+    50%      { box-shadow: 0 0 0 6px rgba(141, 198, 63, 0.08); }
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(120px, 18vw, 240px);
+    line-height: 0.88;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .header h1 em {
+    font-style: normal;
+    color: var(--lime);
+  }
+
+  .header .dek {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-soft);
+    max-width: 720px;
+    margin-bottom: 20px;
+  }
+
+  .header .keywords {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+  .header .keywords span { color: var(--text); }
+
+  /* ── Section frame ───────────────────────────────────────── */
+  .section { margin-bottom: 72px; }
+
+  .section-label {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule-bright);
+  }
+
+  .section-label h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 38px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+
+  .section-label small {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  /* ── Palette ─────────────────────────────────────────────── */
+  .swatches { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  @media (max-width: 900px) { .swatches { grid-template-columns: repeat(2, 1fr); } }
+
+  .swatch {
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .swatch__chip { aspect-ratio: 1 / 1; }
+  .swatch__meta { padding: 14px 18px; border-top: 1px solid var(--rule); }
+  .swatch__name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .swatch__role {
+    font-family: 'Fira Code', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-faint); margin-bottom: 6px;
+  }
+  .swatch__hex { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--text-soft); }
+
+  /* ── Typography ──────────────────────────────────────────── */
+  .type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .type-grid { grid-template-columns: 1fr; } }
+
+  .type-card {
+    padding: 32px 36px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+  }
+
+  .type-card__label {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 24px;
+  }
+  .type-card__label span { color: var(--lime); }
+
+  .type-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(56px, 6vw, 88px);
+    line-height: 0.9;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .type-display em { font-style: normal; color: var(--lime); }
+
+  .type-display-meta,
+  .type-body-meta {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--stone);
+  }
+
+  .type-body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--text-soft);
+    margin-bottom: 18px;
+  }
+
+  .type-mono {
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    color: var(--lime);
+    padding: 16px 20px;
+    background: var(--bg-dark);
+    border-left: 2px solid var(--lime);
+    margin-bottom: 12px;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .type-mono .pass { color: var(--lime); }
+  .type-mono .meta { color: var(--text-mute); }
+
+  /* ── Components ──────────────────────────────────────────── */
+  .components { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+  @media (max-width: 900px) { .components { grid-template-columns: 1fr; } }
+
+  .comp-block {
+    padding: 32px 36px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+  }
+
+  .comp-block h3 {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 24px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .btn--primary { background: var(--lime); color: var(--bg-dark); }
+  .btn--primary:hover { background: var(--lime-dim); color: var(--text); }
+  .btn--secondary { background: transparent; color: var(--text); border-color: var(--stone); }
+  .btn--secondary:hover { border-color: var(--lime); color: var(--lime); }
+  .btn--danger { background: var(--crimson); color: var(--text); }
+  .btn--danger:hover { background: var(--crimson-bright); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .input-row { display: flex; flex-direction: column; gap: 8px; margin-top: 24px; }
+  .input-row label {
+    font-family: 'Fira Code', monospace; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint);
+  }
+  .input-row input {
+    padding: 12px 16px;
+    font-family: 'Fira Code', monospace; font-size: 13px;
+    color: var(--text); background: var(--bg-dark); border: 1px solid var(--rule-bright);
+    border-radius: var(--radius); outline: none;
+  }
+  .input-row input::placeholder { color: var(--text-mute); }
+  .input-row input:focus { border-color: var(--lime); }
+
+  .agent-card {
+    padding: 22px;
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    margin-top: 24px;
+  }
+  .agent-card__top {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px;
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .agent-card__id { color: var(--text-faint); }
+  .agent-card__status {
+    color: var(--lime);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .agent-card__status::before {
+    content: ""; width: 6px; height: 6px;
+    background: var(--lime);
+    box-shadow: 0 0 0 3px var(--lime-glow);
+  }
+  .agent-card__name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400; font-size: 30px;
+    letter-spacing: 0.04em;
+    color: var(--text); margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .agent-card__role {
+    font-family: 'Inter', sans-serif; font-weight: 300;
+    font-size: 13px; color: var(--text-soft); margin-bottom: 16px;
+  }
+  .agent-card__metrics {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    padding-top: 14px; border-top: 1px solid var(--rule);
+  }
+  .agent-card__metrics dt {
+    font-family: 'Fira Code', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint);
+    margin-bottom: 4px;
+  }
+  .agent-card__metrics dd {
+    font-family: 'Bebas Neue', sans-serif; font-size: 20px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+
+  /* ============================================================
+     HUD — F-16 / operating room
+     ============================================================ */
+  .hud {
+    background: var(--surface);
+    border: 1px solid var(--rule-bright);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .hud__top-strip {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 900px) { .hud__top-strip { grid-template-columns: repeat(3, 1fr); } }
+
+  .hud__top-strip > div {
+    padding: 18px 22px;
+    border-right: 1px solid var(--rule);
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .hud__top-strip > div:last-child { border-right: 0; }
+  .hud__top-strip strong {
+    display: block;
+    margin-top: 6px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+  .hud__top-strip .live strong { color: var(--lime); }
+  .hud__top-strip .crit strong { color: var(--crimson-bright); }
+  .hud__top-strip .amber strong { color: var(--amber); }
+
+  .hud__main {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.1fr;
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 1100px) { .hud__main { grid-template-columns: 1fr; } }
+
+  .hud__panel {
+    padding: 24px 26px;
+    border-right: 1px solid var(--rule);
+  }
+  .hud__panel:last-child { border-right: 0; }
+  @media (max-width: 1100px) {
+    .hud__panel { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .hud__panel:last-child { border-bottom: 0; }
+  }
+
+  .hud__panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hud__panel-head h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+
+  .hud__panel-head small {
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+  }
+  .hud__panel-head small.live { color: var(--lime); }
+
+  /* ──── Agent grid ──── */
+  .agent-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .agent-tile {
+    padding: 14px 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+  }
+
+  .agent-tile__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .agent-tile__name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    text-transform: uppercase;
+    margin: 2px 0;
+  }
+
+  .agent-tile__role {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--text-soft);
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  .agent-tile__bottom {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--text-soft);
+    padding-top: 8px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  .agent-tile__bottom span:first-child { color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.08em; font-size: 10px; }
+
+  .agent-tile__dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+  .agent-tile__dot--live  { background: var(--lime);     box-shadow: 0 0 0 3px var(--lime-glow); }
+  .agent-tile__dot--idle  { background: var(--amber); }
+  .agent-tile__dot--crit  { background: var(--crimson-bright); }
+
+  /* ──── Radials ──── */
+  .radials-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .radial-big {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+
+  .radial-big__center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .radial-big__value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 60px;
+    letter-spacing: 0.04em;
+    color: var(--lime);
+    line-height: 1;
+  }
+
+  .radial-big__label {
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-top: 6px;
+  }
+
+  .radial-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+  }
+
+  .radial-small {
+    text-align: center;
+  }
+
+  .radial-small svg { display: block; margin: 0 auto 8px; }
+
+  .radial-small__value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .radial-small--live .radial-small__value { color: var(--lime); }
+  .radial-small--idle .radial-small__value { color: var(--amber); }
+  .radial-small--crit .radial-small__value { color: var(--crimson-bright); }
+
+  .radial-small__label {
+    font-family: 'Fira Code', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-top: 3px;
+  }
+
+  /* ──── Live feed ──── */
+  .feed {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .feed-line {
+    display: grid;
+    grid-template-columns: 84px 1fr auto;
+    gap: 12px;
+    padding: 6px 0;
+    color: var(--text-soft);
+    border-bottom: 1px dashed var(--rule);
+  }
+  .feed-line:last-child { border-bottom: 0; }
+  .feed-line .t  { color: var(--text-faint); }
+  .feed-line .m strong { color: var(--text); }
+  .feed-line .tag {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    align-self: center;
+  }
+  .feed-line.live .tag { color: var(--lime); }
+  .feed-line.done .tag { color: var(--text-faint); }
+  .feed-line.crit .tag { color: var(--crimson-bright); }
+  .feed-line.crit .m   { color: var(--crimson-bright); }
+
+  /* ──── Bottom row — now 3 columns ──── */
+  .hud__bottom {
+    display: grid;
+    grid-template-columns: 1.2fr 0.85fr 0.95fr;
+  }
+  @media (max-width: 1100px) { .hud__bottom { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 720px)  { .hud__bottom { grid-template-columns: 1fr; } }
+
+  .hud__panel--bars { padding-bottom: 28px; }
+
+  .bars-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 140px;
+    margin-bottom: 12px;
+    padding-top: 18px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .bar {
+    flex: 1;
+    background: var(--lime);
+    min-height: 4px;
+    position: relative;
+  }
+  .bar--peak  { background: var(--lime); box-shadow: 0 0 8px rgba(141, 198, 63, 0.4); }
+  .bar--dim   { background: var(--lime-dim); }
+  .bar--crit  { background: var(--crimson); }
+  .bar--brass { background: var(--brass); }  /* family bridge — 5-10% appearance */
+  .bar--walnut{ background: var(--walnut-soft); }
+
+  .bars-axis {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Fira Code', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--text-mute);
+  }
+
+  /* ──── Sequence panel ──── */
+  .seq-list { font-family: 'Fira Code', monospace; font-size: 11px; }
+
+  .seq-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .seq-item:last-child { border-bottom: 0; }
+
+  .seq-icon {
+    width: 18px; height: 18px;
+    border: 1px solid var(--stone);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    font-size: 11px;
+  }
+  .seq-icon--done { background: var(--surface-2); color: var(--lime); border-color: var(--lime); }
+  .seq-icon--live { background: var(--lime); color: var(--bg-dark); border-color: var(--lime); }
+  .seq-icon--crit { background: var(--crimson); color: var(--text); border-color: var(--crimson); }
+
+  .seq-body strong { color: var(--text); font-weight: 500; font-family: 'Inter', sans-serif; font-size: 12px; }
+  .seq-body span   { color: var(--text-soft); font-size: 11px; }
+
+  .seq-time { color: var(--text-faint); font-size: 10px; letter-spacing: 0.1em; }
+
+  .seq-icon--brass { background: var(--brass); color: var(--bg-dark); border-color: var(--brass); }
+
+  /* ──── Sales pipeline rings — new infographic ──── */
+  .sales-rings {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 22px;
+    align-items: center;
+    padding-top: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .sales-rings { grid-template-columns: 1fr; gap: 14px; }
+    .sales-rings__chart svg { margin: 0 auto; }
+  }
+
+  .sales-rings__chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sales-rings__legend {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .leg {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .leg:last-child { border-bottom: 0; }
+
+  .leg__dot {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+  }
+
+  .leg__dot--leads     { background: var(--stone); }
+  .leg__dot--qualified { background: var(--brass); }
+  .leg__dot--inpipe    { background: var(--amber); }
+  .leg__dot--won       { background: var(--lime); box-shadow: 0 0 0 3px var(--lime-glow); }
+
+  .leg__body { flex: 1; }
+
+  .leg__name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .leg__meta {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+  }
+
+  .leg__meta strong {
+    color: var(--text-soft);
+    font-weight: 500;
+  }
+
+  /* ── Footer ──────────────────────────────────────────────── */
+  .footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+  }
+
+  .footer a { color: var(--text-faint); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .footer a:hover { color: var(--lime); border-color: var(--lime); }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Top navigation">
+  <div class="topnav__inner">
+    <a class="topnav__logo" href="/moodboards/" aria-label="DREAMBORN">
+      <img src="/img/dreamborn-logo.png" alt="DREAMBORN">
+    </a>
+    <ul class="topnav__items">
+      <li><a href="#">Explainer</a></li>
+      <li><a href="#">AI-Native</a></li>
+      <li><a href="#">Thinking</a></li>
+      <li><a href="#" class="is-active">Live</a></li>
+      <li><a href="#">Work</a></li>
+      <li><a href="#">System</a></li>
+    </ul>
+    <a class="topnav__cta" href="#">Connect →</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <header class="header">
+    <p class="crumb">
+      <a href="/moodboards/">moodboards</a>
+      <span>/</span>
+      forge
+      <span>/</span>
+      dark · operational
+    </p>
+
+    <div class="status-bar">
+      <div class="live"><span class="dot"></span> system <strong>LIVE</strong></div>
+      <div><span>agents</span> <strong>24</strong></div>
+      <div><span>working</span> <strong>7</strong></div>
+      <div><span>idle</span> <strong>17</strong></div>
+      <div><span>verify</span> <strong>99.2%</strong></div>
+      <div><span>uptime</span> <strong>∞</strong></div>
+    </div>
+
+    <h1>Forge<em>.</em></h1>
+    <p class="dek">
+      Dev surface where agents do the work. Stone-to-black gradient,
+      square corners, sparks of Lime. Hammer and chisel — no decoration,
+      no soft edges, just the work moving. Bebas Neue replaces the serif:
+      industrial, condensed, all-caps. The engine room of the family.
+    </p>
+    <p class="keywords">
+      mood / <span>rigid</span> · <span>live</span> · <span>technical</span> · <span>engine room</span>
+    </p>
+  </header>
+
+  <!-- ──────── Palette ──────── -->
+  <section class="section">
+    <div class="section-label">
+      <h2>Palette</h2>
+      <small>warm dark base · lime spark · crimson alert</small>
+    </div>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch__chip" style="background: linear-gradient(108deg, #3D3530 0%, #0F0B0A 70%);"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Stone-to-Black</div>
+          <div class="swatch__role">page · background</div>
+          <div class="swatch__hex">#3D3530 → #0F0B0A</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background: #FAF8F5;"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Cream</div>
+          <div class="swatch__role">type · primary</div>
+          <div class="swatch__hex">#FAF8F5</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background: #8A7E6A;"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Stone</div>
+          <div class="swatch__role">structure · rules</div>
+          <div class="swatch__hex">#8A7E6A</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background: #8C1A13;"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Crimson 600</div>
+          <div class="swatch__role">critical · alert</div>
+          <div class="swatch__hex">#8C1A13</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background: #8DC63F;"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Lime 500</div>
+          <div class="swatch__role">live · CTA · spark</div>
+          <div class="swatch__hex">#8DC63F</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────── Typography ──────── -->
+  <section class="section">
+    <div class="section-label">
+      <h2>Typography</h2>
+      <small>bebas neue · inter · fira code</small>
+    </div>
+    <div class="type-grid">
+      <div class="type-card">
+        <div class="type-card__label">Display <span>· bebas neue</span></div>
+        <div class="type-display">Watch the work <em>move.</em></div>
+        <div class="type-display-meta">Bebas Neue · 400 · clamp(56–88px) · uppercase · 0.04em tracking</div>
+      </div>
+      <div class="type-card">
+        <div class="type-card__label">Body <span>· inter</span></div>
+        <p class="type-body">
+          Agents pull work, complete it, and prove it. Bezel tracks every task,
+          every dependency, every decision. Work is not pushed from a controller;
+          agents claim it based on readiness.
+        </p>
+        <div class="type-body-meta">Inter · 300/400/500 · 17px / 1.65 line-height</div>
+      </div>
+      <div class="type-card" style="grid-column: 1 / -1;">
+        <div class="type-card__label">Mono <span>· fira code</span></div>
+        <div class="type-mono"><span class="meta">2026-05-15 11:02:33</span>  <span class="pass">●</span> <span class="pass">PASS</span>  agent.architect  &gt; blueprint(work-page) &gt; <span class="pass">verified</span>
+<span class="meta">2026-05-15 11:03:17</span>  <span class="pass">●</span> <span class="pass">PASS</span>  agent.developer  &gt; commit(8d7f844) &gt; <span class="pass">verified</span>
+<span class="meta">2026-05-15 11:04:21</span>  <span class="pass">●</span> <span class="pass">PASS</span>  agent.reviewer   &gt; audit(register) &gt; <span class="pass">verified</span></div>
+        <div class="type-body-meta">Fira Code · 400/500 · 13px · logs · receipts · live feed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────── Components ──────── -->
+  <section class="section">
+    <div class="section-label">
+      <h2>Components</h2>
+      <small>0px radii · opaque surfaces · forge stays rigid</small>
+    </div>
+    <div class="components">
+      <div class="comp-block">
+        <h3>Buttons</h3>
+        <div class="btn-row">
+          <button class="btn btn--primary">Open live room</button>
+          <button class="btn btn--secondary">Inspect feed</button>
+          <button class="btn btn--danger">Halt</button>
+        </div>
+        <div class="input-row">
+          <label for="forge-cmd">Issue command</label>
+          <input id="forge-cmd" type="text" placeholder="bezel &gt; dispatch …">
+        </div>
+      </div>
+      <div class="comp-block">
+        <h3>Agent card</h3>
+        <div class="agent-card">
+          <div class="agent-card__top">
+            <span class="agent-card__id">AR · agent.architect</span>
+            <span class="agent-card__status">live</span>
+          </div>
+          <div class="agent-card__name">Architect</div>
+          <div class="agent-card__role">System mapping · schema · dependency contracts</div>
+          <dl class="agent-card__metrics">
+            <div><dt>queue</dt><dd>3</dd></div>
+            <div><dt>done</dt><dd>247</dd></div>
+            <div><dt>verify</dt><dd>99.2%</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HUD — full data wall
+       ============================================================ -->
+  <section class="section">
+    <div class="section-label">
+      <h2>In use · Operating room</h2>
+      <small>F-16 hud · fleet status · live feed · throughput</small>
+    </div>
+
+    <div class="hud">
+
+      <!-- Top strip — top-of-cockpit dataline -->
+      <div class="hud__top-strip">
+        <div class="live"><span>system</span><strong>LIVE</strong></div>
+        <div><span>fleet</span><strong>24</strong></div>
+        <div class="live"><span>working</span><strong>07</strong></div>
+        <div class="amber"><span>idle</span><strong>17</strong></div>
+        <div><span>verify rate</span><strong>99.2%</strong></div>
+        <div class="crit"><span>halted</span><strong>01</strong></div>
+      </div>
+
+      <!-- Main HUD body -->
+      <div class="hud__main">
+
+        <!-- Agent grid -->
+        <div class="hud__panel">
+          <div class="hud__panel-head">
+            <h3>Fleet · agent grid</h3>
+            <small class="live">● live · 8 of 24</small>
+          </div>
+          <div class="agent-grid">
+
+            <div class="agent-tile">
+              <div class="agent-tile__row">
+                <span>AR · architect</span>
+                <span class="agent-tile__dot agent-tile__dot--live"></span>
+              </div>
+              <div class="agent-tile__name">Architect</div>
+              <div class="agent-tile__role">System mapping · schemas</div>
+              <div class="agent-tile__bottom"><span>queue</span><span>03 · 247</span></div>
+            </div>
+
+            <div class="agent-tile">
+              <div class="agent-tile__row">
+                <span>DV · developer</span>
+                <span class="agent-tile__dot agent-tile__dot--live"></span>
+              </div>
+              <div class="agent-tile__name">Developer</div>
+              <div class="agent-tile__role">Implementation · commits</div>
+              <div class="agent-tile__bottom"><span>queue</span><span>05 · 412</span></div>
+            </div>
+
+            <div class="agent-tile">
+              <div class="agent-tile__row">
+                <span>UI · designer</span>
+                <span class="agent-tile__dot agent-tile__dot--live"></span>
+              </div>
+              <div class="agent-tile__name">Designer</div>
+              <div class="agent-tile__role">Interface · production polish</div>
+              <div class="agent-tile__bottom"><span>queue</span><span>02 · 188</span></div>
+            </div>
+
+            <div class="agent-tile">
+              <div class="agent-tile__row">
+                <span>QA · reviewer</span>
+                <span class="agent-tile__dot agent-tile__dot--crit"></span>
+              </div>
+              <div class="agent-tile__name">Reviewer</div>
+              <div class="agent-tile__role">Protocol · drift detect</div>
+              <div class="agent-tile__bottom"><span>halt</span><span>01 · 96</span></div>
+            </div>
+
+            <div class="agent-tile">
+              <div class="agent-tile__row">
+                <span>OP · operator</span>
+                <span class="agent-tile__dot agent-tile__dot--live"></span>
+              </div>
+              <div class="agent-tile__name">Operator</div>
+              <div class="agent-tile__role">Fleet health · dispatch</div>
+              <div class="agent-tile__bottom"><span>queue</span><span>00 · 521</span></div>
+            </div>
+
+            <div class="agent-tile">
+              <div class="agent-tile__row">
+                <span>MK · marketing</span>
+                <span class="agent-tile__dot agent-tile__dot--idle"></span>
+              </div>
+              <div class="agent-tile__name">Marketing</div>
+              <div class="agent-tile__role">Distribution · content</div>
+              <div class="agent-tile__bottom"><span>idle</span><span>00 · 64</span></div>
+            </div>
+
+            <div class="agent-tile">
+              <div class="agent-tile__row">
+                <span>BA · analyst</span>
+                <span class="agent-tile__dot agent-tile__dot--idle"></span>
+              </div>
+              <div class="agent-tile__name">Analyst</div>
+              <div class="agent-tile__role">Specifications · scoping</div>
+              <div class="agent-tile__bottom"><span>idle</span><span>00 · 81</span></div>
+            </div>
+
+            <div class="agent-tile">
+              <div class="agent-tile__row">
+                <span>ME · memory</span>
+                <span class="agent-tile__dot agent-tile__dot--live"></span>
+              </div>
+              <div class="agent-tile__name">Memory</div>
+              <div class="agent-tile__role">Context · receipts archive</div>
+              <div class="agent-tile__bottom"><span>queue</span><span>11 · 1842</span></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Radial metrics -->
+        <div class="hud__panel">
+          <div class="hud__panel-head">
+            <h3>Verification</h3>
+            <small class="live">● continuous</small>
+          </div>
+
+          <div class="radials-stack">
+
+            <!-- BIG donut: verify rate -->
+            <div class="radial-big">
+              <svg width="200" height="200" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#1C1614" stroke-width="6"/>
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#8DC63F" stroke-width="6"
+                        stroke-dasharray="263.9" stroke-dashoffset="2.1"
+                        stroke-linecap="butt"
+                        transform="rotate(-90 50 50)"/>
+                <circle cx="50" cy="50" r="34" fill="none" stroke="#1C1614" stroke-width="1"/>
+                <line x1="50" y1="4"  x2="50" y2="8"  stroke="#8A7E6A" stroke-width="0.5"/>
+                <line x1="50" y1="92" x2="50" y2="96" stroke="#8A7E6A" stroke-width="0.5"/>
+                <line x1="4"  y1="50" x2="8"  y2="50" stroke="#8A7E6A" stroke-width="0.5"/>
+                <line x1="92" y1="50" x2="96" y2="50" stroke="#8A7E6A" stroke-width="0.5"/>
+              </svg>
+              <div class="radial-big__center">
+                <div class="radial-big__value">99.2%</div>
+                <div class="radial-big__label">verify rate</div>
+              </div>
+            </div>
+
+            <!-- Three small dials -->
+            <div class="radial-row">
+
+              <div class="radial-small radial-small--live">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                  <circle cx="32" cy="32" r="26" fill="none" stroke="#1C1614" stroke-width="4"/>
+                  <circle cx="32" cy="32" r="26" fill="none" stroke="#8DC63F" stroke-width="4"
+                          stroke-dasharray="163.4" stroke-dashoffset="115"
+                          transform="rotate(-90 32 32)"/>
+                </svg>
+                <div class="radial-small__value">29%</div>
+                <div class="radial-small__label">working</div>
+              </div>
+
+              <div class="radial-small radial-small--idle">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                  <circle cx="32" cy="32" r="26" fill="none" stroke="#1C1614" stroke-width="4"/>
+                  <circle cx="32" cy="32" r="26" fill="none" stroke="#C9A876" stroke-width="4"
+                          stroke-dasharray="163.4" stroke-dashoffset="48"
+                          transform="rotate(-90 32 32)"/>
+                </svg>
+                <div class="radial-small__value">71%</div>
+                <div class="radial-small__label">idle</div>
+              </div>
+
+              <div class="radial-small radial-small--crit">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                  <circle cx="32" cy="32" r="26" fill="none" stroke="#1C1614" stroke-width="4"/>
+                  <circle cx="32" cy="32" r="26" fill="none" stroke="#C03535" stroke-width="4"
+                          stroke-dasharray="163.4" stroke-dashoffset="156"
+                          transform="rotate(-90 32 32)"/>
+                </svg>
+                <div class="radial-small__value">4%</div>
+                <div class="radial-small__label">crit</div>
+              </div>
+
+            </div>
+
+            <!-- Spider chart -->
+            <div style="margin-top: 12px;">
+              <svg width="220" height="180" viewBox="0 0 220 180">
+                <!-- grid rings -->
+                <g transform="translate(110 90)" fill="none" stroke="#1C1614" stroke-width="1">
+                  <polygon points="0,-70 60.6,-35 60.6,35 0,70 -60.6,35 -60.6,-35"/>
+                  <polygon points="0,-46.7 40.4,-23.4 40.4,23.4 0,46.7 -40.4,23.4 -40.4,-23.4"/>
+                  <polygon points="0,-23.3 20.2,-11.7 20.2,11.7 0,23.3 -20.2,11.7 -20.2,-11.7"/>
+                </g>
+                <!-- axes -->
+                <g transform="translate(110 90)" stroke="#1C1614" stroke-width="1">
+                  <line x1="0" y1="0" x2="0"     y2="-70"/>
+                  <line x1="0" y1="0" x2="60.6"  y2="-35"/>
+                  <line x1="0" y1="0" x2="60.6"  y2="35"/>
+                  <line x1="0" y1="0" x2="0"     y2="70"/>
+                  <line x1="0" y1="0" x2="-60.6" y2="35"/>
+                  <line x1="0" y1="0" x2="-60.6" y2="-35"/>
+                </g>
+                <!-- data polygon -->
+                <g transform="translate(110 90)">
+                  <polygon points="0,-65 56,-32 50,29 0,58 -55,32 -54,-30"
+                           fill="rgba(141, 198, 63, 0.18)"
+                           stroke="#8DC63F"
+                           stroke-width="1.4"/>
+                </g>
+                <!-- labels -->
+                <g font-family="Fira Code, monospace" font-size="9" fill="#8A7E6A" letter-spacing="1">
+                  <text x="110" y="14"  text-anchor="middle">VERIFY</text>
+                  <text x="186" y="58"  text-anchor="middle">QUEUE</text>
+                  <text x="186" y="138" text-anchor="middle">DONE</text>
+                  <text x="110" y="174" text-anchor="middle">SYNC</text>
+                  <text x="34"  y="138" text-anchor="middle">SPEED</text>
+                  <text x="34"  y="58"  text-anchor="middle">CLAIM</text>
+                </g>
+              </svg>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Live feed -->
+        <div class="hud__panel">
+          <div class="hud__panel-head">
+            <h3>Agent wire · feed</h3>
+            <small class="live">● live</small>
+          </div>
+
+          <div class="feed">
+            <div class="feed-line live">
+              <span class="t">11:04:21</span>
+              <span class="m"><strong>designer</strong> &gt; claim(work-page-redesign)</span>
+              <span class="tag">LIVE</span>
+            </div>
+            <div class="feed-line done">
+              <span class="t">11:03:17</span>
+              <span class="m"><strong>developer</strong> &gt; commit(8d7f844)</span>
+              <span class="tag">DONE</span>
+            </div>
+            <div class="feed-line done">
+              <span class="t">11:02:33</span>
+              <span class="m"><strong>architect</strong> &gt; blueprint(register-audit)</span>
+              <span class="tag">DONE</span>
+            </div>
+            <div class="feed-line crit">
+              <span class="t">11:01:54</span>
+              <span class="m"><strong>reviewer</strong> &gt; halt(/work/) register-drift</span>
+              <span class="tag">CRIT</span>
+            </div>
+            <div class="feed-line done">
+              <span class="t">11:00:12</span>
+              <span class="m"><strong>system</strong> &gt; sync HCS 0.0.10451790</span>
+              <span class="tag">DONE</span>
+            </div>
+            <div class="feed-line done">
+              <span class="t">10:58:45</span>
+              <span class="m"><strong>memory</strong> &gt; archive(receipts, seq 21)</span>
+              <span class="tag">DONE</span>
+            </div>
+            <div class="feed-line done">
+              <span class="t">10:56:30</span>
+              <span class="m"><strong>operator</strong> &gt; dispatch(fleet, batch 12)</span>
+              <span class="tag">DONE</span>
+            </div>
+            <div class="feed-line done">
+              <span class="t">10:54:12</span>
+              <span class="m"><strong>architect</strong> &gt; refine(semantic-tokens)</span>
+              <span class="tag">DONE</span>
+            </div>
+            <div class="feed-line done">
+              <span class="t">10:51:08</span>
+              <span class="m"><strong>reviewer</strong> &gt; audit(thinking-post.njk)</span>
+              <span class="tag">DONE</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom row -->
+      <div class="hud__bottom">
+
+        <div class="hud__panel hud__panel--bars">
+          <div class="hud__panel-head">
+            <h3>Receipts / hour · last 24</h3>
+            <small>peak 11:00 · 47 receipts</small>
+          </div>
+          <div class="bars-chart">
+            <div class="bar bar--walnut" style="height: 18%"></div>
+            <div class="bar bar--dim"    style="height: 22%"></div>
+            <div class="bar bar--dim"    style="height: 15%"></div>
+            <div class="bar bar--dim"    style="height: 12%"></div>
+            <div class="bar bar--dim"    style="height: 28%"></div>
+            <div class="bar bar"         style="height: 40%"></div>
+            <div class="bar bar--brass"  style="height: 56%"></div>
+            <div class="bar bar"         style="height: 48%"></div>
+            <div class="bar bar"         style="height: 62%"></div>
+            <div class="bar bar"         style="height: 70%"></div>
+            <div class="bar bar--peak"   style="height: 92%"></div>
+            <div class="bar bar--peak"   style="height: 100%"></div>
+            <div class="bar bar"         style="height: 84%"></div>
+            <div class="bar bar"         style="height: 76%"></div>
+            <div class="bar bar"         style="height: 68%"></div>
+            <div class="bar bar--crit"   style="height: 38%"></div>
+            <div class="bar bar"         style="height: 52%"></div>
+            <div class="bar bar"         style="height: 60%"></div>
+            <div class="bar bar"         style="height: 54%"></div>
+            <div class="bar bar"         style="height: 46%"></div>
+            <div class="bar bar"         style="height: 40%"></div>
+            <div class="bar bar--dim"    style="height: 32%"></div>
+            <div class="bar bar--dim"    style="height: 24%"></div>
+            <div class="bar bar--walnut" style="height: 18%"></div>
+          </div>
+          <div class="bars-axis">
+            <span>-24h</span>
+            <span>-18h</span>
+            <span>-12h</span>
+            <span>-6h</span>
+            <span>now</span>
+          </div>
+        </div>
+
+        <div class="hud__panel">
+          <div class="hud__panel-head">
+            <h3>Recent decisions</h3>
+            <small>last 30 min</small>
+          </div>
+          <div class="seq-list">
+
+            <div class="seq-item">
+              <span class="seq-icon seq-icon--live">●</span>
+              <span class="seq-body"><strong>register flip</strong> <span>· /work/ brand → editorial</span></span>
+              <span class="seq-time">11:02</span>
+            </div>
+
+            <div class="seq-item">
+              <span class="seq-icon seq-icon--done">✓</span>
+              <span class="seq-body"><strong>commit pushed</strong> <span>· 8d7f844 main</span></span>
+              <span class="seq-time">11:03</span>
+            </div>
+
+            <div class="seq-item">
+              <span class="seq-icon seq-icon--crit">!</span>
+              <span class="seq-body"><strong>deploy stuck</strong> <span>· cloudflare pages no-pickup</span></span>
+              <span class="seq-time">11:10</span>
+            </div>
+
+            <div class="seq-item">
+              <span class="seq-icon seq-icon--done">✓</span>
+              <span class="seq-body"><strong>local verify</strong> <span>· :8080/work/ data-register=editorial</span></span>
+              <span class="seq-time">11:11</span>
+            </div>
+
+            <div class="seq-item">
+              <span class="seq-icon seq-icon--done">✓</span>
+              <span class="seq-body"><strong>moodboards v2</strong> <span>· brand · editorial · forge</span></span>
+              <span class="seq-time">11:42</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ──── Sales pipeline · concentric rings (new) ──── -->
+        <div class="hud__panel">
+          <div class="hud__panel-head">
+            <h3>Sales pipeline · Q2</h3>
+            <small class="live">● live</small>
+          </div>
+
+          <div class="sales-rings">
+            <div class="sales-rings__chart">
+              <svg width="200" height="200" viewBox="0 0 100 100" aria-label="Pipeline rings">
+                <!-- tracks (thin) -->
+                <circle cx="50" cy="50" r="44" fill="none" stroke="#1C1614" stroke-width="0.6"/>
+                <circle cx="50" cy="50" r="34" fill="none" stroke="#1C1614" stroke-width="0.6"/>
+                <circle cx="50" cy="50" r="24" fill="none" stroke="#1C1614" stroke-width="0.6"/>
+                <circle cx="50" cy="50" r="14" fill="none" stroke="#1C1614" stroke-width="0.6"/>
+
+                <!-- progress arcs (thin, modern) -->
+                <circle cx="50" cy="50" r="44" fill="none" stroke="#8A7E6A" stroke-width="1.4"
+                        stroke-dasharray="276.5" stroke-dashoffset="41.5"
+                        transform="rotate(-90 50 50)"/>
+                <circle cx="50" cy="50" r="34" fill="none" stroke="#B89868" stroke-width="1.4"
+                        stroke-dasharray="213.6" stroke-dashoffset="85.4"
+                        transform="rotate(-90 50 50)"/>
+                <circle cx="50" cy="50" r="24" fill="none" stroke="#C9A876" stroke-width="1.4"
+                        stroke-dasharray="150.8" stroke-dashoffset="86.0"
+                        transform="rotate(-90 50 50)"/>
+                <circle cx="50" cy="50" r="14" fill="none" stroke="#8DC63F" stroke-width="1.6"
+                        stroke-dasharray="87.9" stroke-dashoffset="15.8"
+                        transform="rotate(-90 50 50)"/>
+
+                <!-- tick marks at top -->
+                <line x1="50" y1="2" x2="50" y2="6" stroke="#8A7E6A" stroke-width="0.5"/>
+
+                <!-- center label -->
+                <text x="50" y="48" text-anchor="middle"
+                      font-family="Bebas Neue, sans-serif" font-size="11"
+                      letter-spacing="0.3" fill="#FAF8F5">$2.4M</text>
+                <text x="50" y="57" text-anchor="middle"
+                      font-family="Fira Code, monospace" font-size="3"
+                      letter-spacing="0.5" fill="#8A7E6A">ARR · Q2</text>
+              </svg>
+            </div>
+
+            <div class="sales-rings__legend">
+              <div class="leg">
+                <span class="leg__dot leg__dot--leads"></span>
+                <div class="leg__body">
+                  <div class="leg__name">Leads</div>
+                  <div class="leg__meta">1,247 · <strong>85%</strong> to target</div>
+                </div>
+              </div>
+              <div class="leg">
+                <span class="leg__dot leg__dot--qualified"></span>
+                <div class="leg__body">
+                  <div class="leg__name">Qualified</div>
+                  <div class="leg__meta">823 · <strong>60%</strong></div>
+                </div>
+              </div>
+              <div class="leg">
+                <span class="leg__dot leg__dot--inpipe"></span>
+                <div class="leg__body">
+                  <div class="leg__name">In pipe</div>
+                  <div class="leg__meta">412 · <strong>43%</strong></div>
+                </div>
+              </div>
+              <div class="leg">
+                <span class="leg__dot leg__dot--won"></span>
+                <div class="leg__body">
+                  <div class="leg__name">Won</div>
+                  <div class="leg__meta">87 · <strong>82%</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>FORGE register · moodboard v2 · 2026-05-15</span>
+    <a href="/moodboards/">← all boards</a>
+  </footer>
+
+</div>
+</body>
+</html>

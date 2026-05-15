@@ -1,0 +1,245 @@
+---
+layout: false
+permalink: /moodboards/
+title: DREAMBORN Moodboards
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DREAMBORN Moodboards</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='17' height='17'><line x1='0' y1='17' x2='17' y2='0' stroke='%238A7E6A' stroke-opacity='0.10' stroke-width='1'/></svg>"),
+      linear-gradient(120deg, #1E1714 0%, #0F0B0A 100%);
+    color: #FAF8F5;
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 96px 48px 120px;
+  }
+
+  .masthead { margin-bottom: 88px; }
+
+  .masthead small {
+    display: block;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8A7E6A;
+    margin-bottom: 16px;
+  }
+
+  .masthead h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(56px, 8vw, 112px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #FAF8F5;
+    margin-bottom: 20px;
+  }
+
+  .masthead p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.55;
+    color: #C8C0B8;
+    max-width: 620px;
+  }
+
+  .boards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 960px) {
+    .boards { grid-template-columns: 1fr; }
+  }
+
+  .board-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    border: 1px solid rgba(138, 126, 106, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    min-height: 420px;
+  }
+
+  .board-card:hover {
+    transform: translateY(-4px);
+    border-color: #8A7E6A;
+  }
+
+  .board-card--forge { border-radius: 0; }
+
+  .board-card__swatch {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .board-card__swatch::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='17' height='17'><line x1='0' y1='17' x2='17' y2='0' stroke='%238A7E6A' stroke-opacity='0.14' stroke-width='1'/></svg>");
+    pointer-events: none;
+  }
+
+  .board-card__swatch h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 42px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .board-card--brand .board-card__swatch {
+    background: linear-gradient(135deg, #E2DDD8 0%, #C8C0B8 100%);
+    color: #1E1714;
+  }
+
+  .board-card--editorial .board-card__swatch {
+    background: linear-gradient(135deg, #FAF8F5 0%, #F0EDE9 100%);
+    color: #1E1714;
+  }
+
+  .board-card--forge .board-card__swatch {
+    background: linear-gradient(135deg, #3D3530 0%, #0F0B0A 100%);
+    color: #FAF8F5;
+  }
+
+  .board-card__meta {
+    padding: 24px 28px 28px;
+    background: rgba(15, 11, 10, 0.9);
+    border-top: 1px solid rgba(138, 126, 106, 0.2);
+  }
+
+  .board-card__meta strong {
+    display: block;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8DC63F;
+    margin-bottom: 10px;
+  }
+
+  .board-card__meta p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #C8C0B8;
+  }
+
+  .board-card__meta dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 18px;
+    margin-top: 18px;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+  }
+
+  .board-card__meta dt { color: #6B5F54; text-transform: uppercase; letter-spacing: 0.08em; }
+  .board-card__meta dd { color: #C8C0B8; }
+
+  .footnote {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(138, 126, 106, 0.2);
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #6B5F54;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <small>moodboard / v1 / 2026-05-15</small>
+    <h1>Three registers,<br>one family.</h1>
+    <p>
+      Light, medium, dark — drawn from the same warm palette, anchored by Crimson,
+      Lime, and Stone, unified by the diagonal line. Same typography across all three,
+      different temperature.
+    </p>
+  </header>
+
+  <div class="boards">
+
+    <a class="board-card board-card--brand" href="/moodboards/brand/">
+      <div class="board-card__swatch"><h2>Brand</h2></div>
+      <div class="board-card__meta">
+        <strong>Medium / warm</strong>
+        <p>Casual marketing surface. Parchment, walnut, brass-warm. The middle of the family.</p>
+        <dl>
+          <dt>bg</dt><dd>warm parchment</dd>
+          <dt>radii</dt><dd>4px</dd>
+          <dt>mood</dt><dd>human, hand-made</dd>
+        </dl>
+      </div>
+    </a>
+
+    <a class="board-card board-card--editorial" href="/moodboards/editorial/">
+      <div class="board-card__swatch"><h2>Editorial</h2></div>
+      <div class="board-card__meta">
+        <strong>Light / quiet</strong>
+        <p>Long-form thinking. Warm cream, deep ink, fine rules. Reads like a paper.</p>
+        <dl>
+          <dt>bg</dt><dd>warm cream</dd>
+          <dt>radii</dt><dd>4px</dd>
+          <dt>mood</dt><dd>considered, slow</dd>
+        </dl>
+      </div>
+    </a>
+
+    <a class="board-card board-card--forge" href="/moodboards/forge/">
+      <div class="board-card__swatch"><h2>Forge</h2></div>
+      <div class="board-card__meta">
+        <strong>Dark / operational</strong>
+        <p>Dev surface where agents work. Stone gradient, sparks of Lime. Hammer and chisel.</p>
+        <dl>
+          <dt>bg</dt><dd>stone-to-black</dd>
+          <dt>radii</dt><dd>0px (square)</dd>
+          <dt>mood</dt><dd>rigid, live</dd>
+        </dl>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="footnote">
+    DREAMBORN moodboards / v1 — not final design. Concept exploration for register family.
+    Typography: Cormorant Garamond / Inter / Fira Code. Palette: Crimson 600, Lime 500, Stone, Neutral ladder.
+  </p>
+
+</div>
+</body>
+</html>
